@@ -1,0 +1,33 @@
+body {
+    background-color:#15212c;
+    
+    overflow-y:hidden;
+    background-size:150%;
+    
+
+
+}
+
+::-webkit-scrollbar {
+  width: 15px;
+  
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #15212c;
+  border-radius: 30px;  
+  margin-block: 15px;
+  
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2c4257;
+  border-radius: 30px;
+}
+/* width */
+
+  

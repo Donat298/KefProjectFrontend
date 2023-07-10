@@ -1,0 +1,58 @@
+<template>
+    <template v-if="$store.getters.sessionChecked">
+      <div>
+        <NavBBar2 @ShowAccountOknoo="showacg = true" />
+  
+        <NavBBar  />
+  
+        <AccountView v-if="showacg" @HideAccountOknoo="showacg = false" />
+  
+        <div class="app">
+          <div>
+            <router-view />
+          </div>
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <SessionCheckAnimation />
+    </template>
+  </template>
+  
+  <script>
+  import NavBBar from "@/pages/NavBBar/NavBBar.vue";
+  import NavBBar2 from "@/pages/NavBBar2.vue";
+  import AccountView from "@/pages/auth/AccountView.vue";
+  import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
+  
+  export default {
+    components: { NavBBar2, NavBBar, AccountView, SessionCheckAnimation },
+    data() {
+      return {
+        showacg: false,
+        
+      };
+    },
+   
+    mounted() {
+      let elHtml = document.getElementsByTagName("html")[0];
+      elHtml.style.overflowY = "hidden";
+  
+      this.$store.dispatch("attempt");
+    },
+  };
+  </script>
+  
+  <style>
+  @import "./assets/mystyle.css";
+  
+  .app {
+    /*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #ffffff;
+    margin-top: 60px;
+  }
+  </style>
+  
