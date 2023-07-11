@@ -1,7 +1,7 @@
 <template>
     <v-layout class="rounded rounded-md">
 
-        <v-app-bar :elevation="0" style="z-index: 1; background-color: #213141">
+        <v-app-bar :elevation="0" style="z-index: 1; background-color: #15212c">
             <v-menu transition="scale-transition">
                 
                 <template v-slot:activator="{ props }">
