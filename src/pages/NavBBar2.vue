@@ -1,12 +1,12 @@
 <template>
     <v-layout class="rounded rounded-md">
 
-        <v-app-bar :elevation="4" style="z-index: 1; background-color: #213141">
+        <v-app-bar :elevation="0" style="z-index: 1; background-color: #213141">
             <v-menu transition="scale-transition">
                 
                 <template v-slot:activator="{ props }">
                     
-                    <v-row  style=" background-color: #213141; padding: 0px 20px;">
+                    <v-row  style=" background-color: #15212c; padding: 0px 20px;">
                         <v-col
                             cols="auto"
                             style="margin-left: auto;"
