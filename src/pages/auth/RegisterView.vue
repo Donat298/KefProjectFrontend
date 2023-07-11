@@ -1,21 +1,30 @@
 <template>
   <div class="jjl">
-    <div style="width: 100%; align-items: center; max-height: 90%;
-    justify-content: center; overflow-y: auto;">
-      <div style="overflow-y:auto; max-height: 90%; min-width: 460px; margin-left: auto; margin-right: auto;">
-          <div style="display: flex; max-width: 350px; margin: auto; margin-bottom: 20px;">
+    <div style="
+    width: 460px;
+    max-height: 100%;
+    align-items: center;
+    max-width: 90%;
+    justify-content: center; 
+    overflow-y: auto;">
+
+
+
+      <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
+
+
+          <div style="display: flex; max-width: 100%; width: 340px; margin: auto; margin-bottom: 20px;">
   <v-img
    style="margin: auto;"
-    min-width="228"
-    height="200"
+    
     src="@/assets/kef.png"
   ></v-img>
 
       </div>
   <v-card
-    class="mx-auto pa-12 pb-8"
+    class="mx-auto pa-10 pb-8"
     elevation="8"
-    max-width="448"
+    
     rounded="lg"
 
     
@@ -73,9 +82,10 @@
     ></v-text-field>
 
 
-    <div style="height: 35px; align-items: center; " class="text-subtitle-1 text-color-white d-flex align-center justify-space-between ">
-          <div style="color: red; " v-if="errorMessage">{{ errorMessage }}</div>
-    </div>
+    <div style="min-height: 35px;" class="text-subtitle-1 d-flex text-color-white justify-space-between">
+                       <div style="color: red; " v-if="errorMessage">{{ errorMessage }}</div>
+                       
+                    </div>
     <v-btn
       @click="register(username, email, password, password_confirm)"
       block
@@ -137,5 +147,11 @@ display: flex;
 align-items: center;
 justify-content: center;
 z-index: 2;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  
+  
 }
 </style>
