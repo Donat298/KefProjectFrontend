@@ -54,8 +54,8 @@
         rounded="lg"
         class=" pa-2"
         elevation="0"  
-        ><div style="display: flex; margin: 0 auto; padding-left: 30px;"> <div  style="color: #ffffff; ">{{ $store.getters.userDetail.balance }} USDT </div>
-        <v-img style="margin-left: 5px;" max-width="30" src="@/assets/Tether.png"></v-img></div></v-card>
+        ><div style="display: flex; margin: 0 auto; padding-left: 30px;"> <div  style="color: #ffffff; margin: 0 auto;">{{ $store.getters.userDetail.balance }} USDT </div>
+        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img></div></v-card>
       </div>
     </div >
     </v-card>
