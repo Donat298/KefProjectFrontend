@@ -54,7 +54,7 @@
         rounded="lg"
         class=" pa-2"
         elevation="0"  
-        ><div style="display: flex; margin: 0 auto; padding-left: 30px;"> <div  style="color: #ffffff; margin: 0 auto;">{{ $store.getters.userDetail.balance }} USDT </div>
+        ><div style="display: flex; margin: 0 auto; padding-left: 30px; "> <div  style="color: #ffffff; margin: 0 auto;">{{ $store.getters.userDetail.balance }} USDT </div>
         <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img></div></v-card>
       </div>
     </div >
@@ -66,7 +66,7 @@
 
       <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
       style=" overflow-y:auto; max-height: 90%; min-width: 300px;width: 100%; ">
-        <div v-if="showAccComponent === false" @click.stop style="
+        <div @click.stop style="
        
 
         width: 300px;
@@ -124,7 +124,7 @@
         rounded="lg"
         class=" pa-2"
         elevation="0"  
-        ><div style="display: flex; margin: 0 auto; "> <div  style="color: #ffffff;  margin: auto;">{{ $store.getters.userDetail.balance }} 
+        ><div style="display: flex; margin: 0 auto; "> <div  style="color: #ffffff;  margin: 0 auto;">{{ $store.getters.userDetail.balance }} 
           USDT </div>
         <v-img style="margin-left: 5px; max-width:30px; width: 25px;"  src="@/assets/Tether.png"></v-img></div></v-card>
       </div>
