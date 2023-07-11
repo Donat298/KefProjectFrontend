@@ -47,7 +47,7 @@ export default createStore({
                         commit("setSessionChecked", true);
                     });
                 }
-                , 500);
+                , 0);
 
 
         },
