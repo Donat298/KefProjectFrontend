@@ -13,16 +13,16 @@
         box-sizing: border-box;       
         margin: auto;">   
     <v-card
+      elevation="0"
     
-      class="mx-auto"
        
      
       rounded="lg"
-      style="background-color: #384f62; border: 7px solid #213141; display: flex; width: 600px;" 
+      style="background-color: #384f62; display: flex; width: 600px;" 
     >
 
    
-    <div style="background-color: #384f62; ; align-items: center; width: 400px; padding: 20px 10px;">
+    <div style="background-color: #384f62;  width: 50%; padding: 20px 10px;">
         <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
       <v-avatar 
 
@@ -46,16 +46,23 @@
 
     
 
-    <div style="width: 50%;  align-items: center; background-color: #213141; padding: 20px 10px;
-     width: 400px;">
-      <div style="margin: auto; background-color: #2c4f5000;"> <v-card
-        color="#384f6200"
-        style=" height: 70px; display: flex; align-items: center; "
-        rounded="lg"
-        class=" pa-2"
+    <div   style="width: 50%;  background-color: #213141; padding: 20px 10px;
+     ">
+      <div>
+         <v-card
+        color="#213141"
+        style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
-        ><div style="display: flex; margin: 0 auto; padding-left: 30px; "> <div  style="color: #ffffff; margin: 0 auto;">{{ $store.getters.userDetail.balance }} USDT </div>
-        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img></div></v-card>
+        >
+        <p class="text-center" style="color: #ffffff; ">
+         {{ $store.getters.userDetail.balance }} USDT </p>
+
+         <div>
+        <v-img style="margin-left: 5px;  width: 35px;" src="@/assets/Tether.png"></v-img>
+      </div>
+      
+      </v-card>
+      
       </div>
     </div >
     </v-card>
@@ -65,38 +72,31 @@
 
 
       <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
-      style=" overflow-y:auto; max-height: 90%; min-width: 300px;width: 100%; ">
+      style=" overflow-y:auto; max-height: 90%; width: 100%; ">
         <div @click.stop style="
        
 
-        width: 300px;
+       
    
-     
+        width: 300px;
         margin: auto;
-        max-height: 90%;
+        
         align-items: center;
         min-height: 50px;
-        min-width: 300px;
-       
+        max-width: 90%;
         
-        
-        box-sizing: border-box;
         margin: auto;">  
-    <v-card
-      
-      
-      
-     
-      rounded="lg"
-      style="background-color: #384f62; border: 7px solid #213141; width: 300px; 
-      margin-left: auto; margin-right: auto; " 
+    <v-card  
+    elevation="0"  
+    rounded="lg"
+    style="background-color: #384f62;  margin-left: auto; margin-right: auto; " 
     >
 
    
     <div style="background-color: #384f62;  align-items: center;  padding: 20px 10px; ">
-        <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
+        <div style="margin: auto; display: flex;">
       <v-avatar 
-
+        style="margin-left: auto; margin-right: auto;"
         color="white"
         size="70"
         rounded="lg"      
@@ -116,7 +116,7 @@
 
     
 
-    <div style="width: 50%;  align-items: center; background-color: #213141; padding: 20px 10px;
+    <div style="width: 50%; background-color: #213141; padding: 20px 10px;
      width: 100%;">
       <div style="margin: auto; background-color: #2c4f5000;"> <v-card
         color="#384f6200"
@@ -124,9 +124,10 @@
         rounded="lg"
         class=" pa-2"
         elevation="0"  
-        ><div style="display: flex; margin: 0 auto; "> <div  style="color: #ffffff;  margin: 0 auto;">{{ $store.getters.userDetail.balance }} 
-          USDT </div>
-        <v-img style="margin-left: 5px; max-width:30px; width: 25px;"  src="@/assets/Tether.png"></v-img></div></v-card>
+        ><div style="display: flex; 
+        margin: 0 auto; "><p class="text-center" style="color: #ffffff; ">
+         {{ $store.getters.userDetail.balance }} USDT </p>
+        <v-img style="margin-left: 5px; max-width:30px; width: 35px;"  src="@/assets/Tether.png"></v-img></div></v-card>
       </div>
     
      
@@ -199,21 +200,7 @@ position: fixed;
     justify-content: center;
 z-index: 2;
 } 
-.jja2 {
-  
 
-overflow-y:auto;
-margin: auto;
-max-height: 90%;
-
-background: rgb(31, 31, 47);
-min-height: 50px;
-min-width: 300px;
-padding: 80px 150px;
-border: 7px solid #4d3da0;
-border-radius: 40px;
-box-sizing: border-box;
-} 
 ::-webkit-scrollbar {
   width: 15px;
   
