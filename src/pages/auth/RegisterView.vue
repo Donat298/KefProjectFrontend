@@ -22,7 +22,7 @@
 
       </div>
   <v-card
-    class="mx-auto pa-10 pb-8"
+    class="mx-auto pa-8 pb-8"
     elevation="8"
     
     rounded="lg"
@@ -82,8 +82,8 @@
     ></v-text-field>
 
 
-    <div style="min-height: 35px;" class="text-subtitle-1 d-flex text-color-white justify-space-between">
-                       <div style="color: red; " v-if="errorMessage">{{ errorMessage }}</div>
+    <div style="height: 35px; max-height: 35px; width: 400px;" class="text-subtitle-1 ">
+                       <div style="color: red; text-align: left; " v-if="errorMessage">{{ errorMessage }}</div>
                        
                     </div>
     <v-btn
