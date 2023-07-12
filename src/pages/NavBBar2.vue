@@ -57,6 +57,7 @@
                         margin-top: 15px;
                         margin-right: 15px;
                         min-width: 100px;
+                        
                     "
                 >
                     <v-list-item @click="$emit('ShowAccountOknoo')"
@@ -64,6 +65,8 @@
 
                     <v-list-item @click="logout()"
                     >Logout</v-list-item>
+
+                    
                         
                 </v-list>
             </v-menu>

@@ -58,7 +58,7 @@
          {{ $store.getters.userDetail.balance }} USDT </p>
 
          <div>
-        <v-img style="margin-left: 5px;  width: 35px;" src="@/assets/Tether.png"></v-img>
+        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
       </div>
       
       </v-card>
@@ -127,7 +127,7 @@
          {{ $store.getters.userDetail.balance }} USDT </p>
 
          <div>
-        <v-img style="margin-left: 5px;  width: 35px;" src="@/assets/Tether.png"></v-img>
+        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
       </div>
       
       </v-card>
