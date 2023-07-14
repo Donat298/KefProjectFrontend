@@ -13,7 +13,7 @@
       <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
 
 
-          <div style="display: flex; max-width: 100%; width: 340px; margin: auto; margin-bottom: 20px;">
+          <div style="display: flex; max-width: 100%; width: 340px;height: 191.25px; margin: auto; margin-bottom: 20px;">
   <v-img
    style="margin: auto;"
     

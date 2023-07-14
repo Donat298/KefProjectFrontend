@@ -23,6 +23,7 @@
                         display: flex;
                         max-width: 100%;
                         width: 340px;
+                        height: 191.25px;
                         margin: auto;
                         margin-bottom: 20px;
                         
@@ -35,8 +36,8 @@
                         src="@/assets/kef.png"
                     ></v-img>
                 </div>
-                <v-card 
-                    class="mx-auto pa-8 pb-8 "
+                <v-card
+                    class="mx-auto pa-8 pb-8"
                     elevation="8"
                     rounded="lg"
                     style="background-color: #384f62; border: 7px solid #384f62"
@@ -73,7 +74,6 @@
                     ></v-text-field>
                     <div style="height: 35px; max-height: 35px; width: 400px;" class="text-subtitle-1 ">
                        <div style="color: red; text-align: left; " v-if="errorMessage">{{ errorMessage }}</div>
-                       
                     </div>
 
                     <v-btn
