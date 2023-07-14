@@ -75,10 +75,10 @@
 
 
                     
-                    <div style="min-height: 35px; max-height: 35px; width: 280px; align-items: center;" >
+                    <div style=" align-items: center;" >
                        <div class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
                         style="color: red; text-align: left ;
-                        " v-if="errorMessage">{{ errorMessage }}</div>
+                        " >{{ errorMessage }}⠀</div>
                     </div>
 
                     <v-btn
