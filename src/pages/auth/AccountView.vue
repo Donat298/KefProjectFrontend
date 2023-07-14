@@ -57,9 +57,9 @@
         <p class="text-center" style="color: #ffffff; ">
          {{ $store.getters.userDetail.balance }} USDT </p>
 
-         <div>
+      <div>
         <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
-      </div>
+    </div>
       
       </v-card>
       

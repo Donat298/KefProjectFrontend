@@ -56,8 +56,11 @@
                         v-model="email"
                     ></v-text-field>
 
-                    <div style="height: 35px; max-height: 35px; width: 400px;" class="text-subtitle-1 ">
-                       <div style="color: red; text-align: left; " v-if="errorMessage">{{ errorMessage }}</div>
+                    <div
+                        style="color: white"
+                        class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
+                    >
+                        Password
                     </div>
 
                     <v-text-field
@@ -71,13 +74,12 @@
                     ></v-text-field>
 
 
-                    <div
-                        style="color: white"
-                        class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
-                    >
-                        Password
-                    </div>
                     
+                    <div style="min-height: 35px; max-height: 35px; width: 280px; align-items: center;" >
+                       <div class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
+                        style="color: red; text-align: left ;
+                        " v-if="errorMessage">{{ errorMessage }}</div>
+                    </div>
 
                     <v-btn
                         block
