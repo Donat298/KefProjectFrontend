@@ -108,5 +108,6 @@ export default {
     position: fixed;
     display: flex;
 }
+
 </style>
     

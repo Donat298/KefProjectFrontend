@@ -6,7 +6,7 @@
                 
                 <template v-slot:activator="{ props }">
                     
-                    <v-row  style=" background-color: #15212c; padding: 0px 20px;">
+                    <v-row  style="max-width: 1000px; margin-left: auto; margin-right: auto; background-color: #233647; padding: 0px 0px;">
                         <v-col
                             cols="auto"
                             style="margin-left: auto;"
@@ -51,27 +51,28 @@
                 </template>
                 
                 <v-list
-                    style="
-                        background-color: #384f62;
-                        color: #ffffff;
-                        margin-top: 15px;
-                        margin-right: 15px;
-                        min-width: 100px;
-                        
-                    "
-                >
-                    <v-list-item @click="$emit('ShowAccountOknoo')"
-                        >Account</v-list-item>
-
-                    <v-list-item @click="logout()"
-                    >Logout</v-list-item>
-
+                style="
+                    background-color: #384f62;
+                    color: #ffffff;
+                    margin-top: 15px;
+                    margin-right: 15px;
+                    min-width: 100px;
                     
-                        
+                "
+                >
+                <v-list-item @click="$emit('ShowAccountOknoo')"
+                    >Account</v-list-item>
+
+                <v-list-item @click="logout()"
+                >Logout</v-list-item>
                 </v-list>
+
             </v-menu>
         </v-app-bar>
     </v-layout>
+
+
+    
 </template>
 
 <script>
@@ -96,6 +97,25 @@ export default {
 
 
 
+<!--
+<v-list
+style="
+    background-color: #384f62;
+    color: #ffffff;
+    margin-top: 15px;
+    margin-right: 15px;
+    min-width: 100px;
+    
+"
+>
+<v-list-item @click="$emit('ShowAccountOknoo')"
+    >Account</v-list-item>
+
+<v-list-item @click="logout()"
+>Logout</v-list-item>
 
 
+    
+</v-list>
+-->
 

@@ -100,11 +100,9 @@
                             href="/auth/register"
                             rel="noopener noreferrer"
                             
-                            style="margin-left: 22.5px"
+                            
                         >
-                            Sign up now
-                            <v-icon icon="mdi-chevron-right"></v-icon>
-                        </a>
+                            Sign up now</a>
                     </v-card-text>
                 </v-card>
             </div>
