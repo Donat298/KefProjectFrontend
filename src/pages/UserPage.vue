@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$store.getters.isAuthenticated"  class="glob">
+    <div v-if="$store.getters.isAuthenticated"  >
       <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
        
     <v-img class="logh" src="@/assets/5opka.png" />

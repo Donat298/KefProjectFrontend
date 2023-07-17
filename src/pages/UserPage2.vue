@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$store.getters.isAuthenticated"  class="glob">
+    <div v-if="$store.getters.isAuthenticated">
         <div
             style="
                 overflow-y: auto;

@@ -1,5 +1,5 @@
 <template>
-  <div class="glob" >
+  <div>
     <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
     <v-img class="logh" src="@/assets/5opka.png" />
     <div>

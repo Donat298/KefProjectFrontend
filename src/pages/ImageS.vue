@@ -1,5 +1,5 @@
 <template>
-    <div  v-if="$store.getters.isAuthenticated" class="globimg">
+    <div  v-if="$store.getters.isAuthenticated">
         <v-img
             
             src="@/assets/Bobo.png"

@@ -3,15 +3,11 @@
       <div>
         <NavBBar2 @ShowAccountOknoo="showacg = true" />
   
-        <NavBBar  />
+        <NavBBar  v-if="showafdfdcg"/>
   
         <AccountView v-if="showacg" @HideAccountOknoo="showacg = false" />
   
-        <div class="app">
-          <div>
-            <router-view />
-          </div>
-        </div>
+        
       </div>
     </template>
     <template v-else>
@@ -45,11 +41,17 @@
   
   <style>
   @import "./assets/mystyle.css";
+
+
+
+
+
   
   .app {
     /*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  
     text-align: center;
     color: #ffffff;
     margin-top: 60px;
