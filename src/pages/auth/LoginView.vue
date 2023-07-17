@@ -46,7 +46,7 @@
                         style="color: white"
                         class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
                     >
-                        EmailZZZ
+                        Email
                     </div>
 
                     <v-text-field
