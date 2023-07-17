@@ -2,9 +2,9 @@
     <v-layout class="rounded rounded-md">
 
       
-        <v-navigation-drawer style="background-color: #384f62;"
+        <v-navigation-drawer style="background-color: #15212c;  border-right: 2px solid #273d53;"
         v-model="drawer"
-      
+        elevation="0"
       >
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
@@ -24,32 +24,36 @@
   
 
 
-        <v-app-bar :elevation="0" style="z-index: 1; background-color: #15212c;">
-
-            <button v-if="drawer" style="color: #ffffff; background-color: #233647; width: 64px; height: 64px;" 
+        <v-app-bar :elevation="0" style="z-index: 1; background-color: #273d53;
+">
+            <div style="justify-self: start; display: block;  position:fixed; background-color: ;" >
+            <button v-if="drawer" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
        @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-left" /></button>
-                    <button v-if="!drawer" style="width: 64px; height: 64px;color: #ffffff; background-color: #233647;" 
+                    <button v-if="!drawer" style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
                       @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-right" /></button>
+                    </div>
             <v-menu transition="scale-transition">
-                
+            
                 <template v-slot:activator="{ props }">
                     
                     
                    
        
                     
-                    <v-row  style="max-width: 1000px; height: 64px; margin-left: auto; margin-right: auto; background-color: #233647;">
-                       
+                    <v-row  style="max-width: 1250px; height: 64px;  background-color: #273d53; margin: auto; ">
+                        <v-img   style="margin-right: auto; margin-top: auto;margin-bottom: auto; 
+                        margin-left: 50px;  max-width: 100px; min-height: 64px" src="@/assets/kef.png" ></v-img>
                         <v-col
                             cols="auto" 
-                            style="margin-left: auto; align-content: center; height: 64px; padding: 0px;"
+                            style="margin-left: auto; align-content: center; height: 64px; padding: 0px; "
                         >
                         
-                            <div v-if="!$store.getters.isAuthenticated" style="height: 64px; padding: 14px;">
+                            <div v-if="!$store.getters.isAuthenticated" style="height: 64px; padding: 14px; ">
                                 <v-btn
                                     elevation="4"
                                     variant="tonal"
                                     @click="$router.push('/auth/register')"
+                                
                                     style="
                                         background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
                                         margin-right: 15px;
@@ -80,8 +84,9 @@
                             </div>
                             
                         </v-col>
+                       
                     </v-row>
-               
+                    
                 </template>
                 
                 <v-list
@@ -103,6 +108,8 @@
 
             </v-menu>
         </v-app-bar>
+
+        
 
 
         <v-main>
@@ -155,25 +162,5 @@ export default {
 
 
 
-<!--
-<v-list
-style="
-    background-color: #384f62;
-    color: #ffffff;
-    margin-top: 15px;
-    margin-right: 15px;
-    min-width: 100px;
-    
-"
->
-<v-list-item @click="$emit('ShowAccountOknoo')"
-    >Account</v-list-item>
-
-<v-list-item @click="logout()"
->Logout</v-list-item>
-
-
-    
-</v-list>
--->
+You can do the same with this code.
 

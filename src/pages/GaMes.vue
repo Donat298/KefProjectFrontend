@@ -1,6 +1,6 @@
 <template>
-
-<div v-if="$store.getters.isAuthenticated" class="text-center" style="width: 1000px; margin-left: auto; margin-right: auto;">
+<div v-if="$store.getters.isAuthenticated">
+<div class="text-center" style="width: 1250px; margin-left: auto; margin-right: auto;">
     <v-select
       v-model="location"
       :items="locations"
@@ -26,6 +26,8 @@
         </v-list-item>
       </v-list>
     </v-menu>
+  </div>
+    
   </div>
 
 
