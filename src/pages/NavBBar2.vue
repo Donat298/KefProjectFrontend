@@ -4,7 +4,7 @@
       
         <v-navigation-drawer style="background-color: #384f62;"
         v-model="drawer"
-        
+      
       >
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
@@ -20,24 +20,32 @@
       </v-navigation-drawer>
 
 
-        <v-app-bar :elevation="0" style="z-index: 1; background-color: #15212c">
+      
+  
+
+
+        <v-app-bar :elevation="0" style="z-index: 1; background-color: #15212c;">
+
+            <button v-if="drawer" style="color: #ffffff; background-color: #233647; width: 64px; height: 64px;" 
+       @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-left" /></button>
+                    <button v-if="!drawer" style="width: 64px; height: 64px;color: #ffffff; background-color: #233647;" 
+                      @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-right" /></button>
             <v-menu transition="scale-transition">
                 
                 <template v-slot:activator="{ props }">
-                    <v-btn
-            color="primary"
-            @click.stop="drawer = !drawer"
-          >
-            Toggle
-          </v-btn>
                     
-                    <v-row  style="max-width: 1000px; margin-left: auto; margin-right: auto; background-color: #233647; padding: 0px 0px;">
+                    
+                   
+       
+                    
+                    <v-row  style="max-width: 1000px; height: 64px; margin-left: auto; margin-right: auto; background-color: #233647;">
+                       
                         <v-col
-                            cols="auto"
-                            style="margin-left: auto;"
+                            cols="auto" 
+                            style="margin-left: auto; align-content: center; height: 64px; padding: 0px;"
                         >
                         
-                            <span v-if="!$store.getters.isAuthenticated">
+                            <div v-if="!$store.getters.isAuthenticated" style="height: 64px; padding: 14px;">
                                 <v-btn
                                     elevation="4"
                                     variant="tonal"
@@ -55,21 +63,21 @@
                                     @click="$router.push('/auth/login')"
                                     style="
                                         background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
-                                        margin-right: 5px;
+                                        
                                     "
                                 >
                                     Login
                                 </v-btn>
-                            </span>
+                            </div>
                             
-                            <span v-else>
+                            <div v-else style="height: 64px; padding: 8px;">
                                 <v-btn
                                     color="white"
                                     v-bind="props"
                                     icon="mdi-account"
                                 >
                                 </v-btn>
-                            </span>
+                            </div>
                             
                         </v-col>
                     </v-row>
@@ -114,22 +122,35 @@
 
 <script>
 export default {
-    data () {
-      return {
-        drawer: null,
-      }
-    },
-
-
-    methods: {
+  data() {
+    return {
+      drawer: null,
+      rail: true,
+    
+   
+        
+    };
+  },
+  methods: {
         logout() {
             this.$store.dispatch("logout");
         },
     },
-};
-</script>
+  
 
+}
+</script>
 <style>
+.v-toolbar__content > .v-btn:first-child {
+    -webkit-margin-start: 0px;
+    margin-inline-start: 0px;
+}
+.v-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    margin: 0px;
+}
 </style>
 
 
