@@ -1,6 +1,6 @@
 <template>
     <div v-if="$store.getters.isAuthenticated">
-        <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
+        <v-parallax style="height: 2000px;" src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
         <div
             style="
                 overflow-y: auto;

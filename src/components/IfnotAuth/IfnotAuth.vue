@@ -1,54 +1,51 @@
 <template>
-    <div v-if="!$store.getters.isAuthenticated"
-    style=" top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background: rgba(0,0,0,0.5);
-  position: fixed;
- 
-  display: flex;"><div style="padding-bottom: 40px; margin: auto;"> <div style="">
-   
+    <div v-if="!$store.getters.isAuthenticated" class="outer-container">
+      <div class="inner-container">
+        <div style="margin-bottom: 30px;"><h1> Login or Register First!</h1></div>
+        <span>
+          <v-btn
+            elevation="4"
+            size="large"
+            variant="tonal"
+            href="/auth/register"
+            class="centered-button"
+          >
+            Register
+          </v-btn>
+          <v-btn
+            size="large"
+            elevation="4"
+            variant="tonal"
+            @click="$router.push('/auth/login')"
+            class="centered-button"
+          >
+            Login
+          </v-btn>
+        </span>
+      </div>
+    </div>
+  </template>
+  <script></script>
   
-  <div style="margin-bottom: 30px; "><h1> Login or Register First!</h1></div>
-  <span>
-    <v-btn 
-                                    elevation="4"
-                                    size="large"
-                                    variant="tonal"
-                                    href="/auth/register"
-                                    style="
-
-                                        background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
-                                        margin-right: 15px;
-                                        color: black;
-                                    "
-                                >
-                                    Register
-                                </v-btn>
-                                <v-btn
-                                    size="large"
-                                    elevation="4"
-                                    variant="tonal"
-                                    @click="$router.push('/auth/login')"
-                                    style="
-                                        background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
-                                        margin-right: 5px;
-                                        color: black;
-                                    "
-                                >
-                                    Login
-                                </v-btn>
-                            </span>
-
-  </div> 
-</div>
+  <style scoped>
+  .outer-container {
+    height: 100vh; /* Set the height to 100% of the viewport height */
+    display: flex;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #080d12;
+  }
   
-  </div>
-
-
-
-
-
-</template>
-<script></script>
+  .inner-container {
+    padding-bottom: 100px;
+  }
+  
+  .centered-button {
+    background: linear-gradient(230deg, aquamarine, rgb(127, 255, 244));
+    color: black;
+    margin-right: 15px;
+    /* Add any additional styles for the buttons here */
+  }
+  </style>
+  
