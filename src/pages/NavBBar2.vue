@@ -111,7 +111,7 @@
                     color: #ffffff;
                     
                     margin-top: 65px;
-                    
+                    min-width: 100px;
                     
                     
                 "
@@ -121,18 +121,7 @@
 
                 <v-list-item @click="logout()"
                 >Logout</v-list-item>
-                <v-list-item @click="logout()"
-                >Logofdfdfffffffut</v-list-item>
-                <v-list-item @click="logout()"
-                >Logout</v-list-item>
-                <v-list-item @click="logout()"
-                >Logsdfsfsdfsdfout</v-list-item>
-                <v-list-item @click="logout()"
-                >Logsdfsdfsdfsdfsdout</v-list-item>
-                <v-list-item @click="logout()"
-                >Logosdfsfsdut</v-list-item>
-                <v-list-item @click="logout()"
-                >Logoufsdfsdt</v-list-item>
+               
                 </v-list>
 
             </v-menu>
