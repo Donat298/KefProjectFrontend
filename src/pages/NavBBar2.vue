@@ -1,11 +1,14 @@
 <template>
-    <v-layout class="rounded rounded-md">
+    <v-layout class="">
 
       
-        <v-navigation-drawer style="background-color: #15212c;  border-right: 2px solid #273d53;"
+        <v-navigation-drawer style=" background-color: #15212c;  border-right: 3px solid #273d53;"
         v-model="drawer"
         elevation="0"
+        
+        
       >
+      <div style="">
       <div style=""><my-button2 @click="$router.push('/')" style=" height: 100%;
        background-color: #a04d3d00;
        width: 100%;
@@ -16,13 +19,19 @@
         
       border: #4d3da000;"><v-img  class="kefsize" style="margin-left: auto; 
       margin-right: auto;" src="@/assets/kef.png" ></v-img></my-button2></div>
-    <SidebarLink to="/" icon="fa-solid fa-house" > Home </SidebarLink>
-    <SidebarLink to="/games" icon="fa-solid fa-dice"> Games</SidebarLink>
-    <SidebarLink to="/image" icon="fas fa-image"> Images</SidebarLink>
-    <SidebarLink to="/SignUptest1" icon="fa-solid fa-arrow-right-to-bracket" > SignUptest1</SidebarLink>
-    <SidebarLink to="/SignUptest2" icon="fa-solid fa-arrow-right-to-bracket"> SignUptest2</SidebarLink>
 
-      
+    <v-list
+          density="compact"
+          nav
+          color="teal"
+        >
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
+        </v-list>
+    </div>
       </v-navigation-drawer>
 
 
@@ -30,7 +39,7 @@
   
 
 
-        <v-app-bar :elevation="0" style="z-index: 1; background-color: #273d53;
+        <v-app-bar :elevation="0" style="z-index: 0; background-color: #273d53;
 ">
             <div style="justify-self: start; display: block;  position:fixed; background-color: ;" >
             <button v-if="drawer" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
@@ -128,7 +137,7 @@
     color: #ffffff;
     ">
           <div>
-            <router-view />
+            <router-view/>
           </div>
         </div>
       </v-main>
@@ -174,6 +183,8 @@ export default {
     flex: 1 1 auto;
     margin: 0px;
 }
+
+
 </style>
 
 

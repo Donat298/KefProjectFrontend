@@ -31,10 +31,9 @@
     },
    
     mounted() {
-      let elHtml = document.getElementsByTagName("html")[0];
-      elHtml.style.overflowY = "hidden";
+      
   
-      this.$store.dispatch("attempt");
+      this.$store.dispatch("attempt");  
     },
   };
   </script>
