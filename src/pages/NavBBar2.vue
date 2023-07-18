@@ -2,7 +2,7 @@
     <v-layout class="">
 
       
-        <v-navigation-drawer style="height: 3000px; background-color: #15212c;  border-right: 3px solid #273d53;"
+        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: #15212c;  border-right: 3px solid #273d53;"
         v-model="drawer"
         elevation="0"
         
@@ -107,7 +107,7 @@
                 
                 <v-list
                 style="
-                    background-color: #384f62;
+                    background-color: #273d53;
                     color: #ffffff;
                     margin-top: 15px;
                     margin-right: 15px;
@@ -151,6 +151,7 @@
 </template>
 
 <script>
+
 import SidebarLink from '@/pages/NavBBar/SidebarLink.vue'
 export default {
     components: { SidebarLink },
@@ -171,6 +172,11 @@ export default {
   
 
 }
+
+
+
+
+
 </script>
 <style>
 .v-toolbar__content > .v-btn:first-child {
@@ -183,11 +189,15 @@ export default {
     flex: 1 1 auto;
     margin: 0px;
 }
-
+.v-navigation-drawer__scrim {
+ 
+    z-index: 1 !important;
+    height: 3000px !important;
+}
 
 </style>
 
 
 
-You can do the same with this code.
+
 
