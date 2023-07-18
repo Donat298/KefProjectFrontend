@@ -1,19 +1,14 @@
 <template>
 <div v-if="$store.getters.isAuthenticated">
 <div class="text-center" style="width: 1250px; margin-left: auto; margin-right: auto;">
-    <v-select
-      v-model="location"
-      :items="locations"
-      label="Location"
-    ></v-select>
-    <v-menu :location="location">
+    
+    <v-menu location="start">
       <template v-slot:activator="{ props }">
         <v-btn
-          color="primary"
-          dark
-          v-bind="props"
-        >
-          Dropdown
+               color="white"
+                 v-bind="props"
+                 icon="mdi-account"
+              >
         </v-btn>
       </template>
 

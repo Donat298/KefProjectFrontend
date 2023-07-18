@@ -47,7 +47,7 @@
                     <button v-if="!drawer" style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
                       @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-right" /></button>
                     </div>
-            <v-menu transition="scale-transition">
+            <v-menu location="center"  transition="scale-transition">
             
                 <template v-slot:activator="{ props }">
                     
@@ -59,7 +59,7 @@
                        
                         <v-col
                             cols="auto" 
-                            style="margin-left: auto; align-content: center; height: 64px;  max-height: 64px; padding: 0px; "
+                            style="margin-left: auto;  align-content: center; height: 64px;  max-height: 64px; padding: 0px; "
                         >
                         
                             <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up"
@@ -109,9 +109,10 @@
                 style="
                     background-color: #273d53;
                     color: #ffffff;
-                    margin-top: 15px;
-                    margin-right: 15px;
-                    min-width: 100px;
+                    
+                    margin-top: 65px;
+                    
+                    
                     
                 "
                 >
@@ -120,6 +121,18 @@
 
                 <v-list-item @click="logout()"
                 >Logout</v-list-item>
+                <v-list-item @click="logout()"
+                >Logofdfdfffffffut</v-list-item>
+                <v-list-item @click="logout()"
+                >Logout</v-list-item>
+                <v-list-item @click="logout()"
+                >Logsdfsfsdfsdfout</v-list-item>
+                <v-list-item @click="logout()"
+                >Logsdfsdfsdfsdfsdout</v-list-item>
+                <v-list-item @click="logout()"
+                >Logosdfsfsdut</v-list-item>
+                <v-list-item @click="logout()"
+                >Logoufsdfsdt</v-list-item>
                 </v-list>
 
             </v-menu>
