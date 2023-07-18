@@ -9,7 +9,7 @@
         
       >
       <div style="">
-      <div style=""><my-button2 @click="$router.push('/')" style=" height: 100%;
+      <div style="height: 112.5px;"><my-button2 @click="$router.push('/')" style=" height: 100%;
        background-color: #a04d3d00;
        width: 100%;
        padding: 0px 0px;
