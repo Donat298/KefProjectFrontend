@@ -6,17 +6,23 @@
         v-model="drawer"
         elevation="0"
       >
-        <v-list-item
-          prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
-          title="John Leider"
-        ></v-list-item>
+      <div style=""><my-button2 @click="$router.push('/')" style=" height: 100%;
+       background-color: #a04d3d00;
+       width: 100%;
+       padding: 0px 0px;
+       
+    
+       
+        
+      border: #4d3da000;"><v-img  class="kefsize" style="margin-left: auto; 
+      margin-right: auto;" src="@/assets/kef.png" ></v-img></my-button2></div>
+    <SidebarLink to="/" icon="fa-solid fa-house" > Home </SidebarLink>
+    <SidebarLink to="/games" icon="fa-solid fa-dice"> Games</SidebarLink>
+    <SidebarLink to="/image" icon="fas fa-image"> Images</SidebarLink>
+    <SidebarLink to="/SignUptest1" icon="fa-solid fa-arrow-right-to-bracket" > SignUptest1</SidebarLink>
+    <SidebarLink to="/SignUptest2" icon="fa-solid fa-arrow-right-to-bracket"> SignUptest2</SidebarLink>
 
-        <v-divider></v-divider>
-
-        <v-list density="compact" nav>
-          <v-list-item prepend-icon="mdi-view-dashboard" title="Home" value="home"></v-list-item>
-          <v-list-item prepend-icon="mdi-forum" title="About" value="about"></v-list-item>
-        </v-list>
+      
       </v-navigation-drawer>
 
 
@@ -40,15 +46,15 @@
                    
        
                     
-                    <v-row  style="max-width: 1250px; height: 64px;  background-color: #273d53; margin: auto; ">
-                        <v-img   style="margin-right: auto; margin-top: auto;margin-bottom: auto; 
-                        margin-left: 50px;  max-width: 100px; min-height: 64px" src="@/assets/kef.png" ></v-img>
+                    <v-row  style="max-width: 1250px; height: 64px; max-height: 64px; background-color: #273d53; margin: 0 auto; ">
+                       
                         <v-col
                             cols="auto" 
-                            style="margin-left: auto; align-content: center; height: 64px; padding: 0px; "
+                            style="margin-left: auto; align-content: center; height: 64px;  max-height: 64px; padding: 0px; "
                         >
                         
-                            <div v-if="!$store.getters.isAuthenticated" style="height: 64px; padding: 14px; ">
+                            <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up"
+                             style=" padding: 14px;">
                                 <v-btn
                                     elevation="4"
                                     variant="tonal"
@@ -57,6 +63,7 @@
                                     style="
                                         background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
                                         margin-right: 15px;
+              
                                     "
                                 >
                                     Register
@@ -113,12 +120,19 @@
 
 
         <v-main>
-            <div class="app">
+        <div style="/*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  
+    text-align: center;
+    color: #ffffff;
+    ">
           <div>
             <router-view />
           </div>
         </div>
       </v-main>
+     
 
         
     </v-layout>
@@ -128,7 +142,9 @@
 </template>
 
 <script>
+import SidebarLink from '@/pages/NavBBar/SidebarLink.vue'
 export default {
+    components: { SidebarLink },
   data() {
     return {
       drawer: null,

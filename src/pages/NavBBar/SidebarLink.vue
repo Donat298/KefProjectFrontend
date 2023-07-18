@@ -55,8 +55,8 @@ export default {
 
   margin: 0.1em 0;
   padding: 0.4em;
-  border: 2px solid #384f62;
-  border-radius: 4px;
+  
+
   height: 1.5em;
 
   color: white;
