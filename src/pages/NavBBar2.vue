@@ -2,7 +2,7 @@
     <v-layout class="">
 
       
-        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: #15212c;  border-right: 2px solid #273d53;"
+        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: rgb(21, 33, 44);  border-right: 2px solid #273d53;"
         v-model="drawer"
         elevation="0"
         

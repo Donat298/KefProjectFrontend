@@ -1,5 +1,6 @@
 <template>
     <div v-if="$store.getters.isAuthenticated"  >
+      <v-parallax style="width: 100%;" src="@/assets/ds.jpg">
       <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
        
     <v-img class="logh" src="@/assets/5opka.png" />
@@ -35,8 +36,9 @@
         />
       </div>
     </div>
-    
+  </v-parallax>
      </div>
+
      <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
    
     </template>
