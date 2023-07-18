@@ -39,7 +39,7 @@
   
 
 
-        <v-app-bar :elevation="0" style="z-index: 0; background-color: #273d53;
+        <v-app-bar :elevation="0" style="z-index: 1; background-color: #273d53;
 ">
             <div style="justify-self: start; display: block;  position:fixed; background-color: ;" >
             <button v-if="drawer" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
