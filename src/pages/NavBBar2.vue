@@ -2,7 +2,7 @@
     <v-layout class="">
 
       
-        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: #15212c;  border-right: 3px solid #273d53;"
+        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: #15212c;  border-right: 2px solid #273d53;"
         v-model="drawer"
         elevation="0"
         
@@ -39,7 +39,7 @@
   
 
 
-        <v-app-bar :elevation="0" style="z-index: 1; background-color: #273d53;
+        <v-app-bar :elevation="5" style="z-index: 1; background-color: #15212c;
 ">
             <div style="justify-self: start; display: block;  position:fixed; background-color: ;" >
             <button v-if="drawer" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
@@ -55,7 +55,7 @@
                    
        
                     
-                    <v-row  style="max-width: 1250px; height: 64px; max-height: 64px; background-color: #273d53; margin: 0 auto; ">
+                    <v-row  style="max-width: 1250px; height: 64px; max-height: 64px; background-color: #15212c; margin: 0 auto; ">
                        
                         <v-col
                             cols="auto" 
