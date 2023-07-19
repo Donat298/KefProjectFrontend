@@ -2,52 +2,69 @@
     <v-layout  class="">
 
       
-        <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: rgb(21, 33, 44);  border-right: 2px solid #273d53;"
+        <v-navigation-drawer style="height: 3000px; z-index: 3;  background-color: rgb(21, 33, 44) ;  border-right: 2px solid rgb(45, 73, 98);"
+        :rail="rail"
         v-model="drawer"
         elevation="0"
-        
+        rail-width="80"
+        width="240"
+       
+      
         
       >
       <div style="">
-      <div style="height: 112.5px;"><my-button2 @click="$router.push('/')" style=" height: 100%;
+      <div style="height: 128px; align-items: center;"><my-button2 @click="$router.push('/')" style=" min-height: 64px;
        background-color: #a04d3d00;
        width: 100%;
-       padding: 0px 0px;
+       padding: 8px 0px;
        
     
        
         
-      border: #4d3da000;"><v-img  class="kefsize" style="margin-left: auto; 
+      border: #4d3da000;"><v-img  v-if="!rail" style="margin-left: auto; width: 200px; 
       margin-right: auto;" src="@/assets/kef.png" ></v-img></my-button2></div>
 
     <v-list
           density="compact"
           nav
           color="teal"
+          class="pa-2"
         >
+        <v-card color="rgb(34, 54, 72)" elevation="0" class="pa-2 pb-1"> 
           <v-list-item rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
+        </v-card>
+        <v-card color="rgb(34, 54, 72)" elevation="0" style="margin-top: 8px;" class="pa-2 pb-1"> 
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
+        </v-card>
         </v-list>
     </div>
       </v-navigation-drawer>
 
+    
 
-      
-  
-
-
-        <v-app-bar :elevation="5" style="z-index: 1; background-color: #15212c;
+        <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;
 ">
-            <div style="justify-self: start; display: block;  position:fixed; background-color: ;" >
-            <button v-if="drawer" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
-       @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-left" /></button>
-                    <button v-if="!drawer" style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
-                      @click.stop="drawer = !drawer"><fa icon="fas fa-angle-double-right" /></button>
+                
+            <div v-if="showRbsb" style="justify-self: start; display: block;  position:fixed; background-color: ;" >
+            <button v-if="!rail " style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
+       @click="rail = true"><fa icon="fas fa-angle-double-left" /></button>
+       
+                    <button v-if="rail " style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
+                      @click="rail = false"><fa icon="fas fa-angle-double-right" /></button>
                     </div>
+
+
+                    <div v-if="!showRbsb" style="justify-self: start; display: block;  position:fixed; background-color: ;" >
+            
+                    <button style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
+                      @click="drawer = true; rail = false"><fa icon="fas fa-angle-double-right" /></button>
+                    </div>
+            
+                    
             <v-menu location="center"  transition="scale-transition">
             
                 <template v-slot:activator="{ props }">
@@ -128,6 +145,7 @@
             </v-menu>
         </v-app-bar>
 
+       
         
 
 
@@ -156,22 +174,45 @@
 <script>
 
 import SidebarLink from '@/pages/NavBBar/SidebarLink.vue'
+
+
+
+
+
 export default {
     components: { SidebarLink },
   data() {
     return {
       drawer: null,
-      rail: true,
+      rail: false,
+      showRbsb: window.innerWidth >= 1280,
+        
     
    
         
     };
   },
+ 
+ 
+  
+  created() {
+    // Add a listener for window resize events to toggle the showRbsb property based on the screen width
+    window.addEventListener("resize", this.updateRbsbVisibility);
+  },
+  destroyed() {
+    // Remove the event listener when the component is destroyed to prevent memory leaks
+    window.removeEventListener("resize", this.updateRbsbVisibility);
+  },
   methods: {
-        logout() {
-            this.$store.dispatch("logout");
+    logout() {
+          this.$store.dispatch("logout");
         },
+    updateRbsbVisibility() {
+      // Update the showRbsb property based on the screen width
+      this.showRbsb = window.innerWidth >= 1280;
     },
+  },
+ 
   
 
 }
@@ -194,7 +235,7 @@ export default {
 }
 .v-navigation-drawer__scrim {
  
-    z-index: 1 !important;
+    z-index: 2 !important;
     height: 3000px !important;
 }
 
