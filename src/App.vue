@@ -11,7 +11,7 @@
       </div>
     </template>
     <template v-else>
-      <SessionCheckAnimation />
+      <SessionCheckAnimation/>
     </template>
   </template>
   

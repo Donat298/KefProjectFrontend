@@ -1,5 +1,5 @@
 <template>
-    <v-layout class="">
+    <v-layout  class="">
 
       
         <v-navigation-drawer style="height: 3000px; z-index: 2; background-color: rgb(21, 33, 44);  border-right: 2px solid #273d53;"
@@ -30,6 +30,7 @@
           <v-list-item rounded="lg" style="color: #ffffff;" to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
+          <v-list-item rounded="lg" style="color: #ffffff;" to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
         </v-list>
     </div>
       </v-navigation-drawer>

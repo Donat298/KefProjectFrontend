@@ -1,3 +1,5 @@
+
+
 import MyMain from "@/pages/MyMain";
 
 import {createRouter, createWebHistory} from "vue-router";
@@ -7,8 +9,8 @@ import UserPage2 from "@/pages/UserPage2";
 import ImageS from "@/pages/ImageS";
 import login from "@/pages/auth/LoginView";
 import register from "@/pages/auth/RegisterView";
-
-
+import ChAt from "@/pages/Chats/ChAt.vue";
+import store from "@/store/index.js";
 
 
 
@@ -35,18 +37,27 @@ const routes = [
     {
         path: '/games',
         name: 'Games',
-        component: Games
+        component: Games,
+        
     },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: ChAt,
+        meta: { requiresAuth: true }
+      },
 
     {
         path: '/SignUptest1',
         name: 'SignUptest1',
-        component: UserPage
+        component: UserPage,
+        meta: { requiresAuth: true }
     },
     {
         path: '/SignUptest2',
         name: 'SignUptest2',
-        component: UserPage2
+        component: UserPage2,
+        meta: { requiresAuth: true }
     },
     
     {
@@ -59,9 +70,25 @@ const routes = [
 
 
 
+
 const router = createRouter({
+    
+    history: createWebHistory(process.env.BASE_URL),
     routes,
-    history: createWebHistory(process.env.BASE_URL)
-})
+});
+
+router.beforeEach((to, from, next) => {
+    const isAuthenticated = store.getters.isAuthenticated;
+    if (to.meta.requiresAuth && !isAuthenticated) {
+      next('/auth/login');
+    } else {
+      next();
+    }
+  });
+
 
 export default router;
+//Vue project using router and vuex store
+//The task is that if a user enters the chat component and he is not authorized, then he Immediately would be thrown into the login component.
+//Here is vuex index.js
+

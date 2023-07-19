@@ -21,7 +21,7 @@ components.forEach(component => {
 })
 directives.forEach(directives => {
     app.directive(directives.name, directives)
-})
+});
 
 
 
@@ -42,4 +42,6 @@ app
   .use(vuetify)
   .use(router)
   .use(createPinia())
-  .mount('#app')
+  
+
+app.mount('#app');
