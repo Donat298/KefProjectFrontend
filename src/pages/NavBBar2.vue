@@ -2,12 +2,14 @@
     <v-layout  class="">
 
       
-        <v-navigation-drawer style="height: 3000px; z-index: 3;  background-color: rgb(21, 33, 44) ;  border-right: 2px solid rgb(45, 73, 98);"
+        <v-navigation-drawer style="height: 3000px; z-index: 3;  background-color: rgb(21, 33, 44) ; 
+         border-right: 2px solid #273d53;"
         :rail="rail"
         v-model="drawer"
         elevation="0"
         rail-width="80"
         width="240"
+        
        
       
         
@@ -29,17 +31,61 @@
           nav
           color="teal"
           class="pa-2"
+          
         >
-        <v-card color="rgb(34, 54, 72)" elevation="0" class="pa-2 pb-1"> 
-          <v-list-item rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
+        <v-card  color="rgb(37, 56, 74)" elevation="0" class="pa-2 pb-1"> 
+          <v-card-actions @click="show = !show">
+            <v-list-item rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-home" title="Main" ></v-list-item>
+
+      <v-spacer></v-spacer>
+
+      <v-btn 
+      height="40"
+      width="40"
+      color="white"
+        :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
+        
+      ></v-btn>
+    </v-card-actions>
+    <v-expand-transition>
+      <div v-show="show">
+        <v-divider class="mb-2" color="white"></v-divider>
+
+        <v-list-item rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
+      </div>
+    </v-expand-transition>
+          
         </v-card>
-        <v-card color="rgb(34, 54, 72)" elevation="0" style="margin-top: 8px;" class="pa-2 pb-1"> 
+
+
+        <v-card color="rgb(37, 56, 74)" elevation="0" style="margin-top: 8px;" class="pa-2 pb-1"> 
+          <v-card-actions @click="show2 = !show2">
+            <v-list-item rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-movie-search-outline" title="Tests" ></v-list-item>
+
+      <v-spacer></v-spacer>
+
+      <v-btn 
+      height="40"
+      width="40"
+      color="white"
+        :icon="show2 ? 'mdi-chevron-down' : 'mdi-chevron-right'"
+        
+      ></v-btn>
+    </v-card-actions>
+    <v-expand-transition>
+      <div v-show="show2">
+        <v-divider class="mb-2" color="white"></v-divider>
+
+          
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
-        </v-card>
+        
+        </div>
+      </v-expand-transition>
+    </v-card>
         </v-list>
     </div>
       </v-navigation-drawer>
@@ -186,12 +232,15 @@ export default {
       drawer: null,
       rail: false,
       showRbsb: window.innerWidth >= 1280,
+      show: true,
+      show2: true,
         
     
    
         
     };
   },
+  
  
  
   
@@ -237,6 +286,27 @@ export default {
  
     z-index: 2 !important;
     height: 3000px !important;
+}
+.v-list .v-list-item--nav:not(:only-child) {
+    margin-bottom: 0px  !important;
+}
+.v-card-actions {
+    align-items: center;
+    display: flex;
+    flex: none;
+    min-height: 40px;
+    padding: 0px !important;
+}
+
+.v-divider {
+    display: block;
+    flex: 1 1 100%;
+    height: 0px;
+    max-height: 0px;
+    opacity: 0.3;
+    transition: inherit;
+    border-style: solid;
+    border-width: thin 0 0 0;
 }
 
 </style>
