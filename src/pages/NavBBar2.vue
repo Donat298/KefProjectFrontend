@@ -34,7 +34,7 @@
           
         >
         <v-card  color="rgb(37, 56, 74)" elevation="0" class="pa-2 pb-1"> 
-          <v-card-actions @click="show = !show">
+          <v-card-actions @click="show = !show" class="pb-1">
             <v-list-item rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-home" title="Main" ></v-list-item>
 
       <v-spacer></v-spacer>
@@ -49,7 +49,7 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-        <v-divider class="mb-2" color="white"></v-divider>
+        <v-divider class="mb-1" color="white"></v-divider>
 
         <v-list-item rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
           <v-list-item rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
@@ -61,7 +61,7 @@
 
 
         <v-card color="rgb(37, 56, 74)" elevation="0" style="margin-top: 8px;" class="pa-2 pb-1"> 
-          <v-card-actions @click="show2 = !show2">
+          <v-card-actions @click="show2 = !show2" class="pb-1">
             <v-list-item rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-movie-search-outline" title="Tests" ></v-list-item>
 
       <v-spacer></v-spacer>
@@ -76,7 +76,7 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show2">
-        <v-divider class="mb-2" color="white"></v-divider>
+        <v-divider class="mb-1" color="white"></v-divider>
 
           
           <v-list-item rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
@@ -303,7 +303,7 @@ export default {
     flex: 1 1 100%;
     height: 0px;
     max-height: 0px;
-    opacity: 0.3;
+    opacity: 0.2;
     transition: inherit;
     border-style: solid;
     border-width: thin 0 0 0;
