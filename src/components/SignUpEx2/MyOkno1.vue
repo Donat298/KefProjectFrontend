@@ -27,7 +27,7 @@ export default{
   background: rgba(0,0,0,0.5);
   position: fixed;
   display: flex;
-
+ 
 } 
 .okno4 {
     

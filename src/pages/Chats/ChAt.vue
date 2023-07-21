@@ -1,54 +1,160 @@
 <template>
-    <v-app>
-      <v-main>
-        <v-container>
-          <div id="chat-window" style="height: 500px; overflow-y: auto;">
-            <v-card v-for="(message, i) in messages" :key="i" class="pa-2 my-2" :class="message.sender">
-              <v-card-text>{{ message.text }}</v-card-text>
-            </v-card>
-          </div>
-          <div>
-            <v-textarea v-model="newMessage" label="Type your message here" outlined rows="1" auto-grow></v-textarea>
-            <v-btn @click="sendMessage">Send</v-btn>
-          </div>
-        </v-container>
-      </v-main>
-    </v-app>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        newMessage: '',
-        messages: [
-          { text: 'Hello', sender: 'me' },
-          { text: 'Hi', sender: 'other' },
-          // Add more messages here
-        ]
-      }
-    },
-    methods: {
-      sendMessage() {
-        if (this.newMessage.trim() !== '') {
-          this.messages.push({ text: this.newMessage, sender: 'me' });
-          this.newMessage = '';
-        }
-      }
-    }
+  <v-row justify="center" align="center" style="height: calc(100vh - 64px); background-color: rgb(21, 33, 44);">
+    <v-card elevation="0" class="chat-container" style="max-width:1250px; height: 95%;">
+      <v-card-title>
+        <span class="title">Kef Chat</span>
+      </v-card-title>
+      
+      <v-card-text class="chat-messages" >
+        
+    <div class="my-2" v-for="message in messages" :key="message.id">
+      <div :class="`bubble-container ${message.sender === 'You' ? 'right' : 'left'}`">
+        <div :class="`bubble ${message.sender === 'You' ? 'right' : 'left'}`">
+          <div class="sender">{{ message.sender }}</div>
+          <div class="text">{{ message.text }}</div>
+        </div>
+      </div>
+    </div>
+  </v-card-text>
+      <v-card-actions class="pt-4">
+        <div style="width: 100%;">
+        <v-form style=" display: flex;" ref="form" @submit.prevent="sendMessage">
+          
+<v-textarea class=" pl-5" 
+variant="outlined"
+      single-line
+      hide-details
+      v-model="newMessage"   
+      label="Message"
+      rows="1"
+      max-rows="4"
+      
+   
+     
+    ></v-textarea>
+   
+
+
+    <div class="d-flex align-center" style="height: 64px; margin-top: auto;">
+  <v-btn class="ml-2 mr-5 align-center" style="height: 44px;" type="submit" append-icon="mdi-send" color="secondary">Send</v-btn>
+</div>
+          </v-form>
+      </div>
+       
+      </v-card-actions>
+    </v-card>
+  </v-row>
+</template>
+
+<script>
+import { ref } from 'vue';
+
+export default {
+  name: 'App',
+  setup() {
+    const messages = ref([
+      { id: 1, sender: 'Bot', text: 'Hi there!' },
+      { id: 2, sender: 'You', text: 'Hello!' },
+    
+      
+      
+     
+    ]);
+
+    const newMessage = ref('');
+    const form = ref(null);
+
+    const sendMessage = () => {
+      if (!newMessage.value) return;
+
+      messages.value.push({
+        id: messages.value.length + 1,
+        sender: 'You', // this should be replaced with the actual sender
+        text: newMessage.value
+      });
+
+      newMessage.value = '';
+      form.value.reset();
+    };
+
+    return {
+      messages,
+      newMessage,
+      form,
+      sendMessage
+    };
   }
-  </script>
-  
-  <style scoped>
-  #chat-window {
-    border: 1px solid #b0b0b0;
-    border-radius: 5px;
-  }
-  .me {
-    background-color: #f0f0f0;
-  }
-  .other {
-    background-color: #b0b0b0;
-  }
-  </style>
-  
+}
+</script>
+
+<style scoped>
+.bubble {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  flex-direction: column;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 60%;
+}
+.bubble-container {
+  display: flex;
+  flex-direction: column;
+}
+.bubble-container.right {
+  align-items: flex-end;
+}
+.bubble-container.left {
+  align-items: flex-start;
+}
+.bubble .sender {
+  font-weight: bold;
+  color: white;
+}
+.bubble.right .sender {
+  text-align: right;
+}
+.bubble.left .sender {
+  text-align: left;
+}
+.bubble .text {
+  margin-top: 5px;
+  color: white;
+}
+.bubble.left {
+  background-color: rgb(30, 44, 56);
+  align-self: flex-start;
+  text-align: left;
+}
+.bubble.right {
+  background-color: rgb(36, 52, 65);
+  align-self: flex-end;
+  text-align: left;
+}
+.v-card-text {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  color: white;
+}
+.v-card-actions {
+  margin-top: auto;
+  background-color: rgb(21, 33, 44);
+}
+.chat-messages {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  background-color: rgb(21, 33, 44);
+}
+.chat-container {
+  background-color: rgb(21, 33, 44);
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>
+
+Can you make the v-card-text in this code be 800px but max out at 90% width?

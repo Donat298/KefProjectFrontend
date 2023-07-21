@@ -55,6 +55,7 @@
                         variant="solo"
                         v-model="email"
                     ></v-text-field>
+                    
 
                     <div
                         style="color: white"
@@ -83,8 +84,9 @@
 
                     <v-btn
                         block
+                        type="submit"
+                        color="secondary"
                         
-                        color="blue"
                         @click="login(email, password)"
                         size="large"
                     >

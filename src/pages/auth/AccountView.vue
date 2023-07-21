@@ -54,8 +54,9 @@
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
         >
-        <p class="text-center" style="color: #ffffff; ">
-         {{ $store.getters.userDetail.balance }} USDT </p>
+        <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
+          {{ $store.getters.userDetail.balance }} USDT
+        </p>
 
       <div>
         <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
@@ -123,8 +124,10 @@
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
         >
-        <p class="text-center" style="color: #ffffff; ">
-         {{ $store.getters.userDetail.balance }} USDT </p>
+        
+         <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
+          {{ $store.getters.userDetail.balance }} USDT
+        </p>
 
          <div>
         <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>

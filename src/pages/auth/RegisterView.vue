@@ -91,8 +91,10 @@
       @click="register(username, email, password, password_confirm)"
       block
       class="mb-8"
-      color="blue"
+      
       size="large"
+      type="submit"
+      color="secondary"
      
     >
     REG

@@ -1,5 +1,5 @@
-
-
+//Can you do it yourself?
+//This is vuex file
 import { createStore } from "vuex";
 import { useApi, useApiPrivate } from "../utils/useApi"
 
@@ -8,8 +8,8 @@ import { useApi, useApiPrivate } from "../utils/useApi"
 export default createStore({
     state: () => {
         return {
-            user: {},
-            accessToken: "",           
+            user: JSON.parse(localStorage.getItem('user')) || {}, 
+            accessToken: localStorage.getItem('accessToken') || "", 
             sessionChecked: false
         }
     },
@@ -22,12 +22,20 @@ export default createStore({
     mutations: {
         setAccessToken(state, accessToken) {
             state.accessToken = accessToken;
+            localStorage.setItem('accessToken', accessToken); 
         },
         setUser(state, user) {
             state.user = user;
+            localStorage.setItem('user', JSON.stringify(user)); 
         },
         setSessionChecked(state, sessionChecked) {
             state.sessionChecked = sessionChecked;
+        },
+        clearAuthData(state) {
+            state.accessToken = '';
+            state.user = {};
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('user');
         }
     },
     actions: {
@@ -120,6 +128,7 @@ export default createStore({
                 const { data } = await useApiPrivate(this).post(`/api/auth/logout`);
                 commit('setAccessToken', "");
                 commit("setUser", {});
+                commit('clearAuthData'); 
                 return data;
             } catch (error) {
                 throw error.message;

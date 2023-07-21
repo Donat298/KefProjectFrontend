@@ -14,8 +14,8 @@
       
         
       >
-      <div style="">
-      <div style="height: 128px; align-items: center;"><my-button2 @click="$router.push('/')" style=" min-height: 64px;
+      <div>
+      <div style="height: 150px; align-items: center;"><my-button2 @click="$router.push('/')" style=" min-height: 64px;
        background-color: #a04d3d00;
        width: 100%;
        padding: 8px 0px;
@@ -23,7 +23,7 @@
     
        
         
-      border: #4d3da000;"><v-img  v-if="!rail" style="margin-left: auto; width: 200px; 
+      border: #4d3da000;"><v-img  style="margin-left: auto; width: 238px; 
       margin-right: auto;" src="@/assets/kef.png" ></v-img></my-button2></div>
 
     <v-list
@@ -203,7 +203,7 @@
 
 
         <v-main>
-        <div style="/*font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;*/
+        <div style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   

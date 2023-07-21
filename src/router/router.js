@@ -1,4 +1,4 @@
-
+//This is router file
 
 import MyMain from "@/pages/MyMain";
 
@@ -72,7 +72,6 @@ const routes = [
 
 
 const router = createRouter({
-    
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
@@ -88,7 +87,6 @@ router.beforeEach((to, from, next) => {
 
 
 export default router;
-//Vue project using router and vuex store
-//The task is that if a user enters the chat component and he is not authorized, then he Immediately would be thrown into the login component.
-//Here is vuex index.js
+
+
 

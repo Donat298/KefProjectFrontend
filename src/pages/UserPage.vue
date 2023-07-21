@@ -1,5 +1,5 @@
 <template>
-    <div v-if="$store.getters.isAuthenticated"  >
+    <div v-if="$store.getters.isAuthenticated">
       <v-parallax style="width: 100%;" src="@/assets/ds.jpg">
       <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
        
@@ -22,7 +22,7 @@
               type="text">
           </div>  
           
-        <my-okno :show="oknoVisible">
+        <my-okno  :show="oknoVisible">
           <SignUp
         @create="createAcc"
         @cre="NoVisibleOkno"

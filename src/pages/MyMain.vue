@@ -30,10 +30,7 @@ import MyButton2 from '@/components/UI/MyButton2.vue'
 
   export default {
     
-  props: {
-    to: { type: String, required: true },
-    icon: { type: String, required: true }
-  },
+    
   components: { MyButton2, 
   
   
