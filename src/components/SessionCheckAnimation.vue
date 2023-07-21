@@ -10,7 +10,7 @@ indeterminate
 :size="128"
 :width="12"
 ></v-progress-circular>
-<v-alert style="width: 400px; margin-top: 30px;"
+<v-alert style="max-width: 400px; margin-top: 30px; "
     density="compact"
     type="error"
     title="Oioi"
@@ -45,7 +45,7 @@ z-index: 2;
 } 
 .okno4 {
   
-  
+  max-width: 90%;
 
 margin: auto;
 
