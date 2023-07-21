@@ -40,7 +40,7 @@
                     class="mx-auto pa-8 pb-8"
                     elevation="8"
                     rounded="lg"
-                    style="background-color: #384f62; border: 7px solid #384f62"
+                    style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74)"
                 >
                     <div
                         style="color: white"

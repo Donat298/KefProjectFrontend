@@ -14,15 +14,15 @@
         margin: auto;">   
     <v-card
       elevation="0"
-    
+      
        
      
       rounded="lg"
-      style="background-color: #384f62; display: flex; width: 600px;" 
+      style="background-color: rgb(37, 56, 74); display: flex; width: 600px;" 
     >
 
    
-    <div style="background-color: #384f62;  width: 50%; padding: 20px 10px;">
+    <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
         <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
       <v-avatar 
 
@@ -89,11 +89,11 @@
     <v-card  
     elevation="0"  
     rounded="lg"
-    style="background-color: #384f62;  margin-left: auto; margin-right: auto; " 
+    style="background-color: rgb(37, 56, 74);  margin-left: auto; margin-right: auto; " 
     >
 
    
-    <div style="background-color: #384f62;  align-items: center;  padding: 20px 10px; ">
+    <div style="background-color: rgb(37, 56, 74);  align-items: center;  padding: 20px 10px; ">
         <div style="margin: auto; display: flex;">
       <v-avatar 
         style="margin-left: auto; margin-right: auto;"

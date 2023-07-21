@@ -28,7 +28,7 @@
     rounded="lg"
 
     
-    style="background-color: #384f62 ; border: 7px solid #384f62;"
+    style="background-color: rgb(37, 56, 74) ; border: 7px solid rgb(37, 56, 74);"
   >
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">

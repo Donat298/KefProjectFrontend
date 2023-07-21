@@ -34,22 +34,24 @@
           
         >
         <v-card  color="rgb(37, 56, 74)" elevation="0"> 
-          <v-card-actions  @click="show = !show" class="pb-1 ma-2">
-            <v-list-item  rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-home" title="Main" ></v-list-item>
+          <v-card-actions  @click="show = !show" class=" ma-2">
+            <v-list-item  rounded="lg" style="color: #ffffff;"  title="Main" ></v-list-item>
 
       <v-spacer></v-spacer>
 
       <v-btn 
+      
       height="40"
       width="40"
       color="white"
         :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
         
       ></v-btn>
+      
     </v-card-actions>
     <v-expand-transition >
       <div v-show="show">
-        <v-divider color="white"></v-divider>
+        <v-divider :thickness="2" color="white"></v-divider>
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
         <v-list-item class="mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
           <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
@@ -62,8 +64,8 @@
 
 
         <v-card color="rgb(37, 56, 74)" elevation="0" style="margin-top: 8px;"> 
-          <v-card-actions @click="show2 = !show2" class="pb-1 ma-2">
-            <v-list-item rounded="lg" style="color: #ffffff;"  prepend-icon="mdi-movie-search-outline" title="Tests" ></v-list-item>
+          <v-card-actions height="40" @click="show2 = !show2" class=" ma-2">
+            <v-list-item rounded="lg" style="color: #ffffff;"   title="Tests" ></v-list-item>
 
       <v-spacer></v-spacer>
 
@@ -77,7 +79,7 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show2">
-        <v-divider color="white"></v-divider>
+        <v-divider :thickness="2"  color="white"></v-divider>
 
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
           <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
@@ -112,7 +114,7 @@
                     </div>
             
                     
-            <v-menu location="center"  transition="scale-transition">
+            <v-menu location="center"  transition="slide-y-transition">
             
                 <template v-slot:activator="{ props }">
                     
@@ -172,6 +174,10 @@
                 
                 <v-list
                 style="
+                    
+                    visibility: visible;
+                    opacity: 1;
+                    
                     background-color: #273d53;
                     color: #ffffff;
                     
@@ -287,6 +293,7 @@ export default {
  
     z-index: 2 !important;
     height: 3000px !important;
+   
 }
 .v-list .v-list-item--nav:not(:only-child) {
     margin-bottom: 0px  !important;
@@ -302,16 +309,16 @@ export default {
 .v-divider {
     display: block;
     flex: 1 1 100%;
-    height: 0px;
+   
     max-height: 0px;
-    opacity: 0.2;
-    transition: inherit;
-    border-style: solid;
-    border-width: thin 0 0 0;
+    opacity: 0.1;
+   
+   
+    
 }
 
 </style>
-
+You can align this code to make it look right without changing it?
 
 
 
