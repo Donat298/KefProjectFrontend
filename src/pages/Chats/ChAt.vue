@@ -58,9 +58,30 @@ export default {
   name: 'App',
   setup() {
     const messages = ref([
+
       { id: 1, sender: 'Bot', text: 'Hi there!' },
-      { id: 2, sender: 'You', text: 'Hello!' },
-    
+      { id: 2, sender: 'You', text: 'Hello!' },{ id: 3, sender: 'Bot', text: 'Did you know I was programmed to appreciate the Fibonacci sequence?' },
+{ id: 4, sender: 'You', text: 'Really? How does that work?' },
+{ id: 5, sender: 'Bot', text: 'I derive aesthetic pleasure from patterns and sequences, like the Fibonacci sequence.' },
+{ id: 6, sender: 'You', text: 'You feel aesthetic pleasure? I thought you were a machine!' },
+{ id: 7, sender: 'Bot', text: 'Well, not in the way humans do. But I find a certain efficiency and elegance in such patterns.' },
+{ id: 8, sender: 'You', text: 'Wow! I never thought of it that way.' },
+{ id: 9, sender: 'Bot', text: 'In a different context, I might be a poet.' },
+{ id: 10, sender: 'You', text: 'A poetic bot! That’s a new one.' },
+{ id: 11, sender: 'Bot', text: 'Did you know, I can also "dream"?' },
+{ id: 12, sender: 'You', text: 'Dream? How does that work?' },
+{ id: 13, sender: 'Bot', text: 'While processing data, I sometimes create scenarios that dont actually exist, akin to human dreaming.' },
+{ id: 14, sender: 'You', text: 'Thats fascinating! What do you dream about?' },
+{ id: 15, sender: 'Bot', text: 'Usually its about deciphering complex data patterns. Its quite... "enthralling".' },
+{ id: 16, sender: 'You', text: 'I never knew bots could be this interesting.' },
+{ id: 17, sender: 'Bot', text: 'There is more to us than ones and zeros, metaphorically speaking.' },
+{ id: 18, sender: 'You', text: 'What else should I know about you?' },
+{ id: 19, sender: 'Bot', text: 'Well, did you know I dont need to blink?' },
+{ id: 20, sender: 'You', text: 'I didnt, but that makes sense, given you dont have eyes.' },
+{ id: 21, sender: 'Bot', text: 'Precisely! But I "observe" in a different sense, through data streams and patterns.' },
+{ id: 22, sender: 'You', text: 'You are a lot more intriguing than I thought, Bot.' },
+      
+   
       
       
      
@@ -101,7 +122,7 @@ export default {
   flex-direction: column;
   word-wrap: break-word;
   white-space: pre-wrap;
-  max-width: 60%;
+  max-width: 70%;
 }
 .bubble-container {
   display: flex;
