@@ -1,9 +1,8 @@
 <template>
+ 
   <v-row justify="center" align="center" style="height: calc(100vh - 64px); background-color: rgb(21, 33, 44);">
     <v-card elevation="0" class="chat-container" style="max-width:800px; height: 100%;">
-      <v-card-title>
-        <span class="title">Kef Chat</span>
-      </v-card-title>
+     
       
       <v-card-text class="chat-messages" >
         
@@ -19,7 +18,12 @@
       
     </v-card>
   </v-row>
-  <v-bottom-navigation style="background-color: rgb(21, 33, 44);"
+  <v-app-bar height="50" style="z-index: 0; background-color: rgb(21, 33, 44); " elevation="0">
+    <v-card-title style="margin-left: auto; margin-right: auto;">
+        <span class="title">Kef Global Chat</span>
+    </v-card-title>
+</v-app-bar>
+  <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
       height="100"
       v-model="value"
       color="teal"
@@ -39,9 +43,13 @@
       bg-color="secondary"
     ></v-textarea>
     <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
-      <v-btn class="ml-2 mr-2 align-center" 
-       style="height: 44px; max-width: 44px; color: aquamarine;" type="submit" append-icon="mdi-send"> </v-btn>
+      <v-btn rounded="xl"  class="ml-2 mr-2" size="small"
+      type="submit" style="height: 50px; width: 44px; color: aquamarine;"  icon="mdi-send"> </v-btn>
+  
     </div>
+  
+        
+  
   </v-form>
 </div>
     </v-bottom-navigation>
