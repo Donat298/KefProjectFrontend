@@ -10,12 +10,7 @@ indeterminate
 :size="128"
 :width="12"
 ></v-progress-circular>
-<v-alert style="max-width: 400px; margin-top: 30px; "
-    density="compact"
-    type="error"
-    title="Oioi"
-    text="The site is down due to technical work with the server, hope that your data is not destroyed."
-  ></v-alert>
+
 
       </div>
   </div>
@@ -45,7 +40,7 @@ z-index: 2;
 } 
 .okno4 {
   
-  max-width: 90%;
+width: 200px;
 
 margin: auto;
 

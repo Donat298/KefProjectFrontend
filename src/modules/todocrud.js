@@ -8,7 +8,7 @@ const getTodos = () => {
     })
     const GetAllTodos = async() => {
         try {
-            await  fetch('http://localhost:3000/todos')
+            await  fetch('https://kef.onrender.com/todos')
             .then(res => res.json())
             .then(data => {
               state.value.todos = data
@@ -35,7 +35,7 @@ const getTodos = () => {
                 Phonenumber: state.value.NewPhoneNumber,
             })
         }
-        fetch("http://localhost:3000/todos/new",
+        fetch("https://kef.onrender.com/todos/new",
         requireOptions
         )
         .then(() => {
@@ -44,7 +44,7 @@ const getTodos = () => {
              
     }
     const deleteTodo = (_id) => {
-        fetch("http://localhost:3000/todos/delete/" + _id , { method: "DELETE"})
+        fetch("https://kef.onrender.com/todos/delete/" + _id , { method: "DELETE"})
         .then(() => {
             GetAllTodos()
          })

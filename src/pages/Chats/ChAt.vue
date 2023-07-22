@@ -20,19 +20,22 @@
         <div style="width: 100%;">
         <v-form style=" display: flex;" ref="form" @submit.prevent="sendMessage">
           
-<v-textarea class=" pl-5" 
-variant="outlined"
+          <v-textarea  class="pl-5"  style="overflow-y: visible;"
+          variant="solo"
       single-line
       hide-details
       v-model="newMessage"   
       label="Message"
       rows="1"
       max-rows="4"
+      bg-color="secondary"
       
-   
+      
+ 
      
-    ></v-textarea>
-   
+       
+></v-textarea>
+
 
 
     <div class="d-flex align-center" style="height: 64px; margin-top: auto;">
@@ -155,6 +158,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 </style>
 
-Can you make the v-card-text in this code be 800px but max out at 90% width?
