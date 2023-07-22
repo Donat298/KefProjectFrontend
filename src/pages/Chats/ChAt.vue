@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 64px); background-color: rgb(21, 33, 44);">
-    <v-card elevation="0" class="chat-container" style="max-width:1250px; height: 100%;">
+    <v-card elevation="0" class="chat-container" style="max-width:800px; height: 100%;">
       <v-card-title>
         <span class="title">Kef Chat</span>
       </v-card-title>
@@ -16,9 +16,18 @@
       </div>
     </div>
   </v-card-text>
-      <v-card-actions>
-        <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-  <v-form style="display: flex; width: 100%;" ref="form" @submit.prevent="sendMessage">
+      
+    </v-card>
+  </v-row>
+  <v-bottom-navigation style="background-color: rgb(21, 33, 44);"
+      height="100"
+      v-model="value"
+      color="teal"
+      elevation="0"
+      grow
+    >
+    <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+  <v-form style="display: flex; width: 100%; max-width:800px; " ref="form" @submit.prevent="sendMessage">
     <v-textarea  class="pl-5"  style="overflow-y: visible;"
       variant="solo"
       single-line
@@ -29,16 +38,13 @@
       max-rows="4"
       bg-color="secondary"
     ></v-textarea>
-    <div class="d-flex align-center" style="height: 64px; margin-top: auto;">
-      <v-btn class="ml-2 mr-5 align-center" style="height: 44px;" type="submit" append-icon="mdi-send" color="secondary">Send</v-btn>
+    <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
+      <v-btn class="ml-2 mr-2 align-center" 
+       style="height: 44px; max-width: 44px; color: aquamarine;" type="submit" append-icon="mdi-send"> </v-btn>
     </div>
   </v-form>
 </div>
- 
-       
-      </v-card-actions>
-    </v-card>
-  </v-row>
+    </v-bottom-navigation>
 </template>
 
 <script>
