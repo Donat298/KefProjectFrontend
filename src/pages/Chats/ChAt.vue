@@ -149,6 +149,9 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Add this */
+  max-height: 100vh; 
+  overflow: auto;
 }
 
 </style>
