@@ -18,11 +18,7 @@
       
     </v-card>
   </v-row>
-  <v-app-bar height="50" style="z-index: 0; background-color: rgb(21, 33, 44); " elevation="0">
-    <v-card-title style="margin-left: auto; margin-right: auto;">
-        <span class="title">Kef Global Chat</span>
-    </v-card-title>
-</v-app-bar>
+  
   <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
       height="100"
       v-model="value"
