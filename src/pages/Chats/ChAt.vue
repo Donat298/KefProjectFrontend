@@ -1,4 +1,185 @@
 <template>
+
+<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); 
+  width:100%; ">
+    <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
+      <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
+        <div style="max-width: 100%; width: 800px;  ">
+        <div class="my-2 " v-for="(message, index) in messages" :key="index">
+          <div :class="`bubble-container ${message.sender === 'You' ? 'right' : 'left'}`">
+            <div :class="`bubble ${message.sender === 'You' ? 'right' : 'left'}`">
+              <div class="sender">{{ message.sender }}</div>
+              <div class="text">{{ message.MessageText }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </v-card-text>
+    </v-card>
+</v-row>
+
+  <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
+      height="100"
+      v-model="value"
+      color="teal"
+      elevation="0"
+      grow
+    >
+    <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+      <v-form style="display: flex; width: 100%; max-width:800px; " ref="form" @submit.prevent="sendMessage">
+        <v-textarea  class="pl-5"  
+          variant="solo"
+          single-line
+          hide-details
+          v-model="newMessage"
+          label="Message"
+          rows="1"
+          max-rows="4"
+          bg-color="secondary"
+        ></v-textarea>
+        <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
+          <v-btn rounded="xl"  class="ml-2 mr-2" size="small"
+          type="submit" style="height: 50px; width: 44px; color: aquamarine;"  icon="mdi-send"> </v-btn>
+        </div>
+      </v-form>
+    </div>
+  </v-bottom-navigation>
+</template>
+
+<script>
+import io from 'socket.io-client';
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      socket: null,
+      messages: [],
+      newMessage: ''
+    };
+  },
+  methods: {
+    sendMessage() {
+      if (!this.newMessage) return;
+
+      this.messages.push({
+        sender: 'You',
+        MessageText: this.newMessage
+      });
+
+      this.socket.emit('chat message', { "MessageText": this.newMessage });
+      this.newMessage = '';
+    }
+  },
+  created() {
+    console.log("connecting to socket...");
+    this.socket = io('http://localhost:3000', { path: '/chat' }); 
+    console.log("connected to socket...");
+    this.socket.on('all chat messages', (msgs) => {
+      console.log("getting chat messages from socket...");
+      msgs.forEach(msg => this.messages.push(msg));
+    });
+  }
+};
+</script>
+
+<style scoped>
+.bubble {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  flex-direction: column;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  max-width: 70%;
+}
+.bubble-container {
+  display: flex;
+  flex-direction: column;
+}
+.bubble-container.right {
+  align-items: flex-end;
+}
+.bubble-container.left {
+  align-items: flex-start;
+}
+.bubble .sender {
+  font-weight: bold;
+  color: white;
+}
+.bubble.right .sender {
+  text-align: right;
+}
+.bubble.left .sender {
+  text-align: left;
+}
+.bubble .text {
+  margin-top: 5px;
+  color: white;
+}
+.bubble.left {
+  background-color: rgb(30, 44, 56);
+  align-self: flex-start;
+  text-align: left;
+}
+.bubble.right {
+  background-color: rgb(36, 52, 65);
+  align-self: flex-end;
+  text-align: left;
+}
+.v-card-text {
+  display: flex;
+  flex-direction: column;
+}
+.v-card-actions {
+  margin-top: auto;
+  background-color: rgb(21, 33, 44);
+}
+.chat-messages {
+  overflow-y: auto;
+  flex: 1 1 auto;
+  background-color: rgb(21, 33, 44);
+}
+.chat-container {
+  background-color: rgb(21, 33, 44);
+  color: white;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 100vh;
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #15212c;
+  border-radius: 30px;  
+  margin-block: 10px;
+  
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #2c4257;
+  border-radius: 30px;
+}
+
+</style>
+
+
+
+
+
+
+<!--template>
  
   <v-row justify="center" align="center" style="height: calc(100vh - 64px); background-color: rgb(21, 33, 44);">
     <v-card elevation="0" class="chat-container" style="max-width:800px; height: 100%;">
@@ -61,26 +242,7 @@ export default {
 
       { id: 1, sender: 'Bot', text: 'Hi there!' },
       { id: 2, sender: 'You', text: 'Hello!' },{ id: 3, sender: 'Bot', text: 'Did you know I was programmed to appreciate the Fibonacci sequence?' },
-{ id: 4, sender: 'You', text: 'Really? How does that work?' },
-{ id: 5, sender: 'Bot', text: 'I derive aesthetic pleasure from patterns and sequences, like the Fibonacci sequence.' },
-{ id: 6, sender: 'You', text: 'You feel aesthetic pleasure? I thought you were a machine!' },
-{ id: 7, sender: 'Bot', text: 'Well, not in the way humans do. But I find a certain efficiency and elegance in such patterns.' },
-{ id: 8, sender: 'You', text: 'Wow! I never thought of it that way.' },
-{ id: 9, sender: 'Bot', text: 'In a different context, I might be a poet.' },
-{ id: 10, sender: 'You', text: 'A poetic bot! That’s a new one.' },
-{ id: 11, sender: 'Bot', text: 'Did you know, I can also "dream"?' },
-{ id: 12, sender: 'You', text: 'Dream? How does that work?' },
-{ id: 13, sender: 'Bot', text: 'While processing data, I sometimes create scenarios that dont actually exist, akin to human dreaming.' },
-{ id: 14, sender: 'You', text: 'Thats fascinating! What do you dream about?' },
-{ id: 15, sender: 'Bot', text: 'Usually its about deciphering complex data patterns. Its quite... "enthralling".' },
-{ id: 16, sender: 'You', text: 'I never knew bots could be this interesting.' },
-{ id: 17, sender: 'Bot', text: 'There is more to us than ones and zeros, metaphorically speaking.' },
-{ id: 18, sender: 'You', text: 'What else should I know about you?' },
-{ id: 19, sender: 'Bot', text: 'Well, did you know I dont need to blink?' },
-{ id: 20, sender: 'You', text: 'I didnt, but that makes sense, given you dont have eyes.' },
-{ id: 21, sender: 'Bot', text: 'Precisely! But I "observe" in a different sense, through data streams and patterns.' },
-{ id: 22, sender: 'You', text: 'You are a lot more intriguing than I thought, Bot.' },
-      
+
    
       
       
@@ -185,5 +347,5 @@ export default {
   overflow: auto;
 }
 
-</style>
+</style-->
 

@@ -23,7 +23,8 @@
     
        
         
-      border: #4d3da000;"><v-img  style="margin-left: auto; width: 238px; 
+      border: #4d3da000;">
+      <v-img  style="margin-left: auto; width: 238px; 
       margin-right: auto;" src="@/assets/kef.png" ></v-img></my-button2></div>
 
     <v-list
@@ -53,9 +54,12 @@
       <div v-show="show">
         <v-divider :thickness="2" color="white"></v-divider>
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-        <v-list-item class="mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
+        <v-list-item class="mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+         to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
+          <v-list-item class=" mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+           to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
+          <v-list-item class=" mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
         </v-card>
         </div>
     </v-expand-transition>
@@ -82,9 +86,12 @@
         <v-divider :thickness="2"  color="white"></v-divider>
 
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff;" to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff;" to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
+          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
+          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
+          <v-list-item class=" mr-2 ml-2 " rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+           to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
         </v-card>
         </div>
       </v-expand-transition>

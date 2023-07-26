@@ -1,6 +1,6 @@
 <template>
     <div v-if="$store.getters.isAuthenticated">
-        <v-parallax style="width: 100%;" src="@/assets/ghg.svg">
+      
         <div
             style="
                 overflow-y: auto;
@@ -33,7 +33,7 @@
                 <AccList2 ref="childRef" @deleteUser="deleteUser" :todos="state.todos"> </AccList2>
             </div>
         </div>
-    </v-parallax>
+
     </div>
     <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
 </template>
