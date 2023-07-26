@@ -73,7 +73,7 @@ export default {
   },
   created() {
     console.log("connecting to socket...");
-    this.socket = io('http://localhost:3000', { path: '/chat' }); 
+    this.socket = io('https://kef.onrender.com', { path: '/chat' }); 
     console.log("connected to socket...");
     this.socket.on('all chat messages', (msgs) => {
       console.log("getting chat messages from socket...");
