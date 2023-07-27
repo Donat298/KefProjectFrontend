@@ -5,12 +5,11 @@
      justify-content: center; background-color: rgba(4, 3, 3, 0);">
       <p  v-html="message"></p>
     </div>
-    <div  style="display: flex; justify-content: center; align-items: center;">
+    <div style="display: flex; justify-content: center; align-items: center;">
       <div style="min-width: 40px;"></div>
       <div style=" ; " id="wheel" :style="wheelStyle">
         <div class="half win">WIN</div>
         <div class="half lose">LOSE</div>
-        
       </div>
       <div style="display: flex; align-items: center; justify-content: center; height: 200px; margin-left: 10px;">
         <div style="transform: rotate(90deg);">
@@ -18,41 +17,29 @@
         </div>
       </div>
     </div>
-    
     <div style="background-color: #15212c; margin-top: 20px;">
-      <form @submit.prevent="spinWheel">
-        <p>Balance: ${{ balance }}</p>
-   
-        
-        <v-card class="pt-4 pl-4 pr-4 mt-4" style="margin: auto; width: 115px; background-color: #273d53; color: rgb(255, 255, 255);">
-          <v-radio-group color="success" :disabled="spinning" v-model="bet">
-            <v-radio label="$1" value="1"></v-radio>
-            <v-radio label="$5" value="5"></v-radio>
-            <v-radio label="$10" value="10"></v-radio>
-            <v-radio label="$20" value="20"></v-radio>
-          </v-radio-group>
-        </v-card>
-     
-        <v-btn elevation="4" variant="tonal" class="mt-4 mb-4"
-         type="submit" :disabled="spinning"
-          style="color: black; 
-     background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));">
-      Spin Wheel
-    </v-btn>
-
-  </form>
-      
-      
-    
+      <p>Balance: ${{ balance }}</p>
+      <v-card class="pt-4 pl-4 pr-4 mt-4" style="margin: auto; width: 115px; background-color: #273d53; color: rgb(255, 255, 255);">
+        <v-radio-group color="success" :disabled="spinning" v-model="bet">
+          <v-radio label="$1" value="1"></v-radio>
+          <v-radio label="$5" value="5"></v-radio>
+          <v-radio label="$10" value="10"></v-radio>
+          <v-radio label="$20" value="20"></v-radio>
+        </v-radio-group>
+      </v-card>
+      <v-btn ref="spinButton" elevation="4" variant="tonal" class="mt-4 mb-4"
+        type="button" :disabled="spinning" @click="spinWheel"
+        style="color: black; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));">
+        Spin Wheel
+      </v-btn>
     </div>
-   
   </div>
   <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
 </template>
 
 <script>
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 import IfnotAuth from "@/components/IfnotAuth/IfnotAuth.vue";
-import { ref, computed } from 'vue';
 
 export default {
   components: {
@@ -65,6 +52,7 @@ export default {
     const startDegree = ref(0);
     const totalSpin = ref(0);
     const spinning = ref(false);
+    const spinButton = ref(null);
 
     const wheelStyle = computed(() => ({
       transform: `rotate(${totalSpin.value}deg)`,
@@ -78,12 +66,10 @@ export default {
       }
       balance.value -= bet.value;
       spinning.value = true;
-
-      startDegree.value = Math.floor(Math.random() * 360); // Random starting position
-      const spinAmount = 2800; // Always spin 1440 degrees
+      startDegree.value = Math.floor(Math.random() * 360);
+      const spinAmount = 2800;
       totalSpin.value = startDegree.value + spinAmount;
 
-      // Create a new stylesheet for our dynamic animation
       const styleSheet = document.createElement('style');
       styleSheet.type = 'text/css';
       styleSheet.innerText = `
@@ -109,25 +95,31 @@ export default {
           message.value = `Sorry, the wheel was not in your favor. Better luck next time.`;
         }
 
-        // Clean up the stylesheet to prevent buildup
         document.head.removeChild(styleSheet);
         spinning.value = false;
       }, 5000);
     }
 
-    return { balance, bet, message, spinWheel, wheelStyle, spinning };
+    onMounted(() => {
+      const handleEnterKey = (event) => {
+        if (event.key === 'Enter') {
+          spinButton.value.$el.click();
+        }
+      };
+
+      window.addEventListener('keyup', handleEnterKey);
+
+      onUnmounted(() => {
+        window.removeEventListener('keyup', handleEnterKey);
+      });
+    });
+
+    return { balance, bet, message, spinWheel, wheelStyle, spinning, spinButton };
   }
 };
 </script>
 
 <style>
- 
-
-.centered-content {
-
-  justify-content: center;
-
-}
 #wheel {
   border-radius: 50%;
   width: 200px;
@@ -159,9 +151,6 @@ export default {
 }
 
 .winning {
-    color: green;
-  }
-
-
-
+  color: green;
+}
 </style>

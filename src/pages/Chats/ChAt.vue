@@ -4,7 +4,7 @@
 
 <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
     <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
-      <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
+      <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" ref="messagesContainer">
         <div style="max-width: 100%; width: 800px;  ">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
   <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
@@ -40,6 +40,7 @@
           rows="1"
           max-rows="4"
           bg-color="secondary"
+          @keyup.enter.exact="sendMessage"
         ></v-textarea>
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
           <v-btn rounded="xl"  class="ml-2 mr-2" size="small"
@@ -100,7 +101,8 @@ export default {
       console.log("Received new chat message...");
       this.messages.push(msg);
     });
-  }
+    
+  },
 };
 </script>
 
