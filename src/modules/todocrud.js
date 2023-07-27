@@ -1,4 +1,7 @@
 import { ref } from 'vue'
+import { axiosInstance} from "../utils/axios";
+
+
 const getTodos = () => {
     const state = ref({
         NewName: '',
@@ -8,7 +11,7 @@ const getTodos = () => {
     })
     const GetAllTodos = async() => {
         try {
-            await  fetch('https://kef.onrender.com/todos')
+            await  fetch(axiosInstance.defaults.baseURL + '/todos')
             .then(res => res.json())
             .then(data => {
               state.value.todos = data
@@ -35,7 +38,7 @@ const getTodos = () => {
                 Phonenumber: state.value.NewPhoneNumber,
             })
         }
-        fetch("https://kef.onrender.com/todos/new",
+        fetch(axiosInstance.defaults.baseURL + "/todos/new",
         requireOptions
         )
         .then(() => {
@@ -44,7 +47,7 @@ const getTodos = () => {
              
     }
     const deleteTodo = (_id) => {
-        fetch("https://kef.onrender.com/todos/delete/" + _id , { method: "DELETE"})
+        fetch(axiosInstance.defaults.baseURL + "/todos/delete/" + _id , { method: "DELETE"})
         .then(() => {
             GetAllTodos()
          })

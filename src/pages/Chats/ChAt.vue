@@ -7,12 +7,12 @@
       <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
         <div style="max-width: 100%; width: 800px;  ">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
-  <div :class="`bubble-container ${message.sender === user ? 'right' : 'left'}`">
+  <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
     <!-- Add these debug lines -->
    
 
-    <div :class="`bubble ${message.sender === user ? 'right' : 'left'}`">
-      <div class="sender">{{ message.sender }}</div>
+    <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
+      <div class="sender">{{ message.username }}</div>
       <div class="text">{{ message.MessageText }}</div>
     </div>
   </div>
@@ -52,6 +52,7 @@
 
 <script>
 import io from 'socket.io-client';
+import { axiosInstance} from "../../utils/axios";
 
 export default {
   name: 'App',
@@ -82,7 +83,9 @@ export default {
 
     // connect to the socket
     console.log("connecting to socket...");
-    this.socket = io('https://kef.onrender.com', { path: '/chat' });
+    this.socket = io(axiosInstance.defaults.baseURL, { path: '/chat', query: 'token=' + this.$store.getters.accessToken });
+    console.log("Socket.IO base URL %s", axiosInstance.defaults.baseURL);
+//    this.socket = io('https://kef.onrender.com', { path: '/chat' });
     console.log("connected to socket...");
 
     // Listen for 'all chat messages' event from the server
