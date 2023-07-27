@@ -2,8 +2,7 @@
 <template>
 
 
-<v-row justify="center" align="center" style="height: 100%; background-color: rgb(21, 33, 44); 
-  width:100%; ">
+<v-row justify="center" align="center" style="height: calc(100vh - 100px); background-color: rgb(21, 33, 44); width:100%; ">
     <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
         <div style="max-width: 100%; width: 800px;  ">
@@ -197,7 +196,9 @@ export default {
 </style>
 
 
-
+Is it possible to make the v-row height be maximum, 
+but it's not possible to make the bottom of the v-row 
+go over the border with the v-bottom-navigation so that it's clearly touching in any situation.
 
 <!--template>
  
