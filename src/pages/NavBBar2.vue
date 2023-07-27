@@ -2,7 +2,7 @@
     <v-layout  class="">
 
       
-        <v-navigation-drawer style="height: 3000px; z-index: 3;  background-color: #192635 ; 
+        <v-navigation-drawer style=" z-index: 3;  background-color: #192635 ; 
          border-right: 2px solid #192635;"
         :rail="rail"
         v-model="drawer"
@@ -54,11 +54,11 @@
       <div v-show="show">
         <v-divider :thickness="2" color="white"></v-divider>
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-        <v-list-item class="mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+        <v-list-item class="mr-2 ml-2 mb-2" rounded="0" style="color: #ffffff;  "
          to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+          <v-list-item class=" mr-2 ml-2 mb-2" rounded="0" style="color: #ffffff;  "
            to="/games" prepend-icon="mdi-cube" title="Games" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 mb-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          <v-list-item class=" mr-2 ml-2 mb-2" rounded="0" style="color: #ffffff;  " 
           to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
         </v-card>
         </div>
@@ -86,11 +86,11 @@
         <v-divider :thickness="2"  color="white"></v-divider>
 
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          <v-list-item class=" mr-2 ml-2" rounded="0" style="color: #ffffff;  " 
           to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2" rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; " 
+          <v-list-item class=" mr-2 ml-2" rounded="0" style="color: #ffffff;  " 
           to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 " rounded="lg" style="color: #ffffff; margin-bottom: 5px !important; "
+          <v-list-item class=" mr-2 ml-2 " rounded="0" style="color: #ffffff;  "
            to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
         </v-card>
         </div>
@@ -299,7 +299,7 @@ export default {
 .v-navigation-drawer__scrim {
  
     z-index: 2 !important;
-    height: 3000px !important;
+    ;
    
 }
 .v-list .v-list-item--nav:not(:only-child) {

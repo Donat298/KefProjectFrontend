@@ -1,7 +1,8 @@
 
 <template>
-
-<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); 
+<v-layout>
+  <v-main>
+<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(44, 29, 21); 
   width:100%; ">
     <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
@@ -21,7 +22,7 @@
       </v-card-text>
     </v-card>
 </v-row>
-
+</v-main>
   <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
       height="100"
       v-model="value"
@@ -48,6 +49,7 @@
       </v-form>
     </div>
   </v-bottom-navigation>
+</v-layout>
 </template>
 
 <script>
