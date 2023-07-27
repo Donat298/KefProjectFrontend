@@ -2,7 +2,7 @@
 <template>
 
 
-<v-row justify="center" align="center" style="height: calc(100vh - 100px); background-color: rgb(21, 33, 44); width:100%; ">
+<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
     <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
         <div style="max-width: 100%; width: 800px;  ">
