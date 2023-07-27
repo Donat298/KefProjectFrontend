@@ -207,7 +207,7 @@ z-index: 4;
 } 
 
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 5px;
   
   
 }
