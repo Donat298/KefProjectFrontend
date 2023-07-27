@@ -1,3 +1,4 @@
+
 <template>
 
 <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); 
@@ -5,14 +6,17 @@
     <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" >
         <div style="max-width: 100%; width: 800px;  ">
-        <div class="my-2 " v-for="(message, index) in messages" :key="index">
-          <div :class="`bubble-container ${message.sender === 'You' ? 'right' : 'left'}`">
-            <div :class="`bubble ${message.sender === 'You' ? 'right' : 'left'}`">
-              <div class="sender">{{ message.sender }}</div>
-              <div class="text">{{ message.MessageText }}</div>
-            </div>
-          </div>
-        </div>
+          <div class="my-2 " v-for="(message, index) in messages" :key="index">
+  <div :class="`bubble-container ${message.sender === user ? 'right' : 'left'}`">
+    <!-- Add these debug lines -->
+   
+
+    <div :class="`bubble ${message.sender === user ? 'right' : 'left'}`">
+      <div class="sender">{{ message.sender }}</div>
+      <div class="text">{{ message.MessageText }}</div>
+    </div>
+  </div>
+</div>
       </div>
       </v-card-text>
     </v-card>
@@ -55,29 +59,42 @@ export default {
     return {
       socket: null,
       messages: [],
-      newMessage: ''
+      newMessage: '',
+      user: ''
     };
   },
   methods: {
     sendMessage() {
       if (!this.newMessage) return;
 
-      this.messages.push({
-        sender: 'You',
+      // Sending message and username to server
+      this.socket.emit('chat message', {
+        sender: this.$store.getters.userDetail.username,
         MessageText: this.newMessage
       });
 
-      this.socket.emit('chat message', { "MessageText": this.newMessage });
       this.newMessage = '';
     }
   },
   created() {
+    this.user = this.$store.getters.userDetail.username;
+    console.log("Current user: ", this.user); // log the current user
+
+    // connect to the socket
     console.log("connecting to socket...");
-    this.socket = io('https://kef.onrender.com', { path: '/chat' }); 
+    this.socket = io('https://kef.onrender.com', { path: '/chat' });
     console.log("connected to socket...");
+
+    // Listen for 'all chat messages' event from the server
     this.socket.on('all chat messages', (msgs) => {
       console.log("getting chat messages from socket...");
       msgs.forEach(msg => this.messages.push(msg));
+    });
+
+    // Listen for 'new chat message' event from the server
+    this.socket.on('new chat message', (msg) => {
+      console.log("Received new chat message...");
+      this.messages.push(msg);
     });
   }
 };
@@ -173,8 +190,6 @@ export default {
 }
 
 </style>
-
-
 
 
 

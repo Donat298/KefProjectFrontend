@@ -162,6 +162,7 @@
                                 >
                                     Login
                                 </v-btn>
+                                
                             </div>
                             
                             <div v-else style="height: 64px; padding: 8px;">
@@ -210,9 +211,8 @@
 
 
         <v-main>
-        <div style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+        <div style="
+  
   
     text-align: center;
     color: #ffffff;
@@ -325,7 +325,7 @@ export default {
 }
 
 </style>
-You can align this code to make it look right without changing it?
+
 
 
 

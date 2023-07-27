@@ -98,9 +98,9 @@
                     <v-card-text class="text-center" style="max-width: 192px; margin: auto; 
                     margin-top: 20px; padding: 0px;" >
                         <a
-                            class="text-blue text-decoration-none"
+                            class="text-green "
                             href="/auth/register"
-                            rel="noopener noreferrer"
+                            
                             
                             
                         >

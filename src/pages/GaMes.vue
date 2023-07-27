@@ -1,28 +1,11 @@
 <template>
-  <div v-if="$store.getters.isAuthenticated" style="justify-content: center;">
-    <h1>Wheel of Fortune Game</h1>
-    <div style="background-color: #15212c;">
-      <form @submit.prevent="spinWheel">
-        <p>Balance: ${{ balance }}</p>
-        <p>Bet: </p>
-        <v-card class="pt-4 pa-4 mt-4" style="margin: auto; width: 115px; background-color: #273d53; color: rgb(255, 255, 255);">
-          <v-radio-group v-model="bet">
-            <v-radio label="$1" value="1"></v-radio>
-            <v-radio label="$5" value="5"></v-radio>
-            <v-radio label="$10" value="10"></v-radio>
-            <v-radio label="$20" value="20"></v-radio>
-          </v-radio-group>
-        </v-card>
-        <v-btn class="mt-4 mb-4" type="submit" :disabled="spinning" style="color: black; 
-     background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));">
-      Spin Wheel
-    </v-btn>
-  </form>
-      
-      
-    
+  <div v-if="$store.getters.isAuthenticated" style="justify-content: center; max-height: 90%;">
+    <div style=" margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
+    <div class="text-center" style="height: 70px; display: flex; align-items: center;
+     justify-content: center; background-color: rgba(4, 3, 3, 0);">
+      <p  v-html="message"></p>
     </div>
-     <div  style="display: flex; justify-content: center; align-items: center;">
+    <div  style="display: flex; justify-content: center; align-items: center;">
       <div style="min-width: 40px;"></div>
       <div style=" ; " id="wheel" :style="wheelStyle">
         <div class="half win">WIN</div>
@@ -35,9 +18,34 @@
         </div>
       </div>
     </div>
-    <div style="margin-top: 20px;">
-      <p>{{ message }}</p>
+    
+    <div style="background-color: #15212c; margin-top: 20px;">
+      <form @submit.prevent="spinWheel">
+        <p>Balance: ${{ balance }}</p>
+   
+        
+        <v-card class="pt-4 pl-4 pr-4 mt-4" style="margin: auto; width: 115px; background-color: #273d53; color: rgb(255, 255, 255);">
+          <v-radio-group color="success" :disabled="spinning" v-model="bet">
+            <v-radio label="$1" value="1"></v-radio>
+            <v-radio label="$5" value="5"></v-radio>
+            <v-radio label="$10" value="10"></v-radio>
+            <v-radio label="$20" value="20"></v-radio>
+          </v-radio-group>
+        </v-card>
+     
+        <v-btn elevation="4" variant="tonal" class="mt-4 mb-4"
+         type="submit" :disabled="spinning"
+          style="color: black; 
+     background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));">
+      Spin Wheel
+    </v-btn>
+
+  </form>
+      
+      
+    
     </div>
+   
   </div>
   <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
 </template>
@@ -65,7 +73,7 @@ export default {
 
     function spinWheel() {
       if (bet.value > balance.value || spinning.value) {
-        message.value = "You don't have enough money to make that bet or the wheel is still spinning.";
+        message.value = "You don't have enough money";
         return;
       }
       balance.value -= bet.value;
@@ -96,7 +104,7 @@ export default {
         if (spinResult) {
           const winnings = bet.value * 2;
           balance.value += winnings;
-          message.value = `Congratulations! The wheel was in your favor. You won $${winnings}!`;
+          message.value = `Congratulations! The wheel was in your favor. You won <span class="winning">$${winnings}!</span>`;
         } else {
           message.value = `Sorry, the wheel was not in your favor. Better luck next time.`;
         }
@@ -149,5 +157,11 @@ export default {
   background: red;
   bottom: 0;
 }
+
+.winning {
+    color: green;
+  }
+
+
+
 </style>
-Make it so that when the wheel is spinning, the button does not work.

@@ -6,7 +6,7 @@ import router from "@/router/router";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { createPinia } from 'pinia'
+
 
 import directives from '@/directives'
 
@@ -41,7 +41,7 @@ app
   .use(store)
   .use(vuetify)
   .use(router)
-  .use(createPinia())
+  
   
 
 app.mount('#app');
