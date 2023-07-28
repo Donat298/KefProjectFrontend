@@ -301,9 +301,11 @@ export default {
 
 .v-navigation-drawer__scrim {
     z-index: 2 !important;
-    position: absolute !important;
-    
-
+       position: fixed !important;
+    min-height: 100% !important;
+    height: calc((100% - 0px) - 0px) ;
+    bottom: 0px !important;
+    top: 0px !important;
 }
 .v-list .v-list-item--nav:not(:only-child) {
     margin-bottom: 0px  !important;
