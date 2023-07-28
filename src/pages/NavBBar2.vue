@@ -296,13 +296,11 @@ export default {
     flex: 1 1 auto;
     margin: 0px;
 }
-html, body {
-    height: 100%;
-}
+
 
 .v-navigation-drawer__scrim {
     z-index: 2 !important;
-    height: 100% !important;
+    height:1cap !important;
 }
 .v-list .v-list-item--nav:not(:only-child) {
     margin-bottom: 0px  !important;
