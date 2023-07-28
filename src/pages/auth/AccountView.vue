@@ -61,7 +61,7 @@
       <div>
         <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
     </div>
-      
+   
       </v-card>
       
       </div>
