@@ -29,12 +29,10 @@
                         
                     "
                 >
-                    <v-img
-                        style="margin: auto"
-                       
-                       
-                        src="@/assets/kef.png"
-                    ></v-img>
+                    
+                    <img v-if="!rail" style="margin-left: auto;  ;
+        background-color: rgba(127, 255, 212, 0);
+      margin-right: auto;" :src="require('@/assets/kefulog.svg')" />
                 </div>
                 <v-card
                     class="mx-auto pa-8 pb-8"

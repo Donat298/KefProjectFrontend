@@ -15,19 +15,23 @@
         
       >
       <div>
-      <div style="height: 150px; align-items: center;"><my-button2 @click="$router.push('/')" style=" min-height: 64px;
+      <div style="height: 150px; align-items: center;"><my-button2  @click="$router.push('/')" style="
+      height: 150px;
+      
        background-color: #a04d3d00;
-       width: 100%;
-       padding: 8px 0px;
-       
-    
-       
-        
+       min-width:  238px;
+     
       border: #4d3da000;">
-      <v-img  style="margin-left: auto; width: 238px; 
-      margin-right: auto;" src="../assets/kef.png" ></v-img></my-button2></div>
-<!--Can you create a logo for me and draw some kind of logo called kef using vector graphics
- Size 238 in width and 134 in height.Using only code.-->
+     
+       <img v-if="!rail" style="margin-left: auto; width: 215px; height: 121px; ;
+        background-color: rgba(127, 255, 212, 0);
+      margin-right: auto;" :src="require('@/assets/kefu.svg')" />
+     
+      </my-button2>
+      </div>
+
+        
+
     <v-list
           density="compact"
           nav
@@ -236,12 +240,12 @@
 
 import SidebarLink from '@/pages/NavBBar/SidebarLink.vue'
 
-
+import InlineSvg from 'vue-inline-svg';
 
 
 
 export default {
-    components: { SidebarLink },
+    components: { SidebarLink, InlineSvg},
   data() {
     return {
       drawer: null,
@@ -249,6 +253,7 @@ export default {
       showRbsb: window.innerWidth >= 1280,
       show: true,
       show2: true,
+      
         
     
    
@@ -332,13 +337,6 @@ export default {
 
 </style>
 
-How to make it so that when the v-navigation-drawer opens, it is not possible to scroll the site up or down?
-I mean about his mini version.
-Where is it used
-.v-navigation-drawer__scrim {
-  z-index: 2 !important;
-
-}
 
 
 

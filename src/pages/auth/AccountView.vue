@@ -48,7 +48,7 @@
 
     <div   style="width: 50%;  background-color: #213141; padding: 20px 10px;
      ">
-      <div>
+   
          <v-card
         color="#213141"
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
@@ -58,13 +58,14 @@
           {{ $store.getters.userDetail.balance }} USDT
         </p>
 
-      <div>
-        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
-    </div>
+    
+        <img v-if="!rail" style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+  
+  
    
       </v-card>
       
-      </div>
+     
     </div >
     </v-card>
       </div>  
@@ -129,9 +130,9 @@
           {{ $store.getters.userDetail.balance }} USDT
         </p>
 
-         <div>
-        <v-img style="margin-left: 5px;  width: 25px;" src="@/assets/Tether.png"></v-img>
-      </div>
+       
+          <img v-if="!rail" style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+  
       
       </v-card>
     

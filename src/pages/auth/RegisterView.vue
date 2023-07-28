@@ -14,11 +14,9 @@
 
 
           <div style="display: flex; max-width: 100%; width: 340px;height: 191.25px; margin: auto; margin-bottom: 20px;">
-  <v-img
-   style="margin: auto;"
-    
-    src="@/assets/kef.png"
-  ></v-img>
+            <img v-if="!rail" style="margin-left: auto;  ;
+        background-color: rgba(127, 255, 212, 0);
+      margin-right: auto;" :src="require('@/assets/kefulog.svg')" />
 
       </div>
   <v-card

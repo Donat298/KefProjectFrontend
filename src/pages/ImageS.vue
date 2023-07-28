@@ -1,13 +1,6 @@
 <template>
     <div  v-if="$store.getters.isAuthenticated">
-        <v-img
-            
-            src="@/assets/Bobo.png"
-            style="
-                width: 100%;
-
-            "
-        />
+        <img style="background-color: rgb(51, 76, 72);" :src="require('@/assets/logo.svg')" />
     </div>
     <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
 </template>

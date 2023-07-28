@@ -4,6 +4,7 @@
     <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
     <v-img class="logh" src="@/assets/5opka.png" />
     <div>
+
       <h1 class="wet" style="margin-bottom: 30px;">Welcome to my website</h1>
     
 
@@ -20,6 +21,7 @@
         
     </div>
    </div>
+
   </div>
   </div>
 
