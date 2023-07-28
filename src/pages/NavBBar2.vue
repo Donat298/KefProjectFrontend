@@ -299,7 +299,7 @@ export default {
 .v-navigation-drawer__scrim {
  
     z-index: 2 !important;
-    height: 3000px !important;
+    height: 100vh !important;
    
 }
 .v-list .v-list-item--nav:not(:only-child) {
