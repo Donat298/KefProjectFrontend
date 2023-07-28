@@ -25,8 +25,9 @@
         
       border: #4d3da000;">
       <v-img  style="margin-left: auto; width: 238px; 
-      margin-right: auto;" src="../assets/kef8.svg" ></v-img></my-button2></div>
-
+      margin-right: auto;" src="../assets/kef.png" ></v-img></my-button2></div>
+<!--Can you create a logo for me and draw some kind of logo called kef using vector graphics
+ Size 238 in width and 134 in height.Using only code.-->
     <v-list
           density="compact"
           nav
