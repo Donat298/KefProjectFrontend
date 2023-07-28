@@ -2,7 +2,7 @@
     <v-layout  class="">
 
       
-        <v-navigation-drawer style=" z-index: 3;  background-color: #192635 ; 
+        <v-navigation-drawer style=" z-index: 3; min-height: 100%; background-color: #192635 ; 
          border-right: 2px solid #192635;"
         :rail="rail"
         v-model="drawer"
@@ -299,7 +299,7 @@ export default {
 .v-navigation-drawer__scrim {
  
     z-index: 2 !important;
-    height: 100vh !important;
+    height:2000px!important;
    
 }
 .v-list .v-list-item--nav:not(:only-child) {
