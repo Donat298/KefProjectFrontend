@@ -30,9 +30,10 @@
                     "
                 >
                     
-                    <img v-if="!rail" style="margin-left: auto;  ;
-        background-color: rgba(127, 255, 212, 0);
-      margin-right: auto;" :src="require('@/assets/kefulog.svg')" />
+                <img v-if="!rail" style="margin-left: auto; 
+                margin-right: auto; width: 100%; height: auto; 
+                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefulog.svg')" />
+                
                 </div>
                 <v-card
                     class="mx-auto pa-8 pb-8"
@@ -158,3 +159,4 @@ export default {
   
 }
 </style>
+How to make it so that when the screen shrinks, the img also shrinks?

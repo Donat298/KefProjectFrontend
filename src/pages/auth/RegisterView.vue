@@ -14,9 +14,9 @@
 
 
           <div style="display: flex; max-width: 100%; width: 340px;height: 191.25px; margin: auto; margin-bottom: 20px;">
-            <img v-if="!rail" style="margin-left: auto;  ;
-        background-color: rgba(127, 255, 212, 0);
-      margin-right: auto;" :src="require('@/assets/kefulog.svg')" />
+            <img v-if="!rail" style="margin-left: auto; 
+                margin-right: auto; width: 100%; height: auto; 
+                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefulog.svg')" />
 
       </div>
   <v-card
@@ -125,7 +125,7 @@
                 .dispatch("register", { username, email, password, password_confirm })
                 .then((res) => {
                     console.log("Register success!");
-                    this.$router.replace({name: "login"})
+                    this.$router.replace({name: "home"})
                 })
                 .catch((err) => {
                     console.log("Register error " + err);

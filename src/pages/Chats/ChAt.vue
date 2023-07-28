@@ -65,6 +65,7 @@ export default {
       newMessage: '',
       user: '',
       value: null,
+      
     };
   },
   methods: {
