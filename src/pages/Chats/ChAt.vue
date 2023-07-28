@@ -63,7 +63,8 @@ export default {
       socket: null,
       messages: [],
       newMessage: '',
-      user: ''
+      user: '',
+      value: null,
     };
   },
   methods: {
@@ -197,3 +198,4 @@ export default {
 
 </style>
 
+Can you find this error here and fix it?

@@ -275,6 +275,7 @@ export default {
       this.showRbsb = window.innerWidth >= 1280;
     },
   },
+  
  
   
 
@@ -300,7 +301,9 @@ export default {
 
 .v-navigation-drawer__scrim {
     z-index: 2 !important;
-    height:1cap !important;
+    position: absolute !important;
+    
+
 }
 .v-list .v-list-item--nav:not(:only-child) {
     margin-bottom: 0px  !important;
@@ -326,7 +329,13 @@ export default {
 
 </style>
 
+How to make it so that when the v-navigation-drawer opens, it is not possible to scroll the site up or down?
+I mean about his mini version.
+Where is it used
+.v-navigation-drawer__scrim {
+  z-index: 2 !important;
 
+}
 
 
 
