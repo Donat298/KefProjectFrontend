@@ -21,10 +21,9 @@
     
     data() {
       return {
-      drawer: null,
-      rail: false,
-      showRbsb: window.innerWidth >= 1280,
-     
+ 
+    
+  
       
         
     

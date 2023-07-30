@@ -15,16 +15,9 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-        <v-divider :thickness="2"  color="white"></v-divider>
-
-        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2" style="color: #ffffff;  " 
-          to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2"  style="color: #ffffff;  " 
-          to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 " style="color: #ffffff;  "
-           to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
-        </v-card>
+        <div style="max-width: 30px;">
+                    ihihihihihih
+                </div>
         </div>
       </v-expand-transition>
     </v-card>

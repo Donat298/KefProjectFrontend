@@ -15,15 +15,9 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-        <v-divider :thickness="2"  color="white"></v-divider>
-
-        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
-           to="/wheel" prepend-icon="mdi-cube" title="Wheel" ></v-list-item>
-           <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
-           to="/BalanceManag" prepend-icon="mdi-cube" title="BalanceManag" ></v-list-item>
-          
-        </v-card>
+        <div style="max-width: 30px;">
+                    ihihihihihih
+                </div>
         </div>
       </v-expand-transition>
     </v-card>
