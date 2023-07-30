@@ -1,5 +1,4 @@
-I created everything you asked for.
-Can you now import everything and replace the navigation drawer yourself so that I don't make mistakes?
+
 <template>
     <v-layout  class="">
       <v-navigation-drawer

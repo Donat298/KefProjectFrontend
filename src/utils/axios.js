@@ -1,6 +1,4 @@
-//Let's try to create a button based on the following files that will perform the same functionality as in postman.
 
-//axios.js
 
 import axios from "axios"
 
