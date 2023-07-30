@@ -1,140 +1,18 @@
+I created everything you asked for.
+Can you now import everything and replace the navigation drawer yourself so that I don't make mistakes?
 <template>
     <v-layout  class="">
-
-      
-        <v-navigation-drawer style=" z-index: 3; min-height: 100%; background-color: #192635 ; 
-         border-right: 2px solid #192635;"
-        :rail="rail"
-        v-model="drawer"
-        elevation="0"
-        rail-width="80"
-        width="240"
-        
-       
-      
-        
-      >
-      <div>
-      <div style="height: 150px; align-items: center;"><my-button2  @click="$router.push('/')" style="
-      height: 150px;
-      
-       background-color: #a04d3d00;
-       min-width:  238px;
-     
-      border: #4d3da000;">
-     
-       <img v-if="!rail" style="margin-left: auto; width: 215px; height: 121px; ;
-        background-color: rgba(127, 255, 212, 0);
-      margin-right: auto;" :src="require('@/assets/kefu.svg')" />
-     
-      </my-button2>
-      </div>
-
-        
-
-    <v-list
-          density="compact"
-          nav
-          color="teal"
-          class="pa-2"
-          
-        >
-        <v-card  color="rgb(37, 56, 74)" elevation="0"> 
-          <v-card-actions  @click="show = !show" class=" ma-2">
-            <v-list-item  rounded="lg" style="color: #ffffff;"  title="Main" ></v-list-item>
-
-      <v-spacer></v-spacer>
-
-      <v-btn 
-      
-      height="40"
-      width="40"
-      color="white"
-        :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
-        
-      ></v-btn>
-      
-    </v-card-actions>
-    <v-expand-transition >
-      <div v-show="show">
-        <v-divider :thickness="2" color="white"></v-divider>
-        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-        <v-list-item class="mr-2 ml-2 mb-2"  style="color: #ffffff;  "
-         to="/" prepend-icon="mdi-home" title="Home" ></v-list-item>
-          
-          <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  " 
-          to="/image" prepend-icon="mdi-image" title="Image" ></v-list-item>
-        </v-card>
-        </div>
-    </v-expand-transition>
-          
-        </v-card>
-
-
-        <v-card color="rgb(37, 56, 74)" elevation="0" style="margin-top: 8px;"> 
-          <v-card-actions height="40" @click="show2 = !show2" class=" ma-2">
-            <v-list-item rounded="lg" style="color: #ffffff;"   title="Tests" ></v-list-item>
-
-      <v-spacer></v-spacer>
-
-      <v-btn 
-      height="40"
-      width="40"
-      color="white"
-        :icon="show2 ? 'mdi-chevron-down' : 'mdi-chevron-right'"
-        
-      ></v-btn>
-    </v-card-actions>
-    <v-expand-transition>
-      <div v-show="show2">
-        <v-divider :thickness="2"  color="white"></v-divider>
-
-        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2" style="color: #ffffff;  " 
-          to="/SignUptest1" prepend-icon="mdi-login" title="SignUptest1" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2"  style="color: #ffffff;  " 
-          to="/SignUptest2" prepend-icon="mdi-login" title="SignUptest2" ></v-list-item>
-          <v-list-item class=" mr-2 ml-2 " style="color: #ffffff;  "
-           to="/chat" prepend-icon="mdi-chat" title="Chat" ></v-list-item>
-        </v-card>
-        </div>
-      </v-expand-transition>
-    </v-card>
-
-    <v-card color="rgb(37, 56, 74)" elevation="0" style="margin-top: 8px;"> 
-          <v-card-actions height="40" @click="show3 = !show3" class=" ma-2">
-            <v-list-item rounded="lg" style="color: #ffffff;"   title="Games" ></v-list-item>
-
-      <v-spacer></v-spacer>
-
-      <v-btn 
-      height="40"
-      width="40"
-      color="white"
-        :icon="show3 ? 'mdi-chevron-down' : 'mdi-chevron-right'"
-        
-      ></v-btn>
-    </v-card-actions>
-    <v-expand-transition>
-      <div v-show="show3">
-        <v-divider :thickness="2"  color="white"></v-divider>
-
-        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
-           to="/wheel" prepend-icon="mdi-cube" title="Wheel" ></v-list-item>
-           <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
-           to="/BalanceManag" prepend-icon="mdi-cube" title="BalanceManag" ></v-list-item>
-          
-        </v-card>
-        </div>
-      </v-expand-transition>
-    </v-card>
-        </v-list>
-    </div>
-      </v-navigation-drawer>
-
-    
-
+      <v-navigation-drawer
+      style="z-index: 3; min-height: 100%; background-color: #192635 ; border-right: 2px solid #192635;"
+      :rail="rail"
+      v-model="drawer"
+      elevation="0"
+      rail-width="80"
+      width="240"
+    >
+      <NavigationHeader/>
+      <NavigationList/>
+    </v-navigation-drawer>
         <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;
 ">
                 
@@ -238,15 +116,8 @@
 
             </v-menu>
         </v-app-bar>
-
-       
-        
-
-
         <v-main>
         <div style="
-  
-  
     text-align: center;
     color: #ffffff;
     ">
@@ -254,72 +125,36 @@
             <router-view/>
           </div>
         </div>
-      </v-main>
-     
-
-        
+      </v-main>  
     </v-layout>
-
-
-    
 </template>
-
 <script>
-
-import SidebarLink from '@/pages/NavBBar/SidebarLink.vue'
-
-import InlineSvg from 'vue-inline-svg';
-
-
-
+import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
+import NavigationList from '../components/NavBBar2/NavigationList.vue';
 export default {
-    components: { SidebarLink, InlineSvg},
+  components: { NavigationHeader, NavigationList },
   data() {
     return {
       drawer: null,
       rail: false,
       showRbsb: window.innerWidth >= 1280,
-      show: true,
-      show2: true,
-      show3: true,
-      
-        
-    
-   
-        
     };
   },
-  
- 
- 
-  
   created() {
-    // Add a listener for window resize events to toggle the showRbsb property based on the screen width
     window.addEventListener("resize", this.updateRbsbVisibility);
   },
   destroyed() {
-    // Remove the event listener when the component is destroyed to prevent memory leaks
     window.removeEventListener("resize", this.updateRbsbVisibility);
   },
   methods: {
     logout() {
-          this.$store.dispatch("logout");
-        },
+      this.$store.dispatch("logout");
+    },
     updateRbsbVisibility() {
-      // Update the showRbsb property based on the screen width
       this.showRbsb = window.innerWidth >= 1280;
     },
   },
-  
- 
-  
-
-}
-
-
-
-
-
+};
 </script>
 <style>
 .v-toolbar__content > .v-btn:first-child {
@@ -332,8 +167,6 @@ export default {
     flex: 1 1 auto;
     margin: 0px;
 }
-
-
 .v-navigation-drawer__scrim {
     z-index: 2 !important;
        position: fixed !important;
@@ -352,18 +185,12 @@ export default {
     min-height: 40px;
     padding: 0px !important;
 }
-
 .v-divider {
     display: block;
     flex: 1 1 100%;
-   
     max-height: 0px;
-    opacity: 0.1;
-   
-   
-    
+    opacity: 0.1;   
 }
-
 </style>
 
 
