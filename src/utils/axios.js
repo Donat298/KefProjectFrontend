@@ -1,3 +1,7 @@
+//Let's try to create a button based on the following files that will perform the same functionality as in postman.
+
+//axios.js
+
 import axios from "axios"
 
 axios.defaults.withCredentials = true;
@@ -13,12 +17,15 @@ export const axiosInstance = axios.create({
 
 export const axiosPrivateInstance = axios.create({
   baseURL: "https://kef.onrender.com",
-//  baseURL: "https://kef.onrender.com",
+//  baseURL: "http://localhost:3000",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
   }
 })
+
+
+
 
 
 

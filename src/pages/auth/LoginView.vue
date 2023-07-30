@@ -30,7 +30,7 @@
                     "
                 >
                     
-                <img v-if="!rail" style="margin-left: auto; 
+                <img style="margin-left: auto; 
                 margin-right: auto; width: 100%; height: auto; 
                 background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefulog.svg')" />
                 

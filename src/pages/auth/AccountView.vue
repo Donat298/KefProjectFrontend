@@ -59,7 +59,7 @@
         </p>
 
     
-        <img v-if="!rail" style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+        <img  style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
   
   
    
@@ -113,6 +113,7 @@
       <div style="color: #ffffff;  text-align: center;">
         {{ $store.getters.userDetail.email }}     
       </div> 
+      
            
     </div>  
 
@@ -131,7 +132,7 @@
         </p>
 
        
-          <img v-if="!rail" style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+          <img style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
   
       
       </v-card>

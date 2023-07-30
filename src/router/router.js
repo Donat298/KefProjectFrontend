@@ -3,7 +3,8 @@
 import MyMain from "@/pages/MyMain";
 
 import {createRouter, createWebHistory} from "vue-router";
-import Games from "@/pages/GaMes";
+import Wheel from "@/pages/Games/WhEel.vue";
+import BalanceManag from "@/pages/Games/BalanceManag.vue";
 import UserPage from "@/pages/UserPage";
 import UserPage2 from "@/pages/UserPage2";
 import ImageS from "@/pages/ImageS";
@@ -35,9 +36,16 @@ const routes = [
         component: register
     },
     {
-        path: '/games',
-        name: 'Games',
-        component: Games,
+        path: '/wheel',
+        name: 'Wheel',
+        component: Wheel,
+        
+    },
+   
+    {
+        path: '/BalanceManag',
+        name: 'BalanceManag',
+        component:  BalanceManag,
         
     },
     {

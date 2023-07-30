@@ -3,7 +3,7 @@
       <div>
         <NavBBar2 @ShowAccountOknoo="showacg = true" />
   
-        <NavBBar  v-if="showafdfdcg"/>
+
   
         <AccountView v-if="showacg" @HideAccountOknoo="showacg = false" />
   
@@ -16,13 +16,13 @@
   </template>
   
   <script>
-  import NavBBar from "@/pages/NavBBar/NavBBar.vue";
+
   import NavBBar2 from "@/pages/NavBBar2.vue";
   import AccountView from "@/pages/auth/AccountView.vue";
   import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
   
   export default {
-    components: { NavBBar2, NavBBar, AccountView, SessionCheckAnimation },
+    components: { NavBBar2,  AccountView, SessionCheckAnimation },
     data() {
       return {
         showacg: false,

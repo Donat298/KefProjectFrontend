@@ -1,5 +1,6 @@
+//useApi.js
+
 import { axiosInstance, axiosPrivateInstance } from "./axios";
-//import {useAuthStore} from '../stores/auth'
 import { watchEffect } from "vue";
 
 export function useApiPrivate(store)  {

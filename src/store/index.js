@@ -1,5 +1,4 @@
-//Can you do it yourself?
-//This is vuex file
+//here is my store
 import { createStore } from "vuex";
 import { useApi, useApiPrivate } from "../utils/useApi"
 
@@ -36,8 +35,15 @@ export default createStore({
             state.user = {};
             localStorage.removeItem('accessToken');
             localStorage.removeItem('user');
-        }
+        },
+        setUserBalance(state, newBalance) {
+            state.user.balance = newBalance;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
+          // Your other mutations...
     },
+   
     actions: {
         async attempt({ commit, dispatch }) {
 
@@ -162,4 +168,3 @@ export default createStore({
 
 })
 
-//This is vuex file

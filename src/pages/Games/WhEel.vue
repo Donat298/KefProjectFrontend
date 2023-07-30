@@ -8,8 +8,8 @@
     <div style="display: flex; justify-content: center; align-items: center;">
       <div style="min-width: 40px;"></div>
       <div style=" ; " id="wheel" :style="wheelStyle">
-        <div class="half win">WIN</div>
-        <div class="half lose">LOSE</div>
+        <div class="half win">10x</div>
+        <div class="half lose">0x</div>
       </div>
       <div style="display: flex; align-items: center; justify-content: center; height: 200px; margin-left: 10px;">
         <div style="transform: rotate(90deg);">
@@ -19,6 +19,7 @@
     </div>
     <div style="background-color: #15212c; margin-top: 20px;">
       <p>Balance: ${{ balance }}</p>
+      <p>RealBalance: ${{ $store.getters.userDetail.balance }}</p>
       <v-card class="pt-4 pl-4 pr-4 mt-4" style="margin: auto; width: 115px; background-color: #273d53; color: rgb(255, 255, 255);">
         <v-radio-group color="success" :disabled="spinning" v-model="bet">
           <v-radio label="$1" value="1"></v-radio>
@@ -36,89 +37,84 @@
   </div>
   <IfnotAuth v-if="!$store.getters.isAuthenticated"></IfnotAuth>
 </template>
-
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import IfnotAuth from "@/components/IfnotAuth/IfnotAuth.vue";
-
 export default {
   components: {
     IfnotAuth
   },
   setup() {
-    const balance = ref(20);
+    const balance = ref(100);
     const bet = ref(1);
     const message = ref('');
     const startDegree = ref(0);
     const totalSpin = ref(0);
     const spinning = ref(false);
     const spinButton = ref(null);
-
     const wheelStyle = computed(() => ({
       transform: `rotate(${totalSpin.value}deg)`,
       animation: totalSpin.value !== startDegree.value ? `spin-${startDegree.value} 5s ease-out forwards` : '',
     }));
-
     function spinWheel() {
-      if (bet.value > balance.value || spinning.value) {
-        message.value = "You don't have enough money";
-        return;
+  if (bet.value > balance.value || spinning.value) {
+    message.value = "You don't have enough money";
+    return;
+  }
+  balance.value -= bet.value;
+  spinning.value = true;
+  const odds = Math.random();
+  // If the odds value is less than 0.1 (10%), the start degree will be within 0 to 180
+  if (odds < 0.1) { 
+    startDegree.value = Math.floor(Math.random() * 180);
+  } else { 
+    // If the odds value is greater than or equal to 0.1 (90%), the start degree will be within 180 to 360
+    startDegree.value = Math.floor(Math.random() * 180) + 180;
+  }
+  const spinAmount = 3600; // The wheel will always rotate 5 times (5 * 360 = 1800 degrees)
+  totalSpin.value = startDegree.value + spinAmount; 
+  const styleSheet = document.createElement('style');
+  styleSheet.type = 'text/css';
+  styleSheet.innerText = `
+    @keyframes spin-${startDegree.value} {
+      from {
+        transform: rotate(${startDegree.value}deg);
       }
-      balance.value -= bet.value;
-      spinning.value = true;
-      startDegree.value = Math.floor(Math.random() * 360);
-      const spinAmount = 2800;
-      totalSpin.value = startDegree.value + spinAmount;
-
-      const styleSheet = document.createElement('style');
-      styleSheet.type = 'text/css';
-      styleSheet.innerText = `
-        @keyframes spin-${startDegree.value} {
-          from {
-            transform: rotate(${startDegree.value}deg);
-          }
-          to {
-            transform: rotate(${totalSpin.value}deg);
-          }
-        }
-      `;
-      document.head.appendChild(styleSheet);
-
-      setTimeout(() => {
-        const spinResult = (totalSpin.value % 360) < 180;
-
-        if (spinResult) {
-          const winnings = bet.value * 2;
-          balance.value += winnings;
-          message.value = `Congratulations! The wheel was in your favor. You won <span class="winning">$${winnings}!</span>`;
-        } else {
-          message.value = `Sorry, the wheel was not in your favor. Better luck next time.`;
-        }
-
-        document.head.removeChild(styleSheet);
-        spinning.value = false;
-      }, 5000);
+      to {
+        transform: rotate(${totalSpin.value}deg);
+      }
     }
-
-    onMounted(() => {
+  `;
+  document.head.appendChild(styleSheet);
+  setTimeout(() => {
+    const spinResult = (totalSpin.value % 360) < 180;
+    if (spinResult) {
+      const winnings = bet.value * 10;
+      balance.value += winnings;
+      message.value = `Congratulations! The wheel was in your favor. You won <span class="winning">$${winnings}!</span>`;
+    } else {
+      message.value = `Sorry, the wheel was not in your favor. Better luck next time.`;
+    }
+    document.head.removeChild(styleSheet);
+    spinning.value = false;
+  }, 5000);
+}
+ onMounted(() => {
       const handleEnterKey = (event) => {
         if (event.key === 'Enter') {
           spinButton.value.$el.click();
         }
       };
-
       window.addEventListener('keyup', handleEnterKey);
 
       onUnmounted(() => {
         window.removeEventListener('keyup', handleEnterKey);
       });
     });
-
     return { balance, bet, message, spinWheel, wheelStyle, spinning, spinButton };
   }
 };
 </script>
-
 <style>
 #wheel {
   border-radius: 50%;
@@ -129,7 +125,6 @@ export default {
   overflow: hidden;
   border: 2px solid #000;
 }
-
 .half {
   width: 200px;
   height: 100px;
@@ -139,18 +134,16 @@ export default {
   font-size: 24px;
   color: #fff;
 }
-
 .win {
   background: green;
   top: 0;
 }
-
 .lose {
   background: red;
   bottom: 0;
 }
-
 .winning {
   color: green;
 }
 </style>
+
