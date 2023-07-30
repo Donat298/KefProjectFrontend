@@ -17,8 +17,13 @@
             </v-card-actions>
             <v-expand-transition >
             <div v-show="show">
-                <div style="max-width: 30px;">
-                    ihihihihihih
+                <v-divider :thickness="2" color="white"></v-divider>
+                <div color="rgb(37, 56, 74)" class="pb-2 pt-2 ">
+                <v-list-item class="mr-2 ml-2 mb-2"  style="color: #ffffff;  "
+                to="/" ><h5>Home</h5></v-list-item>
+                
+                <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  " 
+                to="/image"  ><h5>Image</h5></v-list-item>
                 </div>
                 </div>
             </v-expand-transition>

@@ -15,9 +15,15 @@
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
-        <div style="max-width: 30px;">
-                    ihihihihihih
-                </div>
+        <v-divider :thickness="2"  color="white"></v-divider>
+
+        <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
+          <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
+           to="/wheel" ><h5>Wheel</h5></v-list-item>
+           <v-list-item class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
+           to="/BalanceManag"  ><h5>BalanceManag</h5></v-list-item>
+          
+        </v-card>
         </div>
       </v-expand-transition>
     </v-card>
