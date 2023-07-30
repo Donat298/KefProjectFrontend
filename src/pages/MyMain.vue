@@ -5,7 +5,7 @@
     <v-img class="logh" src="@/assets/5opka.png" />
     <div>
 
-      <h1 class="wet" style="margin-bottom: 30px;">Welcome to my website</h1>
+      <h1 class="wet" style="margin-bottom: 30px;">Ahahha</h1>
     
 
 
