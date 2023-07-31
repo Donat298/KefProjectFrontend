@@ -12,6 +12,8 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@mdi/font": "5.9.55",
     "axios": "^1.4.0",
+    "bootstrap": "^5.3.1",
+    "bootstrap-icons": "^1.10.5",
     "core-js": "^3.8.3",
     "roboto-fontface": "*",
     "socket.io-client": "^4.7.1",

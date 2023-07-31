@@ -18,12 +18,12 @@
         <v-divider :thickness="2"  color="white"></v-divider>
 
         <div color="rgb(37, 56, 74)"  class="pb-2 pt-2 ">
-          <v-list-item class=" mr-2 ml-2" style="color: #ffffff;  " 
-          to="/SignUptest1"  ><h5>SignUptest1</h5></v-list-item>
-          <v-list-item class=" mr-2 ml-2"  style="color: #ffffff;  " 
-          to="/SignUptest2"  ><h5>SignUptest2</h5></v-list-item>
+          <v-list-item prepend-icon="mdi-home" title="SignUptest1" class=" mr-2 ml-2" style="color: #ffffff;  " 
+          to="/SignUptest1"  ></v-list-item>
+          <v-list-item prepend-icon="mdi-home" title="SignUptest2" class=" mr-2 ml-2"  style="color: #ffffff;  " 
+          to="/SignUptest2"  ></v-list-item>
           <v-list-item class=" mr-2 ml-2 " style="color: #ffffff;  "
-           to="/chat"   ><h5>Chat</h5></v-list-item>
+           to="/chat" prepend-icon="mdi-home" title="Chat"  ></v-list-item>
         </div>
         </div>
       </v-expand-transition>

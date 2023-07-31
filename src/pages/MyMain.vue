@@ -18,6 +18,8 @@
         <br>
         <my-button2 style="margin-top: 30px; background-color: #4d3da0; border: 10px solid #4d3da0;"  
         @click="$router.push('/SignUptest2')">Login test</my-button2>  
+        <button type="button" class="btn btn-warning">Warning</button>
+        <i class="bi bi-usb-symbol" ></i>
         
     </div>
    </div>

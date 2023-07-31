@@ -3,6 +3,9 @@ import App from './App.vue'
 import components from '@/components/UI/';
 import router from "@/router/router";
 
+import 'bootstrap/dist/js/bootstrap.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+import {BootstrapVue, IconsPlugin} from 'bootstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
