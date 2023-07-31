@@ -23,7 +23,7 @@
                 <v-list-item class="mr-2 ml-2 mb-2" title="Home" prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
                 to="/"  ></v-list-item>
          
-                <v-list-item class=" mr-2 ml-2 mb-2" title="Image" prepend-icon="mdi-home" style="color: #ffffff;  " 
+                <v-list-item class=" mr-2 ml-2 mb-2" title="Image" prepend-icon="mdi-image" style="color: #ffffff;  " 
                 to="/image"  ></v-list-item>
                 </div>
                 </div>

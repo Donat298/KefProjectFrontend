@@ -18,9 +18,9 @@
         <v-divider :thickness="2"  color="white"></v-divider>
 
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
-          <v-list-item prepend-icon="mdi-home" title="Wheel" class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
+          <v-list-item prepend-icon="mdi-circle-outline" title="Wheel" class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
            to="/wheel" ></v-list-item>
-           <v-list-item prepend-icon="mdi-home" title="BalanceManag" class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
+           <v-list-item prepend-icon="mdi-currency-usd" title="BalanceManag" class=" mr-2 ml-2 mb-2"  style="color: #ffffff;  "
            to="/BalanceManag"  ></v-list-item>
           
         </v-card>
