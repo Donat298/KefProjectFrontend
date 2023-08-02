@@ -11,9 +11,16 @@
   </v-card>
 
   <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
+    <div style="min-width: 40px;"></div>
       <div class="wheel" id="wheel" :style="wheelStyle">
         <h2 class="half win">2x</h2>
         <h2 class="half lose">0x</h2>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: center; 
+      height: 200px; margin-left: 10px;margin-top: 20px; ">
+        <div style="transform: rotate(90deg); ">
+          <v-icon icon="mdi-map-marker-outline"></v-icon>
+        </div>
       </div>
     </div>
   
