@@ -32,7 +32,7 @@
 <script>
 export default {
    data: () => ({
-     panel: [0, 1, 2],
+     panel: [0],
 
    }),
  }
@@ -40,7 +40,7 @@ export default {
 
 </script>
 
-<style >
+<style>
 .v-expansion-panel-text__wrapper {
    padding: 0px 0px 0px !important;
    flex: 1 1 auto !important;
