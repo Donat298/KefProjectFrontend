@@ -13,8 +13,8 @@
   <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
     <div style="min-width: 40px;"></div>
       <div class="wheel" id="wheel" :style="wheelStyle">
-        <h2 class="half win">2x</h2>
-        <h2 class="half lose">0x</h2>
+        <h3 class="half win">2x</h3>
+        <h3 class="half lose">0x</h3>
       </div>
       <div style="display: flex; align-items: center; justify-content: center; 
       height: 200px; margin-left: 10px;margin-top: 20px; ">
@@ -217,8 +217,8 @@ export default {
 }
 
 .wheel {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   overflow: hidden;
   display: flex;
