@@ -6,6 +6,8 @@
           class="pa-2" 
         >
              <NavigationVcard style="margin-bottom: 10px;"/>
+             <NavigationVcard2 style="margin-bottom: 10px;"/>
+             <NavigationVcard3 style="margin-bottom: 10px;"/>
             
              </v-list>
   </template>

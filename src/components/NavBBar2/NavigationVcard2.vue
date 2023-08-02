@@ -6,12 +6,13 @@
       <v-spacer></v-spacer>
 
       <v-btn 
-      height="40"
-      width="40"
-      color="white"
-        :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
-        
-      ></v-btn>
+    height="40"
+    width="40"
+    color="white"
+    :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
+    class="my-btn"
+    :ripple="false"
+></v-btn>
     </v-card-actions>
     <v-expand-transition>
       <div v-show="show">
@@ -53,3 +54,10 @@
 
 
 </script>
+
+<style scoped>
+.my-btn.v-ripple__container--is-active .v-ripple__animation {
+    transform: scale(0) !important;
+    opacity: 1 !important;
+}
+</style>
