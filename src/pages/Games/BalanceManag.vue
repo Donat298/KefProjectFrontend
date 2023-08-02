@@ -1,5 +1,3 @@
-//This client file 
-
 <template>
   <v-card
     color="#213141"
@@ -58,16 +56,11 @@
   </v-text-field>
   <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
     <v-btn rounded="xl" class="ml-4 mr-2" size="small"
-    type="submit" style="height: 50px; width: 44px; color: aquamarine; background-color: #15212c;"  icon="mdi-check"> </v-btn>
+    type="submit" style="height: 50px; width: 50px; color: aquamarine; background-color: #15212c;"  icon="mdi-check"> </v-btn>
   </div>
-</v-form>
-      
+</v-form>    
     </div>
-   
-
 </div>
-
-
 </v-card>
 <div style="margin-top: 20px;">
   <div class="text-subtitle-1 text-color-white align-center justify-space-between"
@@ -87,92 +80,55 @@ export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const balanceInput = ref(store.getters.userDetail.balance); // the new balance input value
-    const errorMsg = ref(''); // to store error messages
+    const balanceInput = ref(store.getters.userDetail.balance); 
+    const errorMsg = ref(''); 
     const userId = ref(store.getters.userDetail._id); 
 
-    const doubleBalance = async () => {
+    const updateBalance = async (endpoint) => {
       try {
-        const response = await axiosPrivateInstance.put('/users/double-balance', { userId: userId.value });
-        console.log(response.data); // prints new balance
-
-        // Commit a mutation to update the balance in the store
+        const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
+        console.log(response.data); 
         store.commit('setUserBalance', response.data.balance);
+        errorMsg.value = '';
       } catch (error) {
-        console.error(error);
+        errorMsg.value = error.response.data.message;
       }
     };
 
-    const splitBalance = async () => {
-      try {
-        const response = await axiosPrivateInstance.put('/users/split-balance', { userId: userId.value });
-        console.log(response.data); // prints new balance
-
-        // Commit a mutation to update the balance in the store
-        store.commit('setUserBalance', response.data.balance);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const setBalanceZero = async () => {
-      try {
-        const response = await axiosPrivateInstance.put('/users/set-zero', { userId: userId.value });
-        console.log(response.data); // prints new balance
-
-        // Commit a mutation to update the balance in the store
-        store.commit('setUserBalance', response.data.balance);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const increaseBalanceByHundred = async () => {
-      try {
-        const response = await axiosPrivateInstance.put('/users/increase-hundred', { userId: userId.value });
-        console.log(response.data); // prints new balance
-
-        // Commit a mutation to update the balance in the store
-        store.commit('setUserBalance', response.data.balance);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    const doubleBalance = () => updateBalance('/users/double-balance');
+    const splitBalance = () => updateBalance('/users/split-balance');
+    const setBalanceZero = () => updateBalance('/users/set-zero');
+    const increaseBalanceByHundred = () => updateBalance('/users/increase-hundred');
 
     const setBalance = async () => {
       try {
         const response = await axiosPrivateInstance.put('/users/set-balance', {
           userId: userId.value,
-          newBalance: balanceInput.value // use the input value here
+          newBalance: balanceInput.value 
         });
-
-        // clear error message
         errorMsg.value = '';
-
-        // Commit a mutation to update the balance in the store
         store.commit('setUserBalance', response.data.balance);
       } catch (error) {
-        console.error(error);
-
-        // if an error occurred, set the error message
         errorMsg.value = error.response.data.message;
       }
     };
 
     return {
-      // ...other functions...
       doubleBalance,
       splitBalance,
       setBalanceZero,
       increaseBalanceByHundred,
-      setBalance, // add the new function here
-      balanceInput, // also expose the balanceInput ref so we can use it in the template
-      errorMsg // expose the errorMsg ref as well
+      setBalance, 
+      balanceInput,
+      errorMsg 
     };
   },
 };
 </script>
 
+
 <style>
 </style>
+
+
 

@@ -9,7 +9,7 @@
       rail-width="80"
       width="240"
     >
-      <NavigationHeader/>
+      <NavigationHeader v-if="!rail"/>
       <NavigationList/>
     </v-navigation-drawer>
         <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;

@@ -20,8 +20,12 @@
         <v-card color="rgb(37, 56, 74)" elevation="0" class="pb-2 pt-2 ">
           <v-list-item prepend-icon="mdi-circle-outline" title="Wheel" class=" pl-4 mb-2"  style="color: #ffffff;  "
            to="/wheel" ></v-list-item>
+           <v-list-item prepend-icon="mdi-circle-outline" title="Wheel2" class=" pl-4 mb-2"  style="color: #ffffff;  "
+           to="/wheel2" ></v-list-item>
            <v-list-item prepend-icon="mdi-currency-usd" title="BalanceManag" class=" pl-4 mb-2"  style="color: #ffffff;  "
            to="/BalanceManag"  ></v-list-item>
+           
+           
           
         </v-card>
         </div>

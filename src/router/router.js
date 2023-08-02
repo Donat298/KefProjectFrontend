@@ -4,6 +4,7 @@ import MyMain from "@/pages/MyMain";
 
 import {createRouter, createWebHistory} from "vue-router";
 import Wheel from "@/pages/Games/WhEel.vue";
+import Wheel2 from "@/pages/Games/WhEel2.vue";
 import BalanceManag from "@/pages/Games/BalanceManag.vue";
 import UserPage from "@/pages/UserPage";
 import UserPage2 from "@/pages/UserPage2";
@@ -39,6 +40,12 @@ const routes = [
         path: '/wheel',
         name: 'Wheel',
         component: Wheel,
+        
+    },
+    {
+        path: '/wheel2',
+        name: 'Wheel2',
+        component: Wheel2,
         
     },
    

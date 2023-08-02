@@ -115,7 +115,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 #wheel {
   border-radius: 50%;
   width: 200px;
