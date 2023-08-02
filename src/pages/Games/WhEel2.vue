@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-  
+
   <v-card title="Place your bet!" color="#455A64" elevation="0" class="bet-card mx-auto">
     <div class="bet-form">
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
@@ -48,22 +48,17 @@
         </div>
       </v-form>
     </div>
-   
   </v-card>
-
   <GameAlert 
     v-if="showAlert" 
     :gameResult="gameResult" 
     :errorMsg="errorMsg" />
-
 </template>
-
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'; 
 import { useStore } from 'vuex';
 import { useApiPrivate } from '../../utils/useApi';
 import GameAlert from './GameAlert.vue';
-
 export default {
   components: {
     GameAlert
@@ -73,67 +68,73 @@ export default {
     const axiosPrivateInstance = useApiPrivate(store);
     const betInput = ref('');
     const gameResult = ref(null);
-    const errorMsg = ref('');
+    const errorMsg = ref('');    
     const showAlert = ref(true);
     const isProcessing = ref(false);
     const tempBalance = computed(() => {
       return isProcessing.value ? store.getters.userDetail.balance - betInput.value : store.getters.userDetail.balance;
     });
     const wheelStyle = ref(''); // Add this new ref
-
     const placeBet = async () => {
-      errorMsg.value = '';
-      
-      if (betInput.value <= 0) {
-        errorMsg.value = 'The bet amount must be more than 0';
-        return;
-      }
-      
-      if (store.getters.userDetail.balance < betInput.value) {
-        errorMsg.value = 'Your balance is less than the bet amount';
-        return;
-      }
-      
-      isProcessing.value = true;
-      showAlert.value = false; // Hide the alert
-      try {
-        const response = await axiosPrivateInstance.put('/games/wheel2', {
-          betAmount: betInput.value
-        });
-        let rotation = '';
-        if (response.data.message === 'You won!') {
-          // if the player has won, rotate randomly between 0 and 180
-          rotation = Math.random() * 180;
-        } else {
-          // if the player has lost, rotate randomly between 180 and 360
-          rotation = 180 + Math.random() * 180;
-        }
-        wheelStyle.value = `transform: rotate(${rotation}deg);`;
-       
+  errorMsg.value = '';
+  if (betInput.value <= 0) {
+    errorMsg.value = 'The bet amount must be more than 0';
+    return;
+  }
+  if (store.getters.userDetail.balance < betInput.value) {
+    errorMsg.value = 'Your balance is less than the bet amount';
+    return;
+  }
+  isProcessing.value = true;
+  showAlert.value = false; // Hide the alert
 
-        setTimeout(() => {
-          gameResult.value = {
-            won: response.data.message === 'You won!',
-            balance: response.data.balance
-          };
-          store.commit('setUserBalance', response.data.balance);
-          isProcessing.value = false;
-          showAlert.value = true; // Show the alert again after 5 seconds
-          wheelStyle.value = ''; // Reset the wheel
+  // Reset the wheel to the original position instantly
+  wheelStyle.value = `transform: rotate(0deg); transition: none;`;
 
-        }, 5000);
-      } catch (error) {
-        if (error.response && error.response.data && error.response.data.message) {
-          errorMsg.value = error.response.data.message;
-        } else {
-          errorMsg.value = "An unknown error occurred.";
-        }
+  // Use setTimeout to allow the changes to take effect
+  setTimeout(async () => {
+    try {
+      const response = await axiosPrivateInstance.put('/games/wheel2', {
+        betAmount: betInput.value
+      });
+      let rotation = '0';
+      let baseRotation = Math.random() * 180;
+      if (response.data.message === 'You won!') {
+        rotation = baseRotation + 3600; // This will cause the wheel to spin 10 times and land in the "win" area
+      } else {
+        rotation = baseRotation + 3600 + 180; // This will also cause the wheel to spin 10 times, but will land in the "lose" area
+      }
+
+      // Apply the transition and start spinning
+      wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 7s cubic-bezier(0,1,.9,1)`;
+
+      setTimeout(() => {  
+        gameResult.value = {
+          won: response.data.message === 'You won!',
+          balance: response.data.balance
+        };
+        store.commit('setUserBalance', response.data.balance);
         isProcessing.value = false;
-        showAlert.value = true; // Show the alert immediately if an error occurred
-
+        showAlert.value = true; // Show the alert again after 5 seconds
+      }, 7500);
+    } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        errorMsg.value = error.response.data.message;
+      } else {
+        errorMsg.value = "An unknown error occurred.";
       }
-    };
+      isProcessing.value = false;
+      showAlert.value = true; // Show the alert immediately if an error occurred
+    }
+  }, 0); // This timeout is for letting the reset operation take effect before starting the new spin
+};
 
+
+    /* 
+    I decided to return to this option.
+     The only thing I want to ask is whether it is possible to make this animation with some kind of exponential deceleration,
+     that is, the slower the wheel starts spinning, the slower it starts to slow down.
+    */
     const enterListener = (event) => {
       if (event.key === 'Enter') {
         if (isProcessing.value) {
@@ -144,16 +145,12 @@ export default {
         placeBet();
       }
     };
-
     onMounted(() => {
       window.addEventListener('keydown', enterListener);
     });
-
     onUnmounted(() => {
       window.removeEventListener('keydown', enterListener);
     });
-    
-
     return {
       placeBet,
       betInput,
@@ -168,7 +165,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .balance-card {
   height: 70px;
@@ -176,19 +172,16 @@ export default {
   align-items: center; 
   justify-content: center;
 }
-
 .text-center {
   color: #ffffff; 
   display: flex; 
   align-items: center; 
   justify-content: center;
 }
-
 .balance-icon {
   width: 25px; 
   margin-left: 5px;
 }
-
 .bet-card {
   display: flex; 
   color: #ffffff; 
@@ -199,7 +192,6 @@ export default {
   justify-content: center; 
   align-items: center;
 }
-
 .bet-form {
   width: 100%; 
   min-height: 100px; 
@@ -208,14 +200,12 @@ export default {
   align-items: center;  
   justify-content: center;
 }
-
 .submit-button {
   height: 50px; 
   width: 50px; 
   color: aquamarine; 
   background-color: #15212c;
 }
-
 .wheel {
   width: 200px;
   height: 200px;
@@ -223,10 +213,10 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  
   transition: transform 5s ease-out;
   margin-top: 20px;
 }
-
 .half {
   flex: 1;
   display: flex;
@@ -235,13 +225,13 @@ export default {
   color: white;
   font-weight: bold;
 }
-
 .win {
   background: green;
 }
-
 .lose {
   background: red;
 }
 
 </style>
+
+
