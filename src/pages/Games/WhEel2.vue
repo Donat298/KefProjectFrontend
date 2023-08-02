@@ -1,15 +1,10 @@
 <template>
-  <v-card
-    color="#213141"
-    class="balance-card"
-    elevation="0"
-    rounded="0" >
-    <p class="text-center">
-      {{ tempBalance }} USDT
-    </p>
-    <img class="balance-icon" :src="require('@/assets/Tether.svg')" />
-  </v-card>
-
+ 
+ <div style=" margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
+    <div class="text-center" style="height: 70px; display: flex; align-items: center;
+     justify-content: center; background-color: rgba(4, 3, 3, 0);">
+      <p  v-html="message"></p>
+    </div>
   <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
     <div style="min-width: 40px;"></div>
       <div class="wheel" id="wheel" :style="wheelStyle">
@@ -17,7 +12,7 @@
         <h3 class="half lose">0x</h3>
       </div>
       <div style="display: flex; align-items: center; justify-content: center; 
-      height: 200px; margin-left: 10px;margin-top: 20px; ">
+      margin-left: 10px;">
         <div style="transform: rotate(90deg); ">
           <v-icon icon="mdi-map-marker-outline"></v-icon>
         </div>
@@ -106,7 +101,7 @@ export default {
       }
 
       // Apply the transition and start spinning
-      wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 7s cubic-bezier(0,1,.9,1)`;
+      wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
 
       setTimeout(() => {  
         gameResult.value = {
@@ -116,7 +111,7 @@ export default {
         store.commit('setUserBalance', response.data.balance);
         isProcessing.value = false;
         showAlert.value = true; // Show the alert again after 5 seconds
-      }, 7500);
+      }, 4400);
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg.value = error.response.data.message;
@@ -215,7 +210,7 @@ export default {
   flex-direction: column;
   
   transition: transform 5s ease-out;
-  margin-top: 20px;
+ 
 }
 .half {
   flex: 1;

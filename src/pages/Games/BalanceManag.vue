@@ -1,15 +1,5 @@
 <template>
-  <v-card
-    color="#213141"
-    style=" height: 70px; display: flex; align-items: center; justify-content: center;"
-    elevation="0"
-    rounded="0"
-  >
-    <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
-      {{ $store.getters.userDetail.balance }} USDT
-    </p>
-    <img  style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-  </v-card>
+  
   <v-card  title="Balance control panel" color="#455A64" elevation="0" class="mx-auto"
    style="display: flex; color: #ffffff; width: 1000px; max-width: 90%; flex-direction: column;margin-top: 30px; justify-content: center; align-items: center;">
 

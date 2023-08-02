@@ -50,7 +50,7 @@
 
                     <v-text-field
                         density="compact"
-                        placeholder=""
+                        placeholder="must contain @"
                         variant="solo"
                         v-model="email"
                     ></v-text-field>
@@ -67,7 +67,7 @@
                         :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="visible ? 'text' : 'password'"
                         density="compact"
-                        placeholder=""
+                        placeholder="min 6 characters"
                         variant="solo"
                         @click:append-inner="visible = !visible"
                         v-model="password"

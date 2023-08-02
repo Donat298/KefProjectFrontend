@@ -12,8 +12,7 @@
       <NavigationHeader v-if="!rail"/>
       <NavigationList/>
     </v-navigation-drawer>
-        <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;
-">
+        <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;">
                 
             <div v-if="showRbsb" style="justify-self: start; display: block;  position:fixed; background-color: ;" >
             <button v-if="!rail " style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
@@ -33,66 +32,38 @@
                     
             <v-menu location="center"  transition="slide-y-transition">
             
-                <template v-slot:activator="{ props }">
-                    
-                    
-                   
-       
-                    
-                    <v-row  style="max-width: 1250px; height: 64px; max-height: 64px; background-color: #15212c; margin: 0 auto; ">
-                       
-                        <v-col
-                            cols="auto" 
-                            style="margin-left: auto;  align-content: center; height: 64px;  max-height: 64px; padding: 0px; "
-                        >
-                        
-                            <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up"
-                             style=" padding: 14px;">
-                                <v-btn
-                                    elevation="4"
-                                    variant="tonal"
-                                    @click="$router.push('/auth/register')"
-                                
-                                    style="
-                                        background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
-                                        margin-right: 15px;
-              
-                                    "
-                                >
-                                    Register
-                                </v-btn>
-                                <v-btn
-                                    elevation="4"
-                                    variant="tonal"
-                                    @click="$router.push('/auth/login')"
-                                    style="
-                                        background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
-                                        
-                                    "
-                                >
-                                    Login
-                                </v-btn>
-                                
-                            </div>
-                            
-                            <div v-else style="height: 64px; padding: 8px;">
-                                <v-btn
-                                    color="white"
-                                    v-bind="props"
-                                    icon="mdi-account"
-                                >
-                                </v-btn>
-                            </div>
-                            
-                        </v-col>
-                       
-                    </v-row>
-                    
-                </template>
-                
+              <template v-slot:activator="{ props }">
+    <v-row style="max-width: 1250px; height: 64px; max-height: 64px; 
+     margin: 0 auto; justify-content: center; align-items: center;">
+    
+        <div style="margin-left: 64px; flex: 1; display: flex; justify-content: center; align-items: center; ">
+            <v-card v-if="$store.getters.isAuthenticated" color="#15212c00" style=" 
+            height: 64px; display: flex; align-items: center; justify-content: center; " elevation="0">
+                <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
+                    {{ $store.getters.userDetail.balance }} USDT
+                </p>
+                <img style="width: 25px; margin-left: 5px;" :src="require('../assets/Tether1.svg')" />
+            </v-card>
+        </div>
+        <div style="display: flex; justify-content: flex-end;">
+            <v-col cols="auto" style=" margin-left: auto; align-content: center; height: 64px;  padding: 0px;">
+                <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px;">
+                    <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
+                    <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
+                </div>
+                <div v-else style="height: 64px; padding: 8px;">
+                    <v-btn color="white" v-bind="props" icon="mdi-account"></v-btn>
+                </div>
+            </v-col>
+        </div>
+    </v-row>
+</template>
+
+
+
+           
                 <v-list
-                style="
-                    
+                style=" 
                     visibility: visible;
                     opacity: 1;
                     
@@ -100,14 +71,9 @@
                     color: #ffffff;
                     
                     margin-top: 65px;
-                    min-width: 100px;
-                    
-                    
-                "
-                >
+                    min-width: 100px;">
                 <v-list-item @click="$emit('ShowAccountOknoo')"
                     >Account</v-list-item>
-
                 <v-list-item @click="logout()"
                 >Logout</v-list-item>
                
