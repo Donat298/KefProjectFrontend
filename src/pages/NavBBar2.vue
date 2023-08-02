@@ -37,12 +37,15 @@
      margin: 0 auto; justify-content: center; align-items: center;">
     
         <div style="margin-left: 64px; flex: 1; display: flex; justify-content: center; align-items: center; ">
-            <v-card v-if="$store.getters.isAuthenticated" color="#15212c00" style=" 
-            height: 64px; display: flex; align-items: center; justify-content: center; " elevation="0">
-                <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
-                    {{ $store.getters.userDetail.balance }} USDT
-                </p>
-                <img style="width: 25px; margin-left: 5px;" :src="require('../assets/Tether1.svg')" />
+            <v-card v-if="$store.getters.isAuthenticated" color="#090f15" style=" 
+            height: 54px; display: flex; align-items: center; justify-content: center; " elevation="0">
+                <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center; justify-content: center; height: 64px;">
+    {{ $store.getters.userDetail.balance }} USDT
+    <img style="width: 25px; margin-left: 5px;" :src="require('../assets/Tether1.svg')" />
+</p>
+<div></div>
+
+               
             </v-card>
         </div>
         <div style="display: flex; justify-content: flex-end;">

@@ -1,35 +1,66 @@
 <template>
-    <v-card  color="rgb(37, 56, 74)" elevation="0"> 
-                <v-card-actions  @click="show = !show" class=" ma-2">
-                    <v-list-item  rounded="lg" style="color: #ffffff;"  title="Main" ></v-list-item>
+     <div>
+      
+    
 
-            <v-spacer></v-spacer>
-
-            <v-btn 
+    <v-expansion-panels
+      v-model="panel"
+      :disabled="disabled"
+      multiple
+      
+    >
+      <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
+        <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home" title="Main" class=" pl-4" style="color: #ffffff;  " 
+            ></v-list-item>
             
-            height="40"
-            width="40"
-            color="white"
-                :icon="show ? 'mdi-chevron-down' : 'mdi-chevron-right'"
-                
-            ></v-btn>
-            
-            </v-card-actions>
-            <v-expand-transition >
-            <div v-show="show" style="">
-                <v-divider :thickness="2" color="white"></v-divider>
-                <div color="rgb(37, 56, 74)" class="pb-2 pt-2 ">
-              
-                <v-list-item class="pl-4 " title="Home" prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
+        </v-expansion-panel-title>
+        
+        <v-expansion-panel-text>
+          <v-divider :thickness="2"  color="white"></v-divider>
+          <v-list-item class="pl-4 mt-2" title="Home" prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
                 to="/"  ></v-list-item>
          
-                <v-list-item class="pl-4 " title="Image" prepend-icon="mdi-image" style="color: #ffffff;  " 
+                <v-list-item class="pl-4" title="Image" prepend-icon="mdi-image" style="color: #ffffff;  " 
                 to="/image"  ></v-list-item>
-                </div>
-                </div>
-            </v-expand-transition>
-                
-                </v-card>
+        </v-expansion-panel-text>
+        
+      </v-expansion-panel>
+
+      <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
+        <v-expansion-panel-title > <v-list-item prepend-icon="mdi-home" title="Tests" class=" pl-4" style="color: #ffffff;  " 
+            ></v-list-item>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <v-divider :thickness="2"  color="white"></v-divider>
+          <v-list-item prepend-icon="mdi-login-variant" title="SignUptest1" class=" pl-4 mt-2" style="color: #ffffff;  " 
+          to="/SignUptest1"  ></v-list-item>
+          <v-list-item prepend-icon="mdi-login-variant" title="SignUptest2" class=" pl-4"  style="color: #ffffff;  " 
+          to="/SignUptest2"  ></v-list-item>
+          <v-list-item class=" pl-4 " style="color: #ffffff;  "
+           to="/chat" prepend-icon="mdi-chat" title="Chat"  ></v-list-item>
+        </v-expansion-panel-text>
+        
+      </v-expansion-panel>
+
+      <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
+        <v-expansion-panel-title > <v-list-item prepend-icon="mdi-home" title="Games" class=" pl-4" style="color: #ffffff;  " 
+            ></v-list-item>
+        </v-expansion-panel-title>
+        <v-expansion-panel-text>
+          <v-divider :thickness="2"  color="white"></v-divider>
+        
+          <v-list-item prepend-icon="mdi-circle-outline" title="Wheel" class=" pl-4  mt-2"  style="color: #ffffff;  "
+           to="/wheel" ></v-list-item>
+           <v-list-item prepend-icon="mdi-circle-outline" title="Wheel2" class=" pl-4"  style="color: #ffffff;  "
+           to="/wheel2" ></v-list-item>
+           <v-list-item prepend-icon="mdi-currency-usd" title="BalanceManag" class=" pl-4"  style="color: #ffffff;  "
+           to="/BalanceManag"  ></v-list-item>
+        </v-expansion-panel-text>
+        
+      </v-expansion-panel>
+    </v-expansion-panels>
+
+  </div>
                
                 
 
@@ -37,22 +68,46 @@
 
 <script>
   export default {
- 
-    
-    data() {
-      return {
-      
-      show: true
-     
-      
-        
-    
-   
-        
-    };
+    data: () => ({
+      panel: [0, 1, 2],
+
+    }),
   }
+</script>
+
+<style s>
+.v-expansion-panel-text__wrapper {
+    padding: 0px 0px 0px !important;
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+    margin-bottom: 8px !important;
+}
+
+.v-expansion-panel-title {
     
+    padding: 12px 24px  !important;
+    padding-left: 2px !important;
+    padding-top: 0px ;
+ 
+   
+}
+.v-expansion-panel-title__icon {
+    display: inline-flex;
+    margin-bottom: -4px;
+    margin-top: -4px;
+  
+    margin-left: 170px !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-margin-start: auto;
+    margin-inline-start: auto;
+    position: absolute;
+}
+.v-expansion-panel-title--active > .v-expansion-panel-title__overlay,
+.v-expansion-panel-title[aria-haspopup=menu][aria-expanded=true] > .v-expansion-panel-title__overlay {
+    opacity: 0 !important;
 }
 
 
-</script>
+</style>
