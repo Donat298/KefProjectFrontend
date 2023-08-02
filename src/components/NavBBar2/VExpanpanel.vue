@@ -102,7 +102,7 @@
  }
 </script>
 
-<style s>
+<style >
 .v-expansion-panel-text__wrapper {
    padding: 0px 0px 0px !important;
    flex: 1 1 auto !important;
