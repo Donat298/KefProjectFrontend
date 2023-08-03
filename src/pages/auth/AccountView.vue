@@ -52,10 +52,12 @@
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
         >
-        <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
-          {{ $store.getters.userDetail.balance }} USDT
-        </p>
-        <img  style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+           
+        <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
+                 height: 64px;">
+    {{ $store.getters.userDetail.balance }} USDT
+    <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+</p>
       </v-card>
       
      
@@ -120,12 +122,11 @@
         elevation="0"  
         >
         
-         <p class="text-center" style="color: #ffffff; display: flex; align-items: center; justify-content: center;">
-          {{ $store.getters.userDetail.balance }} USDT
-        </p>
-
-       
-          <img style="width: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+        <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
+                 height: 64px;">
+    {{ $store.getters.userDetail.balance }} USDT
+    <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
+</p>
   
       
       </v-card>

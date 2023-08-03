@@ -25,7 +25,7 @@
 
                     <div v-if="!showRbsb" style="justify-self: start; display: block;  position:fixed; background-color: ;" >
             
-                    <button style="width: 64px; height: 64px;color: #ffffff; background-color: #15212c00;" 
+                    <button style="width: 64px; height: 64px;color: #ffffff;  background-color: #15212c00;" 
                       @click="drawer = true; rail = false"><fa icon="fas fa-angle-double-right" /></button>
                     </div>
             
@@ -33,33 +33,37 @@
             <v-menu location="center"  transition="slide-y-transition">
             
               <template v-slot:activator="{ props }">
-    <v-row style="max-width: 1250px; height: 64px; max-height: 64px; 
-     margin: 0 auto; justify-content: center; align-items: center;">
-    
-        <div style="margin-left: 64px; flex: 1; display: flex; justify-content: center; align-items: center; ">
-            <v-card v-if="$store.getters.isAuthenticated" color="#090f15" style=" 
-            height: 54px; display: flex; align-items: center; justify-content: center; " elevation="0">
-                <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center; justify-content: center; height: 64px;">
-    {{ $store.getters.userDetail.balance }} USDT
-    <img style="width: 25px; margin-left: 5px;" :src="require('../assets/Tether1.svg')" />
+                <div style="max-width: 1250px; width: 1250px;  max-height: 64px; 
+     margin: 0 auto; justify-content: center; align-items: center; display:flex;">
+     
+        <div style="width: 64px;"></div>
+        <div style=" flex: 1; display: flex; justify-content: center; align-items: center; ">
+            <v-card class="pl-4" v-if="$store.getters.isAuthenticated" color="#090f15" style=" 
+            height: 48px; display: flex; align-items: center;  " elevation="0">
+                <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
+                 ">
+    {{ $store.getters.userDetail.balance }} 
 </p>
-<div></div>
-
-               
+<img style="width: 25px; max-height: 25px; margin-left: 5px;" :src="require('../assets/Tether.svg')" />
+<v-btn class="ml-4" rounded="0" style="background-color: #2e6da4; color: #ffffff; height: 100%;">
+  {{ buttonLabel }}
+</v-btn>
             </v-card>
         </div>
-        <div style="display: flex; justify-content: flex-end;">
-            <v-col cols="auto" style=" margin-left: auto; align-content: center; height: 64px;  padding: 0px;">
-                <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px;">
+
+           
+                <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px; ">
                     <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
                     <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
                 </div>
-                <div v-else style="height: 64px; padding: 8px;">
+                <div v-else style="height: 64px;  width: 64px; padding: 8px; margin-left: auto;">
                     <v-btn color="white" v-bind="props" icon="mdi-account"></v-btn>
                 </div>
-            </v-col>
-        </div>
-    </v-row>
+        
+            
+       
+              </div>
+  
 </template>
 
 
@@ -77,6 +81,7 @@
                     min-width: 100px;">
                 <v-list-item @click="$emit('ShowAccountOknoo')"
                     >Account</v-list-item>
+                   
                 <v-list-item @click="logout()"
                 >Logout</v-list-item>
                
@@ -106,6 +111,7 @@ export default {
       drawer: null,
       rail: false,
       showRbsb: window.innerWidth >= 1280,
+      windowWidth: 0
     };
   },
   created() {
@@ -114,6 +120,13 @@ export default {
   destroyed() {
     window.removeEventListener("resize", this.updateRbsbVisibility);
   },
+  mounted() {
+  this.windowWidth = window.innerWidth;
+  window.addEventListener('resize', this.handleResize);
+},
+beforeDestroy() {
+  window.removeEventListener('resize', this.handleResize);
+},
   methods: {
     logout() {
       this.$store.dispatch("logout");
@@ -121,7 +134,16 @@ export default {
     updateRbsbVisibility() {
       this.showRbsb = window.innerWidth >= 1280;
     },
+    handleResize() {
+    this.windowWidth = window.innerWidth;
   },
+  },
+  computed: {
+  buttonLabel() {
+    return this.windowWidth > 500 ? 'Deposit' : 'D';
+  }
+}
+  
 };
 </script>
 <style>
