@@ -4,8 +4,6 @@
         max-height: 90%;
         width: 100%;
         overflow-y:auto; ">
-
-
         <div @click.stop style="       
         max-height: 90%;
          width: 600px;
@@ -13,15 +11,10 @@
         box-sizing: border-box;       
         margin: auto;">   
     <v-card
-      elevation="0"
-      
-       
-     
+      elevation="0"    
       rounded="lg"
       style="background-color: rgb(37, 56, 74); display: flex; width: 600px;" 
-    >
-
-   
+    >   
     <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
         <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
       <v-avatar 
@@ -36,45 +29,30 @@
    
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
         {{ $store.getters.userDetail.username }}     
-      </div> 
-      
-      
+      </div>      
       <div style="color: #ffffff;  text-align: center;">
         {{ $store.getters.userDetail.email }}     
       </div>      
     </div>  
-
-    
-
     <div style="width: 50%;  background-color: #213141; padding: 20px 10px;">
         <v-card
         color="#213141"
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
-        >
-           
+        >          
         <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
                  height: 64px;">
     {{ $store.getters.userDetail.balance }} USDT
     <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
 </p>
-      </v-card>
-      
-     
+      </v-card>  
     </div >
     </v-card>
       </div>  
       </div>
-
-
-
       <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
       style=" overflow-y:auto; max-height: 90%; width: 100%; ">
         <div @click.stop style="
-       
-
-       
-   
         width: 300px;
         margin: auto;
         
@@ -88,8 +66,7 @@
     rounded="lg"
     style="background-color: rgb(37, 56, 74);  margin-left: auto; margin-right: auto; " 
     >
-
-   
+  
     <div style="background-color: rgb(37, 56, 74);  align-items: center;  padding: 20px 10px; ">
         <div style="margin: auto; display: flex;">
       <v-avatar 
@@ -100,59 +77,33 @@
       >
       <v-icon  icon="mdi-account" size="xx-large"></v-icon>     
       </v-avatar>
-    </div>
-   
+    </div>   
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
         {{ $store.getters.userDetail.username }}     
       </div> 
       <div style="color: #ffffff;  text-align: center;">
         {{ $store.getters.userDetail.email }}     
-      </div> 
-      
-           
+      </div>         
     </div>  
-
-    
-
     <div style="width: 50%; background-color: #213141; padding: 20px 10px;
      width: 100%;">
       <v-card
         color="#213141"
         style=" height: 70px; display: flex; align-items: center; justify-content: center;"
         elevation="0"  
-        >
-        
+        >        
         <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
                  height: 64px;">
     {{ $store.getters.userDetail.balance }} USDT
     <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-</p>
-  
-      
-      </v-card>
-    
-     
-      
+</p>     
+      </v-card>    
     </div >
     </v-card>
         </div> 
       </div>
-
-    
-   
-
 </div>
-
-
-
-
-  
-
 </template>
-
-
-
-
 <script>
 export default {
   data() {
@@ -172,7 +123,6 @@ export default {
     handleResize() {
       const screenWidth = window.innerWidth
       const isBelowThreshold = screenWidth < 900
-
       if (isBelowThreshold) {
         this.showAccComponent = false;
       } else {
@@ -182,12 +132,8 @@ export default {
   }
 }
 </script>
-
-
-
 <style scoped>
 .jja {
-
 top: 0;
 bottom: 0;
 right: 0;
@@ -204,17 +150,13 @@ z-index: 4;
 
 ::-webkit-scrollbar {
   width: 5px;
-  
-  
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: #15212c;
   border-radius: 30px;  
-  margin-block: 15px;
-  
-  
+  margin-block: 15px; 
 }
 
 /* Handle */

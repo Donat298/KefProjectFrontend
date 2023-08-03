@@ -19,17 +19,22 @@
       </div>
     </div>
 
-  <v-card title="Place your bet!" color="#455A64" elevation="0" class="bet-card mx-auto">
+  <v-card title="Place your bet!" color="#25384a" elevation="0" width="1200" class="bet-card mx-auto">
     <div class="bet-form">
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
         <v-text-field 
+         
           :disabled="isProcessing" 
           type="number" 
           class="pl-5" 
           v-model="betInput"
           variant="solo"
-          hide-details
-          bg-color="secondary">
+        
+          bg-color="secondary" 
+          label="Your bet"
+          single-line
+          hide-details>
+       
         </v-text-field>
         <div class="d-flex align-center">
           <v-btn 
@@ -72,8 +77,8 @@ export default {
     const wheelStyle = ref(''); // Add this new ref
     const placeBet = async () => {
   errorMsg.value = '';
-  if (betInput.value <= 0) {
-    errorMsg.value = 'The bet amount must be more than 0';
+  if (betInput.value < 0) {
+    errorMsg.value = 'The bet cannot be less than zero.';
     return;
   }
   if (store.getters.userDetail.balance < betInput.value) {

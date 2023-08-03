@@ -5,7 +5,7 @@
      multiple
      
    >
-     <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
+     <v-expansion-panel  style="background-color: #25384a; color: rgb(255, 255, 255);">
        <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home" title="Main" class=" pl-4" style="color: #ffffff;  " 
            ></v-list-item>
            
@@ -18,6 +18,7 @@
         
                <v-list-item class="pl-4" title="Image" prepend-icon="mdi-image" style="color: #ffffff;  " 
                to="/image"  ></v-list-item>
+         
        </v-expansion-panel-text>
        
      </v-expansion-panel>

@@ -38,17 +38,18 @@
      
         <div style="width: 64px;"></div>
         <div style=" flex: 1; display: flex; justify-content: center; align-items: center; ">
-            <v-card class="pl-4" v-if="$store.getters.isAuthenticated" color="#090f15" style=" 
-            height: 48px; display: flex; align-items: center;  " elevation="0">
-                <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
-                 ">
-    {{ $store.getters.userDetail.balance }} 
-</p>
-<img style="width: 25px; max-height: 25px; margin-left: 5px;" :src="require('../assets/Tether.svg')" />
-<v-btn class="ml-4" rounded="0" style="background-color: #2e6da4; color: #ffffff; height: 100%;">
+          <v-card class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
+            height: 48px; display: flex; align-items: center;" elevation="0">
+    <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;">
+      {{ $store.getters.userDetail.balance }} 
+    </p>
+    <img style="width: 25px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Tether.svg')" />
+  </v-card>
+
+<v-btn v-if="$store.getters.isAuthenticated" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
 </v-btn>
-            </v-card>
+        
         </div>
 
            
@@ -57,9 +58,9 @@
                     <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
                 </div>
                 <div v-else style="height: 64px;  width: 64px; padding: 8px; margin-left: auto;">
-                    <v-btn color="white" v-bind="props" icon="mdi-account"></v-btn>
-                </div>
-        
+  <v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>
+</div>
+
             
        
               </div>
@@ -140,13 +141,16 @@ beforeDestroy() {
   },
   computed: {
   buttonLabel() {
-    return this.windowWidth > 500 ? 'Deposit' : 'D';
+    return this.windowWidth > 400 ? 'Deposit' : 'D';
   }
 }
   
 };
 </script>
 <style>
+.left-rounded {
+  border-radius: 3px 0px 0px 3px !important;
+}
 .v-toolbar__content > .v-btn:first-child {
     -webkit-margin-start: 0px;
     margin-inline-start: 0px;
@@ -180,6 +184,12 @@ beforeDestroy() {
     flex: 1 1 100%;
     max-height: 0px;
     opacity: 0.1;   
+}
+.v-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+     margin: 0px !important; 
 }
 </style>
 

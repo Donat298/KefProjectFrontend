@@ -94,16 +94,16 @@
 
                     
 
-                    <v-card-text class="text-center" style="max-width: 192px; margin: auto; 
-                    margin-top: 20px; padding: 0px;" >
+                    <v-card-text class="text-center text-white" style="max-width: 192px; margin: auto; 
+                    margin-top: 20px; padding: 0px;" >No account? 
                         <a
-                            class="text-green "
+                            class="text-white "
                             href="/auth/register"
                             
                             
                             
                         >
-                            Sign up now</a>
+                            Sign up</a>
                     </v-card-text>
                 </v-card>
             </div>

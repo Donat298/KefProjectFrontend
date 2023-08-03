@@ -30,8 +30,8 @@
       grow
     >
     <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-      <v-form style="display: flex; width: 100%; max-width:800px; " ref="form" @submit.prevent="sendMessage">
-        <v-textarea  class="pl-5"  
+      <v-form style="display: flex;  max-width:800px; width: 800px;" ref="form" @submit.prevent="sendMessage">
+        <v-textarea  class="mr-5"  
           variant="solo"
           single-line
           hide-details
@@ -196,7 +196,10 @@ export default {
   background: #2c4257;
   border-radius: 30px;
 }
-
+.v-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+     margin: 0px !important; 
+}
 </style>
-
-Can you find this error here and fix it?
