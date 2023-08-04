@@ -6,18 +6,19 @@
      
    >
      <v-expansion-panel  style="background-color: #25384a; color: rgb(255, 255, 255);">
-       <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home" title="Main" class=" pl-4" style="color: #ffffff;  " 
-           ></v-list-item>
+       <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home"  class=" pl-4" style="color: #ffffff;  " 
+           >Main</v-list-item>
            
        </v-expansion-panel-title>
        
        <v-expansion-panel-text>
          <v-divider :thickness="2"  color="white"></v-divider>
-         <v-list-item class="pl-4 mt-2" title="Home" prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
-               to="/"  ></v-list-item>
+         <v-list-item class="pl-4 mt-2"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
+               to="/"  > Home</v-list-item>
         
-               <v-list-item class="pl-4" title="Image" prepend-icon="mdi-image" style="color: #ffffff;  " 
-               to="/image"  ></v-list-item>
+             
+               <v-list-item class=" pl-4 " style="color: #ffffff;  "
+            to="/chat" prepend-icon="mdi-chat"   >Chat</v-list-item>
          
        </v-expansion-panel-text>
        

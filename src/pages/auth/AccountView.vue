@@ -1,5 +1,6 @@
 <template>
   <div class="jja" @click.stop="$emit('HideAccountOknoo')">
+
      <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="
         max-height: 90%;
         width: 100%;
@@ -35,21 +36,19 @@
       </div>      
     </div>  
     <div style="width: 50%;  background-color: #213141; padding: 20px 10px;">
-        <v-card
-        color="#213141"
-        style=" height: 70px; display: flex; align-items: center; justify-content: center;"
-        elevation="0"  
-        >          
-        <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
-                 height: 64px;">
-    {{ $store.getters.userDetail.balance }} USDT
-    <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-</p>
-      </v-card>  
+         
+      <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
+            height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
+    <div  style="color: #ffffff;   ">
+      {{ $store.getters.userDetail.balance }} 
+    </div>
+    <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
+  </v-card>
     </div >
     </v-card>
       </div>  
       </div>
+
       <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
       style=" overflow-y:auto; max-height: 90%; width: 100%; ">
         <div @click.stop style="
@@ -87,21 +86,18 @@
     </div>  
     <div style="width: 50%; background-color: #213141; padding: 20px 10px;
      width: 100%;">
-      <v-card
-        color="#213141"
-        style=" height: 70px; display: flex; align-items: center; justify-content: center;"
-        elevation="0"  
-        >        
-        <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
-                 height: 64px;">
-    {{ $store.getters.userDetail.balance }} USDT
-    <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-</p>     
-      </v-card>    
+      <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
+            height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
+    <div  style="color: #ffffff;   ">
+      {{ $store.getters.userDetail.balance }} 
+    </div>
+    <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
+  </v-card>    
     </div >
     </v-card>
         </div> 
       </div>
+     
 </div>
 </template>
 <script>

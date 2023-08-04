@@ -40,13 +40,13 @@
         <div style=" flex: 1; display: flex; justify-content: center; align-items: center; ">
           <v-card class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; display: flex; align-items: center;" elevation="0">
-    <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;">
+    <div  style="color: #ffffff;   ">
       {{ $store.getters.userDetail.balance }} 
-    </p>
-    <img style="width: 25px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Tether.svg')" />
+    </div>
+    <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>
 
-<v-btn v-if="$store.getters.isAuthenticated" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
+<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
 </v-btn>
         
@@ -149,7 +149,7 @@ beforeDestroy() {
 </script>
 <style>
 .left-rounded {
-  border-radius: 3px 0px 0px 3px !important;
+  border-radius: 5px 0px 0px 5px !important;
 }
 .v-toolbar__content > .v-btn:first-child {
     -webkit-margin-start: 0px;

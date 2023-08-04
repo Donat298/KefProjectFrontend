@@ -20,6 +20,7 @@
         @click="$router.push('/SignUptest2')">Login test</my-button2>  
         
     </div>
+    
    </div>
 
   </div>

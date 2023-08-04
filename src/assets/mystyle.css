@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
 body {
   background-color:#15212c;
-  
+  font-family: 'Open Sans', sans-serif;
 
   background-size:150%;
 
@@ -31,4 +33,6 @@ border-radius: 30px;
 }
 
 
-/* width */
+
+
+

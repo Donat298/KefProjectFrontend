@@ -32,7 +32,7 @@
                     
                 <img style="margin-left: auto; 
                 margin-right: auto; width: 100%; height: auto; 
-                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefulog.svg')" />
+                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
                 
                 </div>
                 <v-card
@@ -159,4 +159,3 @@ export default {
   
 }
 </style>
-How to make it so that when the screen shrinks, the img also shrinks?

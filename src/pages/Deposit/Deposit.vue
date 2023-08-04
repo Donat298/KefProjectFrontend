@@ -1,6 +1,10 @@
 <template>
-    <div class="jja" @click.stop="$emit('HideAccountOknoo')">
-       <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="
+    <div class="jja" @click.stop="$emit('HideDepositOknoo')">
+    
+ 
+
+
+       <div v-if="showDepositComponent" @click.stop="$emit('HideDepositOknoo')" style="
           max-height: 90%;
           width: 100%;
           overflow-y:auto; ">
@@ -66,9 +70,7 @@
         </div>  
         </div>
   
-  
-  
-        <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
+        <div v-if="showDepositComponent === false" @click.stop="$emit('HideAccountOknoo')"
         style=" overflow-y:auto; max-height: 90%; width: 100%; ">
           <div @click.stop style="
          
@@ -133,6 +135,8 @@
       </v-card>
           </div> 
         </div>
+  
+  
  
   </div>
 
@@ -142,7 +146,7 @@
   export default {
     data() {
       return {
-        showAccComponent: true,
+        showDepositComponent: true,
         isResolutionBelowThreshold: window.innerWidth < 900,
       }
     },
@@ -159,9 +163,9 @@
         const isBelowThreshold = screenWidth < 900
   
         if (isBelowThreshold) {
-          this.showAccComponent = false;
+          this.showDepositComponent = false;
         } else {
-          this.showAccComponent = true;
+          this.showDepositComponent = true;
         }
       }
     }

@@ -30,7 +30,7 @@
       grow
     >
     <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-      <v-form style="display: flex;  max-width:800px; width: 800px;" ref="form" @submit.prevent="sendMessage">
+      <v-form style="display: flex; width: 100%; max-width:800px; width: 800px;" ref="form" @submit.prevent="sendMessage">
         <v-textarea  class="mr-5"  
           variant="solo"
           single-line
@@ -200,6 +200,6 @@ export default {
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 auto;
-     margin: 0px !important; 
+     margin: 0px !important;  
 }
 </style>
