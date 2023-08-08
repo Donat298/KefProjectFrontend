@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
 
 body {
-  background-color:#15212c;
+  
+  background: linear-gradient(to right, rgb(11, 43, 43), rgb(47, 47, 87)); /* Standard syntax */
   font-family: 'Open Sans', sans-serif;
 
   background-size:150%;

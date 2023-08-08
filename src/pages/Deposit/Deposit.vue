@@ -12,7 +12,7 @@
   
           <div @click.stop style="       
           max-height: 90%;
-           width: 600px;
+           width: 800px;
           min-height: 50px;       
           box-sizing: border-box;       
           margin: auto;">   
@@ -22,30 +22,12 @@
          
        
         rounded="lg"
-        style="background-color: rgb(37, 56, 74); display: flex; width: 600px;" 
+        style="background-color: rgb(37, 56, 74);  width: 800px;" 
       >
-  
-     
+      <DepoNavig/>
+      <div style="display: flex;">
       <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
-          <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
-        <v-avatar 
-  
-          color="white"
-          size="70"
-          rounded="lg"      
-        >
-        <v-icon  icon="mdi-account" size="xx-large"></v-icon>     
-        </v-avatar>
-      </div>
-     
-      <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
-          {{ $store.getters.userDetail.username }}     
-        </div> 
-        
-        
-        <div style="color: #ffffff;  text-align: center;">
-          {{ $store.getters.userDetail.email }}     
-        </div>      
+         <MDeposit/>
       </div>  
   
       
@@ -66,6 +48,7 @@
         
        
       </div >
+    </div>
       </v-card>
         </div>  
         </div>
@@ -143,7 +126,10 @@
   </template>
   
   <script>
+  import MDeposit from "@/components/DepositPages/MDeposit.vue";
+  import DepoNavig from "@/components/DepositPages/DepoNavig.vue";
   export default {
+    components: { MDeposit, DepoNavig },
     data() {
       return {
         showDepositComponent: true,

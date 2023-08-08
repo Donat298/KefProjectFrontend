@@ -33,14 +33,18 @@
       </div>      
       <div style="color: #ffffff;  text-align: center;">
         {{ $store.getters.userDetail.email }}     
-      </div>      
+      </div> 
+      <div style="color: #ffffff;  text-align: center;">
+        Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
+      </div>  
+      
     </div>  
     <div style="width: 50%;  background-color: #213141; padding: 20px 10px;">
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
     <div  style="color: #ffffff;   ">
-      {{ $store.getters.userDetail.balance }} 
+      {{ $store.getters.userDetail.balance }} USDT
     </div>
     <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>
@@ -82,14 +86,17 @@
       </div> 
       <div style="color: #ffffff;  text-align: center;">
         {{ $store.getters.userDetail.email }}     
-      </div>         
+      </div>  
+      <div style="color: #ffffff;  text-align: center;">
+        Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
+      </div>          
     </div>  
     <div style="width: 50%; background-color: #213141; padding: 20px 10px;
      width: 100%;">
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
     <div  style="color: #ffffff;   ">
-      {{ $store.getters.userDetail.balance }} 
+      {{ $store.getters.userDetail.balance }} USDT
     </div>
     <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>    
@@ -124,7 +131,14 @@ export default {
       } else {
         this.showAccComponent = true;
       }
-    }
+    },
+    formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are 0 based index in JavaScript
+    const day = ("0" + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
+  }
   }
 }
 </script>

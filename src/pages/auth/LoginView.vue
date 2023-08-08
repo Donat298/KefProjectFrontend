@@ -41,6 +41,10 @@
                     rounded="lg"
                     style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74)"
                 >
+                <v-form
+        v-model="form"
+        @submit.prevent="onSubmit"
+      >
                     <div
                         style="color: white"
                         class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
@@ -53,6 +57,8 @@
                         placeholder="must contain @"
                         variant="solo"
                         v-model="email"
+                   
+                        :readonly="loading"
                     ></v-text-field>
                     
 
@@ -71,7 +77,10 @@
                         variant="solo"
                         @click:append-inner="visible = !visible"
                         v-model="password"
+                     
+                        :readonly="loading"
                     ></v-text-field>
+                    
 
 
                     
@@ -86,12 +95,13 @@
                         type="submit"
                         color="secondary"
                         
+                        :loading="loading"
                         @click="login(email, password)"
                         size="large"
                     >
                         Log In
                     </v-btn>
-
+                </v-form>
                     
 
                     <v-card-text class="text-center text-white" style="max-width: 192px; margin: auto; 
@@ -115,10 +125,12 @@
   <script>
 export default {
     data: () => ({
+        form: false,
         visible: false,
         email: "",
         password: "",
-        errorMessage: ""
+        errorMessage: "",
+        loading: false,
     }),
 
     methods: {
@@ -135,11 +147,19 @@ export default {
                     this.errorMessage = err;
                 });
         },
+        onSubmit () {
+        if (!this.form) return
+
+        this.loading = true
+
+        setTimeout(() => (this.loading = false), 2000)
+      },
+      
     },
 };
 </script>
   
-  <style>
+  <style scoped>
 .jjl {
     top: 0;
     bottom: 0;

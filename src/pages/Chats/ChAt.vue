@@ -29,9 +29,9 @@
       elevation="0"
       grow
     >
-    <div style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-      <v-form style="display: flex; width: 100%; max-width:800px; width: 800px;" ref="form" @submit.prevent="sendMessage">
-        <v-textarea  class="mr-5"  
+    <div   style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+      <v-form  style="display: flex; width: 100%;   max-width:842px; width: 842px;" ref="form" @submit.prevent="sendMessage">
+        <v-textarea  class="mr-5 pl-5"  
           variant="solo"
           single-line
           hide-details

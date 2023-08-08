@@ -28,7 +28,10 @@
     
     style="background-color: rgb(37, 56, 74) ; border: 7px solid rgb(37, 56, 74);"
   >
-
+  <v-form
+        v-model="form"
+        @submit.prevent="onSubmit"
+      >
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
       Username
     </div>
@@ -38,6 +41,7 @@
       placeholder=""
       v-model="username"
       variant="solo"
+      :readonly="loading"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -49,6 +53,7 @@
       placeholder="must contain @"
       v-model="email"
       variant="solo"
+      :readonly="loading"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -63,6 +68,7 @@
       v-model="password"
       variant="solo"
       @click:append-inner="visible = !visible"
+      :readonly="loading"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -77,6 +83,7 @@
       v-model="password_confirm"
       variant="solo"
       @click:append-inner="visible2 = !visible2"
+      :readonly="loading"
     ></v-text-field>
 
 
@@ -86,17 +93,18 @@
                         " >{{ errorMessage }}⠀</div>
                     </div>
     <v-btn
-      @click="register(username, email, password, password_confirm)"
+     
       block
       class="mb-8"
-      
+      @click="register(username, email, password, password_confirm)"
       size="large"
       type="submit"
       color="secondary"
-     
+      :loading="loading"
     >
     REG
     </v-btn>
+  </v-form>
   
   </v-card>
       </div>
@@ -113,7 +121,9 @@
     email: "",
     password: "",
     password_confirm: "",
-    errorMessage: ""
+    errorMessage: "",
+    loading: false,
+    form: false,
        
   }),
 
@@ -132,6 +142,13 @@
                     this.errorMessage = err;
                 });
         },
+        onSubmit () {
+        if (!this.form) return
+
+        this.loading = true
+
+        setTimeout(() => (this.loading = false), 2000)
+      },
     }
 }
 </script>
