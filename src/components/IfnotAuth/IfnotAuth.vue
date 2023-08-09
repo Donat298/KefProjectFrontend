@@ -43,6 +43,7 @@
   
   .centered-button {
     background: linear-gradient(230deg, aquamarine, rgb(127, 255, 244));
+   
     color: black;
     margin-right: 15px;
     /* Add any additional styles for the buttons here */

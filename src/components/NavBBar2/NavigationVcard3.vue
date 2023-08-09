@@ -20,7 +20,7 @@
             <v-list-item prepend-icon="mdi-circle-outline"  class=" pl-4"  style="color: #ffffff;  "
             to="/wheel2" >Wheel2</v-list-item>
             <v-list-item prepend-icon="mdi-currency-usd"  class=" pl-4"  style="color: #ffffff;  "
-            to="/BalanceManag"  >BalanceManag</v-list-item>
+            to="/BalanceManag"  >Balance</v-list-item>
          </v-expansion-panel-text>
          
        </v-expansion-panel>

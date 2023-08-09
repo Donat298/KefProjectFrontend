@@ -33,20 +33,21 @@
             <v-menu location="center"  transition="slide-y-transition">
             
               <template v-slot:activator="{ props }">
-                <div style="max-width: 1250px; width: 1250px;  max-height: 64px; 
+                <div style="max-width: 1250px; width: 1250px;   max-height: 64px; 
      margin: 0 auto; justify-content: center; align-items: center; display:flex;">
      
-        <div style="width: 64px;"></div>
-        <div style=" flex: 1; display: flex; justify-content: center; align-items: center; ">
+        
+        <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
           <v-card class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
-            height: 48px; display: flex; align-items: center;" elevation="0">
-    <div  style="color: #ffffff;   ">
+            height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
+    <div  style="color: #ffffff;  height: 25px; display: flex; align-items: center;">
       {{ $store.getters.userDetail.balance }} 
     </div>
-    <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
+    <img style="display: flex; align-items: center; width: 25px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>
 
-<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
+<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px;
+background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
 </v-btn>
         
@@ -141,7 +142,7 @@ beforeDestroy() {
   },
   computed: {
   buttonLabel() {
-    return this.windowWidth > 400 ? 'Deposit' : 'D';
+    return this.windowWidth > 400 ? 'Wallet' : 'W';
   }
 }
   

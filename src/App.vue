@@ -27,6 +27,7 @@ export default {
   created() {
     // Initialize `showacg` with value from localStorage
     this.showacg = localStorage.getItem('showacg') === 'true';
+    this.showdep = localStorage.getItem('showdep') === 'true';
   },
   methods: {
     openAccountView() {

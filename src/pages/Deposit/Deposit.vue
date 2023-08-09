@@ -1,4 +1,5 @@
 <template>
+  
     <div class="jja" @click.stop="$emit('HideDepositOknoo')">
     
  
@@ -8,7 +9,7 @@
           max-height: 90%;
           width: 100%;
           overflow-y:auto; ">
-  
+
   
           <div @click.stop style="       
           max-height: 90%;
@@ -16,6 +17,7 @@
           min-height: 50px;       
           box-sizing: border-box;       
           margin: auto;">   
+          
       <v-card
         elevation="0"
         
@@ -24,29 +26,43 @@
         rounded="lg"
         style="background-color: rgb(37, 56, 74);  width: 800px;" 
       >
-      <DepoNavig/>
+   
       <div style="display: flex;">
-      <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
-         <MDeposit/>
+      <div style="background-color: rgb(37, 56, 74);  width: 20%; ">
+        <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
+           to="/SignUptest1"  >Deposit</v-list-item>
+           <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
+           to="/SignUptest2"  >Withdraw</v-list-item>
+           <v-list-item  class=" pl-4" style="color: #ffffff;height: 64px" 
+           to="/SignUgfdgptest1"  >Buy Crypto</v-list-item>
+           
       </div>  
-  
+      
       
   
-      <div style="width: 50%;  background-color: #213141; padding: 20px 10px;">
-          <v-card
-          color="#213141"
-          style=" height: 70px; display: flex; align-items: center; justify-content: center;"
-          elevation="0"  
-          >
-             
-          <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
-                   height: 64px;">
-      {{ $store.getters.userDetail.balance }} USDT
-      <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-  </p>
-        </v-card>
+      <div style="width: 80%;  background-color: #213141; padding: 20px 10px;">
         
-       
+        <div style="position: relative;">
+          <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
+    <v-card
+      color="#213141"
+      style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#213141"
+      elevation="0"
+    >
+      <v-card elevation="7" class="pa-2 pl-4" style="background-color: rgb(37, 56, 74); color:#ffffff; display: flex; align-items: center;">
+        TWX3X61vd76HHdh36t1QLZciZfqa4Na1za
+        <v-btn size="large"
+          :ripple="false"
+          elevation="0"
+          icon="mdi-content-copy"
+          class="ml-2"
+          style=" background-color: rgb(37, 56, 74);"
+          @click="copyCode(); showCopiedTooltip()"
+        ></v-btn>
+      </v-card>
+      <v-card v-if="showTooltip" class="custom-tooltip">Copied</v-card>
+    </v-card>
+  </div>
       </div >
     </div>
       </v-card>
@@ -134,6 +150,10 @@
       return {
         showDepositComponent: true,
         isResolutionBelowThreshold: window.innerWidth < 900,
+        codeSnippet: 'TWX3X61vd76HHdh36t1QLZciZfqa4Na1za',
+        
+        showTooltip: false,
+      tooltipEnabled: true,
       }
     },
     mounted() {
@@ -153,8 +173,30 @@
         } else {
           this.showDepositComponent = true;
         }
-      }
-    }
+      },
+      copyCode() {
+      navigator.clipboard.writeText(this.codeSnippet).then(() => {
+        
+       
+      });
+    },
+    showCopiedTooltip() {
+      if (!this.tooltipEnabled) return;
+
+      this.showTooltip = true;
+      this.tooltipEnabled = false;
+
+      setTimeout(() => {
+        this.showTooltip = false;
+        this.tooltipEnabled = true;
+      }, 2000); // 2 seconds
+    },
+  },
+    
+
+ 
+    
+ 
   }
   </script>
   
@@ -197,4 +239,19 @@
     background: #2c4257;
     border-radius: 30px;
   }
+
+  .custom-tooltip {
+  position: absolute;
+  top: 10px; /* Adjust this value as needed */
+  right: 115px; /* Adjust this value as needed */
+  background-color: #616161;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  z-index: 1000; /* High z-index to be on top */
+}
+
+
+
   </style>
