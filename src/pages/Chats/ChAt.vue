@@ -5,7 +5,7 @@
 <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
     <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44); align-items: center;" class="chat-messages">
-        <div ref="messagesContainer" style="max-width: 100%; width: 800px; overflow-y: auto;">
+        <div ref="messagesContainer" style="max-width: 90%; width: 800px; overflow-y: auto;">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
   <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
   
@@ -29,8 +29,8 @@
       elevation="0"
       grow
     >
-    <div   style="width: 800px;max-width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-      <v-form  style="display: flex; width: 100%;   max-width:842px; width: 842px;" ref="form" @submit.prevent="sendMessage">
+    <div   style="width: 800px;max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+      <v-form  style="display: flex; width: 100%;   width: 842px;" ref="form" @submit.prevent="sendMessage">
         <v-textarea  class="mr-0 pl-0"  
           variant="solo"
           single-line
