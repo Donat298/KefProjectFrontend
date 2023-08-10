@@ -13,11 +13,11 @@
        
        <v-expansion-panel-text>
          <v-divider :thickness="2"  color="white"></v-divider>
-         <v-list-item class="pl-4 mt-2"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
+         <v-list-item :ripple="false" class="pl-4 mt-2"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
                to="/"  > Home</v-list-item>
         
              
-               <v-list-item class=" pl-4 " style="color: #ffffff;  "
+               <v-list-item :ripple="false" class=" pl-4 " style="color: #ffffff;  "
             to="/chat" prepend-icon="mdi-chat"   >Chat</v-list-item>
          
        </v-expansion-panel-text>

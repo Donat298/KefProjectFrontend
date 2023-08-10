@@ -1,7 +1,5 @@
-//This is router file
-
+//This is router file for example
 import MyMain from "@/pages/MyMain";
-
 import {createRouter, createWebHistory} from "vue-router";
 import Wheel from "@/pages/Games/WhEel.vue";
 import Wheel2 from "@/pages/Games/WhEel2.vue";
@@ -13,13 +11,6 @@ import login from "@/pages/auth/LoginView";
 import register from "@/pages/auth/RegisterView";
 import ChAt from "@/pages/Chats/ChAt.vue";
 import store from "@/store/index.js";
-
-
-
-
-
-
-
 const routes = [
     {
         path: '/',
@@ -59,7 +50,7 @@ const routes = [
         path: '/chat',
         name: 'Chat',
         component: ChAt,
-        meta: { requiresAuth: true }
+     
       },
 
     {
@@ -83,14 +74,10 @@ const routes = [
     
 ]
 
-
-
-
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
-
 router.beforeEach((to, from, next) => {
     const isAuthenticated = store.getters.isAuthenticated;
     if (to.meta.requiresAuth && !isAuthenticated) {
@@ -99,8 +86,6 @@ router.beforeEach((to, from, next) => {
       next();
     }
   });
-
-
 export default router;
 
 

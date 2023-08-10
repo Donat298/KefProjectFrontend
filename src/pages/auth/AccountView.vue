@@ -46,7 +46,7 @@
     <div  style="color: #ffffff;   ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
-    <img style="width: 25px; max-height: 25px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
+    <img style="width: 22px; max-height: 25px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>
     </div >
     </v-card>
@@ -98,7 +98,7 @@
     <div  style="color: #ffffff;   ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
-    <img style="width: 20px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
+    <img style="width: 22px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>    
     </div >
     </v-card>

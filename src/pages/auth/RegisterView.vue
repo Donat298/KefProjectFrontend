@@ -105,6 +105,17 @@
     REG
     </v-btn>
   </v-form>
+  <v-card-text class="text-center text-white" style="max-width: 192px; margin: auto; 
+                    margin-top: 20px; padding: 0px;" >Already registered? 
+                        <a
+                            class="text-white "
+                            href="/auth/login"
+                            
+                            
+                            
+                        >
+                            Login</a>
+                    </v-card-text>
   
   </v-card>
       </div>

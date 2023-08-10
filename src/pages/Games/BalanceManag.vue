@@ -1,3 +1,5 @@
+Thanks, can you now do exactly the same for this component?
+So that when you click on any button, it will redirect you to the registration page.
 <template>
   
   <v-card  title="Balance control panel" color="#25384a" elevation="0" class="mx-auto"
@@ -64,6 +66,7 @@
 <script>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'; // Import useRouter
 import { useApiPrivate } from '../../utils/useApi';
 
 export default {
@@ -72,9 +75,22 @@ export default {
     const axiosPrivateInstance = useApiPrivate(store);
     const balanceInput = ref(store.getters.userDetail.balance); 
     const errorMsg = ref(''); 
+    const router = useRouter(); // Get router instance
     const userId = ref(store.getters.userDetail._id); 
 
+    const checkAuthentication = () => {
+      // Check if the user is authenticated
+      if (!store.getters.isAuthenticated) {
+        // If not authenticated, redirect to the register page
+        router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
+        return false;
+      }
+      return true;
+    };
+
     const updateBalance = async (endpoint) => {
+      if (!checkAuthentication()) return;
+
       try {
         const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
         console.log(response.data); 
@@ -85,12 +101,14 @@ export default {
       }
     };
 
-    const doubleBalance = () => updateBalance('/users/double-balance');
-    const splitBalance = () => updateBalance('/users/split-balance');
-    const setBalanceZero = () => updateBalance('/users/set-zero');
-    const increaseBalanceByHundred = () => updateBalance('/users/increase-hundred');
+    const doubleBalance = () => { if (checkAuthentication()) updateBalance('/users/double-balance'); }
+    const splitBalance = () => { if (checkAuthentication()) updateBalance('/users/split-balance'); }
+    const setBalanceZero = () => { if (checkAuthentication()) updateBalance('/users/set-zero'); }
+    const increaseBalanceByHundred = () => { if (checkAuthentication()) updateBalance('/users/increase-hundred'); }
 
     const setBalance = async () => {
+      if (!checkAuthentication()) return;
+      
       try {
         const response = await axiosPrivateInstance.put('/users/set-balance', {
           userId: userId.value,

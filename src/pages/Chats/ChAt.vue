@@ -1,16 +1,12 @@
 
+//ChAt.vue
 <template>
-
-
 <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
     <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: rgb(21, 33, 44); align-items: center;" class="chat-messages">
         <div ref="messagesContainer" style="max-width: 90%; width: 800px; overflow-y: auto;">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
   <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
-  
-   
-
     <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
       <div class="sender">{{ message.username }}</div>
       <div class="text">{{ message.MessageText }}</div>
@@ -21,7 +17,6 @@
       </v-card-text>
     </v-card>
 </v-row>
-
   <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
       height="100"
       v-model="value"
@@ -29,7 +24,7 @@
       elevation="0"
       grow
     >
-    <div   style="width: 800px;max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+    <div   style="width: 720px;max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
       <v-form  style="display: flex; width: 100%;   width: 842px;" ref="form" @submit.prevent="sendMessage">
         <v-textarea  class="mr-0 pl-0"  
           variant="solo"
@@ -49,13 +44,10 @@
       </v-form>
     </div>
   </v-bottom-navigation>
-
 </template>
-
 <script>
 import io from 'socket.io-client';
 import { axiosInstance} from "../../utils/axios";
-
 export default {
   name: 'App',
   data() {
@@ -63,60 +55,76 @@ export default {
       socket: null,
       messages: [],
       newMessage: '',
-      user: '',
+      user: '',  
       value: null,
-      
     };
   },
   methods: {
     sendMessage() {
-      if (!this.newMessage) return;
+      // Check if the user is authenticated
+      if (!this.$store.getters.isAuthenticated) {
+        // If not authenticated, redirect to the register page
+        this.$router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
+        return;
+      }
 
-      // Sending message and username to server
+      // If authenticated, proceed to send the message
+      if (!this.newMessage || !this.user) return;
+
       this.socket.emit('chat message', {
-        sender: this.$store.getters.userDetail.username,
+        sender: this.user,  
         MessageText: this.newMessage
       });
 
       this.newMessage = '';
     },
     scrollToBottom() {
-  this.$nextTick(() => {
-    const container = this.$refs.messagesContainer;
-    if (container) {
-      container.scrollTop = container.scrollHeight;
+      this.$nextTick(() => {
+        const container = this.$refs.messagesContainer;
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      });
+    },
+    removeMessageById(messageId) {
+      this.messages = this.messages.filter(msg => msg._id !== messageId);
     }
-  });
-},
-
   },
   created() {
-    this.user = this.$store.getters.userDetail.username;
-    console.log("Current user: ", this.user); // log the current user
+    // The username might be empty if the user is unauthorized
+    this.user = this.$store.getters.userDetail ? this.$store.getters.userDetail.username : '';
 
-    // connect to the socket
     console.log("connecting to socket...");
     this.socket = io(axiosInstance.defaults.baseURL, { path: '/chat', query: 'token=' + this.$store.getters.accessToken });
     console.log("Socket.IO base URL %s", axiosInstance.defaults.baseURL);
-//    this.socket = io('https://kef.onrender.com', { path: '/chat' });
     console.log("connected to socket...");
 
     // Listen for 'all chat messages' event from the server
     this.socket.on('all chat messages', (msgs) => {
       console.log("getting chat messages from socket...");
       msgs.forEach(msg => this.messages.push(msg));
+      this.scrollToBottom();
     });
-
     // Listen for 'new chat message' event from the server
     this.socket.on('new chat message', (msg) => {
       console.log("Received new chat message...");
       this.messages.push(msg);
       this.scrollToBottom();
     });
-    
+    // Listen for 'remove chat message' event from the server
+    this.socket.on('remove chat message', (messageId) => {
+      console.log("Received instruction to remove chat message with ID: ", messageId);
+      this.removeMessageById(messageId);
+    });
+    this.socket.on('remove chat message', (msgId) => {
+  this.messages = this.messages.filter(msg => msg._id !== msgId);
+}); 
   },
 };
 </script>
+These are 2 files, one is on the back end and 2 is on the client. You can do this and change the code so that when the user,
+ even if he is not authorized, he can still see the messages. Please write out the changed code, in full without skipping.
+
 
 <style scoped>
 .bubble {
@@ -216,15 +224,5 @@ export default {
     flex: 1 1 auto;
      margin: 0px !important;  
 }
-div[ref="messagesContainer"] {
-  direction: rtl;
-  width: 100%;
-  /* Other styles */
-}
 
-div[ref="messagesContainer"] > div {
-  direction: ltr;
-}
 </style>
-Is it possible to make sure that the functionality remains, but the scroll bar is to the right of the screen,
- that is, as far as possible to the right in any situation.

@@ -6,7 +6,7 @@
       :rail="rail"
       v-model="drawer"
       elevation="0"
-      rail-width="80"
+      rail-width="76"
       width="240"
     >
       <NavigationHeader v-if="!rail"/>
@@ -40,10 +40,13 @@
         <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
           <v-card class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
-    <div  style="color: #ffffff;  height: 25px; display: flex; align-items: center;">
+    <h4  style="color: #ffffff;   text-align: center;">
       {{ $store.getters.userDetail.balance }} 
-    </div>
-    <img style="display: flex; align-items: center; width: 25px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
+    
+    </h4>
+    <img style="display: flex; align-items: center; 
+    width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
+ 
   </v-card>
 
 <v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px;

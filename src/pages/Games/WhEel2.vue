@@ -1,5 +1,6 @@
+Can you now do the same for just this component?
+When Pressing the button when not logged in, it redirects to the registration page again.
 <template>
- 
  <div style=" margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
     <div class="text-center" style="height: 70px; display: flex; align-items: center;
      justify-content: center; background-color: rgba(4, 3, 3, 0);">
@@ -18,23 +19,19 @@
         </div>
       </div>
     </div>
-
   <v-card title="Place your bet!" color="#25384a" elevation="0" width="1200" class="bet-card mx-auto">
     <div class="bet-form">
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
-        <v-text-field 
-         
+        <v-text-field       
           :disabled="isProcessing" 
           type="number" 
           class="pl-5" 
           v-model="betInput"
-          variant="solo"
-        
+          variant="solo"       
           bg-color="secondary" 
           label="Your bet"
           single-line
           hide-details>
-       
         </v-text-field>
         <div class="d-flex align-center">
           <v-btn 
@@ -57,8 +54,10 @@
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'; 
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'; // Import useRouter
 import { useApiPrivate } from '../../utils/useApi';
 import GameAlert from './GameAlert.vue';
+
 export default {
   components: {
     GameAlert
@@ -71,12 +70,20 @@ export default {
     const errorMsg = ref('');    
     const showAlert = ref(true);
     const isProcessing = ref(false);
+    const message = ref('');
+    const router = useRouter(); // Setup the router instance
+  
     const tempBalance = computed(() => {
       return isProcessing.value ? store.getters.userDetail.balance - betInput.value : store.getters.userDetail.balance;
     });
     const wheelStyle = ref(''); // Add this new ref
     const placeBet = async () => {
   errorMsg.value = '';
+  if (!store.getters.isAuthenticated) {
+        // If not authenticated, redirect to the register page
+        router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
+        return;
+      }
   if (betInput.value < 0) {
     errorMsg.value = 'The bet cannot be less than zero.';
     return;
@@ -87,7 +94,6 @@ export default {
   }
   isProcessing.value = true;
   showAlert.value = false; // Hide the alert
-
   // Reset the wheel to the original position instantly
   wheelStyle.value = `transform: rotate(0deg); transition: none;`;
 
@@ -104,10 +110,8 @@ export default {
       } else {
         rotation = baseRotation + 3600 + 180; // This will also cause the wheel to spin 10 times, but will land in the "lose" area
       }
-
       // Apply the transition and start spinning
       wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
-
       setTimeout(() => {  
         gameResult.value = {
           won: response.data.message === 'You won!',
@@ -124,24 +128,17 @@ export default {
         errorMsg.value = "An unknown error occurred.";
       }
       isProcessing.value = false;
-      showAlert.value = true; // Show the alert immediately if an error occurred
+      showAlert.value = true; 
     }
-  }, 0); // This timeout is for letting the reset operation take effect before starting the new spin
-};
-
-
-    /* 
-    I decided to return to this option.
-     The only thing I want to ask is whether it is possible to make this animation with some kind of exponential deceleration,
-     that is, the slower the wheel starts spinning, the slower it starts to slow down.
-    */
+  }, 0); 
+}; 
     const enterListener = (event) => {
       if (event.key === 'Enter') {
         if (isProcessing.value) {
-          // if a bet is being processed, don't place a new bet
+         
           return;
         }
-        // if no bet is being processed, place a new bet
+  
         placeBet();
       }
     };
@@ -160,11 +157,18 @@ export default {
       tempBalance,
       showAlert,
       wheelStyle,
-
+      message,
     };
   },
 };
 </script>
+
+<!--
+Try again to make it so that if the request cannot be made, then the user is automatically redirected to this page.
+/auth/login
+
+-->
+
 <style scoped>
 .balance-card {
   height: 70px;
