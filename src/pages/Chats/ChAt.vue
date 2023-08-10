@@ -3,12 +3,12 @@
 
 
 <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
-    <v-card  elevation="0" class="chat-container " style="height: 100%; display: flex; justify-content: center;">
-      <v-card-text style="background-color: rgb(21, 33, 44);  align-items: center;" class="chat-messages" ref="messagesContainer">
-        <div style="max-width: 100%; width: 800px;  ">
+    <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; display: flex; justify-content: center;">
+      <v-card-text style="background-color: rgb(21, 33, 44); align-items: center;" class="chat-messages">
+        <div ref="messagesContainer" style="max-width: 100%; width: 800px; overflow-y: auto;">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
   <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
-    <!-- Add these debug lines -->
+  
    
 
     <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
@@ -29,9 +29,9 @@
       elevation="0"
       grow
     >
-    <div   style="width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+    <div   style="width: 800px;max-width: 100%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
       <v-form  style="display: flex; width: 100%;   max-width:842px; width: 842px;" ref="form" @submit.prevent="sendMessage">
-        <v-textarea  class="mr-5 pl-5"  
+        <v-textarea  class="mr-0 pl-0"  
           variant="solo"
           single-line
           hide-details
@@ -79,7 +79,16 @@ export default {
       });
 
       this.newMessage = '';
+    },
+    scrollToBottom() {
+  this.$nextTick(() => {
+    const container = this.$refs.messagesContainer;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
     }
+  });
+},
+
   },
   created() {
     this.user = this.$store.getters.userDetail.username;
@@ -102,6 +111,7 @@ export default {
     this.socket.on('new chat message', (msg) => {
       console.log("Received new chat message...");
       this.messages.push(msg);
+      this.scrollToBottom();
     });
     
   },
@@ -156,6 +166,7 @@ export default {
 .v-card-text {
   display: flex;
   flex-direction: column;
+  padding: 0rem;
 }
 .v-card-actions {
   margin-top: auto;
@@ -165,19 +176,22 @@ export default {
   overflow-y: auto;
   flex: 1 1 auto;
   background-color: rgb(21, 33, 44);
+
+
 }
 .chat-container {
   background-color: rgb(21, 33, 44);
   color: white;
-  width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   max-height: 100vh;
   overflow: auto;
+
 }
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 0px;
   
   
 }
@@ -202,4 +216,15 @@ export default {
     flex: 1 1 auto;
      margin: 0px !important;  
 }
+div[ref="messagesContainer"] {
+  direction: rtl;
+  width: 100%;
+  /* Other styles */
+}
+
+div[ref="messagesContainer"] > div {
+  direction: ltr;
+}
 </style>
+Is it possible to make sure that the functionality remains, but the scroll bar is to the right of the screen,
+ that is, as far as possible to the right in any situation.
