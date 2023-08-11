@@ -51,7 +51,8 @@ width: 22px; max-height: 25px; margin-left: 10px;" :src="selectedCurrencyImage" 
  
   </v-card>
 
-<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" height: 48px;   border-radius: 0px 5px 5px 0px;
+<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
+height: 48px;   border-radius: 0px 5px 5px 0px;
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
 </v-btn>
@@ -60,34 +61,83 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
  
 </template>
          
-                <v-list
-                style=" 
-                    visibility: visible;
-                    opacity: 1;
-                    
-                    background-color: #273d53;
-                    color: #ffffff;
-                    
-                    margin-top: 65px;
-                    min-width: 100px;">
-                <v-list-item @click="selectCurrency('balance', '../assets/Cryptologos/tether-usdt-logo.svg')">
-    <div style="display: flex;">
-        {{ $store.getters.userDetail.balance }}
-        <img style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
-    </div>
-</v-list-item>
-                   
-<v-list-item @click="selectCurrency('balanceeur', '../assets/Cryptologos/euro-logo.svg')">
+<v-list
+  style=" 
+    visibility: visible;
+    opacity: 1;
+    background-color: #273d53;
+    color: #ffffff;
+    margin-top: 65px;
+    min-width: 100px;
+    " 
+>
 
-    <div style="display: flex;">
-        {{ $store.getters.userDetail.balanceeur }}
-        <img style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/euro-logo.svg')" />
+  <v-list-item @click="selectCurrency('balanceeur', '../assets/Cryptologos/euro-logo.svg')" style="height: 40px; align-items: center;">
+    <div style="display: flex; justify-content: flex-end; align-items: center;">
+      {{ $store.getters.userDetail.balanceeur }}
+      <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+        <img 
+          style="display: flex; align-items: center; 
+          width: 22px; max-height: 25px; margin-left: 10px;" 
+          :src="require('../assets/Cryptologos/euro-logo.svg')" 
+        />
+        <div class="ml-2" style="min-width: 60px; ">
+          EUR
+        </div>
+      </div>
     </div>
-</v-list-item>
-               
-                </v-list>
+  </v-list-item>
+
+  <v-list-item @click="selectCurrency('balancebtc', '../assets/Cryptologos/Currency=btc.svg')" style="height: 40px; align-items: center;">
+    <div style="display: flex; justify-content: flex-end; align-items: center;">
+      {{ $store.getters.userDetail.balancebtc }}
+      <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+        <img 
+          style="display: flex; align-items: center; 
+          width: 22px; max-height: 25px; margin-left: 10px;" 
+          :src="require('../assets/Cryptologos/Currency=btc.svg')" 
+        />
+        <div class="ml-2" style="min-width: 60px; ">
+          BTC
+        </div>
+      </div>
+    </div>
+  </v-list-item>
+
+  <v-list-item @click="selectCurrency('balance', '../assets/Cryptologos/tether-usdt-logo.svg')" style="height: 40px;
+   align-items: center;">
+    <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
+      {{ $store.getters.userDetail.balance }}
+      <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+        <img 
+          style="display: flex; align-items: center; 
+          width: 22px; max-height: 25px; margin-left: 10px;" 
+          :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" 
+        />
+        <div class="ml-2" style="min-width: 60px; ">
+          USDT
+        </div>
+      </div>
+    </div>
+  </v-list-item>
+
+  <v-list-item @click="selectCurrency('balanceeth', '../assets/Cryptologos/Currency=Ethereum.svg')" style="height: 40px;
+   align-items: center;">
+    <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
+      {{ $store.getters.userDetail.balanceeth }}
+      <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+        <img 
+          style="display: flex; align-items: center; 
+          width: 22px; max-height: 25px; margin-left: 10px;" 
+          :src="require('../assets/Cryptologos/Currency=Ethereum.svg')" 
+        />
+        <div class="ml-2" style="min-width: 60px; ">
+          ETH
+        </div>
+      </div>
+    </div>
+  </v-list-item>
+</v-list>
 
             </v-menu>
             
@@ -114,10 +164,10 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
                   
                   margin-top: 65px;
                   min-width: 100px;">
-              <v-list-item @click="$emit('ShowAccountOknoo')"
+              <v-list-item style="height: 40px;" @click="$emit('ShowAccountOknoo')"
                   >Account</v-list-item>
                  
-              <v-list-item @click="logout()"
+              <v-list-item style="height: 40px;" @click="logout()"
               >Logout</v-list-item>
              
               </v-list>
@@ -141,6 +191,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 <script>
 import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '../components/NavBBar2/NavigationList.vue';
+
 export default {
   components: { NavigationHeader, NavigationList },
   data() {
@@ -149,8 +200,8 @@ export default {
       rail: false,
       showRbsb: window.innerWidth >= 1280,
       windowWidth: 0,
-      selectedCurrency: 'balance', // default
-        selectedCurrencyImage: require('../assets/Cryptologos/tether-usdt-logo.svg')
+      selectedCurrency: localStorage.getItem('selectedCurrency') || 'balanceeur', // Get from localStorage or use default
+      selectedCurrencyImage: localStorage.getItem('selectedCurrencyImage') || require('../assets/Cryptologos/euro-logo.svg')
     };
   },
   created() {
@@ -168,17 +219,26 @@ beforeDestroy() {
 },
   methods: {
     selectCurrency(currencyKey, currencyImagePath) {
-    this.selectedCurrency = currencyKey;
-    switch (currencyImagePath) {
+      this.selectedCurrency = currencyKey;
+      switch (currencyImagePath) {
         case '../assets/Cryptologos/tether-usdt-logo.svg':
             this.selectedCurrencyImage = require('../assets/Cryptologos/tether-usdt-logo.svg');
             break;
         case '../assets/Cryptologos/euro-logo.svg':
             this.selectedCurrencyImage = require('../assets/Cryptologos/euro-logo.svg');
             break;
+        case '../assets/Cryptologos/Currency=btc.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=btc.svg');
+            break;
+        case '../assets/Cryptologos/Currency=Ethereum.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=Ethereum.svg');
+            break;
+            
         // ... other cases
     }
-},
+    localStorage.setItem('selectedCurrency', this.selectedCurrency);
+      localStorage.setItem('selectedCurrencyImage', this.selectedCurrencyImage);
+    },
 
     logout() {
       this.$store.dispatch("logout");
@@ -198,6 +258,8 @@ beforeDestroy() {
   
 };
 </script>
+Can you make it so that when choosing a currency, this currency was saved and when the page was loaded,
+ the choice was the same as it was made?
 <style>
 .left-rounded {
   border-radius: 5px 0px 0px 5px !important;
@@ -241,6 +303,11 @@ beforeDestroy() {
     flex-wrap: wrap;
     flex: 1 1 auto;
      margin: 0px !important; 
+}
+.v-list-item--density-default.v-list-item--one-line {
+    min-height: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 </style>
 
