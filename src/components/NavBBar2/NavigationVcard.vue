@@ -6,7 +6,7 @@
      
    >
      <v-expansion-panel  style="background-color: #25384a; color: rgb(255, 255, 255);">
-       <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home"  class=" pl-4" style="color: #ffffff;  " 
+       <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home"  style="color: #ffffff; font-size: 16px; padding-left: 14px; " 
            >Main</v-list-item>
            
        </v-expansion-panel-title>

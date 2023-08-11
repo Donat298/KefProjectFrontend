@@ -9,7 +9,7 @@
        
   
        <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
-         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-cards"  class=" pl-4" style="color: #ffffff;  " 
+         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-cards"   style="color: #ffffff; font-size: 16px; padding-left: 14px; " 
              >Games</v-list-item>
          </v-expansion-panel-title>
          <v-expansion-panel-text>

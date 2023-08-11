@@ -41,6 +41,11 @@ export default createStore({
             // Also update it in local storage
             localStorage.setItem('user', JSON.stringify(state.user));
           },
+          setUserBalanceeur(state, newBalanceeur) {
+            state.user.balanceeur = newBalanceeur;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
           // Your other mutations...
     },
    

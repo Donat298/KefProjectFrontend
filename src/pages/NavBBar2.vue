@@ -6,11 +6,13 @@
       :rail="rail"
       v-model="drawer"
       elevation="0"
-      rail-width="76"
+      rail-width="74"
       width="240"
     >
       <NavigationHeader v-if="!rail"/>
       <NavigationList/>
+    
+  
     </v-navigation-drawer>
         <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;">
                 
@@ -29,23 +31,23 @@
                       @click="drawer = true; rail = false"><fa icon="fas fa-angle-double-right" /></button>
                     </div>
             
-                    
+                    <div style="max-width: 1250px; width: 1250px;   max-height: 64px; 
+     margin: 0 auto; justify-content: center; align-items: center; display:flex;">        
             <v-menu location="center"  transition="slide-y-transition">
             
               <template v-slot:activator="{ props }">
-                <div style="max-width: 1250px; width: 1250px;   max-height: 64px; 
-     margin: 0 auto; justify-content: center; align-items: center; display:flex;">
+              
      
         
         <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
-          <v-card class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
+          <v-card v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
-    <h4  style="color: #ffffff;   text-align: center;">
-      {{ $store.getters.userDetail.balance }} 
-    
-    </h4>
-    <img style="display: flex; align-items: center; 
-    width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
+    <h4 style="color: #ffffff; font-size: 16px; text-align: center;">
+    {{ $store.getters.userDetail[selectedCurrency] }}
+</h4>
+
+<img style="display: flex; align-items: center; 
+width: 22px; max-height: 25px; margin-left: 10px;" :src="selectedCurrencyImage" />
  
   </v-card>
 
@@ -53,27 +55,11 @@
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
 </v-btn>
-        
-        </div>
-
-           
-                <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px; ">
-                    <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
-                    <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
-                </div>
-                <div v-else style="height: 64px;  width: 64px; padding: 8px; margin-left: auto;">
-  <v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>
+          
 </div>
-
-            
-       
-              </div>
-  
+ 
 </template>
-
-
-
-           
+         
                 <v-list
                 style=" 
                     visibility: visible;
@@ -84,15 +70,60 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
                     
                     margin-top: 65px;
                     min-width: 100px;">
-                <v-list-item @click="$emit('ShowAccountOknoo')"
-                    >Account</v-list-item>
+                <v-list-item @click="selectCurrency('balance', '../assets/Cryptologos/tether-usdt-logo.svg')">
+    <div style="display: flex;">
+        {{ $store.getters.userDetail.balance }}
+        <img style="display: flex; align-items: center; 
+        width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" />
+    </div>
+</v-list-item>
                    
-                <v-list-item @click="logout()"
-                >Logout</v-list-item>
+<v-list-item @click="selectCurrency('balanceeur', '../assets/Cryptologos/euro-logo.svg')">
+
+    <div style="display: flex;">
+        {{ $store.getters.userDetail.balanceeur }}
+        <img style="display: flex; align-items: center; 
+        width: 22px; max-height: 25px; margin-left: 10px;" :src="require('../assets/Cryptologos/euro-logo.svg')" />
+    </div>
+</v-list-item>
                
                 </v-list>
 
             </v-menu>
+            
+            <v-menu location="center"  transition="slide-y-transition">
+            
+            <template v-slot:activator="{ props, props2 }">
+       
+              <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px; ">
+                  <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
+                  <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
+              </div>
+              <div v-else style="height: 64px;  width: 64px; padding: 8px; margin-left: auto;">
+<v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>
+</div>
+</template>
+      
+              <v-list
+              style=" 
+                  visibility: visible;
+                  opacity: 1;
+                  
+                  background-color: #273d53;
+                  color: #ffffff;
+                  
+                  margin-top: 65px;
+                  min-width: 100px;">
+              <v-list-item @click="$emit('ShowAccountOknoo')"
+                  >Account</v-list-item>
+                 
+              <v-list-item @click="logout()"
+              >Logout</v-list-item>
+             
+              </v-list>
+
+          </v-menu>
+          </div>
         </v-app-bar>
         <v-main>
         <div style="
@@ -106,6 +137,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
       </v-main>  
     </v-layout>
 </template>
+
 <script>
 import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '../components/NavBBar2/NavigationList.vue';
@@ -116,7 +148,9 @@ export default {
       drawer: null,
       rail: false,
       showRbsb: window.innerWidth >= 1280,
-      windowWidth: 0
+      windowWidth: 0,
+      selectedCurrency: 'balance', // default
+        selectedCurrencyImage: require('../assets/Cryptologos/tether-usdt-logo.svg')
     };
   },
   created() {
@@ -133,6 +167,19 @@ beforeDestroy() {
   window.removeEventListener('resize', this.handleResize);
 },
   methods: {
+    selectCurrency(currencyKey, currencyImagePath) {
+    this.selectedCurrency = currencyKey;
+    switch (currencyImagePath) {
+        case '../assets/Cryptologos/tether-usdt-logo.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/tether-usdt-logo.svg');
+            break;
+        case '../assets/Cryptologos/euro-logo.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/euro-logo.svg');
+            break;
+        // ... other cases
+    }
+},
+
     logout() {
       this.$store.dispatch("logout");
     },

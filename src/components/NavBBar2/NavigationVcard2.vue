@@ -8,7 +8,8 @@
    
   
        <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
-         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple" class=" pl-4" style="color: #ffffff;  " 
+         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple"  style="color: #ffffff; 
+         font-size: 16px;  padding-left: 14px;" 
              >Tests</v-list-item>
          </v-expansion-panel-title>
          <v-expansion-panel-text>
