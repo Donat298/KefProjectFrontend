@@ -1,0 +1,244 @@
+/*
+//NavBBar2.vue
+<script>
+
+
+export default {
+  components: {  },
+  data() {
+    return {
+      selectedCurrency: localStorage.getItem('selectedCurrency') || 'balanceeur', // Get from localStorage or use default
+      selectedCurrencyImage: localStorage.getItem('selectedCurrencyImage') || require('../assets/Cryptologos/euro-logo.svg')
+    };
+  },  
+beforeDestroy() {
+  window.removeEventListener('resize', this.handleResize);
+},
+  methods: {
+    selectCurrency(currencyKey, currencyImagePath) {
+      this.selectedCurrency = currencyKey;
+      switch (currencyImagePath) {
+        case '../assets/Cryptologos/tether-usdt-logo.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/tether-usdt-logo.svg');
+            break;
+        case '../assets/Cryptologos/euro-logo.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/euro-logo.svg');
+            break;
+        case '../assets/Cryptologos/Currency=btc.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=btc.svg');
+            break;
+        case '../assets/Cryptologos/Currency=Ethereum.svg':
+            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=Ethereum.svg');
+            break; 
+    }
+    localStorage.setItem('selectedCurrency', this.selectedCurrency);
+      localStorage.setItem('selectedCurrencyImage', this.selectedCurrencyImage);
+    },  
+  },
+  computed: {
+}
+  
+};
+</script>
+
+//vuex store index.js
+//here is my store
+import { createStore } from "vuex";
+import { useApi, useApiPrivate } from "../utils/useApi"
+
+
+
+export default createStore({
+    state: () => {
+        return {           
+        }
+    },
+    getters: {
+        
+    },
+    mutations: {  
+        setUserBalance(state, newBalance) {
+            state.user.balance = newBalance;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
+          setUserBalanceeur(state, newBalanceeur) {
+            state.user.balanceeur = newBalanceeur;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
+          setUserBalancebtc(state, newBalancebtc) {
+            state.user.balancebtc = newBalancebtc;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
+          setUserBalanceeth(state, newBalanceeth) {
+            state.user.balanceeth = newBalanceeth;
+            // Also update it in local storage
+            localStorage.setItem('user', JSON.stringify(state.user));
+          },
+    },  
+    actions: {      
+    },
+    modules: {
+    }
+})
+
+//BalanceManag.vue 
+<script>
+import { ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router'; 
+import { useApiPrivate } from '../../utils/useApi';
+
+export default {
+  setup() {
+    const store = useStore();
+    const axiosPrivateInstance = useApiPrivate(store);
+    const balanceInput = ref(store.getters.userDetail.balanceeur); 
+    const errorMsg = ref(''); 
+    const router = useRouter(); 
+    const userId = ref(store.getters.userDetail._id); 
+
+    const checkAuthentication = () => {
+   
+      if (!store.getters.isAuthenticated) {
+   
+        router.push('/auth/register'); 
+        return false;
+      }
+      return true;
+    };
+
+    const updateBalance = async (endpoint) => {
+      if (!checkAuthentication()) return;
+
+      try {
+        const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
+        console.log(response.data); 
+        store.commit('setUserBalanceeur', response.data.balanceeur);
+        errorMsg.value = '';
+      } catch (error) {
+        errorMsg.value = error.response.data.message;
+      }
+    };
+
+    const doubleBalance = () => { if (checkAuthentication()) updateBalance('/users/double-balance'); }
+    const splitBalance = () => { if (checkAuthentication()) updateBalance('/users/split-balance'); }
+    const setBalanceZero = () => { if (checkAuthentication()) updateBalance('/users/set-zero'); }
+    const increaseBalanceByHundred = () => { if (checkAuthentication()) updateBalance('/users/increase-hundred'); }
+
+    const setBalance = async () => {
+      if (!checkAuthentication()) return;
+      
+      try {
+        const response = await axiosPrivateInstance.put('/users/set-balance', {
+          userId: userId.value,
+          newBalance: balanceInput.value 
+        });
+        errorMsg.value = '';
+        store.commit('setUserBalanceeur', response.data.balanceeur);
+      } catch (error) {
+        errorMsg.value = error.response.data.message;
+      }
+    };
+    
+    return {
+      doubleBalance,
+      splitBalance,
+      setBalanceZero,
+      increaseBalanceByHundred,
+      setBalance, 
+      balanceInput,
+      errorMsg 
+    };
+  },
+};
+</script>
+From here I make a request to the server and I need the request to specify Currency.
+So that the backend can update exactly the currency that is selected in NavBBar2.vue.
+//balanceController.js (backend)
+const express = require('express');
+const router = express.Router();
+const User = require('../models/User');
+const verifyToken = require('../middleware/verifyToken');
+
+const balanceModifiers = {
+  'double-balance': balanceeur => balanceeur * 2,
+  'split-balance': balanceeur => balanceeur / 2,
+  'set-zero': () => 0,
+  'increase-hundred': balanceeur => balanceeur + 100,
+  'set-balance': (_, balanceValue) => balanceValue
+};
+
+router.put('/:operation', verifyToken, async (req, res) => {
+  const { operation } = req.params;
+  const { userId, newBalance } = req.body;
+
+  if (!userId || !req.user || userId !== req.user.id) {
+    return res.status(403).json({ message: "Forbidden: You can only update your own balance" });
+  }
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  const modifyFunc = balanceModifiers[operation];
+
+  if (!modifyFunc) {
+    return res.status(400).json({ message: "Invalid operation" });
+  }
+
+  const updatedBalance = modifyFunc(user.balanceeur, newBalance);
+
+  if (isNaN(updatedBalance) || updatedBalance < 0) {
+    return res.status(400).json({ message: "Invalid balance" });
+  }
+
+  if (updatedBalance > 10000000) {
+    return res.status(400).json({ message: "Balance cannot exceed 10 million" });
+  }
+
+  user.balanceeur = updatedBalance;
+
+  try {
+    await user.save();
+    return res.json({ balanceeur: user.balanceeur });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "An error occurred while updating the balance" });
+  }
+});
+
+module.exports = router;
+
+Can you change these codes so that when I select a specific currency in NavBBar2,
+ BalanceManag.vue sends a request with that currency, and the backend updates that currency?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

@@ -1,5 +1,4 @@
-Thanks, can you now do exactly the same for this component?
-So that when you click on any button, it will redirect you to the registration page.
+
 <template>
   
   <v-card  title="Balance control panel" color="#25384a" elevation="0" class="mx-auto"
@@ -60,29 +59,33 @@ So that when you click on any button, it will redirect you to the registration p
   >{{ errorMsg }}</div>
 </div>
 
+
+
 </template>
 
-
+<!-- 
+  //BalanceManag.vue script
+-->
 <script>
 import { ref } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router'; // Import useRouter
+import { useRouter } from 'vue-router'; 
 import { useApiPrivate } from '../../utils/useApi';
 
 export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const balanceInput = ref(store.getters.userDetail.balance); 
+    const balanceInput = ref(store.getters.userDetail.balanceeur); 
     const errorMsg = ref(''); 
-    const router = useRouter(); // Get router instance
+    const router = useRouter(); 
     const userId = ref(store.getters.userDetail._id); 
 
     const checkAuthentication = () => {
-      // Check if the user is authenticated
+   
       if (!store.getters.isAuthenticated) {
-        // If not authenticated, redirect to the register page
-        router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
+   
+        router.push('/auth/register'); 
         return false;
       }
       return true;
@@ -94,7 +97,7 @@ export default {
       try {
         const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
         console.log(response.data); 
-        store.commit('setUserBalance', response.data.balance);
+        store.commit('setUserBalanceeur', response.data.balanceeur);
         errorMsg.value = '';
       } catch (error) {
         errorMsg.value = error.response.data.message;
@@ -115,12 +118,12 @@ export default {
           newBalance: balanceInput.value 
         });
         errorMsg.value = '';
-        store.commit('setUserBalance', response.data.balance);
+        store.commit('setUserBalanceeur', response.data.balanceeur);
       } catch (error) {
         errorMsg.value = error.response.data.message;
       }
     };
-
+    
     return {
       doubleBalance,
       splitBalance,
@@ -133,7 +136,6 @@ export default {
   },
 };
 </script>
-
 
 <style>
 </style>

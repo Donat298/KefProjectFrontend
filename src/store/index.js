@@ -9,7 +9,8 @@ export default createStore({
         return {
             user: JSON.parse(localStorage.getItem('user')) || {}, 
             accessToken: localStorage.getItem('accessToken') || "", 
-            sessionChecked: false
+            sessionChecked: false,
+            
         }
     },
     getters: {
@@ -56,7 +57,7 @@ export default createStore({
             // Also update it in local storage
             localStorage.setItem('user', JSON.stringify(state.user));
           },
-          // Your other mutations...
+   
     },
    
     actions: {

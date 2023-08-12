@@ -40,7 +40,7 @@
      
         
         <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
-          <v-card v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
+          <v-card :ripple="false" v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
     <h4 style="color: #ffffff; font-size: 16px; text-align: center;">
     {{ $store.getters.userDetail[selectedCurrency] }}
@@ -143,7 +143,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
             
             <v-menu location="center"  transition="slide-y-transition">
             
-            <template v-slot:activator="{ props, props2 }">
+            <template v-slot:activator="{ props}">
        
               <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px; ">
                   <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
@@ -232,9 +232,7 @@ beforeDestroy() {
             break;
         case '../assets/Cryptologos/Currency=Ethereum.svg':
             this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=Ethereum.svg');
-            break;
-            
-        // ... other cases
+            break; 
     }
     localStorage.setItem('selectedCurrency', this.selectedCurrency);
       localStorage.setItem('selectedCurrencyImage', this.selectedCurrencyImage);
@@ -253,13 +251,14 @@ beforeDestroy() {
   computed: {
   buttonLabel() {
     return this.windowWidth > 400 ? 'Wallet' : 'W';
-  }
+  },
+  
+  
 }
   
 };
 </script>
-Can you make it so that when choosing a currency, this currency was saved and when the page was loaded,
- the choice was the same as it was made?
+
 <style>
 .left-rounded {
   border-radius: 5px 0px 0px 5px !important;
