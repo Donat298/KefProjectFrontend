@@ -76,7 +76,7 @@ export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const balanceInput = ref(store.getters.userDetail.balanceeur); 
+    const balanceInput = ref(store.getters.userDetail.balance); 
     const errorMsg = ref(''); 
     const router = useRouter(); 
     const userId = ref(store.getters.userDetail._id); 
@@ -97,7 +97,7 @@ export default {
       try {
         const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
         console.log(response.data); 
-        store.commit('setUserBalanceeur', response.data.balanceeur);
+        store.commit('setUserBalance', response.data.balance);
         errorMsg.value = '';
       } catch (error) {
         errorMsg.value = error.response.data.message;
@@ -118,7 +118,7 @@ export default {
           newBalance: balanceInput.value 
         });
         errorMsg.value = '';
-        store.commit('setUserBalanceeur', response.data.balanceeur);
+        store.commit('setUserBalance', response.data.balance);
       } catch (error) {
         errorMsg.value = error.response.data.message;
       }
