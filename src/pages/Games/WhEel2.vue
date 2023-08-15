@@ -74,7 +74,7 @@ export default {
     const router = useRouter(); // Setup the router instance
   
     const tempBalance = computed(() => {
-      return isProcessing.value ? store.getters.userDetail.balance - betInput.value : store.getters.userDetail.balance;
+      return isProcessing.value ? store.getters.userDetail[store.getters.selectedCurrency] - betInput.value : store.getters.userDetail[store.getters.selectedCurrency];
     });
     const wheelStyle = ref(''); // Add this new ref
     const placeBet = async () => {
@@ -88,7 +88,7 @@ export default {
     errorMsg.value = 'The bet cannot be less than zero.';
     return;
   }
-  if (store.getters.userDetail.balance < betInput.value) {
+  if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
     errorMsg.value = 'Your balance is less than the bet amount';
     return;
   }
@@ -100,9 +100,21 @@ export default {
   // Use setTimeout to allow the changes to take effect
   setTimeout(async () => {
     try {
+      const balanceFieldsMap = {
+        'balance': 'trc', 
+        'balanceeur': 'eur',
+        'balancebtc': 'btc',
+        'balanceeth': 'eth',
+      };
+      console.log("Game! with %s", );
+      const currency = balanceFieldsMap[store.getters.selectedCurrency];
       const response = await axiosPrivateInstance.put('/games/wheel2', {
-        betAmount: betInput.value
+        betAmount: betInput.value,
+        currency: currency
       });
+
+      store.dispatch('updateBalance', {currency: currency, amount: store.getters.userDetail[store.getters.selectedCurrency] - betInput.value});
+
       let rotation = '0';
       let baseRotation = Math.random() * 180;
       if (response.data.message === 'You won!') {
@@ -117,11 +129,13 @@ export default {
           won: response.data.message === 'You won!',
           balance: response.data.balance
         };
-        store.commit('setUserBalance', response.data.balance);
+//        store.commit('setUserBalance', response.data.balance);
+        store.dispatch('updateBalance', {currency: currency, amount:response.data.balance });
         isProcessing.value = false;
         showAlert.value = true; // Show the alert again after 5 seconds
       }, 4400);
     } catch (error) {
+      console.log(error);
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg.value = error.response.data.message;
       } else {
