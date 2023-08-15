@@ -95,9 +95,22 @@ export default {
       if (!checkAuthentication()) return;
 
       try {
-        const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value });
+
+        const balanceFieldsMap = {
+        'balance': 'trc', 
+        'balanceeur': 'eur',
+        'balancebtc': 'btc',
+        'balanceeth': 'eth',
+      };
+
+      console.log("this.$store.getters.selectedCurrency=%s");
+      console.log("this.$store.getters.selectedCurrency=%s", store.getters.selectedCurrency);
+      const currency = balanceFieldsMap[store.getters.selectedCurrency];
+
+        const response = await axiosPrivateInstance.put(endpoint, { userId: userId.value, selectedCurrency: currency });
         console.log(response.data); 
-        store.commit('setUserBalance', response.data.balance);
+        store.dispatch('updateBalance', {currency: currency, amount:response.data.balance });
+//        store.commit('setUserBalance', response.data.balance);
         errorMsg.value = '';
       } catch (error) {
         errorMsg.value = error.response.data.message;

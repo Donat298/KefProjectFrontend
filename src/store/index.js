@@ -7,9 +7,10 @@ import { useApi, useApiPrivate } from "../utils/useApi"
 export default createStore({
     state: () => {
         return {
-            user: JSON.parse(localStorage.getItem('user')) || {}, 
+            user: /*JSON.parse(localStorage.getItem('user')) || */ {}, 
             accessToken: localStorage.getItem('accessToken') || "", 
             sessionChecked: false,
+            selectedCurrency: localStorage.getItem('selectedCurrency') || 'balance',
             
         }
     },
@@ -17,7 +18,8 @@ export default createStore({
         accessToken: (state) => state.accessToken,
         userDetail: (state) => state.user,
         sessionChecked: (state) => state.sessionChecked,
-        isAuthenticated: (state) => state.accessToken ? true : false
+        isAuthenticated: (state) => state.accessToken ? true : false,
+        selectedCurrency: (state) => state.selectedCurrency,
     },
     mutations: {
         setAccessToken(state, accessToken) {
@@ -33,34 +35,54 @@ export default createStore({
         },
         clearAuthData(state) {
             state.accessToken = '';
-            state.user = {};
+            state.user = {
+                balance: 0,
+                balanceeur: 0,
+                balancebtc: 0,
+                balanceeth: 0,
+            };
             localStorage.removeItem('accessToken');
             localStorage.removeItem('user');
         },
         setUserBalance(state, newBalance) {
             state.user.balance = newBalance;
-            // Also update it in local storage
-            localStorage.setItem('user', JSON.stringify(state.user));
+
           },
           setUserBalanceeur(state, newBalanceeur) {
             state.user.balanceeur = newBalanceeur;
-            // Also update it in local storage
-            localStorage.setItem('user', JSON.stringify(state.user));
+
           },
           setUserBalancebtc(state, newBalancebtc) {
             state.user.balancebtc = newBalancebtc;
-            // Also update it in local storage
-            localStorage.setItem('user', JSON.stringify(state.user));
+
           },
           setUserBalanceeth(state, newBalanceeth) {
             state.user.balanceeth = newBalanceeth;
-            // Also update it in local storage
-            localStorage.setItem('user', JSON.stringify(state.user));
+
           },
-   
+          setSelectedCurrency(state, newSelectedCurrency) {
+            state.selectedCurrency = newSelectedCurrency;
+            localStorage.setItem('selectedCurrency', newSelectedCurrency);
+          },   
     },
    
     actions: {
+        async updateBalance({ commit }, {currency, amount}) {
+            if (currency === 'eur'){
+                commit("setUserBalanceeur", amount);
+            }
+            else if (currency === 'btc'){
+                commit("setUserBalancebtc", amount);
+            }
+            else if (currency === 'eth'){
+                commit("setUserBalanceeth", amount);
+            }
+            else if (currency === 'trc'){
+                commit("setUserBalance", amount);
+            }
+        },
+
+
         async attempt({ commit, dispatch }) {
 
             setTimeout(

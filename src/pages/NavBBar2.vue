@@ -44,10 +44,12 @@
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
     <h4 style="color: #ffffff; font-size: 16px; text-align: center;">
     {{ $store.getters.userDetail[selectedCurrency] }}
+
+    
 </h4>
 
 <img style="display: flex; align-items: center; 
-width: 22px; max-height: 25px; margin-left: 10px;" :src="selectedCurrencyImage" />
+width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(selectedCurrency)" />
  
   </v-card>
 
@@ -72,14 +74,14 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
     " 
 >
 
-  <v-list-item @click="selectCurrency('balanceeur', '../assets/Cryptologos/euro-logo.svg')" style="height: 40px; align-items: center;">
+  <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;">
     <div style="display: flex; justify-content: flex-end; align-items: center;">
       {{ $store.getters.userDetail.balanceeur }}
       <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
         <img 
           style="display: flex; align-items: center; 
           width: 22px; max-height: 25px; margin-left: 10px;" 
-          :src="require('../assets/Cryptologos/euro-logo.svg')" 
+          :src="getCurrencyImagePath('balanceeur')" 
         />
         <div class="ml-2" style="min-width: 60px; ">
           EUR
@@ -88,14 +90,14 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
     </div>
   </v-list-item>
 
-  <v-list-item @click="selectCurrency('balancebtc', '../assets/Cryptologos/Currency=btc.svg')" style="height: 40px; align-items: center;">
+  <v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;">
     <div style="display: flex; justify-content: flex-end; align-items: center;">
       {{ $store.getters.userDetail.balancebtc }}
       <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
         <img 
           style="display: flex; align-items: center; 
           width: 22px; max-height: 25px; margin-left: 10px;" 
-          :src="require('../assets/Cryptologos/Currency=btc.svg')" 
+          :src="getCurrencyImagePath('balancebtc')" 
         />
         <div class="ml-2" style="min-width: 60px; ">
           BTC
@@ -104,7 +106,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
     </div>
   </v-list-item>
 
-  <v-list-item @click="selectCurrency('balance', '../assets/Cryptologos/tether-usdt-logo.svg')" style="height: 40px;
+  <v-list-item @click="selectCurrency('balance')" style="height: 40px;
    align-items: center;">
     <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
       {{ $store.getters.userDetail.balance }}
@@ -112,7 +114,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
         <img 
           style="display: flex; align-items: center; 
           width: 22px; max-height: 25px; margin-left: 10px;" 
-          :src="require('../assets/Cryptologos/tether-usdt-logo.svg')" 
+          :src="getCurrencyImagePath('balance')" 
         />
         <div class="ml-2" style="min-width: 60px; ">
           USDT
@@ -121,7 +123,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
     </div>
   </v-list-item>
 
-  <v-list-item @click="selectCurrency('balanceeth', '../assets/Cryptologos/Currency=Ethereum.svg')" style="height: 40px;
+  <v-list-item @click="selectCurrency('balanceeth')" style="height: 40px;
    align-items: center;">
     <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
       {{ $store.getters.userDetail.balanceeth }}
@@ -129,7 +131,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
         <img 
           style="display: flex; align-items: center; 
           width: 22px; max-height: 25px; margin-left: 10px;" 
-          :src="require('../assets/Cryptologos/Currency=Ethereum.svg')" 
+          :src="getCurrencyImagePath('balanceeth')" 
         />
         <div class="ml-2" style="min-width: 60px; ">
           ETH
@@ -200,8 +202,16 @@ export default {
       rail: false,
       showRbsb: window.innerWidth >= 1280,
       windowWidth: 0,
-      selectedCurrency: localStorage.getItem('selectedCurrency') || 'balanceeur', // Get from localStorage or use default
-      selectedCurrencyImage: localStorage.getItem('selectedCurrencyImage') || require('../assets/Cryptologos/euro-logo.svg')
+      selectedCurrency: this.$store.getters.selectedCurrency,
+//      selectedCurrency: localStorage.getItem('selectedCurrency') || 'balanceeur', // Get from localStorage or use default
+//      selectedCurrencyImage: localStorage.getItem('selectedCurrencyImage') || require('../assets/Cryptologos/euro-logo.svg'),
+      selectedCurrencyImages: {
+        'balance': require('../assets/Cryptologos/tether-usdt-logo.svg'),
+        'balanceeur': require('../assets/Cryptologos/euro-logo.svg'),
+        'balancebtc': require('../assets/Cryptologos/Currency=btc.svg'),
+        'balanceeth': require('../assets/Cryptologos/Currency=Ethereum.svg'),
+      },
+//      logoSrc: require('../assets/Cryptologos/euro-logo.svg')
     };
   },
   created() {
@@ -218,24 +228,14 @@ beforeDestroy() {
   window.removeEventListener('resize', this.handleResize);
 },
   methods: {
-    selectCurrency(currencyKey, currencyImagePath) {
+    selectCurrency(currencyKey) {
       this.selectedCurrency = currencyKey;
-      switch (currencyImagePath) {
-        case '../assets/Cryptologos/tether-usdt-logo.svg':
-            this.selectedCurrencyImage = require('../assets/Cryptologos/tether-usdt-logo.svg');
-            break;
-        case '../assets/Cryptologos/euro-logo.svg':
-            this.selectedCurrencyImage = require('../assets/Cryptologos/euro-logo.svg');
-            break;
-        case '../assets/Cryptologos/Currency=btc.svg':
-            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=btc.svg');
-            break;
-        case '../assets/Cryptologos/Currency=Ethereum.svg':
-            this.selectedCurrencyImage = require('../assets/Cryptologos/Currency=Ethereum.svg');
-            break; 
-    }
-    localStorage.setItem('selectedCurrency', this.selectedCurrency);
-      localStorage.setItem('selectedCurrencyImage', this.selectedCurrencyImage);
+      this.selectedCurrencyImage = this.selectedCurrencyImages[currencyKey];
+
+      this.$store.commit('setSelectedCurrency', currencyKey);
+    },
+    getCurrencyImagePath(currencyKey){
+      return this.selectedCurrencyImages[currencyKey];
     },
 
     logout() {
