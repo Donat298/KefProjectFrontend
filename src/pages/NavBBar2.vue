@@ -42,11 +42,10 @@
         <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
           <v-card :ripple="false" v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
-    <h4 style="color: #ffffff; font-size: 16px; text-align: center;">
+   <div style="color: #ffffff; font-size: 18px;  min-height: 30px; text-align: center; display: flex; align-items: center; justify-content: center;">
     {{ $store.getters.userDetail[selectedCurrency] }}
+</div>
 
-    
-</h4>
 
 <img style="display: flex; align-items: center; 
 width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(selectedCurrency)" />
