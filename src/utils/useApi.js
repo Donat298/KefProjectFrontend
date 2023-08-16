@@ -25,6 +25,7 @@ export function useApiPrivate(store)  {
         if((error?.response?.status === 403 || error?.response?.status === 401) && !prevRequest.sent){
           prevRequest.sent = true
           try {
+            console.log("Refresh from useApiPrivate");
             await store.dispatch("refresh");
             prevRequest.headers["Authorization"] = store.getters.accessToken;
             return axiosPrivateInstance(prevRequest)

@@ -76,7 +76,7 @@ export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const balanceInput = ref(store.getters.userDetail.balance); 
+    const balanceInput = ref(0); 
     const errorMsg = ref(''); 
     const router = useRouter(); 
     const userId = ref(store.getters.userDetail._id); 
@@ -123,19 +123,30 @@ export default {
     const increaseBalanceByHundred = () => { if (checkAuthentication()) updateBalance('/users/increase-hundred'); }
 
     const setBalance = async () => {
-      if (!checkAuthentication()) return;
-      
-      try {
-        const response = await axiosPrivateInstance.put('/users/set-balance', {
-          userId: userId.value,
-          newBalance: balanceInput.value 
-        });
-        errorMsg.value = '';
-        store.commit('setUserBalance', response.data.balance);
-      } catch (error) {
-        errorMsg.value = error.response.data.message;
-      }
+  if (!checkAuthentication()) return;
+  
+  try {
+    const balanceFieldsMap = {
+      'balance': 'trc', 
+      'balanceeur': 'eur',
+      'balancebtc': 'btc',
+      'balanceeth': 'eth',
     };
+
+    const currency = balanceFieldsMap[store.getters.selectedCurrency];
+
+    const response = await axiosPrivateInstance.put('/users/set-balance', {
+      userId: userId.value,
+      newBalance: balanceInput.value,
+      selectedCurrency: currency
+    });
+    errorMsg.value = '';
+    store.dispatch('updateBalance', {currency: currency, amount: response.data.balance });
+  } catch (error) {
+    errorMsg.value = error.response.data.message;
+  }
+};
+
     
     return {
       doubleBalance,

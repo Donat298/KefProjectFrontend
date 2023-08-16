@@ -1,9 +1,6 @@
 //here is my store
 import { createStore } from "vuex";
 import { useApi, useApiPrivate } from "../utils/useApi"
-
-
-
 export default createStore({
     state: () => {
         return {
@@ -87,6 +84,7 @@ export default createStore({
 
             setTimeout(
                 () => {
+                    console.log("Refresh from attempt");
                     dispatch("refresh")
                     .then(() => {
                         dispatch("getUser")
@@ -99,6 +97,7 @@ export default createStore({
                         
                     }).catch(() => { 
                         commit("setSessionChecked", true);
+                        commit('setAccessToken', null);
                     });
                 }
                 , 0);
