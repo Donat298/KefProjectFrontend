@@ -79,7 +79,7 @@ export default {
         return 10000000;
       }
       // Round the value to the nearest ten-thousandth (4 decimal points)
-      return Math.round(value * 10000) / 10000;
+      return Math.round(value * 10000000) / 10000000;
     };
 
     const tempBalance = computed(() => {
