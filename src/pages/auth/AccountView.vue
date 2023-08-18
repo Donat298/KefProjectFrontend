@@ -17,18 +17,13 @@
       style="background-color: rgb(37, 56, 74); display: flex; width: 600px;" 
     >   
     <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
-        <div style="margin: 0 auto; height: 70px; width:70px ; display: flex;">
-      <v-avatar 
+        <div style="margin: 0 auto; height: 70px; width:70px ; display: flex; align-items: center; justify-content: center; ">
+     
+      <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; "></fa> 
 
-        color="white"
-        size="70"
-        rounded="lg"      
-      >
-      <v-icon  icon="mdi-account" size="xx-large"></v-icon>     
-      </v-avatar>
     </div>
    
-    <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
+    <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
         {{ $store.getters.userDetail.username }}     
       </div>      
       <div style="color: #ffffff;  text-align: center;">
@@ -43,7 +38,8 @@
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
-    <div  style="color: #ffffff;   ">
+    <div  style="color: #ffffff; font-size: 18px;   min-height: 30px; text-align: center; display: flex;
+    align-items: center; justify-content: center;  ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
     <img style="width: 22px; max-height: 25px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
@@ -71,17 +67,10 @@
     >
   
     <div style="background-color: rgb(37, 56, 74);  align-items: center;  padding: 20px 10px; ">
-        <div style="margin: auto; display: flex;">
-      <v-avatar 
-        style="margin-left: auto; margin-right: auto;"
-        color="white"
-        size="70"
-        rounded="lg"      
-      >
-      <v-icon  icon="mdi-account" size="xx-large"></v-icon>     
-      </v-avatar>
+        <div style="margin: auto; display: flex; height: 70px;">
+          <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; margin: auto;"></fa> 
     </div>   
-    <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
+    <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
         {{ $store.getters.userDetail.username }}     
       </div> 
       <div style="color: #ffffff;  text-align: center;">
@@ -95,10 +84,11 @@
      width: 100%;">
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
-    <div  style="color: #ffffff;   ">
+    <div  style="color: #ffffff; font-size: 18px;   min-height: 30px; text-align: center; display: flex;
+    align-items: center; justify-content: center;  ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
-    <img style="width: 22px; max-height: 20px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
+    <img style="width: 22px; max-height: 25px;  margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>    
     </div >
     </v-card>

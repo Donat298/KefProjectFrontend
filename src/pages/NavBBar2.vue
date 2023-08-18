@@ -42,7 +42,8 @@
         <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
           <v-card :ripple="false" v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
             height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
-   <div style="color: #ffffff; font-size: 18px;  min-height: 30px; text-align: center; display: flex; align-items: center; justify-content: center;">
+   <div style="color: #ffffff; font-size: 18px;   min-height: 30px;  text-align: center; display: flex;
+    align-items: center; justify-content: center;">
     {{ $store.getters.userDetail[selectedCurrency] }}
 </div>
 
@@ -52,7 +53,7 @@ width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(se
  
   </v-card>
 
-<v-btn v-if="$store.getters.isAuthenticated" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
+<v-btn  v-if="$store.getters.isAuthenticated" :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 height: 48px;   border-radius: 0px 5px 5px 0px;
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
   {{ buttonLabel }}
@@ -150,9 +151,15 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
                   <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
                   <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
               </div>
-              <div v-else style="height: 64px;  width: 64px; padding: 8px; margin-left: auto;">
-<v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>
+              <div v-else style="display: flex; align-items: center; justify-content: center; height: 64px; width: 64px; margin-left: auto;">
+    <!-- <v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>-->
+    <my-button2 v-bind="props" style="display: flex; align-items: center; justify-content: center; 
+    background-color: #15212c; height: 48px; width: 48px; border-radius: 50px;">
+    <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 20px; "></fa>
+</my-button2>
+
 </div>
+
 </template>
       
               <v-list
