@@ -1,5 +1,3 @@
-Can you now do the same for just this component?
-When Pressing the button when not logged in, it redirects to the registration page again.
 <template>
  <div style=" margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
     <div class="text-center" style="height: 70px; display: flex; align-items: center;
