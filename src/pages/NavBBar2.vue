@@ -10,6 +10,8 @@
       width="240"
     >
       <NavigationHeader v-if="!rail"/>
+      <div v-if="rail" style="height: 150px; ">
+      </div>
       <NavigationList/>
     
   
