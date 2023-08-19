@@ -64,10 +64,11 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 </template>
          
 <v-list
+elevation="7"
   style=" 
     visibility: visible;
     opacity: 1;
-    background-color: #273d53;
+    background-color: #0c141b;
     color: #ffffff;
     margin-top: 65px;
     min-width: 100px;
@@ -163,6 +164,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 </template>
       
               <v-list
+              elevation="7"
               style=" 
                   visibility: visible;
                   opacity: 1;

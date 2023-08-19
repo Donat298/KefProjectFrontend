@@ -42,6 +42,7 @@
     align-items: center; justify-content: center;  ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
+    
     <img style="width: 22px; max-height: 25px; margin-left: 10px;" :src="require('@/assets/Cryptologos/tether-usdt-logo.svg')" />
   </v-card>
     </div >

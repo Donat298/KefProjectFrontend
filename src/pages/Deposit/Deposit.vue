@@ -30,11 +30,11 @@
       <div style="display: flex;">
       <div style="background-color: rgb(37, 56, 74);  width: 20%; ">
         <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
-           to="/SignUptest1"  >Deposit</v-list-item>
+             >Deposit</v-list-item>
            <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
-           to="/SignUptest2"  >Withdraw</v-list-item>
+            >Withdraw</v-list-item>
            <v-list-item  class=" pl-4" style="color: #ffffff;height: 64px" 
-           to="/SignUgfdgptest1"  >Buy Crypto</v-list-item>
+             >Buy Crypto</v-list-item>
            
       </div>  
       
