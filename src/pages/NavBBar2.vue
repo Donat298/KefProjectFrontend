@@ -2,10 +2,10 @@
 <template>
   <v-layout  class="">
     <v-navigation-drawer
-    style="z-index: 3; min-height: 100%; background-color: #192635 ; border-right: 2px solid #192635;"
+    style="z-index: 3; min-height: 100%; background-color: #132433 ; border-right: 2px solid #132433;"
     :rail="rail"
     v-model="drawer"
-    elevation="0"
+    
     rail-width="74"
     width="240"
   >
@@ -66,11 +66,11 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 </template>
        
 <v-list
-elevation="7"
+elevation="5"
 style=" 
   visibility: visible;
   opacity: 1;
-  background-color: #192635;
+  background-color: #132433;
   color: #ffffff;
   margin-top: 65px;
   min-width: 100px;
@@ -166,12 +166,12 @@ style="
 </template>
     
             <v-list
-            elevation="7"
+            elevation="5"
             style=" 
                 visibility: visible;
                 opacity: 1;
                 
-                background-color: #192635;
+                background-color: #132433;
                 color: #ffffff;
                 
                 margin-top: 65px;
