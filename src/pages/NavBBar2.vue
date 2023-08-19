@@ -2,7 +2,7 @@
 <template>
   <v-layout  class="">
     <v-navigation-drawer
-    style="z-index: 3; min-height: 100%; background-color: #132433 ; border-right: 2px solid #132433;"
+    style="z-index: 3; min-height: 100%; background-color: #162a3c ; border-right: 2px solid #162a3c;"
     :rail="rail"
     v-model="drawer"
     
@@ -70,7 +70,7 @@ elevation="5"
 style=" 
   visibility: visible;
   opacity: 1;
-  background-color: #132433;
+  background-color: #162a3c;
   color: #ffffff;
   margin-top: 65px;
   min-width: 100px;
@@ -171,7 +171,7 @@ style="
                 visibility: visible;
                 opacity: 1;
                 
-                background-color: #132433;
+                background-color: #162a3c;
                 color: #ffffff;
                 
                 margin-top: 65px;
