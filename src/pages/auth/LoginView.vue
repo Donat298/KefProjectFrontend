@@ -1,50 +1,12 @@
 <template>
     <div class="jjl">
-        <div
-            style="
-                max-width: 90%;
-                width: 460px;
-                align-items: center;
-                max-height: 100%;
-                justify-content: center;
-                overflow-y: auto;
-            "
-        >
-            <div
-                style="
-                    
-                    max-width: 420px;
-                    margin-left: auto;
-                    margin-right: auto;
-                "
-            >
-                <div
-                    style="
-                        display: flex;
-                        max-width: 100%;
-                        width: 340px;
-                        height: 191.25px;
-                        margin: auto;
-                        margin-bottom: 20px;
-                        
-                    "
-                >
-                    
-                <img style="margin-left: auto; 
-                margin-right: auto; width: 100%; height: auto; 
-                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
-                
-                </div>
-                <v-card
-                    class="mx-auto pa-8 pb-8"
-                    elevation="8"
-                    rounded="lg"
-                    style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74)"
-                >
-                <v-form
-        v-model="form"
-        @submit.prevent="onSubmit"
-      >
+      <div style="max-width: 90%; width: 460px; align-items: center; max-height: 100%; justify-content: center; overflow-y: auto;">
+        <div style="max-width: 420px; margin-left: auto; margin-right: auto;">
+          <div style="display: flex; max-width: 100%; width: 340px; height: 191.25px; margin: auto; margin-bottom: 20px;">
+            <img style="margin-left: auto; margin-right: auto; width: 100%; height: auto; background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
+          </div>
+          <v-card class="mx-auto pa-8 pb-8" elevation="8" rounded="lg" style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74)">
+            <v-form v-model="form" @submit.prevent="onSubmit">
                     <div
                         style="color: white"
                         class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
@@ -179,3 +141,4 @@ export default {
   
 }
 </style>
+Same for this

@@ -1,23 +1,10 @@
 <template>
   <div class="jja" @click.stop="$emit('HideAccountOknoo')">
-
-     <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="
-        max-height: 90%;
-        width: 100%;
-        overflow-y:auto; ">
-        <div @click.stop style="       
-        max-height: 90%;
-         width: 600px;
-        min-height: 50px;       
-        box-sizing: border-box;       
-        margin: auto;">   
-    <v-card
-      elevation="0"    
-      rounded="lg"
-      style="background-color: rgb(37, 56, 74); display: flex; width: 600px;" 
-    >   
-    <div style="background-color: rgb(37, 56, 74);  width: 50%; padding: 20px 10px;">
-        <div style="margin: 0 auto; height: 70px; width:70px ; display: flex; align-items: center; justify-content: center; ">
+    <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="max-height: 90%; width: 100%; overflow-y: auto;">
+      <div style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+        <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); display: flex; width: 600px;">
+          <div style="background-color: rgb(37, 56, 74); width: 50%; padding: 20px 10px;">
+             <div style="margin: 0 auto; height: 70px; width:70px ; display: flex; align-items: center; justify-content: center; ">
      
       <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; "></fa> 
 
@@ -34,7 +21,8 @@
       </div>  
       
     </div>  
-    <div style="width: 50%;  background-color: #213141; padding: 20px 10px;">
+    <div style="width: 50%; background-color: #213141; padding: 20px 10px;">
+          
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
@@ -50,25 +38,11 @@
       </div>  
       </div>
 
-      <div v-if="showAccComponent === false" @click.stop="$emit('HideAccountOknoo')"
-      style=" overflow-y:auto; max-height: 90%; width: 100%; ">
-        <div @click.stop style="
-        width: 300px;
-        margin: auto;
-        
-        align-items: center;
-        min-height: 50px;
-        max-width: 90%;
-        
-        margin: auto;">  
-    <v-card  
-    elevation="0"  
-    rounded="lg"
-    style="background-color: rgb(37, 56, 74);  margin-left: auto; margin-right: auto; " 
-    >
-  
-    <div style="background-color: rgb(37, 56, 74);  align-items: center;  padding: 20px 10px; ">
-        <div style="margin: auto; display: flex; height: 70px;">
+      <div v-else @click.stop="$emit('HideAccountOknoo')" style="overflow-y: auto; max-height: 90%; width: 100%;">
+      <div style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
+        <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); margin-left: auto; margin-right: auto;">
+          <div style="background-color: rgb(37, 56, 74); align-items: center; padding: 20px 10px;">
+            <div style="margin: auto; display: flex; height: 70px;">
           <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; margin: auto;"></fa> 
     </div>   
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
@@ -81,8 +55,8 @@
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
       </div>          
     </div>  
-    <div style="width: 50%; background-color: #213141; padding: 20px 10px;
-     width: 100%;">
+    <div style="width: 50%; background-color: #213141; padding: 20px 10px; width: 100%;">
+           
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
     <div  style="color: #ffffff; font-size: 18px;   min-height: 30px; text-align: center; display: flex;
@@ -104,63 +78,56 @@ export default {
     return {
       showAccComponent: true,
       isResolutionBelowThreshold: window.innerWidth < 900,
-    }
+    };
   },
   mounted() {
-    this.handleResize()
-    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+    window.addEventListener('resize', this.handleResize);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.handleResize)
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     handleResize() {
-      const screenWidth = window.innerWidth
-      const isBelowThreshold = screenWidth < 900
-      if (isBelowThreshold) {
-        this.showAccComponent = false;
-      } else {
-        this.showAccComponent = true;
-      }
+      const screenWidth = window.innerWidth;
+      this.showAccComponent = screenWidth >= 900;
     },
     formatDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Months are 0 based index in JavaScript
-    const day = ("0" + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-  }
-  }
-}
+      const date = new Date(dateString);
+      const year = date.getFullYear();
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const day = ("0" + date.getDate()).slice(-2);
+      return `${year}-${month}-${day}`;
+    },
+  },
+};
 </script>
 <style scoped>
 .jja {
-top: 0;
-bottom: 0;
-right: 0;
-left: 0;
-background: rgba(0,0,0,0.5);
-backdrop-filter: blur(5px);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+}
 
-position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-z-index: 4;
-} 
-
+/* Scrollbar styles */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #15212c;
-  border-radius: 30px;  
-  margin-block: 15px; 
+  border-radius: 30px;
+  margin-block: 15px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #2c4257;
   border-radius: 30px;

@@ -142,10 +142,9 @@
   </template>
   
   <script>
-  import MDeposit from "@/components/DepositPages/MDeposit.vue";
-  import DepoNavig from "@/components/DepositPages/DepoNavig.vue";
+
   export default {
-    components: { MDeposit, DepoNavig },
+    components: {},
     data() {
       return {
         showDepositComponent: true,
