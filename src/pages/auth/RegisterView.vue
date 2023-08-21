@@ -101,6 +101,7 @@
       type="submit"
       color="secondary"
       :loading="loading"
+      :ripple="false"
     >
     REG
     </v-btn>

@@ -56,7 +56,7 @@
                         block
                         type="submit"
                         color="secondary"
-                        
+                        :ripple="false"
                         :loading="loading"
                         @click="login(email, password)"
                         size="large"
