@@ -42,18 +42,19 @@
    
       
       <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
-        <v-card :ripple="false" v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b" style="
-          height: 48px; margin-left: 64px; display: flex; align-items: center;" elevation="0">
+        <div v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" style="
+          height: 48px; background-color: #0c141b; margin-left: 64px; display: flex; align-items: center;" elevation="0">
  <div style="color: #ffffff; font-size: 18px;   min-height: 30px;  text-align: center; display: flex;
   align-items: center; justify-content: center;">
   {{ $store.getters.userDetail[selectedCurrency] }}
+  
+<img style="display: flex; align-items: center; 
+width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(selectedCurrency)" />
 </div>
 
 
-<img style="display: flex; align-items: center; 
-width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(selectedCurrency)" />
 
-</v-card>
+</div>
 
 <v-btn  v-if="$store.getters.isAuthenticated" :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 height: 48px;   border-radius: 0px 5px 5px 0px;
