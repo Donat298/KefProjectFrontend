@@ -55,26 +55,13 @@ import MyButton2 from '@/components/UI/MyButton2.vue'
   background-color:#15212c00;
   position: fixed;
   
-  
-  
-  
-  
-  
-  
-  
 }
-
 .logh {
   justify-content: space-between;
-
- 
   height: 450px;
   width: 450px;
 }
 .wet {
-
-
   font-size: 60px;
 }
-
   </style>

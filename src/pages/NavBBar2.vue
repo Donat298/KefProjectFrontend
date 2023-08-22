@@ -165,7 +165,8 @@ style="
 </div>
 
 </template>
-    
+
+            
             <v-list
             elevation="5"
             style=" 
@@ -177,14 +178,14 @@ style="
                 
                 margin-top: 65px;
                 min-width: 100px;">
-            <v-list-item style="height: 40px;" @click="$emit('ShowAccountOknoo')"
-                >Account</v-list-item>
+            <v-list-item style="height: 50px; display: flex;" @click="$emit('ShowAccountOknoo')"
+                > <fa icon="fa-solid fa-user fa-2xl" class="mx-auto mr-3" style="color: #ffffff;"></fa> Account </v-list-item>
                
-            <v-list-item style="height: 40px;" @click="logout()"
-            >Logout</v-list-item>
+            <v-list-item style="height: 50px;" @click="logout()"
+            ><fa icon="fa-solid fa-right-from-bracket" class="mx-auto mr-3" style="color: #ffffff;"></fa> Logout</v-list-item>
            
             </v-list>
-
+       
         </v-menu>
         </div>
       </v-app-bar>

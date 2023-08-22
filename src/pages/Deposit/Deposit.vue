@@ -44,23 +44,26 @@
         
         <div style="position: relative;">
           <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
+          
     <v-card
       color="#213141"
       style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#213141"
       elevation="0"
     >
+ 
       <v-card elevation="7" class="pa-2 pl-4" style="background-color: rgb(37, 56, 74); color:#ffffff; display: flex; align-items: center;">
         TWX3X61vd76HHdh36t1QLZciZfqa4Na1za
-        <v-btn size="large"
-          :ripple="false"
-          elevation="0"
-          icon="mdi-content-copy"
-          class="ml-2"
-          style=" background-color: rgb(37, 56, 74);"
-          @click="copyCode(); showCopiedTooltip()"
-        ></v-btn>
+        <button
+    :disabled="showTooltip" 
+    class="ml-2 copied-button"
+    :class="{ 'copied-icon': showTooltip }"
+    :style="{ backgroundColor: showTooltip ? 'rgb(37, 56, 74)' : 'rgb(37, 56, 74)' }"
+    @click="copyCode(); showCopiedTooltip()"
+  >
+    <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
+  </button>
       </v-card>
-      <v-card v-if="showTooltip" class="custom-tooltip">Copied</v-card>
+
     </v-card>
   </div>
       </div >
@@ -143,8 +146,11 @@
   
   <script>
 
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
   export default {
-    components: {},
+    components: {
+    Fa
+  },
     data() {
       return {
         showDepositComponent: true,
@@ -174,9 +180,12 @@
         }
       },
       copyCode() {
+      if (this.showTooltip) return; // Prevent copying while tooltip is shown
       navigator.clipboard.writeText(this.codeSnippet).then(() => {
-        
-       
+        this.showTooltip = true;
+        setTimeout(() => {
+          this.showTooltip = false;
+        }, 2000); // Reset to the initial state after 2 seconds
       });
     },
     showCopiedTooltip() {
@@ -193,13 +202,13 @@
   },
     
 
- 
-    
+
  
   }
   </script>
   
   
+
   
   <style scoped>
   .jja {
@@ -250,7 +259,17 @@
   font-size: 12px;
   z-index: 1000; /* High z-index to be on top */
 }
+.copied-button {
+  border: none;
 
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 20px; /* Adjust the font size to make the icon larger */
+  color: white;
+  outline: none;
+}
 
 
   </style>
