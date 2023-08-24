@@ -44,7 +44,7 @@
       <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
         <div v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" style="
           height: 48px; background-color: #0c141b; margin-left: 64px; display: flex; align-items: center;" elevation="0">
- <div style="color: #ffffff; font-size: 18px;   min-height: 30px;  text-align: center; display: flex;
+ <div style="color: #ffffff;  max-height: 10px;  text-align: center; display: flex;
   align-items: center; justify-content: center;">
   {{ $store.getters.userDetail[selectedCurrency] }}
   

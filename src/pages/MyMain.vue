@@ -24,17 +24,18 @@
    </div>
 
   </div>
+<Games/>
   </div>
 
   </template>
   
   <script>
 import MyButton2 from '@/components/UI/MyButton2.vue'
-
+import Games from '@/components/Games/Gamesss.vue'
   export default {
     
     
-  components: { MyButton2, 
+  components: { MyButton2, Games
   
   
   },

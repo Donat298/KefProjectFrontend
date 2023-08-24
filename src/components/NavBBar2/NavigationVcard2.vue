@@ -14,7 +14,7 @@
          </v-expansion-panel-title>
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
-           <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  class=" pl-4 mt-2" style="color: #ffffff;  " 
+           <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  class=" pl-4" style="color: #ffffff;  " 
            to="/SignUptest1"  >SignUptest1</v-list-item>
            <v-list-item :ripple="false" prepend-icon="mdi-login-variant" class=" pl-4"  style="color: #ffffff;  " 
            to="/SignUptest2"  >SignUptest2</v-list-item>

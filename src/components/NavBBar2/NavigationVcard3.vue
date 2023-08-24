@@ -15,8 +15,11 @@
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
          
-           <v-list-item :ripple="false" prepend-icon="mdi-circle-outline"  class=" pl-4  mt-2"  style="color: #ffffff;  "
+           <v-list-item :ripple="false" prepend-icon="mdi-circle-outline"  class=" pl-4 "  style="color: #ffffff;  "
             to="/wheel" >Wheel</v-list-item>
+              
+           <v-list-item :ripple="false" prepend-icon="mdi-arrow-top-right"  class=" pl-4 "  style="color: #ffffff;  "
+            to="/crash" >Crash</v-list-item>
             <v-list-item :ripple="false" prepend-icon="mdi-currency-usd"  class=" pl-4"  style="color: #ffffff;  "
             to="/BalanceManag"  >Balance</v-list-item>
          </v-expansion-panel-text>

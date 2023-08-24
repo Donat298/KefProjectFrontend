@@ -13,7 +13,7 @@
        
        <v-expansion-panel-text>
          <v-divider :thickness="2"  color="white"></v-divider>
-         <v-list-item :ripple="false" class="pl-4 mt-2"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
+         <v-list-item :ripple="false" class="pl-4"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
                to="/"  > Home</v-list-item>
         
              
@@ -47,7 +47,7 @@ export default {
    padding: 0px 0px 0px !important;
    flex: 1 1 auto !important;
    max-width: 100% !important;
-   margin-bottom: 8px !important;
+   margin-bottom: 0px !important;
 }
 
 .v-expansion-panel-title {
