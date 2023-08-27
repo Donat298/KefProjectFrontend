@@ -1,46 +1,54 @@
 <template>
   
     <div class="jja" @click.stop="$emit('HideDepositOknoo')">
-    
- 
-
-
        <div v-if="showDepositComponent" @click.stop="$emit('HideDepositOknoo')" style="
           max-height: 90%;
-          width: 100%;
+   
           overflow-y:auto; ">
 
   
           <div @click.stop style="       
           max-height: 90%;
-           width: 800px;
+     
           min-height: 50px;       
           box-sizing: border-box;       
           margin: auto;">   
           
-      <v-card
-        elevation="0"
-        
-         
-       
-        rounded="lg"
-        style="background-color: rgb(37, 56, 74);  width: 800px;" 
-      >
-   
-      <div style="display: flex;">
-      <div style="background-color: rgb(37, 56, 74);  width: 20%; ">
-        <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
-             >Deposit</v-list-item>
-           <v-list-item  class=" pl-4"  style="color: #ffffff; height: 64px " 
-            >Withdraw</v-list-item>
-           <v-list-item  class=" pl-4" style="color: #ffffff;height: 64px" 
-             >Buy Crypto</v-list-item>
-           
-      </div>  
-      
+        <div style="background-color: #213141; border-radius: 10px;">
+  <div
+    class="d-flex align-center justify-center"
+    elevation="0"
+    style="background-color: #213141 ; width: auto; padding: 20px 10px; border-top-left-radius: 10px; 
+     border-top-right-radius: 10px"
+  >
+    <v-btn
+      elevation="4"
+      class=" glow-button"
+      :ripple="false"
+      style="margin: 0 10px;" 
+    >
+      Deposit
+    </v-btn>
+    <v-btn
+      elevation="4"
+      class=" glow-button"
+      :ripple="false"
+      style="margin: 0 10px;"
+    >
+      Withdraw
+    </v-btn>
+    <v-btn
+      elevation="4"
+      class=" glow-button"
+      :ripple="false"
+      style="margin: 0 10px;"
+    >
+      Buy crypto
+    </v-btn>
+  </div>
       
   
-      <div style="width: 80%;  background-color: #213141; padding: 20px 10px;">
+      <div style=" background-color: #213141; padding: 20px 10px; border-radius: 10px;">
         
         <div style="position: relative;">
           <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
@@ -51,7 +59,7 @@
       elevation="0"
     >
  
-      <v-card elevation="7" class="pa-2 pl-4" style="background-color: rgb(37, 56, 74); color:#ffffff; display: flex; align-items: center;">
+      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: rgb(37, 56, 74); color:#ffffff; display: flex; align-items: center;">
         TWX3X61vd76HHdh36t1QLZciZfqa4Na1za
         <button
     :disabled="showTooltip" 
@@ -67,8 +75,8 @@
     </v-card>
   </div>
       </div >
+
     </div>
-      </v-card>
         </div>  
         </div>
   
@@ -90,11 +98,11 @@
       <v-card  
       elevation="0"  
       rounded="lg"
-      style="background-color: rgb(37, 56, 74);  margin-left: auto; margin-right: auto; " 
+      style="background-color: #213141;  margin-left: auto; margin-right: auto; " 
       >
   
      
-      <div style="background-color: rgb(37, 56, 74);  align-items: center;  padding: 20px 10px; ">
+      <div style="background-color: #213141;  align-items: center;  padding: 20px 10px; ">
           <div style="margin: auto; display: flex;">
         <v-avatar 
           style="margin-left: auto; margin-right: auto;"
@@ -257,7 +265,7 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
   padding: 8px;
   border-radius: 4px;
   font-size: 12px;
-  z-index: 1000; /* High z-index to be on top */
+z-index: 1000;
 }
 .copied-button {
   border: none;
@@ -270,6 +278,27 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
   color: white;
   outline: none;
 }
+
+
+
+.glow-button {
+  overflow: hidden;
+  background-color: rgb(37, 56, 74);
+  color: #ffffff;
+  height: 64px;
+  width: 100%;
+  transition: transform 0.3s,;
+  z-index: 0;
+  width: 200px;
+}
+
+
+
+.glow-button:hover {
+  transform: scale(1.02);
+
+}
+
 
 
   </style>

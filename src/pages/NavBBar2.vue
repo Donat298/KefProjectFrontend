@@ -44,19 +44,21 @@
       <div style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
         <div v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" style="
           height: 48px; background-color: #0c141b; margin-left: 64px; display: flex; align-items: center;" elevation="0">
- <div style="color: #ffffff;  max-height: 10px;  text-align: center; display: flex;
-  align-items: center; justify-content: center;">
-  {{ $store.getters.userDetail[selectedCurrency] }}
+<div style="color: #ffffff;  display: flex; align-items: center; text-align: center;">
+ {{ $store.getters.userDetail[selectedCurrency] }}
+  <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
   
-<img style="display: flex; align-items: center; 
-width: 22px; max-height: 25px; margin-left: 10px;" :src="getCurrencyImagePath(selectedCurrency)" />
+<fa icon="fa-solid fa-chevron-down" style="color: #ffffff;height: 14px; margin-left: 10px;"></fa>
 </div>
+
+
 
 
 
 </div>
 
 <v-btn  v-if="$store.getters.isAuthenticated" :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
+
 height: 48px;   border-radius: 0px 5px 5px 0px;
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 {{ buttonLabel }}
@@ -68,6 +70,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
        
 <v-list
 elevation="5"
+:ripple="false"
 style=" 
   visibility: visible;
   opacity: 1;
@@ -78,7 +81,7 @@ style="
   " 
 >
 
-<v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;">
+<v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
   <div style="display: flex; justify-content: flex-end; align-items: center;">
     {{ $store.getters.userDetail.balanceeur }}
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
@@ -94,7 +97,7 @@ style="
   </div>
 </v-list-item>
 
-<v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;">
+<v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;"  :ripple="false">
   <div style="display: flex; justify-content: flex-end; align-items: center;">
     {{ $store.getters.userDetail.balancebtc }}
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
@@ -111,7 +114,7 @@ style="
 </v-list-item>
 
 <v-list-item @click="selectCurrency('balance')" style="height: 40px;
- align-items: center;">
+ align-items: center;"  :ripple="false">
   <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
     {{ $store.getters.userDetail.balance }}
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
@@ -128,7 +131,7 @@ style="
 </v-list-item>
 
 <v-list-item @click="selectCurrency('balanceeth')" style="height: 40px;
- align-items: center;">
+ align-items: center;"  :ripple="false">
   <div style="display: flex; justify-content: flex-end; align-items: center;"> <!-- Add align-items: center; here -->
     {{ $store.getters.userDetail.balanceeth }}
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
@@ -152,8 +155,10 @@ style="
           <template v-slot:activator="{ props}">
      
             <div v-if="!$store.getters.isAuthenticated" class=" v-hidden-md-and-up" style=" padding: 14px; ">
-                <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); margin-right: 15px;">Register</v-btn>
-                <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">Login</v-btn>
+                <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/register')" style="
+                background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));   margin-right: 15px;">Register</v-btn>
+                <v-btn elevation="4" variant="tonal" @click="$router.push('/auth/login')" style="
+                background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));  ">Login</v-btn>
             </div>
             <div v-else style="display: flex; align-items: center; justify-content: center; height: 64px; width: 64px; margin-left: auto;">
   <!-- <v-btn color="white" v-bind="props" icon="mdi-account" :ripple="false"></v-btn>-->
@@ -178,10 +183,10 @@ style="
                 
                 margin-top: 65px;
                 min-width: 100px;">
-            <v-list-item style="height: 50px; display: flex;" @click="$emit('ShowAccountOknoo')"
+            <v-list-item style="height: 50px; display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
                 > <fa icon="fa-solid fa-user fa-2xl" class="mx-auto mr-3" style="color: #ffffff;"></fa> Account </v-list-item>
                
-            <v-list-item style="height: 50px;" @click="logout()"
+            <v-list-item style="height: 50px;" @click="logout()" :ripple="false"
             ><fa icon="fa-solid fa-right-from-bracket" class="mx-auto mr-3" style="color: #ffffff;"></fa> Logout</v-list-item>
            
             </v-list>

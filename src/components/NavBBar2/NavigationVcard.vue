@@ -1,36 +1,45 @@
 <template>
-<v-expansion-panels
-     v-model="panel"
-     
-     multiple
-     
-   >
-     <v-expansion-panel  style="background-color: #25384a; color: rgb(255, 255, 255);">
-       <v-expansion-panel-title> <v-list-item prepend-icon="mdi-home"  style="color: #ffffff; font-size: 16px; padding-left: 14px; " 
-           >Main</v-list-item>
-           
+   <v-expansion-panels v-model="panel" multiple>
+     <v-expansion-panel style="background-color: #25384a; color: rgb(255, 255, 255);">
+       <v-expansion-panel-title>
+         <v-list-item prepend-icon="mdi-home" style="color: #ffffff; font-size: 16px; padding-left: 14px;">
+           Main
+         </v-list-item>
        </v-expansion-panel-title>
        
        <v-expansion-panel-text>
-         <v-divider :thickness="2"  color="white"></v-divider>
-         <v-list-item :ripple="false" class="pl-4"  prepend-icon="mdi-home" style="color: #ffffff;  max-height: 20px;"
-               to="/"  > Home</v-list-item>
-        
-             
-               <v-list-item :ripple="false" class=" pl-4 " style="color: #ffffff;  "
-            to="/chat" prepend-icon="mdi-chat"   >Chat</v-list-item>
+         <v-divider :thickness="2" color="white"></v-divider>
+     
+         <v-list-item
+           :ripple="false"
+           class="pl-4"
+           prepend-icon="mdi-home"
+           style="color: #ffffff; margin-top: 8px;"
+           to="/"
+           color="teal-lighten-4"
+            elevation="0"
+         >
+           Home
+         </v-list-item>
          
+         <v-list-item
+           :ripple="false"
+           class="pl-4"
+           style="color: #ffffff;"
+           to="/chat"
+           prepend-icon="mdi-chat"
+           color="teal-lighten-4"
+           elevation="0"
+           
+         >
+           Chat
+         </v-list-item>
+     
+      
        </v-expansion-panel-text>
-       
      </v-expansion-panel>
-
-     
    </v-expansion-panels>
-
- 
-     
-</template>
-
+ </template>
 <script>
 export default {
    data: () => ({
@@ -47,7 +56,8 @@ export default {
    padding: 0px 0px 0px !important;
    flex: 1 1 auto !important;
    max-width: 100% !important;
-   margin-bottom: 0px !important;
+   margin-bottom: 8px !important;
+   
 }
 
 .v-expansion-panel-title {
@@ -76,6 +86,33 @@ export default {
    opacity: 0 !important;
 }
 
+.v-list-item__overlay {
+    background-color: currentColor;
+    border-radius: inherit;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
 
+}
+.v-list-item--active > .v-list-item__overlay, .v-list-item[aria-haspopup=menu][aria-expanded=true] > .v-list-item__overlay {
+  opacity: 0 !important; 
+}
+
+.v-list-item:hover > .v-list-item__overlay {
+  opacity: 0.05s !important; 
+}
+
+/* Adding transition */
+.v-list-item {
+  transition: color 0.05s;
+}
+.v-list-item--active .v-list-item__prepend > .v-icon, .v-list-item--active .v-list-item__append > .v-icon {
+    opacity: null !important;
+}
 </style>
 
+Is it possible, so that when you click on the v-list-item, the elevation changes to 5?

@@ -26,7 +26,7 @@
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
-    <div  style="color: #ffffff; font-size: 18px;   min-height: 30px; text-align: center; display: flex;
+    <div  style="color: #ffffff;  min-height: 30px; text-align: center; display: flex;
     align-items: center; justify-content: center;  ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>
@@ -59,7 +59,7 @@
            
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">
-    <div  style="color: #ffffff; font-size: 18px;   min-height: 30px; text-align: center; display: flex;
+    <div  style="color: #ffffff;   min-height: 30px; text-align: center; display: flex;
     align-items: center; justify-content: center;  ">
       {{ $store.getters.userDetail.balance }} USDT
     </div>

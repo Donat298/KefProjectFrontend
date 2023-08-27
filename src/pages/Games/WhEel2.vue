@@ -232,6 +232,7 @@ Try again to make it so that if the request cannot be made, then the user is aut
   margin-top: 30px;
   justify-content: center; 
   align-items: center;
+  
 }
 .bet-form {
   width: 100%; 
