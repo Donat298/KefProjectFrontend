@@ -87,7 +87,7 @@ style="
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
       <img 
         style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" 
+        width: 22px; max-height: 25px; margin-left: 15px;" 
         :src="getCurrencyImagePath('balanceeur')" 
       />
       <div class="ml-2" style="min-width: 60px; ">
@@ -103,7 +103,7 @@ style="
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
       <img 
         style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" 
+        width: 22px; max-height: 25px; margin-left: 15px;" 
         :src="getCurrencyImagePath('balancebtc')" 
       />
       <div class="ml-2" style="min-width: 60px; ">
@@ -120,7 +120,7 @@ style="
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
       <img 
         style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" 
+        width: 22px; max-height: 25px; margin-left: 15px;" 
         :src="getCurrencyImagePath('balance')" 
       />
       <div class="ml-2" style="min-width: 60px; ">
@@ -137,7 +137,7 @@ style="
     <div class="ml-2" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
       <img 
         style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 10px;" 
+        width: 22px; max-height: 25px; margin-left: 15px;" 
         :src="getCurrencyImagePath('balanceeth')" 
       />
       <div class="ml-2" style="min-width: 60px; ">
