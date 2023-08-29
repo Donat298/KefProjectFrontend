@@ -15,18 +15,18 @@
         v-if="gameResult && !gameResult.won"
         border="start"
         variant="tonal"
-        color="red lighten-2"
+        color="red lighten-1"
         class="mx-auto"
         style="max-width: 90%; margin-top: 30px; width: 1200px;"
       >
-        Better luck next time
+   Better luck next time
       </v-alert>
   
       <v-alert
         v-if="errorMsg"
         border="start"
         variant="tonal"
-        color="red lighten-2"
+        color="red lighten-1"
         class="mx-auto"
         style="max-width: 90%; margin-top: 30px; width: 1200px;"
       >

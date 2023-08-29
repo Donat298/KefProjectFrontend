@@ -45,7 +45,18 @@
         <div v-bind="props" class="left-rounded pa-4" v-if="$store.getters.isAuthenticated" style="
           height: 48px; background-color: #0c141b; margin-left: 64px; display: flex; align-items: center;" elevation="0">
 <div style="color: #ffffff;  display: flex; align-items: center; text-align: center;">
+  <span style="max-width: 12ch; line-height: 1.5;     font-size: var(--text-size-default); font-weight: 600;
+  white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inherit;    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline; box-sizing: border-box;">
  {{ $store.getters.userDetail[selectedCurrency] }}
+</span>
   <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
   
 <fa icon="fa-solid fa-chevron-down" style="color: #ffffff;height: 14px; margin-left: 10px;"></fa>

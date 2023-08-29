@@ -2,7 +2,7 @@
    <v-expansion-panels v-model="panel" multiple>
      <v-expansion-panel style="background-color: #25384a; color: rgb(255, 255, 255);">
        <v-expansion-panel-title>
-         <v-list-item prepend-icon="mdi-home" style="color: #ffffff; font-size: 16px; padding-left: 14px;">
+         <v-list-item prepend-icon="mdi-home" style="color: #ffffff;  font-size: 17px; padding-left: 13px;">
            Main
          </v-list-item>
        </v-expansion-panel-title>
@@ -12,9 +12,9 @@
      
          <v-list-item
            :ripple="false"
-           class="pl-4"
+       
            prepend-icon="mdi-home"
-           style="color: #ffffff; margin-top: 8px;"
+           style="color: #ffffff; margin-top: 8px; padding-left: 15px;"
            to="/"
            color="teal-lighten-4"
             elevation="0"
@@ -24,8 +24,8 @@
          
          <v-list-item
            :ripple="false"
-           class="pl-4"
-           style="color: #ffffff;"
+          
+           style="color: #ffffff; padding-left: 15px;"
            to="/chat"
            prepend-icon="mdi-chat"
            color="teal-lighten-4"

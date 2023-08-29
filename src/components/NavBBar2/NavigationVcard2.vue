@@ -8,15 +8,15 @@
    
   
        <v-expansion-panel  style="background-color: rgb(37, 56, 74); color: rgb(255, 255, 255);">
-         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple"  style="color: #ffffff; 
-         font-size: 16px;  padding-left: 14px;" 
+         <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple"  style="color: #ffffff;  
+         font-size: 17px; padding-left: 13px;  " 
              >Tests</v-list-item>
          </v-expansion-panel-title>
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
-           <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  class=" pl-4" style="color: #ffffff; margin-top: 8px; " 
+           <v-list-item :ripple="false" prepend-icon="mdi-login-variant"   style="color: #ffffff;padding-left: 15px; margin-top: 8px; " 
            to="/SignUptest1"   color="teal-lighten-4" >SignUptest1</v-list-item>
-           <v-list-item :ripple="false" prepend-icon="mdi-login-variant" class=" pl-4"  style="color: #ffffff;  " 
+           <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  style="color: #ffffff;padding-left: 15px;  " 
            to="/SignUptest2"   color="teal-lighten-4"  >SignUptest2</v-list-item>
        
          </v-expansion-panel-text>
