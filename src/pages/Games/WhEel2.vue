@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-  <v-card title="Place your bet!" color="#25384a" elevation="0" width="1200" class="bet-card mx-auto">
+  <v-card title="Place your bet!" color="#2e4659" elevation="0" width="1200" class="bet-card mx-auto">
     <div class="bet-form">
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
         <v-text-field       

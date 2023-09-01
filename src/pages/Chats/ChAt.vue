@@ -1,9 +1,7 @@
-
-//ChAt.vue
 <template>
-<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: rgb(21, 33, 44); width:100%; ">
+<v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width:100%; ">
     <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; display: flex; justify-content: center;">
-      <v-card-text style="background-color: rgb(21, 33, 44); align-items: center;" class="chat-messages">
+      <v-card-text style="background-color: #0c141b; align-items: center;" class="chat-messages">
         <div ref="messagesContainer" style="max-width: 90%; width: 800px; overflow-y: auto;">
           <div class="my-2 " v-for="(message, index) in messages" :key="index">
   <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
@@ -17,7 +15,7 @@
       </v-card-text>
     </v-card>
 </v-row>
-  <v-bottom-navigation style="background-color: rgb(21, 33, 44); z-index: 0;"
+  <v-bottom-navigation style="background-color: #0c141b; z-index: 0;"
       height="100"
       v-model="value"
       color="teal"

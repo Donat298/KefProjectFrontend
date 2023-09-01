@@ -20,7 +20,7 @@
 
       </div>
   <v-card
-    class="mx-auto pa-8 pb-8"
+    class="mx-auto pa-8 pb-8 mb-5"
     elevation="8"
     
     rounded="lg"

@@ -8,7 +8,9 @@
              <NavigationVcard style="margin-bottom: 10px;"/>
              <NavigationVcard3 style="margin-bottom: 10px;"/>
              <NavigationVcard2 style="margin-bottom: 10px;"/>
-            
+             <div style="height: 56px;">
+
+</div>
              </v-list>
   </template>
   

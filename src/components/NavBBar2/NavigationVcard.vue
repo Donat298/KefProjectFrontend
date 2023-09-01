@@ -1,6 +1,6 @@
 <template>
    <v-expansion-panels v-model="panel" multiple>
-     <v-expansion-panel style="background-color: #25384a; color: rgb(255, 255, 255);">
+     <v-expansion-panel style="background-color: #2e4659; color: rgb(255, 255, 255);">
        <v-expansion-panel-title>
          <v-list-item prepend-icon="mdi-home" style="color: #ffffff;  font-size: 17px; padding-left: 13px;">
            Main

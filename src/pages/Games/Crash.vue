@@ -3,12 +3,12 @@
       <h1>Crash game</h1>
     </div>
     <br>
-    <v-card class="mx-auto d-flex align-center" style="background-color: #25384a; width: 200px; height: 200px;">
+    <v-card class="mx-auto d-flex align-center" style="background-color: #2e4659; width: 200px; height: 200px;">
       <h2 class="mx-auto text-center">{{ multiplier.toFixed(2) }}x</h2>
     </v-card>
     <br>
   
-    <v-card title="Place your bet!" color="#25384a" elevation="0" width="1200" class="bet-card mx-auto">
+    <v-card title="Place your bet!" color="#2e4659" elevation="0" width="1200" class="bet-card mx-auto">
       <div class="bet-form">
         <v-btn elevation="4" variant="tonal" class="mt-4 mb-4 mr-2 ml-2" type="button"
           style="color: black; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));" @click="crash">
