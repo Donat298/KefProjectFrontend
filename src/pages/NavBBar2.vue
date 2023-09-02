@@ -20,19 +20,25 @@
   
 
   </v-navigation-drawer>
-  <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 2" app name="footer">
+  <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 3" app name="footer">
   
-  <v-btn @click="this.drawer = !this.drawer; rail = false" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
-         style="max-width: calc(33.33% - 10px); min-width: 5px;">
-         <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
-  </v-btn>
-  <v-btn to="/wheel" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
+    <v-btn rounded="xl" @click="this.drawer = !this.drawer; rail = false" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
+       style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center;">
+       <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
+       <span style="color: #ffffff;  font-size: 13px;">Menu</span>
+</v-btn>
+
+  <v-btn rounded="xl" to="/wheel" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
          style="max-width: calc(33.33% - 10px); min-width: 5px;">
          <v-icon icon="mdi-cards"></v-icon>
+         <span style="color: #ffffff;  font-size: 13px;">Games</span>
+    
   </v-btn>
-  <v-btn elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
-  to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;" >
+  <v-btn rounded="xl" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
+  to="/chat" style="max-width: calc(33.33% - 10px);  min-width: 5px;" >
          <v-icon icon="mdi-chat"></v-icon>
+         <span style="color: #ffffff;  font-size: 13px;">Chat</span>
+    
   </v-btn>
  
 </v-footer>

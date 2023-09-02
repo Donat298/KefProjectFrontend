@@ -62,6 +62,12 @@
                         size="large"
                     >
                         Log In
+                        <template v-slot:loader>
+                            <v-progress-circular :size="25" :width="1"
+      indeterminate
+    
+    ></v-progress-circular>
+      </template>
                     </v-btn>
                 </v-form>
                     

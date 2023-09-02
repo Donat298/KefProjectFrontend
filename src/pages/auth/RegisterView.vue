@@ -104,6 +104,12 @@
       :ripple="false"
     >
     REG
+    <template v-slot:loader>
+                            <v-progress-circular :size="25" :width="1"
+      indeterminate
+    
+    ></v-progress-circular>
+      </template>
     </v-btn>
   </v-form>
   <v-card-text class="text-center text-white" style="max-width: 192px; margin: auto; 
