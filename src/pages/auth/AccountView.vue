@@ -1,7 +1,7 @@
 <template>
   <div class="jja" @click.stop="$emit('HideAccountOknoo')">
     <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="max-height: 90%; width: 100%; overflow-y: auto;">
-      <div style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+      <div @click.stop  style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
         <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); display: flex; width: 600px;">
           <div style="background-color: rgb(37, 56, 74); width: 50%; padding: 20px 10px;">
              <div style="margin: 0 auto; height: 70px; width:70px ; display: flex; align-items: center; justify-content: center; ">
@@ -39,7 +39,7 @@
       </div>
 
       <div v-else @click.stop="$emit('HideAccountOknoo')" style="overflow-y: auto; max-height: 90%; width: 100%;">
-      <div style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
+      <div @click.stop  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
         <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); margin-left: auto; margin-right: auto;">
           <div style="background-color: rgb(37, 56, 74); align-items: center; padding: 20px 10px;">
             <div style="margin: auto; display: flex; height: 70px;">

@@ -1,7 +1,7 @@
 //This is router file for example
 import MyMain from "@/pages/MyMain";
 import {createRouter, createWebHistory} from "vue-router";
-import Wheel from "@/pages/Games/WhEel2.vue";
+import Wheel from "@/pages/Games/WhEel.vue";
 import BalanceManag from "@/pages/Games/BalanceManag.vue";
 import Crash from "@/pages/Games/Crash.vue";
 import UserPage from "@/pages/UserPage";

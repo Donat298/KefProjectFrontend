@@ -11,11 +11,44 @@
     width="240"
   >
 
-    <div  style="height: 64px; ">
-      
-      <button v-if="rail " style="width: 100%; height: 64px;color: #ffffff; background-color: #15212c00;" 
-                    @click="rail = false"><fa icon="fas fa-angle-double-right" /></button>
-    </div>
+  <div style="min-height: 64px;  display: flex; justify-content: center; align-items: center;">
+
+  <v-btn
+    v-if="!rail"
+    elevation="4"
+    class="glowg-button mr-3"
+    :ripple="false"
+    style="min-width: 5px;"
+    @click="snackbar = true"
+  >
+    <span class="shimmerr-text"><h5>Games</h5></span>
+  </v-btn>
+  
+
+    <v-snackbar 
+      :timeout="2000"
+      v-model="snackbar"
+      color="success"
+    >
+      Go work, don't play games.
+    </v-snackbar>
+
+
+
+   
+
+<v-btn v-if="!rail" elevation="4" class="glowg-button2" :ripple="false" style="min-width: 5px;">
+  <span class="shimmerr-text"><h5>Bonuses</h5></span>
+</v-btn>
+
+
+
+
+  <button v-if="rail" style="width: 100%; height: 64px; color: #ffffff; " @click="rail = false">
+    <fa icon="fas fa-angle-double-right" />
+  </button>
+</div>
+
     <NavigationList/>
   
 
@@ -294,31 +327,35 @@ style="
   </v-layout>
 </template>
 
+
+
 <script>
 import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '../components/NavBBar2/NavigationList.vue';
 
 export default {
+
 components: { NavigationHeader, NavigationList },
 data() {
-  return {
-    drawer: null,
-    rail: false,
-    showRbsb: window.innerWidth >= 800,
-    showRbsbbtn: window.innerWidth >= 1280,
-    windowWidth: 0,
-    selectedCurrency: this.$store.getters.selectedCurrency,
-//      selectedCurrency: localStorage.getItem('selectedCurrency') || 'balanceeur', // Get from localStorage or use default
-//      selectedCurrencyImage: localStorage.getItem('selectedCurrencyImage') || require('../assets/Cryptologos/euro-logo.svg'),
-    selectedCurrencyImages: {
-      'balance': require('../assets/Cryptologos/tether-usdt-logo.svg'),
-      'balanceeur': require('../assets/Cryptologos/euro-logo.svg'),
-      'balancebtc': require('../assets/Cryptologos/Currency=btc.svg'),
-      'balanceeth': require('../assets/Cryptologos/Currency=Ethereum.svg'),
-    },
-//      logoSrc: require('../assets/Cryptologos/euro-logo.svg')
-  };
-},
+    return {
+    
+      snackbar: false,
+
+      drawer: null,
+      rail: false,
+      showRbsb: window.innerWidth >= 800,
+      showRbsbbtn: window.innerWidth >= 1280,
+      windowWidth: 0,
+      selectedCurrency: this.$store.getters.selectedCurrency,
+      selectedCurrencyImages: {
+        'balance': require('../assets/Cryptologos/tether-usdt-logo.svg'),
+        'balanceeur': require('../assets/Cryptologos/euro-logo.svg'),
+        'balancebtc': require('../assets/Cryptologos/Currency=btc.svg'),
+        'balanceeth': require('../assets/Cryptologos/Currency=Ethereum.svg'),
+      },
+    };
+  },
+
 created() {
   window.addEventListener("resize", this.updateRbsbVisibility);
   window.addEventListener("resize", this.updateRbsbVisibility2);
@@ -445,4 +482,64 @@ border-radius: 5px 0px 0px 5px !important;
   transform: scale(1.05);
 
 }
+
+/* Keyframes for shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Apply shimmer animation to the button */
+.glowg-button {
+  background: linear-gradient(45deg, #ff00fb, #6745d7, #0095ff, #6745d7, #ff00fb);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
+  color: #fff; /* Text color */
+}
+
+.glowg-button2 {
+  background: linear-gradient(45deg, #15ff00, #d7d545, #ff5100, #d7d545, #15ff00);
+  background-size: 200% 100%;
+  animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
+  color: #fff; /* Text color */
+}
+
+/* Style the text inside the button */
+.shimmerr-text {
+  color: transparent;
+  background: linear-gradient(90deg, #000000 25%, #000000 50%, #000000 75%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 2s infinite;
+}
+.v-snackbar__wrapper {
+    align-items: center;
+    display: flex;
+    max-width: auto;
+    min-height: auto;
+    min-width: auto;
+    padding: 0;
+    border-radius: 4px;
+    left: auto !important;
+    transform: none !important;
+
+   
+}
+.v-overlay {
+    border-radius: 0px;
+    display: flex;
+    margin: 20px !important;
+    width: auto;
+    pointer-events: none;
+    position: fixed;
+    top: 0 ;
+    bottom: 0 ;
+    right: 0;
+    justify-content: flex-end; /* Align child elements to the right */
+}
+
 </style>

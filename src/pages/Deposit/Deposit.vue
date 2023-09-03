@@ -1,9 +1,9 @@
 <template>
   
     <div class="jja" @click.stop="$emit('HideDepositOknoo')">
-       <div v-if="showDepositComponent" @click.stop="$emit('HideDepositOknoo')" style="
+       <div @click.stop="$emit('HideDepositOknoo')" style="
           max-height: 90%;
-   
+          max-width: 90%;
           overflow-y:auto; ">
 
   
@@ -15,37 +15,42 @@
           margin: auto;">   
           
         <div style="background-color: #213141; border-radius: 10px;">
-  <div
-    class="d-flex align-center justify-center"
-    elevation="0"
-    style="background-color: #213141 ; width: auto; padding: 20px 10px; border-top-left-radius: 10px; 
-     border-top-right-radius: 10px"
+          <div
+  class="d-flex align-center"
+  elevation="0"
+  style="background-color: #213141; width: auto; overflow-x: auto; padding: 20px 10px; border-top-left-radius: 10px; border-top-right-radius: 10px"
+>
+  <v-btn
+   
+    elevation="4"
+    class="glow-button"
+    :ripple="false"
+    style="color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; flex-grow: 1; flex-shrink: 1;"
   >
-    <v-btn
-      elevation="4"
-      class=" glow-button"
-      :ripple="false"
-      style="margin: 0 10px;" 
-    >
-      Deposit
-    </v-btn>
-    <v-btn
-      elevation="4"
-      class=" glow-button"
-      :ripple="false"
-      style="margin: 0 10px;"
-    >
-      Withdraw
-    </v-btn>
-    <v-btn
-      elevation="4"
-      class=" glow-button"
-      :ripple="false"
-      style="margin: 0 10px;"
-    >
-      Buy crypto
-    </v-btn>
-  </div>
+    <span style="color: #ffffff; font-size: 13px;">Deposit</span>
+  </v-btn>
+
+  <v-btn
+ 
+    elevation="4"
+    class="glow-button "
+    :ripple="false"
+    style="margin: 10px; flex-grow: 1; flex-shrink: 1;"
+  >
+    <span style="color: #ffffff; font-size: 13px;">Withdraw</span>
+  </v-btn>
+
+  <v-btn
+    elevation="4"
+    class="glow-button "
+    :ripple="false"
+
+    style="flex-grow: 1; flex-shrink: 1;"
+  >
+    <span style="color: #ffffff; font-size: 13px;">Buy crypto</span>
+  </v-btn>
+</div>
+
       
   
       <div style=" background-color: #213141; padding: 20px 10px; border-radius: 10px;">
@@ -80,7 +85,7 @@
         </div>  
         </div>
   
-        <div v-if="showDepositComponent === false" @click.stop="$emit('HideAccountOknoo')"
+        <div v-if="showDepositComponentt" @click.stop="$emit('HideAccountOknoo')"
         style=" overflow-y:auto; max-height: 90%; width: 100%; ">
           <div @click.stop style="
          
@@ -289,7 +294,7 @@ z-index: 1000;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
-  width: 200px;
+  width: 200px; min-width: 110px;
 }
 
 
