@@ -49,6 +49,7 @@
     :gameResult="gameResult" 
     :errorMsg="errorMsg" />
 </template>
+
 <script>
 import { ref, computed, onMounted, onUnmounted } from 'vue'; 
 import { useStore } from 'vuex';
@@ -72,11 +73,11 @@ export default {
     const router = useRouter(); 
 
     const roundBalance = (value) => {
-      // Ensure the value does not exceed 10 million
+ 
       if (value > 10000000) {
         return 10000000;
       }
-      // Round the value to the nearest ten-thousandth (4 decimal points)
+
       return Math.round(value * 10000000) / 10000000;
     };
 
@@ -201,8 +202,6 @@ export default {
      
 
 <!--
-Try again to make it so that if the request cannot be made, then the user is automatically redirected to this page.
-/auth/login
 
 -->
 

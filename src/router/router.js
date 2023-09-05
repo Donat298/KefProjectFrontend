@@ -3,7 +3,7 @@ import MyMain from "@/pages/MyMain";
 import {createRouter, createWebHistory} from "vue-router";
 import Wheel from "@/pages/Games/WhEel.vue";
 import BalanceManag from "@/pages/Games/BalanceManag.vue";
-import Crash from "@/pages/Games/Crash.vue";
+import Mines from "@/pages/Games/MiNes.vue";
 import UserPage from "@/pages/UserPage";
 import UserPage2 from "@/pages/UserPage2";
 import login from "@/pages/auth/LoginView";
@@ -41,9 +41,9 @@ const routes = [
         
     },
     {
-        path: '/crash',
-        name: 'Crash',
-        component:  Crash,
+        path: '/mines',
+        name: 'Mines',
+        component:  Mines,
         
     },
     {

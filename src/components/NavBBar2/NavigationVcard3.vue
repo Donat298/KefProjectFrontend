@@ -19,7 +19,7 @@
            color="teal-lighten-4" to="/wheel" >Wheel</v-list-item>
               
            <v-list-item :ripple="false" prepend-icon="mdi-arrow-top-right"   style="color: #ffffff; padding-left: 15px; "
-           color="teal-lighten-4" to="/crash" >Crash</v-list-item>
+           color="teal-lighten-4" to="/mines" >Mines</v-list-item>
             <v-list-item :ripple="false" prepend-icon="mdi-currency-usd"   style="color: #ffffff; padding-left: 15px; "
             color="teal-lighten-4" to="/BalanceManag"  >Balance</v-list-item>
          </v-expansion-panel-text>
