@@ -23,7 +23,8 @@
         elevation="0"
         grow
       >
-      <div   style="width: 800px;max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
+      <div   style="width: 800px;max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); 
+      display: flex; align-items: center; justify-content: center;">
         <v-form  style="display: flex; width: 100%;   width: 842px;" ref="form" @submit.prevent="sendMessage">
           <v-textarea  class="mr-0 pl-0"  
             variant="solo"
@@ -121,9 +122,7 @@
     },
   };
   </script>
-  These are 2 files, one is on the back end and 2 is on the client. You can do this and change the code so that when the user,
-   even if he is not authorized, he can still see the messages. Please write out the changed code, in full without skipping.
-  
+ 
   
   <style scoped>
   .bubble {

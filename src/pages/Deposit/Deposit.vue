@@ -14,11 +14,11 @@
           box-sizing: border-box;       
           margin: auto;">   
           
-        <div style="background-color: #213141; border-radius: 10px;">
+        <div style="background-color: #1d2f3f; border-radius: 10px;">
           <div
   class="d-flex align-center"
   elevation="0"
-  style="background-color: #213141; width: auto; overflow-x: auto; padding: 20px 10px; border-top-left-radius: 10px; border-top-right-radius: 10px"
+  style="background-color: #1d2f3f; width: auto; overflow-x: auto; padding: 15px 15px; border-top-left-radius: 10px; border-top-right-radius: 10px"
 >
   <v-btn
    
@@ -35,7 +35,7 @@
     elevation="4"
     class="glow-button "
     :ripple="false"
-    style="margin: 10px; flex-grow: 1; flex-shrink: 1;"
+    style="margin-inline: 10px; flex-grow: 1; flex-shrink: 1;"
   >
     <span style="color: #ffffff; font-size: 13px;">Withdraw</span>
   </v-btn>
@@ -53,24 +53,24 @@
 
       
   
-      <div style=" background-color: #213141; padding: 20px 10px; border-radius: 10px;">
+      <div style=" background-color: #1d2f3f; padding: 20px 10px; border-radius: 10px;">
         
         <div style="position: relative;">
           <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
           
     <v-card
-      color="#213141"
-      style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#213141"
+      style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#1d2f3f"
       elevation="0"
     >
  
-      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: rgb(37, 56, 74); color:#ffffff; display: flex; align-items: center;">
+      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: #2e4659; color:#ffffff; 
+      display: flex; align-items: center;">
         TWX3X61vd76HHdh36t1QLZciZfqa4Na1za
         <button
     :disabled="showTooltip" 
     class="ml-2 copied-button"
     :class="{ 'copied-icon': showTooltip }"
-    :style="{ backgroundColor: showTooltip ? 'rgb(37, 56, 74)' : 'rgb(37, 56, 74)' }"
+    :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }"
     @click="copyCode(); showCopiedTooltip()"
   >
     <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
@@ -103,11 +103,11 @@
       <v-card  
       elevation="0"  
       rounded="lg"
-      style="background-color: #213141;  margin-left: auto; margin-right: auto; " 
+      style="background-color: #15212c;  margin-left: auto; margin-right: auto; " 
       >
   
      
-      <div style="background-color: #213141;  align-items: center;  padding: 20px 10px; ">
+      <div style="background-color: #15212c;  align-items: center;  padding: 20px 10px; ">
           <div style="margin: auto; display: flex;">
         <v-avatar 
           style="margin-left: auto; margin-right: auto;"
@@ -131,10 +131,10 @@
   
       
   
-      <div style="width: 50%; background-color: #213141; padding: 20px 10px;
+      <div style="width: 50%;  padding: 20px 10px;
        width: 100%;">
         <v-card
-          color="#213141"
+          color="#15212c"
           style=" height: 70px; display: flex; align-items: center; justify-content: center;"
           elevation="0"  
           >
@@ -288,13 +288,13 @@ z-index: 1000;
 
 .glow-button {
   overflow: hidden;
-  background-color: rgb(37, 56, 74);
+  background-color: #2e4659;
   color: #ffffff;
   height: 64px;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
-  width: 200px; min-width: 110px;
+  width: 155px; min-width: 110px;
 }
 
 

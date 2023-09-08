@@ -2,8 +2,8 @@
   <div class="jja" @click.stop="$emit('HideAccountOknoo')">
     <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="max-height: 90%; width: 100%; overflow-y: auto;">
       <div @click.stop  style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
-        <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); display: flex; width: 600px;">
-          <div style="background-color: rgb(37, 56, 74); width: 50%; padding: 20px 10px;">
+        <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
+          <div style="background-color: #1d2f3f; width: 50%; padding: 20px 10px;">
              <div style="margin: 0 auto; height: 70px; width:70px ; display: flex; align-items: center; justify-content: center; ">
      
       <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; "></fa> 
@@ -21,7 +21,7 @@
       </div>  
       
     </div>  
-    <div style="width: 50%; background-color: #213141; padding: 20px 10px;">
+    <div style="width: 50%; background-color: #15212c; padding: 20px 10px;">
           
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
@@ -40,22 +40,23 @@
 
       <div v-else @click.stop="$emit('HideAccountOknoo')" style="overflow-y: auto; max-height: 90%; width: 100%;">
       <div @click.stop  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
-        <v-card elevation="0" rounded="lg" style="background-color: rgb(37, 56, 74); margin-left: auto; margin-right: auto;">
-          <div style="background-color: rgb(37, 56, 74); align-items: center; padding: 20px 10px;">
+        <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
+          <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">
             <div style="margin: auto; display: flex; height: 70px;">
           <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 30px; margin: auto;"></fa> 
     </div>   
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
         {{ $store.getters.userDetail.username }}     
       </div> 
-      <div style="color: #ffffff;  text-align: center;">
+      <div style="color: #ffffff;  text-align: center;  font-size: 20px;">
         {{ $store.getters.userDetail.email }}     
       </div>  
-      <div style="color: #ffffff;  text-align: center;">
+      <div style="color: #ffffff;  text-align: center; ">
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
       </div>          
     </div>  
-    <div style="width: 50%; background-color: #213141; padding: 20px 10px; width: 100%;">
+    <v-divider width="5"></v-divider>
+    <div style="width: 50%; background-color: #15212c; padding: 20px 10px; width: 100%;">
            
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 48px; display: flex; align-items: center; justify-content: center;" elevation="0">

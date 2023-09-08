@@ -3,7 +3,8 @@
   <v-layout  class="">
   
     <v-navigation-drawer
-    style="z-index: 3; min-height: 100%; background-color: #1d2f3f ; border-right: 2px solid #1d2f3f;"
+    style="z-index: 3; min-height: 100%; background-color: #1d2f3f ; border-right: 2px solid #1d2f3f;
+    "
     :rail="rail"
     v-model="drawer"
     
@@ -55,8 +56,10 @@
   </v-navigation-drawer>
   <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 3" app name="footer">
   
-    <v-btn rounded="xl" @click="this.drawer = !this.drawer; rail = false" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
-       style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center;">
+    <v-btn rounded="xl" @click="this.drawer = !this.drawer; rail = false" elevation="4" 
+    class="mx-auto glow-button ma-4" :ripple="false"
+       style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
+        flex-direction: column; align-items: center; text-align: center;">
        <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
        <span style="color: #ffffff;  font-size: 13px;">Menu</span>
 </v-btn>
@@ -79,7 +82,8 @@
 
 
 
-      <v-app-bar    :elevation="5" style="z-index: 1; background-color: #15212c ;">
+      <v-app-bar    :elevation="0" style="z-index: 1; background: var(--color-dark-tr-e);
+          backdrop-filter: blur(10px);">
      
             
        
@@ -94,7 +98,7 @@
      @click="drawer = true"><fa icon="fas fa-angle-double-right" /></button>
                  
           
-                  <div v-if="$store.getters.isAuthenticated" style=" 
+                  <div v-if="$store.getters.isAuthenticated" style="  
                    overflow-x: auto; /* Add this to enable horizontal scrolling when necessary */
     white-space: nowrap; max-height: 64px; max-width: 1200px; 
    margin: auto;  align-items: center;
@@ -103,7 +107,7 @@
     ">   
                     <div  style="justify-self: start; display: flex;  position:relative; " >
           
-          <button  style="color: #ffffff;  background-color: #15212c00;    padding: 0 1vw;" 
+          <button  style="color: #ffffff;  background-color: #29384500;    padding: 0 1vw;" 
           @click="$router.push('/')">  <v-img  style=" max-height: 64px; max-width: 90px;
 background-color: rgba(127, 255, 212, 0); 
  " :src="require('@/assets/kefu.svg')"/></button>
@@ -119,36 +123,34 @@ background-color: rgba(127, 255, 212, 0);
             
    
       
-      <div  style=" flex: 1; display: flex;  justify-content: center; align-items: center; ">
-        <div v-bind="props" class="left-rounded pa-4"  style="
-          height: 48px; background-color: #0c141b;  display: flex; align-items: center;" elevation="0">
+      <div class="rounded"   style=" flex: 1; display: flex; 
+       justify-content: center; align-items: center; ">
+        <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
+          height: 48px;   display: flex; align-items: center;" elevation="0">
 <div style="color: #ffffff;  display: flex; align-items: center; text-align: center;">
   <span style="max-width: 12ch; line-height: 1.5;     font-size: var(--text-size-default); font-weight: 600;
-  white-space: nowrap;
+
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: inherit;    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
+
+       margin: 0;
+
+
     font: inherit;
     vertical-align: baseline; box-sizing: border-box;">
  {{ $store.getters.userDetail[selectedCurrency] }}
 </span>
   <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
-  
+
 <fa icon="fa-solid fa-chevron-down" style="color: #ffffff;height: 14px; margin-left: 10px;"></fa>
 </div>
 
 
-
-
-
 </div>
+
 
 <v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 font-size: 17px; 
-height: 48px;   border-radius: 0px 5px 5px 0px;
+height: 48px;   
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 <strong>{{ buttonLabel }} </strong>
 </v-btn>
@@ -163,7 +165,7 @@ elevation="5"
 style=" 
   visibility: visible;
   opacity: 1;
-  background-color: #162a3c;
+  background-color: #1d2f3f;
   color: #ffffff;
   margin-top: 65px;
   min-width: 100px;
@@ -248,7 +250,8 @@ style="
            ">
 
   <my-button2 v-bind="props" style="display: flex; align-items: center; justify-content: center; 
-  background-color: #15212c; height: 48px; width: 64px; border-radius: 50px;">
+  background: var(--color-dark-tr-e);
+          backdrop-filter: blur(10px); height: 48px; width: 48px; border-radius: 50px;">
   <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 20px; "></fa>
 </my-button2>
 
@@ -263,12 +266,12 @@ style="
                 visibility: visible;
                 opacity: 1;
                 
-                background-color: #162a3c;
-                color: #ffffff;
+                background-color: #1d2f3f;
+                color: rgb(255, 255, 255);
                 
                 margin-top: 65px;
                 min-width: 100px;">
-            <v-list-item style="height: 50px; display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
+            <v-list-item style="height: 50px;  display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
                 > <fa icon="fa-solid fa-user fa-2xl" class="mx-auto mr-3" style="color: #ffffff;"></fa> Account </v-list-item>
                
             <v-list-item style="height: 50px;" @click="logout()" :ripple="false"
@@ -467,7 +470,7 @@ border-radius: 5px 0px 0px 5px !important;
 
 .glow-button {
   overflow: hidden;
-  background-color: rgb(37, 56, 74);
+  background-color: #25384a;
   color: #ffffff;
   height: 64px;
   width: 100%;
