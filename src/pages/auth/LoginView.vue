@@ -146,5 +146,5 @@ export default {
   
   
 }
+
 </style>
-Same for this

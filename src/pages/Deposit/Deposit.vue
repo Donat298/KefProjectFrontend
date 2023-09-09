@@ -85,71 +85,7 @@
         </div>  
         </div>
   
-        <div v-if="showDepositComponentt" @click.stop="$emit('HideAccountOknoo')"
-        style=" overflow-y:auto; max-height: 90%; width: 100%; ">
-          <div @click.stop style="
-         
-  
-         
-     
-          width: 300px;
-          margin: auto;
-          
-          align-items: center;
-          min-height: 50px;
-          max-width: 90%;
-          
-          margin: auto;">  
-      <v-card  
-      elevation="0"  
-      rounded="lg"
-      style="background-color: #15212c;  margin-left: auto; margin-right: auto; " 
-      >
-  
-     
-      <div style="background-color: #15212c;  align-items: center;  padding: 20px 10px; ">
-          <div style="margin: auto; display: flex;">
-        <v-avatar 
-          style="margin-left: auto; margin-right: auto;"
-          color="white"
-          size="70"
-          rounded="lg"      
-        >
-        <v-icon  icon="mdi-account" size="xx-large"></v-icon>     
-        </v-avatar>
-      </div>
-     
-      <div style="color: #ffffff;   margin-top: 10px; text-align: center;">
-          {{ $store.getters.userDetail.username }}     
-        </div> 
-        <div style="color: #ffffff;  text-align: center;">
-          {{ $store.getters.userDetail.email }}     
-        </div> 
-        
-             
-      </div>  
-  
-      
-  
-      <div style="width: 50%;  padding: 20px 10px;
-       width: 100%;">
-        <v-card
-          color="#15212c"
-          style=" height: 70px; display: flex; align-items: center; justify-content: center;"
-          elevation="0"  
-          >
-          
-          <p class="text-center" style="color: #ffffff; display: flex; height: 44px; align-items: center;
-                   height: 64px;">
-      {{ $store.getters.userDetail.balance }} USDT
-      <img style="width: 25px; height: 25px; margin-left: 5px;" :src="require('@/assets/Tether.svg')" />
-  </p>   
-        </v-card>
-
-      </div >
-      </v-card>
-          </div> 
-        </div>
+    
   
   
  

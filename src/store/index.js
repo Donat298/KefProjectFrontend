@@ -1,14 +1,16 @@
+
 //here is my store
 import { createStore } from "vuex";
 import { useApi, useApiPrivate } from "../utils/useApi"
 export default createStore({
     state: () => {
         return {
-            user: /*JSON.parse(localStorage.getItem('user')) || */ {}, 
-            accessToken: localStorage.getItem('accessToken') || "", 
+            user: {}, // Existing user state
+            accessToken: localStorage.getItem('accessToken') || "",
             sessionChecked: false,
             selectedCurrency: localStorage.getItem('selectedCurrency') || 'balance',
-            
+            // New avatar state
+            avatar: localStorage.getItem('userAvatar') || '',
         }
     },
     getters: {
@@ -40,6 +42,10 @@ export default createStore({
             };
             localStorage.removeItem('accessToken');
             localStorage.removeItem('user');
+        },
+        setUserAvatar(state, avatarUrl) {
+            state.avatar = avatarUrl;
+            localStorage.setItem('userAvatar', avatarUrl);
         },
         setUserBalance(state, newBalance) {
             state.user.balance = newBalance;
@@ -150,20 +156,17 @@ export default createStore({
 
         async getUser({ commit }) {
             return new Promise((resolve, reject) => {
-
                 useApiPrivate(this).get(`/api/auth/user`)
                     .then((response) => {
                         commit("setUser", response.data);
+                        commit("setUserAvatar", response.data.avatar); // Set the avatar
                         resolve(response.data);
                     })
                     .catch((error) => {
-                        
-                    }
-
-                    );
-
+                        // Handle error
+                        reject(error);
+                    });
             });
-
         },
 
         async logout({ commit }) {

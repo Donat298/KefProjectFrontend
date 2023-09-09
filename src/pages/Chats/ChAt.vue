@@ -1,3 +1,6 @@
+
+
+
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width:100%; ">
       <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">

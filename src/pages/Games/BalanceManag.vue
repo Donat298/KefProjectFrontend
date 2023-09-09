@@ -16,7 +16,7 @@
         style="color: black; background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));">
         2/ Balance
     </v-btn>
-  
+   
 
  
   <v-btn ref="zeroButton" elevation="4" variant="tonal" class="mt-4 mb-4 mr-2 ml-2"
@@ -130,12 +130,12 @@ export default {
       'balance': 'trc', 
       'balanceeur': 'eur',
       'balancebtc': 'btc',
-      'balanceeth': 'eth',
+      'balanceeth': 'eth', 
     };
 
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
 
-    const response = await axiosPrivateInstance.put('/users/set-balance', {
+    const response = await axiosPrivateInstance.put('/avatar/set-balance', {
       userId: userId.value,
       newBalance: balanceInput.value,
       selectedCurrency: currency

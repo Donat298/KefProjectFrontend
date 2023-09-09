@@ -1,4 +1,4 @@
-Code number 1
+
 <template>
   <div>
     <input v-model="betAmount" type="number" placeholder="Enter bet amount" />
