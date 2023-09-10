@@ -54,6 +54,8 @@
   
 
   </v-navigation-drawer>
+
+
   <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 3" app name="footer">
   
     <v-btn rounded="xl" @click="this.drawer = !this.drawer; rail = false" elevation="4" 
@@ -78,9 +80,6 @@
   </v-btn>
  
 </v-footer>
-
-
-
 
       <v-app-bar    :elevation="0" style="z-index: 1; background: var(--color-dark-tr-e);
           backdrop-filter: blur(10px);">
@@ -313,9 +312,7 @@ style="
                   </div>
 
       </v-app-bar>
-
-
-      
+  
       <v-main>
       <div style="
   text-align: center;
