@@ -50,7 +50,7 @@
 
     <v-text-field
       density="compact"
-      placeholder="must contain @"
+      placeholder=""
       v-model="email"
       variant="solo"
       :readonly="loading"

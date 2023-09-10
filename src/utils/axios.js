@@ -14,7 +14,8 @@ export const axiosInstance = axios.create({
 })
 
 export const axiosPrivateInstance = axios.create({
-  baseURL: "https://kef.onrender.com", // Make sure this matches your server's address
+  //baseURL: 'http://localhost:3000', // Make sure this matches your server's address
+   baseURL: "https://kef.onrender.com",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',

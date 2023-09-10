@@ -16,7 +16,7 @@
 
                     <v-text-field
                         density="compact"
-                        placeholder="must contain @"
+                        placeholder=""
                         variant="solo"
                         v-model="email"
                    

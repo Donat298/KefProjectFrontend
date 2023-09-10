@@ -1,6 +1,4 @@
-
-
-
+Now all my avatars are on the right, what did I do wrong?
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width:100%; ">
       <v-card  elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">
@@ -8,12 +6,15 @@
           <div ref="messagesContainer"  style=" max-width: 100%; width: 100%; overflow-y: auto;">
             <div class="my-2 mx-auto" v-for="(message, index) in messages" :key="index" 
             style="width: 800px; max-width: 90%; ">
-    <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
-      <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
-        <div class="sender">{{ message.username }}</div>
-        <div class="text">{{ message.MessageText }}</div>
+            <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
+    <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
+      <div class="avatar-container">
+        <img :src="message.userAvatar" alt="User Avatar" class="user-avatar" />
       </div>
+      <div class="sender">{{ message.username }}</div>
+      <div class="text">{{ message.MessageText }}</div>
     </div>
+  </div>
   </div>
         </div>
         </v-card-text>
@@ -142,21 +143,18 @@
     display: flex;
     flex-direction: column;
   }
-  .bubble-container.right {
-    align-items: flex-end;
-  }
-  .bubble-container.left {
-    align-items: flex-start;
-  }
+
   .bubble .sender {
     font-weight: bold;
     color: white;
   }
   .bubble.right .sender {
     text-align: right;
+    margin-top: 5px;
   }
   .bubble.left .sender {
     text-align: left;
+    margin-top: 5px;
   }
   .bubble .text {
     margin-top: 5px;
@@ -175,12 +173,9 @@
   .v-card-text {
     display: flex;
     flex-direction: column;
-    padding: 0rem;
+    padding: 0px;
   }
-  .v-card-actions {
-    margin-top: auto;
-    background-color: rgb(21, 33, 44);
-  }
+
   .chat-messages {
     overflow-y: auto;
     flex: 1 1 auto;
@@ -224,6 +219,30 @@
       flex-wrap: wrap;
       flex: 1 1 auto;
        margin: 0px !important;  
+  }
+
+  .avatar-container {
+    width: 34px;
+    height: 34px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    margin-left: auto;
+  }
+  .bubble.right .avatar-container {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+/* For avatars on the left */
+.bubble.left .avatar-container {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+  .user-avatar {
+    width: 100%;
+    height: auto;
   }
   
   </style>
