@@ -138,6 +138,7 @@ Now all my avatars are on the right, what did I do wrong?
     word-wrap: break-word;
     white-space: pre-wrap;
     max-width: 70%;
+    min-width: 100px;
   }
   .bubble-container {
     display: flex;
@@ -242,7 +243,8 @@ Now all my avatars are on the right, what did I do wrong?
 
   .user-avatar {
     width: 100%;
-    height: auto;
+
+    height: 100%; 
   }
   
   </style>
