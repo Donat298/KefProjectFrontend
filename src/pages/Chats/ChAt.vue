@@ -1,3 +1,4 @@
+Can you now do this when messages become too small? So the text starts to break into pieces so that it fits?
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width: 100%;">
     <v-card elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">
@@ -38,10 +39,9 @@
     padding: 10px 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    word-wrap: break-word;
+    word-break: break-all; /* Change this property */
     white-space: pre-wrap;
     max-width: 70%;
-    min-width: 100px;
   }
   .bubble-container {
     display: flex;
