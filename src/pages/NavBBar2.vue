@@ -1,4 +1,4 @@
-
+Is it possible to somehow optimize this code?
 <template>
   <v-layout  class="">
   
