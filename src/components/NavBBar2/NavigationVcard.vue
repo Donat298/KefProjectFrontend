@@ -115,4 +115,3 @@ export default {
 }
 </style>
 
-Is it possible, so that when you click on the v-list-item, the elevation changes to 5?

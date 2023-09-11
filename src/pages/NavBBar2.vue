@@ -1,4 +1,3 @@
-Is it possible to somehow optimize this code?
 <template>
   <v-layout  class="">
   
@@ -58,21 +57,21 @@ Is it possible to somehow optimize this code?
 
   <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 3" app name="footer">
   
-    <v-btn rounded="xl" @click="this.drawer = !this.drawer; rail = false" elevation="4" 
-    class="mx-auto glow-button ma-4" :ripple="false"
+    <v-btn  @click="this.drawer = !this.drawer; rail = false" elevation="4" 
+    class="mx-auto glow-button ma-4" :ripple="false" 
        style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
         flex-direction: column; align-items: center; text-align: center;">
        <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
        <span style="color: #ffffff;  font-size: 13px;">Menu</span>
 </v-btn>
 
-  <v-btn rounded="xl" to="/wheel" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
+  <v-btn  to="/wheel" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
          style="max-width: calc(33.33% - 10px); min-width: 5px;">
          <v-icon icon="mdi-cards"></v-icon>
          <span style="color: #ffffff;  font-size: 13px;">Games</span>
     
   </v-btn>
-  <v-btn rounded="xl" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
+  <v-btn  elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
   to="/chat" style="max-width: calc(33.33% - 10px);  min-width: 5px;" >
          <v-icon icon="mdi-chat"></v-icon>
          <span style="color: #ffffff;  font-size: 13px;">Chat</span>
@@ -406,7 +405,7 @@ buttonLabel() {
 };
 </script>
 
-<style>
+<style scoped>
 .left-rounded {
 border-radius: 5px 0px 0px 5px !important;
 }
@@ -469,19 +468,17 @@ border-radius: 5px 0px 0px 5px !important;
   overflow: hidden;
   background-color: #25384a;
   color: #ffffff;
-  height: 64px;
+  max-height: 64px;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
   width: 200px;
+ 
 }
 
 
 
-.glow-button:hover {
-  transform: scale(1.05);
 
-}
 
 /* Keyframes for shimmer effect */
 @keyframes shimmer {
@@ -541,5 +538,7 @@ border-radius: 5px 0px 0px 5px !important;
     right: 0;
     justify-content: flex-end; /* Align child elements to the right */
 }
+
+
 
 </style>

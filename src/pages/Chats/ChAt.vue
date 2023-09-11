@@ -1,6 +1,8 @@
-Can you now do this when messages become too small? So the text starts to break into pieces so that it fits?
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width: 100%;">
+    <div v-if="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+      <vproGressMini style="max-height: 64px; max-width: 90px;"/>  
+    </div>
     <v-card elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: #0c141b; align-items: center;" class="chat-messages">
         <div ref="messagesContainer" style="max-width: 100%; width: 100%; overflow-y: auto;">
@@ -33,7 +35,10 @@ Can you now do this when messages become too small? So the text starts to break 
   </v-bottom-navigation>
 </template>
 
+
+
 <style scoped>
+
   .bubble {
     display: flex;
     padding: 10px 10px;
@@ -142,11 +147,14 @@ Can you now do this when messages become too small? So the text starts to break 
     height: 100%;
   }
 </style>
-
 <script>
 import io from 'socket.io-client';
 import { axiosInstance} from "../../utils/axios";
+import vproGressMini from "../../components/ProgrammInterface/vproGressMini.vue"
 export default {
+  components: {
+    vproGressMini
+  },
   name: 'App',
   data() {
     return {
@@ -155,6 +163,7 @@ export default {
       newMessage: '',
       user: '',  
       value: null,
+      isLoading: true, // Add isLoading data property
     };
   },
   methods: {
@@ -186,7 +195,10 @@ export default {
     },
     removeMessageById(messageId) {
       this.messages = this.messages.filter(msg => msg._id !== messageId);
-    }
+    },
+    loadingComplete() {
+      this.isLoading = false;
+    },
   },
   created() {
     // The username might be empty if the user is unauthorized
@@ -202,6 +214,7 @@ export default {
       console.log("getting chat messages from socket...");
       msgs.forEach(msg => this.messages.push(msg));
       this.scrollToBottom();
+      this.loadingComplete(); // Call loadingComplete when data is loaded
     });
     // Listen for 'new chat message' event from the server
     this.socket.on('new chat message', (msg) => {

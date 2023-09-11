@@ -3,13 +3,8 @@
 <template>
   <div class="okno3">
       <div class="okno4">
-             <v-progress-circular style="width: 100%;"
-class="margg"
-color="blue-lighten-3"
-indeterminate
-:size="128"
-:width="12"
-></v-progress-circular>
+             <vproGressMini style="width:140,625px; height:100px;"
+></vproGressMini>
 
 
       </div>
@@ -20,7 +15,12 @@ indeterminate
 
 
 <script>
-
+import vproGressMini from "../components/ProgrammInterface/vproGressMini.vue"
+export default {
+  components: {
+    vproGressMini
+  }, 
+}
 </script>
 
 

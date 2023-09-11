@@ -58,43 +58,49 @@
         <div style="position: relative;">
           <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
           
-    <v-card
+    <div
       style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#1d2f3f"
       elevation="0"
     >
  
-      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: #2e4659; color:#ffffff; 
-      display: flex; align-items: center;">
-        TWX3X61vd76HHdh36t1QLZciZfqa4Na1za
-        <button
-    :disabled="showTooltip" 
-    class="ml-2 copied-button"
-    :class="{ 'copied-icon': showTooltip }"
-    :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }"
-    @click="copyCode(); showCopiedTooltip()"
-  >
-    <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
-  </button>
+      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: #2e4659; color:#ffffff;
+     display: flex; align-items: center; justify-content: center;
+     ">
+     <v-card    elevation="0" style=" background-color: #2e4659; color:#ffffff;
+     display: flex; align-items: center; justify-content: center;
+     ">
+       Tetheradress
+      </v-card> 
+        <button 
+      
+      :disabled="showTooltip" 
+      class=" copied-button ml-2"
+      :class="{ 'copied-icon': showTooltip }"
+      :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }"
+      @click="copyCode(); showCopiedTooltip()"
+      style="min-width: 40px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; min-width: 40px;"
+    >
+      <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
+    </button>
       </v-card>
-
-    </v-card>
+  
+    </div>
+    
   </div>
       </div >
+
+
+
+
+
+
 
     </div>
         </div>  
         </div>
-  
-    
-  
-  
- 
   </div>
-
-  </template>
-  
+  </template> 
   <script>
-
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
   export default {
     components: {
@@ -155,8 +161,6 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
  
   }
   </script>
-  
-  
 
   
   <style scoped>
@@ -238,6 +242,10 @@ z-index: 1000;
 .glow-button:hover {
   transform: scale(1.02);
 
+}
+
+.v-btn:hover > .v-btn__overlay {
+  background-color: none !important;
 }
 
 
