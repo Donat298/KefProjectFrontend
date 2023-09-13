@@ -44,7 +44,7 @@
     padding: 10px 10px;
     margin-bottom: 10px;
     border-radius: 10px;
-    word-break: break-all; /* Change this property */
+    word-break: break-word;
     white-space: pre-wrap;
     max-width: 70%;
   }

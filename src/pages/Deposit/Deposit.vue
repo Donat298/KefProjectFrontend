@@ -58,35 +58,10 @@
         <div style="position: relative;">
           <v-img class="mx-auto" style="max-width:200px" src="@/assets/CryptoQrcodes/TetherErc20.png" />
           
-    <div
-      style="height: 120px; display: flex; align-items: center; justify-content: center; background-color:#1d2f3f"
-      elevation="0"
-    >
- 
-      <v-card elevation="5" class="pa-2 pl-4" style=" background-color: #2e4659; color:#ffffff;
-     display: flex; align-items: center; justify-content: center;
-     ">
-     <v-card    elevation="0" style=" background-color: #2e4659; color:#ffffff;
-     display: flex; align-items: center; justify-content: center;
-     ">
-       Tetheradress
-      </v-card> 
-        <button 
-      
-      :disabled="showTooltip" 
-      class=" copied-button ml-2"
-      :class="{ 'copied-icon': showTooltip }"
-      :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }"
-      @click="copyCode(); showCopiedTooltip()"
-      style="min-width: 40px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; min-width: 40px;"
-    >
-      <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
-    </button>
-      </v-card>
-  
-    </div>
+   
     
   </div>
+  <AdressGen/>
       </div >
 
 
@@ -102,9 +77,11 @@
   </template> 
   <script>
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
+import AdressGen from '@/components/Qrcodes/AdressGen.vue';
+
   export default {
     components: {
-    Fa
+    Fa, AdressGen
   },
     data() {
       return {
@@ -201,17 +178,7 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
     border-radius: 30px;
   }
 
-  .custom-tooltip {
-  position: absolute;
-  top: 10px; /* Adjust this value as needed */
-  right: 115px; /* Adjust this value as needed */
-  background-color: #616161;
-  color: white;
-  padding: 8px;
-  border-radius: 4px;
-  font-size: 12px;
-z-index: 1000;
-}
+
 .copied-button {
   border: none;
 
@@ -230,7 +197,7 @@ z-index: 1000;
   overflow: hidden;
   background-color: #2e4659;
   color: #ffffff;
-  height: 64px;
+  min-height: 64px;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;

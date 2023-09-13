@@ -26,7 +26,7 @@
   
 
     <v-snackbar 
-      :timeout="2000"
+      :timeout="100000"
       v-model="snackbar"
       color="success"
     >
@@ -94,6 +94,14 @@
 
                 <button  v-if="!showRbsbbtn && showRbsb" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
      @click="drawer = true"><fa icon="fas fa-angle-double-right" /></button>
+
+
+
+
+
+
+
+
                  
           
                   <div v-if="$store.getters.isAuthenticated" style="  
@@ -110,135 +118,23 @@
 background-color: rgba(127, 255, 212, 0); 
  " :src="require('@/assets/kefu.svg')"/></button>
 
-
-
-
           </div>
-     
-          <v-menu location="center"  transition="slide-y-transition">
-          
-            <template v-slot:activator="{ props }">
-            
-   
-      
-      <div class="rounded"   style=" flex: 1; display: flex; 
-       justify-content: center; align-items: center; ">
-        <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
-          height: 48px;   display: flex; align-items: center;" elevation="0">
-<div style="color: #ffffff;  display: flex; align-items: center; text-align: center;">
-  <span style="max-width: 12ch; line-height: 1.5;     font-size: var(--text-size-default); font-weight: 600;
-
-    overflow: hidden;
-
-       margin: 0;
 
 
-    font: inherit;
-    vertical-align: baseline; box-sizing: border-box;">
- {{ $store.getters.userDetail[selectedCurrency] }}
-</span>
-  <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
 
-<fa icon="fa-solid fa-chevron-down" style="color: #ffffff;height: 14px; margin-left: 10px;"></fa>
-</div>
+          <div style="display: flex;">
+         <ChoseCurrency>
 
-
-</div>
-
-
-<v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
+         </ChoseCurrency>
+          <v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 font-size: 17px; 
 height: 48px;   
 background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 <strong>{{ buttonLabel }} </strong>
 </v-btn>
-        
 </div>
 
-            </template>
-       
-<v-list
-elevation="5"
-:ripple="false"
-style=" 
-  visibility: visible;
-  opacity: 1;
-  background-color: #1d2f3f;
-  color: #ffffff;
-  margin-top: 65px;
-  min-width: 100px;
-  " 
->
 
-<v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
-  <div class="hhdd" >
-    {{ $store.getters.userDetail.balanceeur }}
-    <div class="ml-2 hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
-      <img 
-        style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 15px;" 
-        :src="getCurrencyImagePath('balanceeur')" 
-      />
-      <div class="ml-2" style="min-width: 60px; ">
-        EUR
-      </div>
-    </div>
-  </div>
-</v-list-item>
-
-<v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;"  :ripple="false">
-  <div class="hhdd" >
-    {{ $store.getters.userDetail.balancebtc }}
-    <div class="ml-2 hhpp" >
-      <img 
-        style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 15px;" 
-        :src="getCurrencyImagePath('balancebtc')" 
-      />
-      <div class="ml-2" style="min-width: 60px; ">
-        BTC
-      </div>
-    </div>
-  </div>
-</v-list-item>
-
-<v-list-item @click="selectCurrency('balance')" style="height: 40px;
- align-items: center;"  :ripple="false">
-  <div class="hhdd" > <!-- Add align-items: center; here -->
-    {{ $store.getters.userDetail.balance }}
-    <div class="ml-2 hhpp" >
-      <img 
-        style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 15px;" 
-        :src="getCurrencyImagePath('balance')" 
-      />
-      <div class="ml-2" style="min-width: 60px; ">
-        USDT
-      </div>
-    </div>
-  </div>
-</v-list-item>
-
-<v-list-item @click="selectCurrency('balanceeth')" style="height: 40px;
- align-items: center;"  :ripple="false">
-  <div class="hhdd"> <!-- Add align-items: center; here -->
-    {{ $store.getters.userDetail.balanceeth }}
-    <div class="ml-2 hhpp" >
-      <img 
-        style="display: flex; align-items: center; 
-        width: 22px; max-height: 25px; margin-left: 15px;" 
-        :src="getCurrencyImagePath('balanceeth')" 
-      />
-      <div class="ml-2" style="min-width: 60px; ">
-        ETH
-      </div>
-    </div>
-  </div>
-</v-list-item>
-</v-list>
-
-          </v-menu>
-          
           <v-menu location="center"  transition="slide-y-transition">
           
           <template v-slot:activator="{ props}" >
@@ -290,8 +186,8 @@ style="
     margin: auto;
     display: flex;
     width: 100%;
-    overflow-x: auto; /* Add this to enable horizontal scrolling when necessary */
-    white-space: nowrap; /* Prevent button text from wrapping */
+    overflow-x: auto; 
+    white-space: nowrap; 
 ">
     <button style="color: #ffffff; background-color: #15212c00; padding: 0 1vw;"  @click="$router.push('/')">
         <v-img style="max-height: 64px; max-width: 90px;
@@ -331,10 +227,11 @@ style="
 <script>
 import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '../components/NavBBar2/NavigationList.vue';
+import ChoseCurrency from '../components/Qrcodes/ChoseCurrency.vue';
 
 export default {
 
-components: { NavigationHeader, NavigationList },
+components: { NavigationHeader, NavigationList, ChoseCurrency },
 data() {
     return {
     
@@ -345,13 +242,8 @@ data() {
       showRbsb: window.innerWidth >= 800,
       showRbsbbtn: window.innerWidth >= 1280,
       windowWidth: 0,
-      selectedCurrency: this.$store.getters.selectedCurrency,
-      selectedCurrencyImages: {
-        'balance': require('../assets/Cryptologos/tether-usdt-logo.svg'),
-        'balanceeur': require('../assets/Cryptologos/euro-logo.svg'),
-        'balancebtc': require('../assets/Cryptologos/Currency=btc.svg'),
-        'balanceeth': require('../assets/Cryptologos/Currency=Ethereum.svg'),
-      },
+      
+      
     };
   },
 
@@ -371,15 +263,8 @@ beforeDestroy() {
 window.removeEventListener('resize', this.handleResize);
 },
 methods: {
-  selectCurrency(currencyKey) {
-    this.selectedCurrency = currencyKey;
-    this.selectedCurrencyImage = this.selectedCurrencyImages[currencyKey];
-
-    this.$store.commit('setSelectedCurrency', currencyKey);
-  },
-  getCurrencyImagePath(currencyKey){
-    return this.selectedCurrencyImages[currencyKey];
-  },
+  
+  
 
   logout() {
     this.$store.dispatch("logout");
@@ -405,7 +290,7 @@ buttonLabel() {
 };
 </script>
 
-<style scoped>
+<style>
 .left-rounded {
 border-radius: 5px 0px 0px 5px !important;
 }
@@ -413,7 +298,7 @@ border-radius: 5px 0px 0px 5px !important;
   -webkit-margin-start: 0px;
   margin-inline-start: 0px;
 }
-.v-row {
+.v-row {  
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
@@ -523,6 +408,7 @@ border-radius: 5px 0px 0px 5px !important;
     border-radius: 4px;
     left: auto !important;
     transform: none !important;
+
 
    
 }

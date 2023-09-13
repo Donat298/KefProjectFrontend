@@ -97,8 +97,9 @@ export default {
       try {
 
         const balanceFieldsMap = {
-        'balance': 'trc', 
+        'balanceusdt': 'trc', 
         'balanceeur': 'eur',
+        'balanceusdt2': 'usd',
         'balancebtc': 'btc',
         'balanceeth': 'eth',
       };
@@ -127,15 +128,16 @@ export default {
   
   try {
     const balanceFieldsMap = {
-      'balance': 'trc', 
+      'balanceusdt': 'trc', 
       'balanceeur': 'eur',
+      'balanceusdt2': 'usd',
       'balancebtc': 'btc',
       'balanceeth': 'eth', 
     };
 
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
 
-    const response = await axiosPrivateInstance.put('/avatar/set-balance', {
+    const response = await axiosPrivateInstance.put('/users/set-balance', { 
       userId: userId.value,
       newBalance: balanceInput.value,
       selectedCurrency: currency
