@@ -1,5 +1,5 @@
 <template>
-  <v-layout  class="">
+  <v-layout  class=""> 
   
     <v-navigation-drawer
     style="z-index: 3; min-height: 100%; background-color: #1d2f3f ; border-right: 2px solid #1d2f3f;
@@ -26,7 +26,7 @@
   
 
     <v-snackbar 
-      :timeout="100000"
+      :timeout="2000"
       v-model="snackbar"
       color="success"
     >
@@ -95,14 +95,6 @@
                 <button  v-if="!showRbsbbtn && showRbsb" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
      @click="drawer = true"><fa icon="fas fa-angle-double-right" /></button>
 
-
-
-
-
-
-
-
-                 
           
                   <div v-if="$store.getters.isAuthenticated" style="  
                    overflow-x: auto; /* Add this to enable horizontal scrolling when necessary */
@@ -123,6 +115,7 @@ background-color: rgba(127, 255, 212, 0);
 
 
           <div style="display: flex;">
+          
          <ChoseCurrency>
 
          </ChoseCurrency>
@@ -225,9 +218,9 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 
 
 <script>
-import NavigationHeader from '../components/NavBBar2/NavigationHeader.vue';
-import NavigationList from '../components/NavBBar2/NavigationList.vue';
-import ChoseCurrency from '../components/Qrcodes/ChoseCurrency.vue';
+import NavigationHeader from '@/components/NavBBar2/NavigationHeader.vue';
+import NavigationList from '@/components/NavBBar2/NavigationList.vue';
+import ChoseCurrency from '@/components/DepositComp/ChoseCurrency.vue';
 
 export default {
 

@@ -8,6 +8,7 @@ export default createStore({
     sessionChecked: false,
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
     avatar: localStorage.getItem("userAvatar") || "",
+    selectedCurrencyAddress: '',
   }),
 
   getters: {
@@ -35,7 +36,7 @@ export default createStore({
 
     clearAuthData(state) {
       state.accessToken = "";
-      state.user = { balanceusdt: 0, balanceeur: 0, balanceusdt2: 0, balancebtc: 0, balanceeth: 0 };
+      state.user = { balanceusdt: 0, balanceeur: 0, balancebtc: 0, balanceeth: 0 };
       localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
     },
@@ -53,6 +54,9 @@ export default createStore({
     setUserBalance(state, { currency, amount }) {
       state.user[`balance${currency}`] = amount;
     },
+    setSelectedCurrencyAddress(state, address) {
+    state.selectedCurrencyAddress = address;
+  },
   },
 
   actions: {

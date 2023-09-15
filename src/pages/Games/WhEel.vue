@@ -115,9 +115,8 @@ export default {
       setTimeout(async () => {
         try {
           const balanceFieldsMap = {
-            'balanceusdt': 'trc', 
+            'balanceusdt': 'usdt', 
             'balanceeur': 'eur',
-            'balanceusdt2': 'usd',
             'balancebtc': 'btc',
             'balanceeth': 'eth',
           };

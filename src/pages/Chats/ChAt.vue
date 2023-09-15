@@ -26,16 +26,119 @@
   <v-bottom-navigation style="background-color: #0c141b; z-index: 0;" height="100" v-model="value" color="teal" elevation="0" grow>
     <div style="width: 800px; max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
       <v-form style="display: flex; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
-        <v-textarea class="mr-0 pl-0" variant="solo" single-line hide-details v-model="newMessage" label="Message" rows="1" max-rows="4" bg-color="secondary" @keyup.enter.exact="sendMessage"></v-textarea>
+        <v-textarea class="mr-0 pl-0"
+          variant="solo"
+          single-line
+          hide-details
+          v-model="newMessage"
+          label="Message"
+          rows="1"
+          max-rows="4"
+          bg-color="secondary"
+          @keyup.enter.exact="sendMessage"
+          :counter="150" 
+    
+          :disabled="isLoading" 
+        ></v-textarea>
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
-          <v-btn rounded="xl" class="ml-2 mr-2" size="small" type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send"> </v-btn>
+          <v-btn rounded="xl" class="ml-2 mr-2" size="small" 
+          type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 
+          :disabled="newMessage.length > 150 || isLoading" 
+          ></v-btn>
         </div>
       </v-form>
     </div>
   </v-bottom-navigation>
 </template>
 
+<script>
+import io from 'socket.io-client';
+import { axiosInstance} from "../../utils/axios";
+import vproGressMini from "../../components/ProgrammInterface/vproGressMini.vue"
+export default {
+  components: {
+    vproGressMini
+  },
+  name: 'App',
+  data() {
+    return {
+      socket: null,
+      messages: [],
+      newMessage: '',
+      user: '',  
+      value: null,
+      isLoading: true, // Add isLoading data property
+    };
+  },
+  methods: {
+    sendMessage() {
+      // Check if the user is authenticated
+      if (!this.$store.getters.isAuthenticated) {
+        // If not authenticated, redirect to the register page
+        this.$router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
+        return;
+      }
 
+      // If authenticated, proceed to send the message
+      if (!this.newMessage || !this.user || this.newMessage.length > 150) {
+        return; // Do not send if the message is empty or too long
+      }
+
+      this.socket.emit('chat message', {
+        sender: this.user,  
+        MessageText: this.newMessage
+      });
+
+      this.newMessage = '';
+    },
+    scrollToBottom() {
+      this.$nextTick(() => {
+        const container = this.$refs.messagesContainer;
+        if (container) {
+          container.scrollTop = container.scrollHeight;
+        }
+      });
+    },
+    removeMessageById(messageId) {
+      this.messages = this.messages.filter(msg => msg._id !== messageId);
+    },
+    loadingComplete() {
+      this.isLoading = false;
+    },
+  },
+  created() {
+    // The username might be empty if the user is unauthorized
+    this.user = this.$store.getters.userDetail ? this.$store.getters.userDetail.username : '';
+
+    console.log("connecting to socket...");
+    this.socket = io(axiosInstance.defaults.baseURL, { path: '/chat', query: 'token=' + this.$store.getters.accessToken });
+    console.log("Socket.IO base URL %s", axiosInstance.defaults.baseURL);
+    console.log("connected to socket...");
+
+    // Listen for 'all chat messages' event from the server
+    this.socket.on('all chat messages', (msgs) => {
+      console.log("getting chat messages from socket...");
+      msgs.forEach(msg => this.messages.push(msg));
+      this.scrollToBottom();
+      this.loadingComplete(); // Call loadingComplete when data is loaded
+    });
+    // Listen for 'new chat message' event from the server
+    this.socket.on('new chat message', (msg) => {
+      console.log("Received new chat message...");
+      this.messages.push(msg);
+      this.scrollToBottom();
+    });
+    // Listen for 'remove chat message' event from the server
+    this.socket.on('remove chat message', (messageId) => {
+      console.log("Received instruction to remove chat message with ID: ", messageId);
+      this.removeMessageById(messageId);
+    });
+    this.socket.on('remove chat message', (msgId) => {
+      this.messages = this.messages.filter(msg => msg._id !== msgId);
+    });
+  },
+};
+</script>
 
 <style scoped>
 
@@ -147,89 +250,3 @@
     height: 100%;
   }
 </style>
-<script>
-import io from 'socket.io-client';
-import { axiosInstance} from "../../utils/axios";
-import vproGressMini from "../../components/ProgrammInterface/vproGressMini.vue"
-export default {
-  components: {
-    vproGressMini
-  },
-  name: 'App',
-  data() {
-    return {
-      socket: null,
-      messages: [],
-      newMessage: '',
-      user: '',  
-      value: null,
-      isLoading: true, // Add isLoading data property
-    };
-  },
-  methods: {
-    sendMessage() {
-      // Check if the user is authenticated
-      if (!this.$store.getters.isAuthenticated) {
-        // If not authenticated, redirect to the register page
-        this.$router.push('/auth/register'); // Assuming `/auth/register` is your registration route.
-        return;
-      }
-
-      // If authenticated, proceed to send the message
-      if (!this.newMessage || !this.user) return;
-
-      this.socket.emit('chat message', {
-        sender: this.user,  
-        MessageText: this.newMessage
-      });
-
-      this.newMessage = '';
-    },
-    scrollToBottom() {
-      this.$nextTick(() => {
-        const container = this.$refs.messagesContainer;
-        if (container) {
-          container.scrollTop = container.scrollHeight;
-        }
-      });
-    },
-    removeMessageById(messageId) {
-      this.messages = this.messages.filter(msg => msg._id !== messageId);
-    },
-    loadingComplete() {
-      this.isLoading = false;
-    },
-  },
-  created() {
-    // The username might be empty if the user is unauthorized
-    this.user = this.$store.getters.userDetail ? this.$store.getters.userDetail.username : '';
-
-    console.log("connecting to socket...");
-    this.socket = io(axiosInstance.defaults.baseURL, { path: '/chat', query: 'token=' + this.$store.getters.accessToken });
-    console.log("Socket.IO base URL %s", axiosInstance.defaults.baseURL);
-    console.log("connected to socket...");
-
-    // Listen for 'all chat messages' event from the server
-    this.socket.on('all chat messages', (msgs) => {
-      console.log("getting chat messages from socket...");
-      msgs.forEach(msg => this.messages.push(msg));
-      this.scrollToBottom();
-      this.loadingComplete(); // Call loadingComplete when data is loaded
-    });
-    // Listen for 'new chat message' event from the server
-    this.socket.on('new chat message', (msg) => {
-      console.log("Received new chat message...");
-      this.messages.push(msg);
-      this.scrollToBottom();
-    });
-    // Listen for 'remove chat message' event from the server
-    this.socket.on('remove chat message', (messageId) => {
-      console.log("Received instruction to remove chat message with ID: ", messageId);
-      this.removeMessageById(messageId);
-    });
-    this.socket.on('remove chat message', (msgId) => {
-  this.messages = this.messages.filter(msg => msg._id !== msgId);
-}); 
-  },
-};
-</script>

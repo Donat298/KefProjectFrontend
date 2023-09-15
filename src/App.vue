@@ -3,7 +3,7 @@
     <div>
       <NavBBar2 @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showacg" @HideAccountOknoo="closeAccountView" />
-      <Deposit v-if="showdep"  @HideDepositOknoo="closeDepositView" />
+      <Wallet v-if="showdep"  @HideDepositOknoo="closeDepositView" />
     </div>
   </template>
   <template v-else>
@@ -15,9 +15,9 @@
 import NavBBar2 from "@/pages/NavBBar2.vue";
 import AccountView from "@/pages/auth/AccountView.vue";
 import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
-import Deposit from "./pages/Deposit/Deposit.vue"
+import Wallet from "./pages/Deposit/Wallet.vue"
 export default {
-  components: { NavBBar2, AccountView, SessionCheckAnimation, Deposit},
+  components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet},
   data() {
     return {
       showacg: false,

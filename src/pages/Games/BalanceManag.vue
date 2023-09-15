@@ -1,4 +1,4 @@
-
+//BalanceManag.vue
 <template>
   
   <v-card  title="Balance control panel" color="#2e4659" elevation="0" class="mx-auto"
@@ -97,9 +97,8 @@ export default {
       try {
 
         const balanceFieldsMap = {
-        'balanceusdt': 'trc', 
+        'balanceusdt': 'usdt', 
         'balanceeur': 'eur',
-        'balanceusdt2': 'usd',
         'balancebtc': 'btc',
         'balanceeth': 'eth',
       };
@@ -128,9 +127,8 @@ export default {
   
   try {
     const balanceFieldsMap = {
-      'balanceusdt': 'trc', 
+      'balanceusdt': 'usdt', 
       'balanceeur': 'eur',
-      'balanceusdt2': 'usd',
       'balancebtc': 'btc',
       'balanceeth': 'eth', 
     };
@@ -165,6 +163,3 @@ export default {
 
 <style>
 </style>
-
-
-

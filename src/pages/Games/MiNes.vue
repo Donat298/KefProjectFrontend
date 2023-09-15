@@ -19,9 +19,8 @@ export default {
     const betAmount = ref(0);
     const currency = computed(() => {
       const balanceFieldsMap = {
-        'balanceusdt': 'trc', 
+        'balanceusdt': 'usdt', 
         'balanceeur': 'eur',
-        'balanceusdt2': 'usd',
         'balancebtc': 'btc',
         'balanceeth': 'eth',
       };
