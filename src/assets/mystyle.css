@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'SatoshiComplete';
-  src: url('../assets/Fonts/Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf') format('woff2'),
-       url('../assets/Fonts/Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf') format('woff');
+  src: url('../assets/Fonts/Demo_Fonts/Fontspring-DEMO-proximanova-extrabold.otf') format('woff2'),
+       url('../assets/Fonts/Demo_Fonts/Fontspring-DEMO-proximanova-extrabold.otf') format('woff');
   /* Add other font properties if needed, like font-weight and font-style */
 }
 
 body {
   background-color: #0c141b;
-  font-family: 'SatoshiComplete', sans-serif;
+  font-family: proxima-nova,sans-serif;
   background-size: 150%;
   font-size: 17px;
 }

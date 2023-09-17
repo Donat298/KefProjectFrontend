@@ -4,8 +4,9 @@ import { useApi, useApiPrivate } from "../utils/useApi";
 export default createStore({
   state: () => ({
     user: {},
-    accessToken: localStorage.getItem("accessToken") || "",
+    
     sessionChecked: false,
+    accessToken: localStorage.getItem("accessToken") || "",
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
     avatar: localStorage.getItem("userAvatar") || "",
     selectedCurrencyAddress: '',

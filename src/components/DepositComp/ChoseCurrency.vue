@@ -102,7 +102,7 @@ align-items: center;"  :ripple="false">
 </div>
 </v-list-item>
 </v-list>
-
+ 
         </v-menu>
 </template>
 <script>
@@ -110,7 +110,7 @@ export default {
 data() {
     return {
       selectedCurrency: this.$store.getters.selectedCurrency,
-      selectedCurrencyImages: {
+      selectedCurrencyImages: { 
         'balanceusdt': require('@/assets/Cryptologos/tether-usdt-logo.svg'),
         'balanceeur': require('@/assets/Cryptologos/euro-logo.svg'),
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),

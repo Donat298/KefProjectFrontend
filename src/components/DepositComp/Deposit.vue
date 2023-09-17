@@ -199,6 +199,7 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          font-size: 17px;
           
         ">
           {{ selectedCurrencyAddress }}
@@ -312,8 +313,10 @@ export default {
 });
 
     // Function to select a currency
-    const selectCurrency = (currencyKey) => {
+    const selectCurrency = (currencyKey) => { 
       selectedCurrency.value = currencyKey;
+      // Update the selected currency in the Vuex store
+      store.commit('setSelectedCurrency', currencyKey);
     };
 
     // Function to select a USDT address

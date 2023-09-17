@@ -1,3 +1,4 @@
+
 <template>
   <div>
     <input v-model="message" type="text" placeholder="Enter your message" />
