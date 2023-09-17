@@ -1,28 +1,48 @@
 
 <template>
-  <div class="jja" @click.stop="$emit('HideAccountOknoo')">
-    <div v-if="showAccComponent" @click.stop="$emit('HideAccountOknoo')" style="max-height: 90%; width: 100%; overflow-y: auto;">
+  <div class="jja" >
+    <div v-if="showAccComponent"  style="max-height: 90%; width: 100%; overflow-y: auto;">
       <div @click.stop  style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+        
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
-          <div style="background-color: #1d2f3f; width: 50%; padding: 20px 10px;">
+          
+          <div style="background-color: #1d2f3f; width: 50%; padding: 10px 10px 20px 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; ">
+          <div style="color: #ffffff; padding: 10px;">
+            Accout   <fa icon="fa-solid fa-user-tie"></fa>
+           
+           
+          </div>
+          </div>
   <AvatarbTn></AvatarbTn>
 
 
 
 
-    <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
+    <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; padding: 5px; ">
         {{ $store.getters.userDetail.username }}     
       </div>      
-      <div style="color: #ffffff;  text-align: center; font-size: 17px;">
+      <div style="color: #ffffff;  text-align: center; font-size: 17px; padding: 5px;">
         {{ $store.getters.userDetail.email }}     
       </div> 
-      <div style="color: #ffffff;  text-align: center; font-size: 17px;">
+      <div style="color: #ffffff;  text-align: center; font-size: 17px; padding: 5px;">
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
       </div>  
       
     </div>  
-    <div style="width: 50%; background-color: #15212c; padding: 20px 10px;">
-          
+    <div style="width: 50%; background-color: #15212c; padding: 10px 10px 20px 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; height: 45.5px;">
+         
+       
+            <button @click.stop="$emit('HideAccountOknoo')" style="cursor: pointer; margin-left: auto;
+             color: #ffffff;
+            min-height: 35px;  min-width: 35px; ">
+   
+              <fa icon="ffa-solid fa-xmark"></fa>
+            </button>
+         
+       
+        </div>
          
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
             height: 70px; display: flex; align-items: center; justify-content: center;" elevation="0">
@@ -38,9 +58,25 @@
       </div>  
       </div>
 
-      <div v-else @click.stop="$emit('HideAccountOknoo')" style="overflow-y: auto; max-height: 90%; width: 100%;">
+      <div v-else  style="overflow-y: auto; max-height: 90%; width: 100%;">
       <div @click.stop  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
+            <div style="color: #ffffff; padding: 10px;">
+            Accout   <fa icon="fa-solid fa-user-tie"></fa>
+           
+           
+          </div>
+       
+            <button @click.stop="$emit('HideAccountOknoo')" style="cursor: pointer; 
+             color: #ffffff;
+            min-height: 35px;  min-width: 35px; ">
+   
+              <fa icon="ffa-solid fa-xmark"></fa>
+            </button>
+         
+       
+        </div>
           <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">
             <AvatarbTn></AvatarbTn> 
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">

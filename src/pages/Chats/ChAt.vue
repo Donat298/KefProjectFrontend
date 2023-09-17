@@ -26,7 +26,7 @@
   <v-bottom-navigation style="background-color: #0c141b; z-index: 0;" height="100" v-model="value" color="teal" elevation="0" grow>
     <div style="width: 800px; max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
       <v-form style="display: flex; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
-        <v-textarea class="mr-0 pl-0"
+        <v-text-field class="mr-0 pl-0"
           variant="solo"
           single-line
           hide-details
@@ -39,7 +39,7 @@
           :counter="150" 
     
           :disabled="isLoading" 
-        ></v-textarea>
+        ></v-text-field>
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
           <v-btn rounded="xl" class="ml-2 mr-2" size="small" 
           type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 

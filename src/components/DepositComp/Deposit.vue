@@ -216,6 +216,8 @@
  
       </v-card>
     </div>
+
+    <DepositId></DepositId>
     </div>
 
 
@@ -223,8 +225,12 @@
 <script>
 import { useStore } from 'vuex';
 import { ref, computed, watch } from 'vue';
+import DepositId from '@/components/DepositComp/DepositId.vue';
 
 export default {
+  components: {
+    DepositId,
+  },
   setup() {
     const store = useStore();
     const selectedCurrency = ref(localStorage.getItem('selectedCurrency') || 'balanceusdt');
