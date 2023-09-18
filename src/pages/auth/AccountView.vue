@@ -6,10 +6,10 @@
         
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
           
-          <div style="background-color: #1d2f3f; width: 50%; padding: 10px 10px 20px 10px;">
+          <div style="background-color: #1d2f3f; width: 50%; padding: 5px 10px 20px 10px;">
             <div style="display: flex; justify-content: space-between; align-items: center; ">
           <div style="color: #ffffff; padding: 10px;">
-            Accout   <fa icon="fa-solid fa-user-tie"></fa>
+            Account    <fa icon="fa-solid fa-user-tie"></fa>
            
            
           </div>
@@ -30,7 +30,7 @@
       </div>  
       
     </div>  
-    <div style="width: 50%; background-color: #15212c; padding: 10px 10px 20px 10px;">
+    <div style="width: 50%; background-color: #15212c; padding: 5px 10px 20px 10px;">
       <div style="display: flex; justify-content: space-between; align-items: center; height: 45.5px;">
          
        
@@ -63,7 +63,7 @@
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
-            Accout   <fa icon="fa-solid fa-user-tie"></fa>
+            Account   <fa icon="fa-solid fa-user-tie"></fa>
            
            
           </div>

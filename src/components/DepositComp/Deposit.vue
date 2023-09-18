@@ -177,7 +177,7 @@
     </div>
 
     <div style="position: relative;" class="ma-7">
-      <v-img class="mx-auto" style="max-width: 200px" :src="getCurrencyImagePath(selectedCurrency)" />
+      <v-img class="mx-auto" style="max-width: 128px" :src="getCurrencyImagePath(selectedCurrency)" />
     </div>
     <div class="mx-auto" style="display: flex; padding: 10px;
     overflow-x: auto; 

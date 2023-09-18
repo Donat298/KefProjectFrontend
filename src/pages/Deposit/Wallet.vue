@@ -2,7 +2,7 @@
   <div class="jja" style="width: 100%; overflow-y: auto;">
     <div  style="max-height: 90%; width: 100%; overflow-y: auto;">
       <div @click.stop style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; padding:  10px 10px 0px 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
           <div style="color: #ffffff; padding: 10px;">
             Wallet    <fa icon="fa-solid fa-wallet"></fa>
            
@@ -11,14 +11,15 @@
             <button @click.stop="$emit('HideDepositOknoo')" style="cursor: pointer; 
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
-   
+    
               <fa icon="ffa-solid fa-xmark"></fa>
             </button>
-         
+            
        
         </div>
-       <div class="d-flex align-center" elevation="0" style="background-color: #1d2f3f; width: auto; overflow-x:
-         auto; padding: 10px 10px; margin-left: 10px; margin-right: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px;">
+       <div  elevation="0" style="background-color: #15212c;    ">
+         <div style="overflow-x:
+         auto;margin: 0px 10px 0px 10px;padding: 10px 10px; width: auto; "  class="d-flex align-center">
           <v-btn @click="selectedComponent = 'Deposit'" elevation="4" class="glow-button" :ripple="false" 
           style="color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; flex-grow: 1; flex-shrink: 1;">
             <span style="color: #ffffff; font-size: 13px;">Deposit</span>
@@ -31,6 +32,7 @@
           <v-btn @click="selectedComponent = 'BuyCrypto'" elevation="4" class="glow-button" :ripple="false" style="flex-grow: 1; flex-shrink: 1;">
             <span style="color: #ffffff; font-size: 13px;">Buy crypto</span>
           </v-btn>
+        </div>
         </div>
 
         <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">
@@ -108,7 +110,7 @@ export default {
   overflow: hidden;
   background-color: #2e4659;
   color: #ffffff;
-  min-height: 64px;
+  min-height: 48px;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
