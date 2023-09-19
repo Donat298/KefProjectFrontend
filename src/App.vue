@@ -2,15 +2,15 @@
   <template v-if="$store.getters.sessionChecked">
     <div>
       <NavBBar2 @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
-      <AccountView v-if="showacg" @HideAccountOknoo="closeAccountView" />
-      <Wallet v-if="showdep"  @HideDepositOknoo="closeDepositView" />
+      <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
+      <Wallet v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" />
     </div>
   </template>
   <template v-else>
     <SessionCheckAnimation/>
   </template>
 </template>
-
+v-if="$store.getters.isAuthenticated"
 <script>
 import NavBBar2 from "@/pages/NavBBar2.vue";
 import AccountView from "@/pages/auth/AccountView.vue";
@@ -20,34 +20,34 @@ export default {
   components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet},
   data() {
     return {
-      showacg: false,
-      showdep: false,
+      showAccountView: false,
+      showDepositOkno: false,
     };
   },
   created() {
     // Initialize `showacg` with value from localStorage
-    this.showacg = localStorage.getItem('showacg') === 'true';
-    this.showdep = localStorage.getItem('showdep') === 'true';
+    this.showAccountView = localStorage.getItem('showacg') === 'true';
+    this.showDepositOkno = localStorage.getItem('showdep') === 'true';
   },
   methods: {
     openAccountView() {
-      this.showacg = true;
+      this.showAccountView = true;
       // Save the state to localStorage
       localStorage.setItem('showacg', 'true');
     },
     openDepositView() {
-      this.showdep = true;
+      this.showDepositOkno = true;
       // Save the state to localStorage
       localStorage.setItem('showdep', 'true');
     },
     
     closeAccountView() {
-      this.showacg = false;
+      this.showAccountView = false;
       // Save the state to localStorage
       localStorage.setItem('showacg', 'false');
     },
     closeDepositView() {
-      this.showdep = false;
+      this.showDepositOkno = false;
       // Save the state to localStorage
       localStorage.setItem('showdep', 'false');
     },
