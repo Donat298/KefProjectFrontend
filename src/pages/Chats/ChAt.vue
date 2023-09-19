@@ -41,7 +41,7 @@
           :disabled="isLoading" 
         ></v-text-field>
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
-          <v-btn rounded="xl" class="ml-2 mr-2" size="small" 
+          <v-btn rounded="xl" class="ml-2" size="small" 
           type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 
           :disabled="newMessage.length > 150 || isLoading" 
           ></v-btn>

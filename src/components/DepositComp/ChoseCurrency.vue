@@ -1,4 +1,3 @@
-//ChoseCurrency.vue
 <template>
       <v-menu location="bottom center"  transition="slide-y-transition">          
           <template v-slot:activator="{ props }">
@@ -102,7 +101,7 @@ align-items: center;"  :ripple="false">
 </div>
 </v-list-item>
 </v-list>
- 
+  
         </v-menu>
 </template>
 <script>
@@ -117,7 +116,21 @@ data() {
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
       },
     };
+    
   },
+  computed: {
+    // Add a computed property to watch for changes in selectedCurrency
+    watchSelectedCurrency() {
+      return this.$store.getters.selectedCurrency;
+    },
+  },
+  watch: {
+    // Watch for changes in watchSelectedCurrency and update selectedCurrency
+    watchSelectedCurrency(newCurrency) {
+      this.selectedCurrency = newCurrency;
+    },
+  },
+  
 methods: {
   selectCurrency(currencyKey) {
     this.selectedCurrency = currencyKey;

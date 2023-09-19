@@ -55,7 +55,7 @@
   </v-navigation-drawer>
 
 
-  <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-x: auto; z-index: 3" app name="footer">
+  <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-y:hidden; z-index: 3" app name="footer">
   
     <v-btn  @click="this.drawer = !this.drawer; rail = false" elevation="4" 
     class="mx-auto glow-button ma-4" :ripple="false" 
@@ -119,6 +119,7 @@ background-color: rgba(127, 255, 212, 0);
          <ChoseCurrency>
 
          </ChoseCurrency>
+         
           <v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 font-size: 17px; 
 height: 48px;   
@@ -128,7 +129,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
 </div>
 
 
-          <v-menu location="center"  transition="slide-y-transition">
+          <v-menu location="bottom center"  transition="slide-y-transition">
           
           <template v-slot:activator="{ props}" >
           
@@ -156,7 +157,7 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
                 background-color: #1d2f3f;
                 color: rgb(255, 255, 255);
                 
-                margin-top: 65px;
+                margin-top: 10px;
                 min-width: 100px;">
             <v-list-item style="height: 50px;  display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
                 > <fa icon="fa-solid fa-user fa-2xl" class="mx-auto mr-3" style="color: #ffffff;"></fa> Account </v-list-item>
