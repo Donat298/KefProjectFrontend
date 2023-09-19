@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div class="jjl">
     <div style="
@@ -7,25 +10,16 @@
     max-width: 90%;
     justify-content: center; 
     overflow-y: auto;">
-
-
-
       <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
-
-
           <div style="display: flex; max-width: 100%; width: 340px;height: 191.25px; margin: auto; margin-bottom: 20px;">
             <img style="margin-left: auto; 
                 margin-right: auto; width: 100%; height: auto; 
                 background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
-
       </div>
   <v-card
     class="mx-auto pa-8 pb-8 mb-5"
     elevation="8"
-    
     rounded="lg"
-
-    
     style="background-color: rgb(37, 56, 74) ; border: 7px solid rgb(37, 56, 74);"
   >
   <v-form
@@ -42,6 +36,7 @@
       v-model="username"
       variant="solo"
       :readonly="loading"
+      @input="removeSpaces('username')"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -54,6 +49,7 @@
       v-model="email"
       variant="solo"
       :readonly="loading"
+      @input="removeSpaces('email')"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -64,11 +60,12 @@
       :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
       :type="visible ? 'text' : 'password'"
       density="compact"
-      placeholder="min 6 characters"
+      placeholder=""
       v-model="password"
       variant="solo"
       @click:append-inner="visible = !visible"
       :readonly="loading"
+      @input="removeSpaces('password')"
     ></v-text-field>
 
     <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
@@ -79,11 +76,12 @@
       :append-inner-icon="visible2 ? 'mdi-eye' : 'mdi-eye-off'"
       :type="visible2 ? 'text' : 'password'"
       density="compact"
-      placeholder="min 6 characters"
+      placeholder=""
       v-model="password_confirm"
       variant="solo"
       @click:append-inner="visible2 = !visible2"
       :readonly="loading"
+      @input="removeSpaces('password_confirm')"
     ></v-text-field>
 
 
@@ -116,14 +114,10 @@
                     margin-top: 20px; padding: 0px;" >Already registered? 
                         <a
                             class="text-white "
-                            href="/auth/login"
-                            
-                            
-                            
+                            href="/auth/login"             
                         >
                             Login</a>
                     </v-card-text>
-  
   </v-card>
       </div>
     </div>
@@ -147,6 +141,16 @@
 
 
   methods: {
+    removeSpaces(fieldName) {
+    // Get the current value of the field
+    let value = this[fieldName];
+
+    // Remove spaces from the value
+    value = value.replace(/\s/g, '');
+
+    // Update the field with the modified value
+    this[fieldName] = value;
+  },
       register(username, email, password, password_confirm) {
            
             this.$store
@@ -187,7 +191,5 @@ z-index: 4;
 
 ::-webkit-scrollbar {
   width: 0px;
-  
-  
 }
 </style>

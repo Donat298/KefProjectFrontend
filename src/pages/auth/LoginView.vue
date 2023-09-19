@@ -21,6 +21,7 @@
                         v-model="email"
                    
                         :readonly="loading"
+                        @input="removeSpaces('email')"
                     ></v-text-field>
                     
 
@@ -35,11 +36,11 @@
                         :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
                         :type="visible ? 'text' : 'password'"
                         density="compact"
-                        placeholder="min 6 characters"
+                        placeholder=""
                         variant="solo"
                         @click:append-inner="visible = !visible"
                         v-model="password"
-                     
+                        @input="removeSpaces('password')"
                         :readonly="loading"
                     ></v-text-field>
                     
@@ -115,6 +116,16 @@ export default {
                     this.errorMessage = err;
                 });
         },
+        removeSpaces(fieldName) {
+    // Get the current value of the field
+    let value = this[fieldName];
+
+    // Remove spaces from the value
+    value = value.replace(/\s/g, '');
+
+    // Update the field with the modified value
+    this[fieldName] = value;
+  },
         onSubmit () {
         if (!this.form) return
 
