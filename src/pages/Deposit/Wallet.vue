@@ -20,16 +20,21 @@
        <div  elevation="0" style="background-color: #15212c;    ">
          <div style="overflow-x:
          auto;margin: 0px 10px 0px 10px;padding: 10px 10px; width: auto; "  class="d-flex align-center">
-          <v-btn @click="selectedComponent = 'Deposit'" elevation="4" class="glow-button" :ripple="false" 
-          style="color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; flex-grow: 1; flex-shrink: 1;">
+          <v-btn :class="getButtonClass('Deposit')" @click="changeComponent('Deposit')" elevation="4" class="glow-button" 
+          :ripple="false" 
+          style="color: #ffffff; display: flex; flex-direction: column; align-items: center;
+           text-align: center; flex-grow: 1; flex-shrink: 1;">
             <span style="color: #ffffff; font-size: 13px;">Deposit</span>
           </v-btn>
+   
 
-          <v-btn @click="selectedComponent = 'Withdraw'" elevation="4" class="glow-button" :ripple="false" style="margin-inline: 10px; flex-grow: 1; flex-shrink: 1;">
+          <v-btn :class="getButtonClass('Withdraw')"  @click="changeComponent('Withdraw')" elevation="4" class="glow-button"
+           :ripple="false" style="margin-inline: 10px; flex-grow: 1; flex-shrink: 1;">
             <span style="color: #ffffff; font-size: 13px;">Withdraw</span>
           </v-btn>
 
-          <v-btn @click="selectedComponent = 'BuyCrypto'" elevation="4" class="glow-button" :ripple="false" style="flex-grow: 1; flex-shrink: 1;">
+          <v-btn :class="getButtonClass('BuyCrypto')"  @click="changeComponent('BuyCrypto')" elevation="4" class="glow-button" 
+          :ripple="false" style="flex-grow: 1; flex-shrink: 1;">
             <span style="color: #ffffff; font-size: 13px;">Buy crypto</span>
           </v-btn>
         </div>
@@ -55,7 +60,7 @@ export default {
   },
   data() {
     return {
-      selectedComponent: 'Deposit',
+      selectedComponent: localStorage.getItem('selectedComponent') || 'Deposit',
     }
   },
   methods: {
@@ -65,9 +70,20 @@ export default {
     showCopiedTooltip() {
       // Your showCopiedTooltip method implementation here
     },
+    getButtonClass(componentName) {
+      return {
+        'highlighted-button': this.selectedComponent === componentName,
+      };
+    },
+    changeComponent(componentName) {
+      this.selectedComponent = componentName;
+      // Store the selected component in localStorage
+      localStorage.setItem('selectedComponent', componentName);
+    },
   },
 }
 </script>
+
 
   <style scoped>
   .jja {
@@ -108,7 +124,7 @@ export default {
 }
 .glow-button {
   overflow: hidden;
-  background-color: #2e4659;
+  background-color: #1d2f3f;
   color: #ffffff;
   min-height: 48px;
   width: 100%;
@@ -116,10 +132,13 @@ export default {
   z-index: 0;
   width: 155px; min-width: 110px;
 }
-.glow-button:hover {
-  transform: scale(1.02);
-}
-.v-btn:hover > .v-btn__overlay {
-  background-color: none !important;
+
+
+
+.highlighted-button {
+  background-color: #2e4659; /* Set your desired highlight color */
+  color: white; /* Text color when highlighted */
+
 }
   </style>
+  

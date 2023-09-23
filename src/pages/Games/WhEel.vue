@@ -13,29 +13,35 @@
       <div style="display: flex; align-items: center; justify-content: center; 
       margin-left: 10px;">
         <div style="transform: rotate(90deg); ">
-          <v-icon icon="mdi-map-marker-outline"></v-icon>
+          <v-icon icon="mdi-map-marker-outline"></v-icon> 
         </div>
       </div>
     </div>
-  <v-card title="Place your bet!" color="#2e4659" elevation="0" width="1200" class="bet-card mx-auto">
+    <div style="min-height: 60px; margin-bottom: 20px; margin-top: 30px;">
+    <GameAlert 
+    v-if="showAlert" 
+    :gameResult="gameResult" 
+    :errorMsg="errorMsg" />
+  </div>
+  <v-card title="Place your bet!" color="#1d2f3f" elevation="0" width="1200" class="bet-card mx-auto">
+    
     <div class="bet-form">
+      
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
-        <v-text-field       
-          :disabled="isProcessing" 
-          type="number" 
-          class="pl-5" 
-          v-model="betInput"
-          variant="solo"       
-          bg-color="secondary" 
-          label="Your bet"
-          single-line
-          hide-details>
-        </v-text-field>
+      <v-card  elevation="5" style=" background-color: #15212c00; margin-left: 8px;">
+        <input :disabled="isProcessing" 
+         v-focus
+         class="pl-5 inputbet"
+         v-model="betInput"
+         :style="{ borderColor: isInputInvalid || errorMsg ? 'red' : '' }"
+  >
+
+        </v-card>
         <div class="d-flex align-center">
           <v-btn 
             :disabled="isProcessing" 
             rounded="xl" 
-            class="ml-4 mr-2 submit-button" 
+            class="ml-4  mr-2 submit-button" 
             size="small"
             type="submit" 
             icon="mdi-check"> 
@@ -44,10 +50,7 @@
       </v-form>
     </div>
   </v-card>
-  <GameAlert 
-    v-if="showAlert" 
-    :gameResult="gameResult" 
-    :errorMsg="errorMsg" />
+
 </template>
 
 <script>
@@ -56,10 +59,29 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'; 
 import { useApiPrivate } from '../../utils/useApi';
 import GameAlert from './GameAlert.vue';
-
+import store from '@/store'; // Adjust the path as needed
 export default {
   components: {
     GameAlert
+  },
+  data() {
+    return {
+      isInputInvalid: false,
+    };
+  },
+  watch: {
+    betInput(newValue) {
+      this.checkInputValidity(newValue);
+    },
+  },
+  methods: {
+    checkInputValidity(value) {
+      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
+        this.isInputInvalid = true;
+      } else {
+        this.isInputInvalid = false;
+      }
+    },
   },
   setup() {
     const store = useStore();
@@ -228,10 +250,23 @@ export default {
   width: 1000px; 
   max-width: 90%; 
   flex-direction: column;
-  margin-top: 30px;
+  
   justify-content: center; 
   align-items: center;
   
+}
+
+.inputbet {
+  width: 100%;
+  height: 100%;
+  background-color: #15212c;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid #2e4659; /* Add a default border color */
+}
+.inputbet:focus {
+  border-color: #2e4659; /* Set the border color to green when focused */
+  outline: none; /* Optionally, remove the default outline */
 }
 .bet-form {
   width: 100%; 
@@ -244,7 +279,7 @@ export default {
 .submit-button {
   height: 50px; 
   width: 50px; 
-  color: aquamarine; 
+  color: rgb(99, 254, 202); 
   background-color: #15212c;
 }
 .wheel {

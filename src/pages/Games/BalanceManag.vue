@@ -1,7 +1,7 @@
 //BalanceManag.vue
 <template>
   
-  <v-card  title="Balance control panel" color="#2e4659" elevation="0" class="mx-auto"
+  <v-card  title="Balance control panel" color="#1d2f3f" elevation="0" class="mx-auto"
    style="display: flex; color: #ffffff; width: 1000px; max-width: 90%; flex-direction: column;margin-top: 30px; justify-content: center; align-items: center;">
 
    <div>
@@ -33,7 +33,7 @@
 
 
 </v-card>
-<v-card  title="Pick a manual number." color="#2e4659" elevation="0" class="mx-auto"
+<v-card  title="Pick a manual number." color="#1d2f3f" elevation="0" class="mx-auto"
    style="display: flex; color: #ffffff; width: 1000px; max-width: 90%; flex-direction: column;margin-top: 30px;
     justify-content: center; align-items: center;">
    <div>

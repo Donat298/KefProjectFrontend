@@ -56,29 +56,33 @@
 
 
   <v-footer v-if="!showRbsb" height="64" style="background-color: #15212c; overflow-y:hidden; z-index: 3" app name="footer">
-  
-    <v-btn  @click="this.drawer = !this.drawer; rail = false" elevation="4" 
-    class="mx-auto glow-button ma-4" :ripple="false" 
-       style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
+    <v-btn @click="this.drawer = !this.drawer; rail = false" elevation="4" 
+        class="mx-auto glow-button ma-4"
+        :ripple="false"
+        :color="drawer ? 'blue' : '#2e4659'"
+        style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
         flex-direction: column; align-items: center; text-align: center;">
-       <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
-       <span style="color: #ffffff;  font-size: 13px;">Menu</span>
-</v-btn>
+        <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
+        <span style="color: #ffffff; font-size: 13px;">Menu</span>
+    </v-btn>
 
-  <v-btn  to="/wheel" elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
-         style="max-width: calc(33.33% - 10px); min-width: 5px;">
-         <v-icon icon="mdi-cards"></v-icon>
-         <span style="color: #ffffff;  font-size: 13px;">Games</span>
-    
-  </v-btn>
-  <v-btn  elevation="4" class="mx-auto glow-button ma-4" :ripple="false"
-  to="/chat" style="max-width: calc(33.33% - 10px);  min-width: 5px;" >
-         <v-icon icon="mdi-chat"></v-icon>
-         <span style="color: #ffffff;  font-size: 13px;">Chat</span>
-    
-  </v-btn>
- 
-</v-footer>
+    <v-btn to="/wheel" elevation="4" class="mx-auto glow-button ma-4"
+        :ripple="false"
+        :color="$route.path === '/wheel' ? 'blue' : '#2e4659'" 
+        style="max-width: calc(33.33% - 10px); min-width: 5px;">
+        <v-icon icon="mdi-cards"></v-icon>
+        <span style="color: #ffffff; font-size: 13px;">Games</span>
+    </v-btn>
+
+    <v-btn elevation="4" class="mx-auto glow-button ma-4"
+        :ripple="false"
+        :color="$route.path === '/chat' ? 'blue' : '#2e4659'" 
+        to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;" >
+        <v-icon icon="mdi-chat"></v-icon>
+        <span style="color: #ffffff; font-size: 13px;">Chat</span>
+    </v-btn>
+  </v-footer>
+
 
       <v-app-bar    :elevation="0" style="z-index: 1; background: var(--color-dark-tr-e);
           backdrop-filter: blur(10px);">
@@ -123,7 +127,7 @@ background-color: rgba(127, 255, 212, 0);
           <v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 font-size: 17px; 
 height: 48px;   
-background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
+background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
 <strong>{{ buttonLabel }} </strong>
 </v-btn>
 </div>
@@ -189,9 +193,11 @@ background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244)); ">
     </button>
 
     <div style="padding: 14px; margin-left: auto; max-height: 64px;  ">
-        <v-btn elevation="4"  @click="$router.push('/auth/register')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
+        <v-btn elevation="4"  @click="$router.push('/auth/register')"
+         style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
          margin-right: 15px; font-size: 17px;"><strong>Register</strong></v-btn>
-        <v-btn elevation="4"  @click="$router.push('/auth/login')" style="background: linear-gradient(230deg,aquamarine, rgb(127, 255, 244));
+        <v-btn elevation="4"  @click="$router.push('/auth/login')" 
+        style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
         font-size: 17px;"><strong> Login</strong> </v-btn>
     </div>
 </div>
@@ -226,6 +232,7 @@ import ChoseCurrency from '@/components/DepositComp/ChoseCurrency.vue';
 export default {
 
 components: { NavigationHeader, NavigationList, ChoseCurrency },
+
 data() {
     return {
     
@@ -345,16 +352,14 @@ border-radius: 5px 0px 0px 5px !important;
 
 .glow-button {
   overflow: hidden;
-  background-color: #25384a;
+
   color: #ffffff;
   max-height: 64px;
   width: 100%;
-  transition: transform 0.3s,;
   z-index: 0;
   width: 200px;
  
 }
-
 
 
 

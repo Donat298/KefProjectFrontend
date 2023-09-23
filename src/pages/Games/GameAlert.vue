@@ -6,7 +6,7 @@
         variant="tonal"  
         color="green-lighten-1"
         class="mx-auto"
-        style="max-width: 90%; margin-top: 30px; width: 1200px;"
+        style="max-width: 90%;  width: 1200px;"
       >
         Congratulations, you won!
       </v-alert>
@@ -17,7 +17,7 @@
         variant="tonal"
         color="red lighten-1"
         class="mx-auto"
-        style="max-width: 90%; margin-top: 30px; width: 1200px;"
+        style="max-width: 90%; width: 1200px;"
       >
    Better luck next time
       </v-alert>
@@ -28,7 +28,7 @@
         variant="tonal"
         color="red lighten-1"
         class="mx-auto"
-        style="max-width: 90%; margin-top: 30px; width: 1200px;"
+        style="max-width: 90%;  width: 1200px;"
       >
         {{ errorMsg }}
       </v-alert>
