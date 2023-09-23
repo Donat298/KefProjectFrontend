@@ -14,7 +14,7 @@
       margin-left: 10px;">
         <div style="transform: rotate(90deg); ">
           <v-icon icon="mdi-map-marker-outline"></v-icon> 
-        </div>
+        </div> 
       </div>
     </div>
     <div style="min-height: 60px; margin-bottom: 20px; margin-top: 30px;">
