@@ -34,7 +34,7 @@
          v-focus
          class="pl-5 inputbet"
          v-model="betInput"
-         :style="{ borderColor: isInputInvalid || errorMsg ? 'red' : '' }"
+         :style="{ borderColor: isInputInvalid ? 'red' : '' }"
   >
 
         </v-card>
