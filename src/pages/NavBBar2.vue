@@ -171,11 +171,12 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
                 
                 margin-top: 10px;
                 min-width: 100px;">
-            <v-list-item style="height: 50px;  display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
+            <v-list-item style="height: 50px;  display: flex; align-items: center;"
+             @click="$emit('ShowAccountOknoo')" :ripple="false"
                 > 
                 <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" /> Account </v-list-item>
                
-            <v-list-item style="height: 50px;" @click="logout()" :ripple="false"
+            <v-list-item style="height: 50px;  display: flex; align-items: center; " @click="logout()" :ripple="false"
             >
             <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'right-from-bracket']" /> Logout</v-list-item>
            

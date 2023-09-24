@@ -26,20 +26,15 @@
   <v-bottom-navigation style="background-color: #0c141b; z-index: 0;" height="100" v-model="value" color="teal" elevation="0" grow>
     <div style="width: 800px; max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
       <v-form style="display: flex; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
-        <v-text-field class="mr-0 pl-0"
-          variant="solo"
-          single-line
-          hide-details
-          v-model="newMessage"
-          label="Message"
-          rows="1"
-          max-rows="4"
-          bg-color="secondary"
-          @keyup.enter.exact="sendMessage"
-          :counter="150" 
-    
-          :disabled="isLoading" 
-        ></v-text-field>
+       
+        <input 
+        :counter="150" 
+         v-focus
+         class="pl-5 inputbet"
+         @keyup.enter.exact="sendMessage"
+         v-model="newMessage"
+         :style="{ borderColor: newMessage.length > 150 ? 'red' : '' }"
+  >
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
           <v-btn rounded="xl" class="ml-2" size="small" 
           type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 
@@ -173,7 +168,18 @@ export default {
     border-radius: 50%;
     margin-left: 10px;
   }
-
+  .inputbet {
+  width: 100%;
+  height: 62px;
+  background-color: #15212c;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 2px solid #2e4659; /* Add a default border color */
+}
+.inputbet:focus {
+  border-color: #2e4659; /* Set the border color to green when focused */
+  outline: none; /* Optionally, remove the default outline */
+}
   .bubble .message-content {
     flex-grow: 1; /* Allow message content to expand and fill the remaining space */
   }

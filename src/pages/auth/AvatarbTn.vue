@@ -8,7 +8,7 @@
 
     <my-button2 @click="openFileInput" style="background: var(--color-dark-tr-e);
      height: 48px; width: 48px; border-radius: 50px;">
-      <fa icon="fa-solid fa-pen" style="color: #ffffff; height: 20px;"></fa>
+
 
       <font-awesome-icon   style="color: #ffffff; height: 20px;"  :icon="['fas', 'pen']" />
     </my-button2>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '../../utils/useApi';
 

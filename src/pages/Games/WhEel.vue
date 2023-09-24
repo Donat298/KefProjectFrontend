@@ -87,7 +87,7 @@ export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const betInput = ref('');
+    const betInput = ref(''); 
     const gameResult = ref(null);
     const errorMsg = ref('');    
     const showAlert = ref(true);
@@ -259,7 +259,7 @@ export default {
 
 .inputbet {
   width: 100%;
-  height: 100%;
+  height: 62px;
   background-color: #15212c;
   color: #ffffff;
   border-radius: 5px;
