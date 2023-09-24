@@ -13,6 +13,7 @@
       <div style="display: flex; align-items: center; justify-content: center; 
       margin-left: 10px;">
         <div style="transform: rotate(90deg); ">
+          
           <v-icon icon="mdi-map-marker-outline"></v-icon> 
         </div> 
       </div>
