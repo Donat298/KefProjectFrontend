@@ -28,17 +28,18 @@
       <v-form style="display: flex; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
        
         <input 
-        :counter="150" 
+        :counter="200" 
          v-focus
          class="pl-5 inputbet"
          @keyup.enter.exact="sendMessage"
          v-model="newMessage"
-         :style="{ borderColor: newMessage.length > 150 ? 'red' : '' }"
+         style=""
+         :style="{ borderColor: newMessage.length > 200 ? 'red' : '' }"
   >
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
           <v-btn rounded="xl" class="ml-2" size="small" 
           type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 
-          :disabled="newMessage.length > 150 || isLoading" 
+          :disabled="newMessage.length > 200 || isLoading" 
           ></v-btn>
         </div>
       </v-form>
@@ -75,7 +76,7 @@ export default {
       }
 
       // If authenticated, proceed to send the message
-      if (!this.newMessage || !this.user || this.newMessage.length > 150) {
+      if (!this.newMessage || !this.user || this.newMessage.length > 200) {
         return; // Do not send if the message is empty or too long
       }
 
