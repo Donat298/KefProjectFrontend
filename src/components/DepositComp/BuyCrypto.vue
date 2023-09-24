@@ -1,5 +1,6 @@
 <template>
 BuyCrypto
+
 </template>
 
 <script></script>
