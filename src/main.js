@@ -3,18 +3,22 @@ import App from './App.vue'
 import components from '@/components/UI/';
 import router from "@/router/router";
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+import '@fortawesome/fontawesome-svg-core/styles.css'; // Import the CSS for styling (optional)
+import { fas } from '@fortawesome/free-solid-svg-icons'; // Import all solid icons
+library.add(fas); // Add all solid icons to the library
 
 
 import directives from '@/directives'
 
-library.add(fas);
 
 const app = createApp(App)
 
-    .component('fa', FontAwesomeIcon)
+
+app.component('font-awesome-icon', FontAwesomeIcon);
+
 
 components.forEach(component => {
     app.component(component.name, component)

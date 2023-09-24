@@ -4,7 +4,8 @@
       <div @click.stop style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
         <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
           <div style="color: #ffffff; padding: 10px;">
-            Wallet    <fa icon="fa-solid fa-wallet"></fa>
+            Wallet   
+            <font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'wallet']" />
            
           </div>
        
@@ -12,7 +13,7 @@
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
     
-              <fa icon="ffa-solid fa-xmark"></fa>
+    <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
             </button>
             
        

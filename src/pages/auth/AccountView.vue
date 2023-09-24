@@ -9,7 +9,8 @@
           <div style="background-color: #1d2f3f; width: 50%; padding: 5px 10px 20px 10px;">
             <div style="display: flex; justify-content: space-between; align-items: center; ">
           <div style="color: #ffffff; padding: 10px;">
-            Account    <fa icon="fa-solid fa-user"></fa>
+            Account   
+            <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />
            
            
           </div>
@@ -38,7 +39,8 @@
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
    
-              <fa icon="ffa-solid fa-xmark"></fa>
+             
+   <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
             </button>
          
        
@@ -63,7 +65,7 @@
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
-            Account   <fa icon="fa-solid fa-user"></fa>
+            Account       <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />
            
            
           </div>
@@ -72,7 +74,8 @@
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
    
-              <fa icon="ffa-solid fa-xmark"></fa>
+         
+              <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
             </button>
          
        

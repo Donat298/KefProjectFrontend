@@ -45,7 +45,9 @@
 
 
   <button v-if="rail" style="width: 100%; height: 64px; color: #ffffff; " @click="rail = false">
-    <fa icon="fas fa-angle-double-right" />
+    
+   
+    <font-awesome-icon :icon="['fas', 'angle-double-right']" />
   </button>
 </div>
 
@@ -89,15 +91,19 @@
      
             
        
-          <button v-if="!rail && showRbsbbtn" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
-     @click="rail = true"><fa icon="fas fa-angle-double-left" /></button>          
-                    <div v-if="rail " style="width: 64px; height: 64px; "></div>
+          <button v-if="!rail && showRbsbbtn" style="color: #ffffff; background-color: #15212c00; min-width: 64px;  height: 64px;" 
+     @click="rail = true"><font-awesome-icon :icon="['fas', 'angle-double-left']" />
+    </button>          
+                  
 
-            
+    <div v-if="rail " style="width: 64px; height: 64px; "></div>
 
 
-                <button  v-if="!showRbsbbtn && showRbsb" style="color: #ffffff; background-color: #15212c00; width: 64px; height: 64px;" 
-     @click="drawer = true"><fa icon="fas fa-angle-double-right" /></button>
+                <button  v-if="!showRbsbbtn && showRbsb" style="color: #ffffff;
+                 background-color: #15212c00; min-width: 64px; height: 64px;" 
+     @click="drawer = true">
+     <font-awesome-icon :icon="['fas', 'angle-double-right']" />
+    </button>
 
           
                   <div v-if="$store.getters.isAuthenticated" style="  
@@ -118,7 +124,7 @@ background-color: rgba(127, 255, 212, 0);
 
 
 
-          <div style="display: flex;">
+          <div style="display: flex; ">
           
          <ChoseCurrency>
 
@@ -144,7 +150,8 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
   <my-button2 v-bind="props" style="display: flex; align-items: center; justify-content: center; 
   background: var(--color-dark-tr-e);
           backdrop-filter: blur(10px); height: 48px; width: 48px; border-radius: 50px;">
-  <fa icon="fa-solid fa-user fa-2xl" style="color: #ffffff;height: 20px; "></fa>
+  
+  <font-awesome-icon style="color: #ffffff;height: 20px;  "  :icon="['fas', 'user']" />
 </my-button2>
 
 
@@ -164,15 +171,17 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
                 margin-top: 10px;
                 min-width: 100px;">
             <v-list-item style="height: 50px;  display: flex;" @click="$emit('ShowAccountOknoo')" :ripple="false"
-                > <fa icon="fa-solid fa-user fa-2xl" class="mx-auto mr-3" style="color: #ffffff;"></fa> Account </v-list-item>
+                > 
+                <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" /> Account </v-list-item>
                
             <v-list-item style="height: 50px;" @click="logout()" :ripple="false"
-            ><fa icon="fa-solid fa-right-from-bracket" class="mx-auto mr-3" style="color: #ffffff;"></fa> Logout</v-list-item>
+            >
+            <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'right-from-bracket']" /> Logout</v-list-item>
            
             </v-list>
        
         </v-menu>
-       
+      
         </div>
 
 

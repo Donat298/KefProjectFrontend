@@ -13,7 +13,8 @@
                     {{ $store.getters.userDetail[selectedCurrency] }}
                   </span>
                   <img style="margin-left: 10px; width: 22px;" :src="getCurrencyImagePath(selectedCurrency)" />
-                  <fa icon="fa-solid fa-chevron-down" style="color: #ffffff; height: 14px; margin-left: 10px;"></fa>
+                  <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+
                 </div>
               </v-card>
             </div>
@@ -72,7 +73,8 @@
                   <span style="max-width: 12ch; line-height: 1.5; font-size: var(--text-size-default); font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; box-sizing: border-box;">
                     {{ selectedCurrencyAddress }}
                   </span>
-                  <fa icon="fa-solid fa-chevron-down" style="color: #ffffff; height: 14px; margin-left: 10px;"></fa>
+                  <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+
                 </div>
               </v-card>
             </div>
@@ -103,8 +105,13 @@
         <v-card elevation="0" style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 17px;">
           {{ selectedCurrencyAddress }}
         </v-card>
-        <button @click="copyAddress" :disabled="showTooltip" class="copied-button ml-2" :class="{ 'copied-icon': showTooltip }" :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }" style="min-width: 40px; border-top-left-radius: 0px; border-bottom-left-radius: 0px; min-width: 40px;">
-          <fa :icon="showTooltip ? 'check' : 'copy'" class="mx-auto" style="color: #ffffff;"></fa>
+        <button @click="copyAddress" :disabled="showTooltip" 
+        class="copied-button ml-2" :class="{ 'copied-icon': showTooltip }"
+         :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }" style="min-width: 32px;
+           min-height: 32px;  ">
+       
+          <font-awesome-icon style="color: #ffffff;height: 16px; " :icon="['fas', 'copy']" />
+
         </button>
       </v-card>
     </div>

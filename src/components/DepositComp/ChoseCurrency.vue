@@ -14,7 +14,7 @@
 {{ $store.getters.userDetail[selectedCurrency] }}
 </span>
 <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
-<fa icon="fa-solid fa-chevron-down" style="color: #ffffff;height: 14px; margin-left: 10px;"></fa>
+<font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 </div>
 </div>  
 </div>
