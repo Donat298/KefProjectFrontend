@@ -118,7 +118,8 @@
           <button  style="color: #ffffff;  background-color: #29384500;    padding: 0 1vw;" 
           @click="$router.push('/')">  <v-img  style=" max-height: 64px; max-width: 90px;
 background-color: rgba(127, 255, 212, 0); 
- " :src="require('@/assets/kefu.svg')"/></button>
+ " src="@/assets/kefu.svg"/>
+ </button>
 
           </div>
 
