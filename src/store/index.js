@@ -9,7 +9,7 @@ export default createStore({
     accessToken: localStorage.getItem("accessToken") || "",
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
     avatar: localStorage.getItem("userAvatar") || "",
-    selectedCurrencyAddress: '',
+
   }),
 
   getters: {
@@ -55,9 +55,7 @@ export default createStore({
     setUserBalance(state, { currency, amount }) {
       state.user[`balance${currency}`] = amount;
     },
-    setSelectedCurrencyAddress(state, address) {
-    state.selectedCurrencyAddress = address;
-  },
+  
   },
 
   actions: {

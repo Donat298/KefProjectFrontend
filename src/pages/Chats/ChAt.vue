@@ -30,10 +30,10 @@
         <input 
         :counter="200" 
          v-focus
-         class="pl-5 inputbet"
+         class=" inputbet"
          @keyup.enter.exact="sendMessage"
          v-model="newMessage"
-         style=""
+         style="padding: 0px 15px; "
          :style="{ borderColor: newMessage.length > 200 ? 'red' : '' }"
   >
         <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">

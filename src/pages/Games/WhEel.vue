@@ -31,11 +31,15 @@
       <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
       <v-card  elevation="5" style=" background-color: #15212c00; margin-left: 8px;">
         <input :disabled="isProcessing" 
-         v-focus
-         class="pl-5 inputbet"
-         v-model="betInput"
-         :style="{ borderColor: isInputInvalid ? 'red' : '' }"
-  >
+       v-focus
+       class="  inputbet"
+       v-model="betInput"
+       style="padding: 0px 15px; "
+       :style="{ borderColor: isInputInvalid ? 'red' : '' }"
+       type="number"
+        inputmode="numeric"
+>
+
 
         </v-card>
         <div class="d-flex align-center">
@@ -307,6 +311,13 @@ export default {
 }
 .lose {
   background: red;
+}
+/* Hide the number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 </style>

@@ -9,8 +9,11 @@
             <div class="rounded" style="flex: 1; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
                 <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
-                  <span style="max-width: 12ch; line-height: 1.5; font-size: var(--text-size-default); font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; box-sizing: border-box;">
-                    {{ $store.getters.userDetail[selectedCurrency] }}
+                  <span style="max-width: 12ch; line-height: 1.5; font-size: var(--text-size-default); font-weight: 600;
+                   overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; box-sizing: border-box;">
+                   <p style=" font-size: 15px;">
+                    {{ selectedCurrencyName }}
+                  </p>
                   </span>
                   <img style="margin-left: 10px; width: 22px;" :src="getCurrencyImagePath(selectedCurrency)" />
                   <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
@@ -24,40 +27,39 @@
             <!-- EUR -->
             <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
-                {{ $store.getters.userDetail.balanceeur }}
-                <div class="ml-2 hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+                <div class=" hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
-                  <div class="ml-2" style="min-width: 60px;">EUR</div>
+                  <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
                 </div>
               </div>
             </v-list-item>
             <!-- BTC -->
             <v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
-                {{ $store.getters.userDetail.balancebtc }}
-                <div class="ml-2 hhpp">
+           
+                <div class=" hhpp">
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
-                  <div class="ml-2" style="min-width: 60px;">BTC</div>
+                  <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
                 </div>
               </div>
             </v-list-item>
             <!-- USDT -->
             <v-list-item @click="selectCurrency('balanceusdt')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
-                {{ $store.getters.userDetail.balanceusdt }}
-                <div class="ml-2 hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+           
+                <div class=" hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
-                  <div class="ml-2" style="min-width: 60px;">USDT</div>
+                  <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
                 </div>
               </div>
             </v-list-item>
             <!-- ETH -->
             <v-list-item @click="selectCurrency('balanceeth')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
-                {{ $store.getters.userDetail.balanceeth }}
-                <div class="ml-2 hhpp">
+            
+                <div class="hhpp">
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
-                  <div class="ml-2" style="min-width: 60px;">ETH</div>
+                  <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
                 </div>
               </div>
             </v-list-item>
@@ -70,8 +72,12 @@
             <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
                 <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
-                  <span style="max-width: 12ch; line-height: 1.5; font-size: var(--text-size-default); font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; box-sizing: border-box;">
-                    {{ selectedCurrencyAddress }}
+                  <span style=" line-height: 1.5; font-size: var(--text-size-default); 
+                  font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; 
+                  box-sizing: border-box;   ">
+                  <div style=" font-size: 15px;">
+                    {{ selectedUSDTAddressName }}
+                  </div>
                   </span>
                   <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
@@ -80,29 +86,77 @@
             </div>
           </template>
           <!-- USDT Address List -->
-          <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px; margin-top: 10px;">
-            <v-list-item @click="selectUSDTAddress('usdtaddress1')" style="height: 40px; align-items: center;" :ripple="false">
-              <div class="hhdd">
-                USDT Address 1
-              </div>
+          <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px;
+           margin-top: 10px;">
+            <v-list-item @click="selectUSDTAddress('usdtaddress1')" style="height: 40px; align-items: 
+            center;" :ripple="false">
+          <p style="  font-size: 15px;">
+                ETH - Ethereum (ERC20)
+              </p>
             </v-list-item>
             <v-list-item @click="selectUSDTAddress('usdtaddress2')" style="height: 40px; align-items: center;" :ripple="false">
-              <div class="hhdd">
-                USDT Address 2
-              </div>
+             
+               <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
+         
             </v-list-item>
+            <v-list-item @click="selectUSDTAddress('usdtaddress3')" style="height: 40px; align-items: center;" :ripple="false">
+             
+             <p style="  font-size: 15px;">POLYGON - Matic</p>
+       
+          </v-list-item>
           </v-list>
         </v-menu>
+
+        <v-menu style="" v-if="selectedCurrency === 'balanceeth'" location="bottom center" transition="slide-y-transition">
+          <!-- Activator -->
+          <template v-slot:activator="{ props }">
+            <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+              <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
+                <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
+                  <span style=" line-height: 1.5; font-size: var(--text-size-default); 
+                  font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; 
+                  box-sizing: border-box;   ">
+                  <div style=" font-size: 15px;">
+                    {{ selectedETHAddressName }}
+                  </div>
+                  </span>
+                  <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+
+                </div>
+              </v-card>
+            </div>
+          </template>
+          <!-- USDT Address List -->
+          <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px;
+           margin-top: 10px;">
+            <v-list-item @click="selectETHAddress('ethaddress1')" style="height: 40px; align-items: 
+            center;" :ripple="false">
+          <p style="  font-size: 15px;">
+                ETH - Ethereum (ERC20)
+              </p>
+            </v-list-item>
+            <v-list-item @click="selectETHAddress('ethaddress2')" style="height: 40px; align-items: center;" :ripple="false">
+             
+               <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
+         
+            </v-list-item>
+         
+          </v-list>
+        </v-menu>
+       
       </v-card>
     </div>
-    <!-- Currency Image -->
+    <!-- Currency Image --> 
     <div style="position: relative;" class="ma-7">
       <v-img class="mx-auto" style="max-width: 100px" :src="getCurrencyImagePath(selectedCurrency)" />
+    <!--  <v-img class="mx-auto" style="max-width: 100px" :src="getCurrencyImagePath2(selectedCurrency)" /> -->
     </div>
     <!-- Currency Address -->
     <div class="mx-auto" style="display: flex; padding: 10px; overflow-x: auto;">
-      <v-card elevation="5" class="pa-2 pl-4 mx-auto" style="background-color: #2e4659; color: #ffffff; display: flex; height: 48px;">
-        <v-card elevation="0" style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 17px;">
+      <v-card elevation="5" class="pa-2 pl-4 mx-auto" style="background-color: #2e4659;
+       color: #ffffff; display: flex; height: 48px;">
+        <v-card elevation="0" style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center;
+         justify-content: center; font-size: 17px;">
           {{ selectedCurrencyAddress }}
         </v-card>
         <button @click="copyAddress" :disabled="showTooltip" 
@@ -110,8 +164,8 @@
          :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }" style="min-width: 32px;
            min-height: 32px;  ">
        
-          <font-awesome-icon style="color: #ffffff;height: 16px; " :icon="['fas', 'copy']" />
-
+          <font-awesome-icon v-if="!showTooltip" style="color: #ffffff;height: 16px; " :icon="['fas', 'copy']" />
+          <font-awesome-icon v-if="showTooltip" style="color: #ffffff;height: 16px; " :icon="['fas', 'check']" />
         </button>
       </v-card>
     </div>
@@ -138,13 +192,13 @@ export default {
     const selectedCurrencyName = computed(() => {
       switch (selectedCurrency.value) {
         case 'balanceusdt':
-          return 'Usdt';
+          return 'USDT';
         case 'balanceeur':
           return 'Euro';
         case 'balancebtc':
-          return 'Bitcoin';
+          return 'BTC';
         case 'balanceeth':
-          return 'Ethereum';
+          return 'ETH';
         default:
           return '';
       }
@@ -156,16 +210,48 @@ export default {
       if (selectedCurrency.value === 'balanceusdt') {
         // If USDT, update selectedCurrencyAddress with the selected USDT address
         return selectedUSDTAddress.value;
-      } else {
+      }
+      if (selectedCurrency.value === 'balanceeth') {
+   
+        return selectedETHAddress.value;
+      } 
+      else {
         // For other currencies, update selectedCurrencyAddress based on the currency
         return getCurrencyAddress(selectedCurrency.value);
       }
     });
 
     const selectedUSDTAddress = ref(localStorage.getItem('selectedUSDTAddress') || 'usdtaddress1');
+    const selectedETHAddress = ref(localStorage.getItem('selectedETHAddress') || 'ethaddress1');
 
     // Function to get the default USDT address
-    
+    const selectedUSDTAddressName = computed(() => {
+  switch (selectedUSDTAddress.value) {
+    case 'usdtaddress1':
+      return 'ETH';
+    case 'usdtaddress2':
+      return ' BSC';
+    case 'usdtaddress3':
+      return 'POLYGON';
+
+  
+    default:
+      return '';
+  }
+});
+
+const selectedETHAddressName = computed(() => {
+  switch (selectedETHAddress.value) {
+    case 'ethaddress1':
+      return 'ETH';
+    case 'ethaddress2':
+      return ' BSC';
+
+  
+    default:
+      return '';
+  }
+});
 
     // Function to copy the address to the clipboard
     const copyAddress = () => {
@@ -200,9 +286,15 @@ export default {
   if (newCurrency === 'balanceusdt') {
     // If USDT, update selectedUSDTAddress with the selected USDT address
     selectedUSDTAddress.value = localStorage.getItem('selectedUSDTAddress') || 'usdtaddress1';
-  } else {
+  }
+  if (newCurrency === 'balanceeth') {
+ 
+    selectedETHAddress.value = localStorage.getItem('selectedETHAddress') || 'ethaddress1';
+  } 
+  else {
     // For other currencies, update selectedUSDTAddress based on the currency
     selectedUSDTAddress.value = getCurrencyAddress(newCurrency);
+    selectedETHAddress.value = getCurrencyAddress(newCurrency);
   }
 
   // Store the selected currency in localStorage
@@ -224,6 +316,12 @@ export default {
       // Store the selected USDT address in localStorage
       localStorage.setItem('selectedUSDTAddress', addressKey);
     };
+    const selectETHAddress = (addressKey) => {
+      selectedETHAddress.value = addressKey;
+
+      // Store the selected USDT address in localStorage
+      localStorage.setItem('selectedETHAddress', addressKey);
+    };
 
     // Images for different currencies
     const selectedCurrencyImages = {
@@ -233,9 +331,19 @@ export default {
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
     };
 
+    const selectedCurrencyImages2 = {
+      balanceusdt: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
+      balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
+      balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+    };
+
     // Function to get the image path for the selected currency
     const getCurrencyImagePath = (currencyKey) => {
       return selectedCurrencyImages[currencyKey];
+    };
+    const getCurrencyImagePath2 = (currencyKey) => {
+      return selectedCurrencyImages2[currencyKey];
     };
 
     // Function to get the address for each currency
@@ -248,7 +356,7 @@ export default {
         case 'balancebtc':
           return 'Btc address 1';
         case 'balanceeth':
-          return 'Etc address';
+          return selectedETHAddress.value;;
         default:
           return '';
       }
@@ -259,16 +367,25 @@ export default {
       selectedCurrencyName,
       selectedCurrencyAddress,
       selectedUSDTAddress,
+      selectedETHAddress,
       showTooltip,
       copyAddress,
       getCurrencyImagePath,
+      getCurrencyImagePath2,
       selectCurrency,
       selectUSDTAddress,
+      selectETHAddress,
+      selectedUSDTAddressName,
+      selectedETHAddressName,
     };
   },
 };
 </script>
 
+
+<style>
+
+</style>
 
 
 
