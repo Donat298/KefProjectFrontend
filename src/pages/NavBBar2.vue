@@ -61,7 +61,7 @@
     <v-btn @click="this.drawer = !this.drawer; rail = false" elevation="4" 
         class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="drawer ? 'blue' : '#2e4659'"
+        :color="drawer ? 'blue-darken-1' : '#2e4659'"
         style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
         flex-direction: column; align-items: center; text-align: center;">
         <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
@@ -70,7 +70,7 @@
 
     <v-btn to="/wheel" elevation="4" class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="$route.path === '/wheel' ? 'blue' : '#2e4659'" 
+        :color="$route.path === '/wheel' ? 'blue-darken-1' : '#2e4659'" 
         style="max-width: calc(33.33% - 10px); min-width: 5px;">
         <v-icon icon="mdi-cards"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Games</span>
@@ -78,7 +78,7 @@
 
     <v-btn elevation="4" class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="$route.path === '/chat' ? 'blue' : '#2e4659'" 
+        :color="$route.path === '/chat' ? 'blue-darken-1' : '#2e4659'" 
         to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;" >
         <v-icon icon="mdi-chat"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Chat</span>

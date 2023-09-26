@@ -16,7 +16,7 @@
            prepend-icon="mdi-home"
            style="color: #ffffff; margin-top: 8px; padding-left: 15px;"
            to="/"
-           color="teal-accent-2"
+           color="blue-darken-1"
             elevation="0"
          >
            Home
@@ -28,7 +28,7 @@
            style="color: #ffffff; padding-left: 15px;"
            to="/chat"
            prepend-icon="mdi-chat"
-           color="teal-accent-2"
+           color="blue-darken-1"
            elevation="0"
            
          >

@@ -6,19 +6,19 @@
         <v-menu style="" location="bottom center" transition="slide-y-transition">
           <!-- Activator -->
           <template v-slot:activator="{ props }">
-            <div class="rounded" style="flex: 1; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
-              <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
-                <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
-                  <span style="max-width: 12ch; line-height: 1.5; font-size: var(--text-size-default); font-weight: 600;
-                   overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; box-sizing: border-box;">
-                   <p style=" font-size: 15px;">
+            <div class="rounded" style="flex: 1;  margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+              <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; flex: 1; 
+               height: 48px; display: flex;  align-items: center; background-color: #2e4659;" elevation="5">
+          
+             
+                   <p style=" font-size: 15px; color: #ffffff;">
                     {{ selectedCurrencyName }}
                   </p>
-                  </span>
+             
                   <img style="margin-left: 10px; width: 22px;" :src="getCurrencyImagePath(selectedCurrency)" />
                   <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
-                </div>
+          
               </v-card>
             </div>
           </template>
@@ -27,40 +27,40 @@
             <!-- EUR -->
             <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
-                <div class=" hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+             
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
-                </div>
+          
               </div>
             </v-list-item>
             <!-- BTC -->
             <v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
            
-                <div class=" hhpp">
+       
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
-                </div>
+      
               </div>
             </v-list-item>
             <!-- USDT -->
             <v-list-item @click="selectCurrency('balanceusdt')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
            
-                <div class=" hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+             
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
-                </div>
+           
               </div>
             </v-list-item>
             <!-- ETH -->
             <v-list-item @click="selectCurrency('balanceeth')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
             
-                <div class="hhpp">
+ 
                   <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
-                </div>
+      
               </div>
             </v-list-item>
           </v-list>
@@ -71,17 +71,15 @@
           <template v-slot:activator="{ props }">
             <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
-                <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
-                  <span style=" line-height: 1.5; font-size: var(--text-size-default); 
-                  font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; 
-                  box-sizing: border-box;   ">
-                  <div style=" font-size: 15px;">
+             
+                
+                  <div style=" font-size: 15px; color: #ffffff;">
                     {{ selectedUSDTAddressName }}
                   </div>
-                  </span>
+           
                   <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
-                </div>
+               
               </v-card>
             </div>
           </template>
@@ -112,17 +110,15 @@
           <template v-slot:activator="{ props }">
             <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
-                <div style="color: #ffffff; display: flex; align-items: center; text-align: center;">
-                  <span style=" line-height: 1.5; font-size: var(--text-size-default); 
-                  font-weight: 600; overflow: hidden; margin: 0; font: inherit; vertical-align: baseline; 
-                  box-sizing: border-box;   ">
-                  <div style=" font-size: 15px;">
+             
+               
+                  <div style=" font-size: 15px; color: #ffffff;">
                     {{ selectedETHAddressName }}
                   </div>
-                  </span>
+               
                   <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
-                </div>
+           
               </v-card>
             </div>
           </template>

@@ -1,23 +1,18 @@
 <template>
       <v-menu location="bottom center"  transition="slide-y-transition">          
           <template v-slot:activator="{ props }">
-    <div class="rounded"   style=" flex: 1; display: flex; 
-     justify-content: center; align-items: center; ">
+ 
       <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
-        height: 48px;   display: flex; align-items: center;" elevation="0">
-<div style="color: #ffffff;  display: flex; align-items: center; text-align: center;">
-<span style="max-width: 12ch; line-height: 1.5;     font-size: var(--text-size-default); font-weight: 600;
-  overflow: hidden;
-     margin: 0;
-  font: inherit;
-  vertical-align: baseline; box-sizing: border-box;">
+        height: 48px;   display: flex; align-items: center; color: #ffffff;">
+
+
 {{ $store.getters.userDetail[selectedCurrency] }}
-</span>
+
 <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
 <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
-</div>
+
 </div>  
-</div>
+
           </template>
 <v-list
 elevation="5"
@@ -35,7 +30,7 @@ min-width: 100px;
 <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
 <div class="hhdd" >
   {{ $store.getters.userDetail.balanceeur }}
-  <div class="ml-2 hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+  
     <img 
       style="display: flex; align-items: center; 
       width: 22px; max-height: 25px; margin-left: 15px;" 
@@ -44,7 +39,7 @@ min-width: 100px;
     <div class="ml-2" style="min-width: 60px; ">
       EUR
     </div>
-  </div>
+
 </div>
 </v-list-item>
 
@@ -54,7 +49,7 @@ min-width: 100px;
 <v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;"  :ripple="false">
 <div class="hhdd" >
   {{ $store.getters.userDetail.balancebtc }}
-  <div class="ml-2 hhpp" >
+
     <img 
       style="display: flex; align-items: center; 
       width: 22px; max-height: 25px; margin-left: 15px;" 
@@ -63,7 +58,7 @@ min-width: 100px;
     <div class="ml-2" style="min-width: 60px; ">
       BTC
     </div>
-  </div>
+
 </div>
 </v-list-item>
 
@@ -71,7 +66,7 @@ min-width: 100px;
 <v-list-item @click="selectCurrency('balanceusdt')" style="height: 40px; align-items: center;" :ripple="false">
 <div class="hhdd" >
   {{ $store.getters.userDetail.balanceusdt }}
-  <div class="ml-2 hhpp" style="min-width: 100px; display: flex; justify-content: flex-end; align-items: center;">
+ 
     <img 
       style="display: flex; align-items: center; 
       width: 22px; max-height: 25px; margin-left: 15px;" 
@@ -80,7 +75,7 @@ min-width: 100px;
     <div class="ml-2" style="min-width: 60px; ">
       USDT
     </div>
-  </div>
+ 
 </div>
 </v-list-item>
 
@@ -88,7 +83,7 @@ min-width: 100px;
 align-items: center;"  :ripple="false">
 <div class="hhdd"> <!-- Add align-items: center; here -->
   {{ $store.getters.userDetail.balanceeth }}
-  <div class="ml-2 hhpp" >
+
     <img 
       style="display: flex; align-items: center; 
       width: 22px; max-height: 25px; margin-left: 15px;" 
@@ -97,7 +92,7 @@ align-items: center;"  :ripple="false">
     <div class="ml-2" style="min-width: 60px; ">
       ETH
     </div>
-  </div>
+
 </div>
 </v-list-item>
 </v-list>
