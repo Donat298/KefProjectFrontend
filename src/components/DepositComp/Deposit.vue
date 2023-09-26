@@ -183,7 +183,7 @@ import DepositId from '@/components/DepositComp/DepositId.vue';
 export default {
   components: {
     DepositId,
-  },
+  }, 
   setup() {
     const store = useStore();
     const selectedCurrency = ref(localStorage.getItem('selectedCurrency') || 'balanceusdt');
