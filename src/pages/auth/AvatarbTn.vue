@@ -16,7 +16,10 @@
 
 
   </div>
-  <div v-if="errorMsg" style="color: red; margin-top: 10px;  text-align: center; font-size: 17px;">{{ errorMsg }}</div>
+  <div v-if="errorMsg"
+  class="text-subtitle-1 text-color-white align-center justify-space-between"
+  style="color: red; 
+  margin-top: 10px;  text-align: center;">{{ errorMsg }}</div>
 </template>
 
 <script>

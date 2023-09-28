@@ -186,10 +186,12 @@
      color="blue"
      elevation="8"
      :ripple="false"
+     :disabled="isButtonDisabled"
+        :style="buttonStyle" 
      style=" background-color: #2e4659; color: #ffffff; display: flex;
       align-items: center; justify-content: center; font-size: 17px;"
    >
-     <span style="color: #ffffff; font-size: 13px;">Made a withdraw</span>
+     <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
 
 </template>
@@ -212,6 +214,12 @@ setup() {
  const userId = ref(store.getters.userDetail._id);
  const message1 = ref('');
  const message2 = ref('');
+ const isButtonDisabled = ref(false);
+ const buttonText = ref('Made a withdrawal');
+ const buttonStyle = ref({
+      backgroundColor: '#1E88E5', // Default background color
+      opacity: 1, // Default opacity
+    });
  const selectedCurrencyName = computed(() => {
       switch (selectedCurrency.value) {
         case 'balanceusdt':
@@ -309,6 +317,12 @@ try {
    message2: message2.value,
    currency: selectedCurrency.value,
  };
+ isButtonDisabled.value = true;
+ buttonText.value = 'Sending...';
+ buttonStyle.value = {
+          ...buttonStyle.value,
+          opacity: 0.5, // Adjust opacity for the fade-out effect
+        };
 
  // Check if the selected currency supports a network
  if (selectedCurrency.value === 'balanceusdt') {
@@ -322,8 +336,27 @@ try {
  // Handle the response as needed
  console.log(response.data);
  errorMsg.value = '';
+
+ buttonText.value = 'Withdrawal Sent!';
+
+ setTimeout(() => {
+          isButtonDisabled.value = false;
+          buttonText.value = 'Made a withdrawal';
+          // Reset the button opacity
+          buttonStyle.value = {
+            ...buttonStyle.value,
+            opacity: 1,
+          };
+        }, 10000); // 10 seconds
 } catch (error) {
  errorMsg.value = error.response.data.message;
+ isButtonDisabled.value = false;
+        buttonText.value = 'Made a withdrawal';
+        // Reset the button opacity on error
+        buttonStyle.value = {
+          ...buttonStyle.value,
+          opacity: 1,
+        };
 }
 };
 
@@ -334,6 +367,8 @@ try {
    message2,
    selectedCurrency,
    selectedNetwork,
+   isButtonDisabled,
+   buttonText,
    selectCurrency,
    selectNetwork,
    getCurrencyImagePath, 
@@ -344,7 +379,9 @@ try {
    selectedUsdtNetwork,
    selectedEthNetwork,
    saveToLocalStorage,
-   selectedCurrencyName
+   selectedCurrencyName,
+   buttonStyle,
+   
  };
 },
 };
