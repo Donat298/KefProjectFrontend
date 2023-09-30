@@ -6,7 +6,7 @@
         <v-menu style="" location="bottom center" transition="slide-y-transition">
           <!-- Activator -->
           <template v-slot:activator="{ props }">
-            <div class="rounded" style="flex: 1;  margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+            <div class="rounded" style="flex: 1;  margin: 5px;  display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; flex: 1; 
                height: 48px; display: flex;  align-items: center; background-color: #2e4659;" elevation="5">
           
@@ -69,7 +69,7 @@
         <v-menu style="" v-if="selectedCurrency === 'balanceusdt'" location="bottom center" transition="slide-y-transition">
           <!-- Activator -->
           <template v-slot:activator="{ props }">
-            <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <div class="rounded" style="flex: 1; margin: 5px;  display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
              
                 
@@ -108,7 +108,7 @@
         <v-menu style="" v-if="selectedCurrency === 'balanceeth'" location="bottom center" transition="slide-y-transition">
           <!-- Activator -->
           <template v-slot:activator="{ props }">
-            <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <div class="rounded" style="flex: 1; margin: 5px;  display: flex; justify-content: center; align-items: center;">
               <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
              
                

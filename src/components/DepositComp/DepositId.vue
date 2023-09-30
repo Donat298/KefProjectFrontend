@@ -15,7 +15,7 @@
         :style="buttonStyle" 
       >
         <span style="color: #ffffff; font-size: 13px;">
-          {{ buttonText }}
+          {{ buttonText }} 
         </span>
       </v-btn>
     </div>

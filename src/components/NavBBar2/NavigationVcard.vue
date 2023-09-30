@@ -16,7 +16,7 @@
            prepend-icon="mdi-home"
            style="color: #ffffff; margin-top: 8px; padding-left: 15px;"
            to="/"
-           color="blue-darken-1"
+        
             elevation="0"
          >
            Home
@@ -28,7 +28,7 @@
            style="color: #ffffff; padding-left: 15px;"
            to="/chat"
            prepend-icon="mdi-chat"
-           color="blue-darken-1"
+           
            elevation="0"
            
          >
@@ -100,6 +100,9 @@ export default {
 }
 .v-list-item--active > .v-list-item__overlay, .v-list-item[aria-haspopup=menu][aria-expanded=true] > .v-list-item__overlay {
   opacity: 0 !important; 
+}
+.v-list-item--active {
+  background-color: #37556b;
 }
 
 .v-list-item:hover > .v-list-item__overlay {

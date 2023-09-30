@@ -37,9 +37,10 @@
 
    
 
-<v-btn v-if="!rail" elevation="4" class="glowg-button2" :ripple="false" style="min-width: 5px;">
+<v-btn v-if="!rail" elevation="4" @click="showCustomSnackbar" class="glowg-button2" :ripple="false" style="min-width: 5px;">
   <span class="shimmerr-text"><h5>Bonuses</h5></span>
 </v-btn>
+
 
 
 
@@ -229,7 +230,7 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
         </div>
       </div>
     </v-main> 
-     
+    <custom-snackbar ref="customSnackbar"></custom-snackbar>
   </v-layout>
 </template>
 
@@ -239,10 +240,10 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
 import NavigationHeader from '@/components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '@/components/NavBBar2/NavigationList.vue';
 import ChoseCurrency from '@/components/DepositComp/ChoseCurrency.vue';
-
+import CustomSnackbar from '@/components/UI/snackbar.vue';
 export default {
 
-components: { NavigationHeader, NavigationList, ChoseCurrency },
+components: { NavigationHeader, NavigationList, ChoseCurrency, CustomSnackbar},
 
 data() {
     return {
@@ -277,7 +278,9 @@ window.removeEventListener('resize', this.handleResize);
 methods: {
   
   
-
+  showCustomSnackbar() {
+      this.$refs.customSnackbar.openSnackbar("This is a custom snackbar message.");
+    },
   logout() {
     this.$store.dispatch("logout");
   },

@@ -5,7 +5,7 @@
    <v-menu v-model="isMenuOpen" class="globalmenu" location="bottom center" transition="slide-y-transition">
    <!-- Activator -->
    <template v-slot:activator="{ props }">
-          <div class="rounded" style="flex: 1; margin-right: 10px; display: flex; justify-content: center; align-items: center;">
+          <div class="rounded" style="flex: 1; margin: 5px;  display: flex; justify-content: center; align-items: center;">
             <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
 
                
@@ -70,7 +70,7 @@
  <v-menu v-model="isUsdtNetworkMenuOpen" class="usdtnetworksmenu" v-if="selectedCurrency === 'balanceusdt'" location="bottom center" transition="slide-y-transition">
    <!-- Activator -->
        <template v-slot:activator="{ props }">
-         <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+         <div class="rounded" style="flex: 1; display: flex; margin: 5px;  justify-content: center; align-items: center;">
            <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
           
           
@@ -109,7 +109,7 @@
  <v-menu v-model="isEthNetworkMenuOpen" class="ethnetworksmenu" v-if="selectedCurrency === 'balanceeth'" location="bottom center" transition="slide-y-transition">
    <!-- Activator -->
   <template v-slot:activator="{ props }">
-         <div class="rounded" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+         <div class="rounded" style="flex: 1;margin: 5px;  display: flex; justify-content: center; align-items: center;">
            <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
        
       
@@ -152,34 +152,59 @@
    </div>
 
    <input
-     v-model="message1"
-     class="inputwithdrawnumber"
-     style=" padding: 0px 15px; margin-bottom: 20px;"
-   />
+      v-model="message1"
+      class="inputadress"
+      style="padding: 0px 15px; margin-bottom: 20px;"
+      :style="{ borderColor: hasError ? 'red' : '' }"
+    />
+
+
+
+
+   
 
    <div style="color: white" class="text-color-white d-flex align-center justify-space-between">
     <p style="font-size: 17px;">
-     Amount 
+     Amount <span style="color: rgba(240, 255, 255, 0.294);">(The transaction fee will be 1%)</span>
   
     </p>
    </div>
+   <toolip :showTooltip2="showTooltip2" style="  width: 100%; 
+   " text="The amount cannot be more than your balance.">
    <div style="position: relative;
     flex-grow: 1;
-    width: 100%;
-    margin-bottom: 55.5px;
+ 
+
     height: 42px;">
+   
    <img style="height: 42px; width: 17px; right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
+
+
+
    <input
      v-model="message2"
-     class="inputadress"
+     class="inputwithdrawnumber"
      style="padding: 0px 15px; "
      type="number"
      inputmode="numeric"
+     :style="{ borderColor: isInputInvalid || errorMsg == 'Invalid withdrawal amount' || 
+     errorMsg == 'Address and amount required.' || errorMsg == 'Insufficient balance for withdrawal' ? 'red' : '' }"
    >
-  
+
    
   </div>
+  <div style="margin: 10px; height: 40px; display: flex; align-items: center; justify-content: center;">
+    <div v-if="errorMsg"
+         class="text-color-white align-center justify-space-between"
+         style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
+    </div>
+  </div>
+  
+</toolip>
+
  </div>
+
+   
  <v-btn
      class="mx-auto"
      @click="sendWithdrawal"
@@ -198,12 +223,54 @@
 
 
 <script>
+import store from '@/store'; 
 import { ref, watch ,computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useApiPrivate } from '../../utils/useApi';
-
+import toolip from '@/components/UI/toolip.vue';
 export default {
+  components: {
+    toolip
+  },
+  data() {
+    return {
+      isInputInvalid: false,
+      showTooltip2: false,
+    };
+  },
+  computed: {
+    hasError() {
+      return (this.errorMsg == 'Address and amount required.' || this.errorMsg == 'Address required.');
+    },
+  },
+  watch: {
+    message2(newValue) {
+      this.checkInputValidity(newValue);
+    },
+    message1(newValue) {
+      if (newValue.trim() !== '') {
+        this.errorMsg = false;
+      }
+    },
+ 
+  },
+  
+  methods: {
+    checkInputValidity(value) {
+      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
+        this.isInputInvalid = true;
+        this.showTooltip2 = true;
+        this.errorMsg = false;
+      } else {
+        this.isInputInvalid = false;
+        this.showTooltip2 = false;
+        this.errorMsg = false;
+      }
+    },
+   
+  },
+
 setup() {
  const store = useStore();
  const axiosPrivateInstance = useApiPrivate(store);
@@ -308,57 +375,68 @@ setup() {
  };
 
  const sendWithdrawal = async () => {
-if (!checkAuthentication()) return;
+  if (!checkAuthentication()) return;
 
-try {
- const requestBody = {
-   userId: userId.value,
-   message1: message1.value,
-   message2: message2.value,
-   currency: selectedCurrency.value,
- };
- isButtonDisabled.value = true;
- buttonText.value = 'Sending...';
- buttonStyle.value = {
-          ...buttonStyle.value,
-          opacity: 0.5, // Adjust opacity for the fade-out effect
-        };
+  try {
+    const balanceFieldsMap = {
+      'balanceusdt': 'usdt',
+      'balanceeur': 'eur',
+      'balancebtc': 'btc',
+      'balanceeth': 'eth',
+    };
 
- // Check if the selected currency supports a network
- if (selectedCurrency.value === 'balanceusdt') {
-   requestBody.selectedNetwork = selectedUsdtNetwork.value;
- } else if (selectedCurrency.value === 'balanceeth') {
-   requestBody.selectedNetwork = selectedEthNetwork.value;
- }
+    const requestBody = {
+      userId: userId.value,
+      message1: message1.value,
+      message2: message2.value,
+      currency: selectedCurrency.value,
+      
+    };
 
- const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
+    // Check if the selected currency supports a network
+    if (selectedCurrency.value === 'balanceusdt') {
+      requestBody.selectedNetwork = selectedUsdtNetwork.value;
+    } else if (selectedCurrency.value === 'balanceeth') {
+      requestBody.selectedNetwork = selectedEthNetwork.value;
+    }
 
- // Handle the response as needed
- console.log(response.data);
- errorMsg.value = '';
+    const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
+    console.log(response.data);
+    const currency = balanceFieldsMap[store.getters.selectedCurrency];
+    store.dispatch('updateBalance', { currency: currency, amount: response.data.balance });
 
- buttonText.value = 'Withdrawal Sent!';
+    // Update button state and message
+    buttonText.value = 'Withdrawal Sent!';
+    isButtonDisabled.value = true;
+    buttonStyle.value = {
+      ...buttonStyle.value,
+      opacity: 0.5, // Adjust opacity for the fade-out effect
+    };
 
- setTimeout(() => {
-          isButtonDisabled.value = false;
-          buttonText.value = 'Made a withdrawal';
-          // Reset the button opacity
-          buttonStyle.value = {
-            ...buttonStyle.value,
-            opacity: 1,
-          };
-        }, 10000); // 10 seconds
-} catch (error) {
- errorMsg.value = error.response.data.message;
- isButtonDisabled.value = false;
-        buttonText.value = 'Made a withdrawal';
-        // Reset the button opacity on error
-        buttonStyle.value = {
-          ...buttonStyle.value,
-          opacity: 1,
-        };
-}
+    setTimeout(() => {
+      isButtonDisabled.value = false;
+      buttonText.value = 'Make a withdrawal';
+      // Reset the button opacity
+      buttonStyle.value = {
+        ...buttonStyle.value,
+        opacity: 1,
+      };
+    }, 10000); // 10 seconds
+
+    errorMsg.value = ''; // Clear any previous error messages
+  } catch (error) {
+    errorMsg.value = error.response.data.message;
+
+    // Reset button state and message on error
+    isButtonDisabled.value = false;
+    buttonText.value = 'Make a withdrawal';
+    buttonStyle.value = {
+      ...buttonStyle.value,
+      opacity: 1,
+    };
+  }
 };
+
 
  return {
    sendWithdrawal,

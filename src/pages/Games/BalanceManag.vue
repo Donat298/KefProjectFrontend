@@ -101,7 +101,7 @@ export default {
         'balanceeur': 'eur',
         'balancebtc': 'btc',
         'balanceeth': 'eth',
-      };
+      }; 
 
       console.log("this.$store.getters.selectedCurrency=%s");
       console.log("this.$store.getters.selectedCurrency=%s", store.getters.selectedCurrency);
@@ -163,3 +163,4 @@ export default {
 
 <style>
 </style>
+ 

@@ -15,9 +15,9 @@
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
            <v-list-item :ripple="false" prepend-icon="mdi-login-variant"   style="color: #ffffff;padding-left: 15px; margin-top: 8px; " 
-           to="/SignUptest1"   color="blue-darken-1" >SignUptest1</v-list-item>
+           to="/SignUptest1"   >SignUptest1</v-list-item>
            <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  style="color: #ffffff;padding-left: 15px;  " 
-           to="/SignUptest2"   color="blue-darken-1"  >SignUptest2</v-list-item>
+           to="/SignUptest2"   >SignUptest2</v-list-item>
           
          </v-expansion-panel-text>
          
