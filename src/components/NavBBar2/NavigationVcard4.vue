@@ -7,7 +7,7 @@
      >
    
   
-       <v-expansion-panel  style="background-color: #2e4659; color: rgb(255, 255, 255);">
+       <v-expansion-panel elevation="4"  style="background-color: #2e4659; color: rgb(255, 255, 255);">
          <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple"  style="color: #ffffff;  
          font-size: 17px; padding-left: 13px;  " 
              >Tests</v-list-item>

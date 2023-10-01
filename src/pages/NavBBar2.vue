@@ -19,19 +19,11 @@
     class="glowg-button mr-3"
     :ripple="false"
     style="min-width: 5px;"
-    @click="snackbar = true"
+    @click="showCustomSnackbargames"
   >
     <span class="shimmerr-text"><h5>Games</h5></span>
   </v-btn>
   
-
-    <v-snackbar 
-      :timeout="2000"
-      v-model="snackbar"
-      color="success"
-    >
-      Go work, don't play games.
-    </v-snackbar>
 
 
 
@@ -64,7 +56,7 @@
         :ripple="false"
         :color="drawer ? '#37556b' : '#2e4659'"
         style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff;
-         transform: skewX(-7deg);
+         transform: skewX(-6deg);
          
         flex-direction: column; align-items: center; text-align: center;">
         <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
@@ -76,8 +68,8 @@
     
         :color="$route.path === '/wheel' ? '#37556b' : '#2e4659'" 
         style="max-width: calc(33.33% - 10px); min-width: 5px;
-      box-shadow: 6px 6px 0 rgb(127, 229, 255);
-    transform: skewX(-7deg);
+     
+    transform: skewX(-6deg);
          ">
         <v-icon icon="mdi-cards"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Games</span>
@@ -87,7 +79,7 @@
         :ripple="false"
         :color="$route.path === '/chat' ? '#37556b' : '#2e4659'" 
         to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;
-           transform: skewX(-7deg);" >
+           transform: skewX(-6deg);" >
         <v-icon icon="mdi-chat"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Chat</span>
     </v-btn>
@@ -135,7 +127,7 @@
 
           <div style="display: flex; ">
           
-         <ChoseCurrency>
+         <ChoseCurrency> 
 
          </ChoseCurrency>
          
@@ -238,7 +230,9 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
         </div>
       </div>
     </v-main> 
+
     <custom-snackbar ref="customSnackbar"></custom-snackbar>
+    <custom-snackbar ref="customSnackbargames"></custom-snackbar>
   </v-layout>
 </template>
 
@@ -257,7 +251,7 @@ components: { NavigationHeader, NavigationList, ChoseCurrency, CustomSnackbar},
 data() {
     return {
     
-      snackbar: false,
+
 
       drawer: null,
       rail: false,
@@ -290,6 +284,11 @@ methods: {
   showCustomSnackbar() {
       this.$refs.customSnackbar.openSnackbar("This is a custom snackbar message.");
     },
+    showCustomSnackbargames() {
+      this.$refs.customSnackbargames.openSnackbar("We Go");
+    },
+
+  
   logout() {
     this.$store.dispatch("logout");
   },

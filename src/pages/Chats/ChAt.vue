@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center" style="height: calc(100vh - 164px); background-color: #0c141b; width: 100%;">
     <div v-if="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
-      <vproGressMini style="max-height: 64px; max-width: 90px;"/>  
+      <vproGressMini style="max-height: 66px; max-width: 118px;"/>  
     </div>
     <v-card elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: #0c141b; align-items: center;" class="chat-messages">
@@ -33,16 +33,20 @@
          class=" inputbet"
          @keyup.enter.exact="sendMessage"
          v-model="newMessage"
-         style="padding: 0px 15px; "
+         style="padding: 0px 15px; font-size: 17px; "
          :style="{ borderColor: newMessage.length > 200 ? 'red' : '' }"
   >
 
+        
+          
           <button class="ml-2" 
-          type="submit" style="background-color: rgb(30, 44, 56); min-width: 50px; border-radius: 50px; 
-           height: 50px;
-           margin: auto;" 
-          :disabled="newMessage.length > 200 || isLoading" 
-          >      <font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'paper-plane']" /></button>
+        type="submit" style="background-color: rgb(30, 44, 56); min-width: 50px; border-radius: 50px; 
+        height: 50px;  display: flex; align-items: center; justify-content: center;  margin: auto;"
+        :disabled="newMessage.length > 200 || isLoading" 
+>
+<font-awesome-icon  style="color: #ffffff;  height: 15px;"  :icon="['fas', 'paper-plane']" />
+</button>
+          
       
       </v-form>
     </div>

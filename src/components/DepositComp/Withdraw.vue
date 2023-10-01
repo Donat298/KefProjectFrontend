@@ -218,7 +218,7 @@
    >
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
-
+   <custom-snackbar ref="customSnackbarWithdraw"></custom-snackbar>
 </template>
 
 
@@ -229,9 +229,10 @@ import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useApiPrivate } from '../../utils/useApi';
 import toolip from '@/components/UI/toolip.vue';
+import CustomSnackbar from '@/components/UI/snackbar.vue';
 export default {
   components: {
-    toolip
+    toolip, CustomSnackbar
   },
   data() {
     return {
@@ -267,6 +268,9 @@ export default {
         this.showTooltip2 = false;
         this.errorMsg = false;
       }
+    },
+    customSnackbarWithdrawr() {
+      this.$refs.customSnackbar.openSnackbar("This is a custom snackbar message.");
     },
    
   },
@@ -455,7 +459,7 @@ setup() {
    isUsdtNetworkMenuOpen,
    isEthNetworkMenuOpen,
    selectedUsdtNetwork,
-   selectedEthNetwork,
+   selectedEthNetwork, 
    saveToLocalStorage,
    selectedCurrencyName,
    buttonStyle,
