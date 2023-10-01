@@ -3,7 +3,7 @@
 <template>
   <div class="okno3">
       <div class="okno4">
-             <vproGressMini style="width:140,625px; height:100px;"
+             <vproGressMini style="width:177px; height:100px;"
 ></vproGressMini>
 
 
@@ -40,7 +40,7 @@ z-index: 2;
 } 
 .okno4 {
   
-width: 200px;
+
 
 margin: auto;
 

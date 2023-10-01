@@ -62,8 +62,10 @@
     <v-btn @click="this.drawer = !this.drawer; rail = false" elevation="4" 
         class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="drawer ? 'blue-darken-1' : '#2e4659'"
-        style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff; display: flex;
+        :color="drawer ? '#37556b' : '#2e4659'"
+        style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff;
+         transform: skewX(-7deg);
+         
         flex-direction: column; align-items: center; text-align: center;">
         <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Menu</span>
@@ -71,16 +73,21 @@
 
     <v-btn to="/wheel" elevation="4" class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="$route.path === '/wheel' ? 'blue-darken-1' : '#2e4659'" 
-        style="max-width: calc(33.33% - 10px); min-width: 5px;">
+    
+        :color="$route.path === '/wheel' ? '#37556b' : '#2e4659'" 
+        style="max-width: calc(33.33% - 10px); min-width: 5px;
+      box-shadow: 6px 6px 0 rgb(127, 229, 255);
+    transform: skewX(-7deg);
+         ">
         <v-icon icon="mdi-cards"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Games</span>
     </v-btn>
 
     <v-btn elevation="4" class="mx-auto glow-button ma-4"
         :ripple="false"
-        :color="$route.path === '/chat' ? 'blue-darken-1' : '#2e4659'" 
-        to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;" >
+        :color="$route.path === '/chat' ? '#37556b' : '#2e4659'" 
+        to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;
+           transform: skewX(-7deg);" >
         <v-icon icon="mdi-chat"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Chat</span>
     </v-btn>
@@ -117,9 +124,9 @@
                     <div  style="justify-self: start; display: flex;  position:relative; " >
           
           <button  style="color: #ffffff;  background-color: #29384500;    padding: 0 1vw;" 
-          @click="$router.push('/')">  <v-img  style=" max-height: 64px; max-width: 90px;
-background-color: rgba(127, 255, 212, 0); 
- " src="@/assets/kefu.svg"/>
+          @click="$router.push('/')">    <v-img    style="min-height: 54px; max-width: 96px;
+         background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
+  
  </button>
 
           </div>
@@ -136,7 +143,7 @@ background-color: rgba(127, 255, 212, 0);
 font-size: 17px; 
 height: 48px;   
 background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
-<strong>{{ buttonLabel }} </strong>
+<strong>{{ buttonLabel }}   <font-awesome-icon  style="color: #15212c;"  :icon="['fas', 'wallet']" /> </strong>
 </v-btn>
 </div>
 
@@ -200,7 +207,7 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
     white-space: nowrap; 
 ">
     <button style="color: #ffffff; background-color: #15212c00; padding: 0 1vw;"  @click="$router.push('/')">
-        <v-img style="max-height: 64px; max-width: 90px;
+      <v-img    style="min-height: 54px; max-width: 96px;
          background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
     </button>
 
@@ -211,6 +218,7 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
         <v-btn elevation="4"  @click="$router.push('/auth/login')" 
         style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
         font-size: 17px;"><strong> Login</strong> </v-btn>
+    
     </div>
 </div>
 
@@ -241,6 +249,7 @@ import NavigationHeader from '@/components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '@/components/NavBBar2/NavigationList.vue';
 import ChoseCurrency from '@/components/DepositComp/ChoseCurrency.vue';
 import CustomSnackbar from '@/components/UI/snackbar.vue';
+
 export default {
 
 components: { NavigationHeader, NavigationList, ChoseCurrency, CustomSnackbar},
@@ -296,7 +305,7 @@ methods: {
 },
 computed: {
 buttonLabel() {
-  return this.windowWidth > 470 ? 'Wallet' : 'W';
+  return this.windowWidth > 470 ? 'Wallet' : '';
 },
 
 

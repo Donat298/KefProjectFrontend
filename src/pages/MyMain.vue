@@ -12,13 +12,16 @@
     
     <div class="register1" >
     
-        
+      <test-btn ></test-btn>
         <my-button2 style="margin-right: 50px;" @click="$router.push('/auth/register')">SignUp</my-button2> 
         <my-button2 @click="$router.push('/auth/login')">SignIn</my-button2>
         <br>
+     
         <my-button2 style="margin-top: 30px; background-color: #4d3da0; border: 10px solid #4d3da0;"  
         @click="$router.push('/SignUptest2')">Login test</my-button2>  
-        <font-awesome-icon :icon="['fas', 'coffee']" />
+   
+      
+       
     </div>
     
    </div>

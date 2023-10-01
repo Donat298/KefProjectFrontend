@@ -11,7 +11,7 @@
     justify-content: center; 
     overflow-y: auto;">
       <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
-          <div style="display: flex; max-width: 100%; width: 340px;height: 191.25px; margin: auto; margin-bottom: 20px;">
+          <div style="display: flex; max-width: 100%; width: 340px;height: 190px; margin: auto; margin-bottom: 20px;">
             <img style="margin-left: auto; 
                 margin-right: auto; width: 100%; height: auto; 
                 background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
@@ -97,7 +97,7 @@
       @click="register(username, email, password, password_confirm)"
       size="large"
       type="submit"
-      color="secondary"
+      style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
       :loading="loading"
       :ripple="false"
     >

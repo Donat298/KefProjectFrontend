@@ -36,17 +36,19 @@
          style="padding: 0px 15px; "
          :style="{ borderColor: newMessage.length > 200 ? 'red' : '' }"
   >
-        <div class="d-flex align-center" style="height: 64px; margin-top: auto; display: flex;">
-          <v-btn rounded="xl" class="ml-2" size="small" 
-          type="submit" style="height: 50px; width: 44px; color: aquamarine;" icon="mdi-send" 
+
+          <button class="ml-2" 
+          type="submit" style="background-color: rgb(30, 44, 56); min-width: 50px; border-radius: 50px; 
+           height: 50px;
+           margin: auto;" 
           :disabled="newMessage.length > 200 || isLoading" 
-          ></v-btn>
-        </div>
+          >      <font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'paper-plane']" /></button>
+      
       </v-form>
     </div>
   </v-bottom-navigation>
 </template>
-
+<font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'wallet']" />
 <script>
 import io from 'socket.io-client';
 import { axiosInstance} from "../../utils/axios";

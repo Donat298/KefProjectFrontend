@@ -43,14 +43,16 @@
 
         </v-card>
         <div class="d-flex align-center">
-          <v-btn 
-            :disabled="isProcessing" 
-            rounded="xl" 
-            class="ml-4  mr-2 submit-button" 
-            size="small"
-            type="submit" 
-            icon="mdi-check"> 
-          </v-btn>
+      
+          <button class="ml-2 submit-button" 
+        type="submit" style="min-width: 50px; border-radius: 50px; margin-right: 8px;
+        height: 50px;  display: flex; align-items: center; justify-content: center;"
+        :disabled="isProcessing"
+>
+    <font-awesome-icon style="color:rgb(99, 254, 202);" :icon="['fas', 'check']" />
+</button>
+
+     
         </div>
       </v-form>
     </div>
