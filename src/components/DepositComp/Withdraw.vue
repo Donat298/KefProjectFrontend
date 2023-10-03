@@ -1,5 +1,7 @@
 <template>
+   
   <div class="mx-auto" style="display: flex; overflow-x: auto;">
+    
    <v-card elevation="0" class="mx-auto" style="display: flex; overflow-x: auto;
     background-color: #15212c00; padding: 10px; margin-bottom: 20px;">
    <v-menu v-model="isMenuOpen" class="globalmenu" location="bottom center" transition="slide-y-transition">
@@ -27,7 +29,7 @@
             <div class="hhdd">
               {{ $store.getters.userDetail.balanceeur }}
              
-                <img style=" align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
+                <img style=" align-items: center; width: 22px; max-height: 22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
                 <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
       
             </div>
@@ -37,7 +39,7 @@
             <div class="hhdd">
               {{ $store.getters.userDetail.balancebtc }}
             
-                <img style=" align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
+                <img style=" align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
                 <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
         
             </div>
@@ -47,7 +49,7 @@
             <div class="hhdd">
               {{ $store.getters.userDetail.balanceusdt }}
              
-                <img style=" align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
+                <img style=" align-items: center; width: 22px; max-height: 22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
                 <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
          
             </div>
@@ -57,7 +59,7 @@
             <div class="hhdd">
               {{ $store.getters.userDetail.balanceeth }}
              
-                <img style="align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
+                <img style="align-items: center; width: 22px; max-height: 22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
                 <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
          
             </div>
@@ -207,7 +209,8 @@
    
  <v-btn
      class="mx-auto"
-     @click="sendWithdrawal"
+
+     @click="$emit('cSWi')"
      color="blue"
      elevation="8"
      :ripple="false"
@@ -218,7 +221,7 @@
    >
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
-   <custom-snackbar ref="customSnackbarWithdraw"></custom-snackbar>
+
 </template>
 
 
@@ -256,7 +259,7 @@ export default {
     },
  
   },
-  
+  emits: ['cSWi'], // Declare the emitted event here
   methods: {
     checkInputValidity(value) {
       if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
@@ -270,7 +273,7 @@ export default {
       }
     },
     customSnackbarWithdrawr() {
-      this.$refs.customSnackbar.openSnackbar("This is a custom snackbar message.");
+      this.$refs.customSnackbarWithdraw.openSnackbar("This is a custom snackbar message.");
     },
    
   },

@@ -1,7 +1,7 @@
 <template>
-  <div class="jja" style="width: 100%; overflow-y: auto;">
-    <div  style="max-height: 90%; width: 100%; overflow-y: auto;">
-      <div @click.stop style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
+  <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" style="width: 100%; overflow-y: auto;">
+    <div  @mousedown="onMouseDown" @mouseup="onMouseUp"  style="max-height: 90%; width: 100%; overflow-y: auto;">
+      <div @click.stop @mousedown.stop style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
         <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
           <div style="color: #ffffff; padding: 10px;">
             Wallet   
@@ -42,7 +42,7 @@
         </div>
 
         <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">
-          <component :is="selectedComponent" />
+          <component @cSWi="handleChildEmit" :is="selectedComponent" />
         </div>
       </div>
     </div>
@@ -64,6 +64,7 @@ export default {
       selectedComponent: localStorage.getItem('selectedComponent') || 'Deposit',
     }
   },
+  
   methods: {
     copyCode() {
       // Your copyCode method implementation here
@@ -81,6 +82,22 @@ export default {
       // Store the selected component in localStorage
       localStorage.setItem('selectedComponent', componentName);
     },
+    onMouseDown() {
+      this.mousePressed = true;
+    },
+    onMouseUp() {
+      if (this.mousePressed) {
+        // Emit the custom event when the button is pressed and released
+        this.$emit('HideDepositOknoo');
+      }
+      this.mousePressed = false;
+    },
+    handleChildEmit() {
+      // This method will be called when the child component emits 'cSWi'
+      // You can perform any actions or emit further if needed
+      this.$emit('cSWia'); // Pass it to the parent of this component
+    }
+    
   },
 }
 </script>
@@ -94,7 +111,8 @@ export default {
   left: 0;
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(5px);
-  position: fixed;    display: flex;    align-items: center;     justify-content: center;
+  position: fixed;   display: flex;    align-items: center;
+   justify-content: center;
   z-index: 4;
   } 
   ::-webkit-scrollbar {

@@ -33,7 +33,7 @@ min-width: 100px;
   
     <img 
       style="display: flex; align-items: center; 
-      width: 22px; max-height: 25px; margin-left: 15px;" 
+      width: 22px; max-height: 22px; margin-left: 15px;" 
       :src="getCurrencyImagePath('balanceeur')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -52,7 +52,7 @@ min-width: 100px;
 
     <img 
       style="display: flex; align-items: center; 
-      width: 22px; max-height: 25px; margin-left: 15px;" 
+      width: 22px; max-height: 22px; margin-left: 15px;" 
       :src="getCurrencyImagePath('balancebtc')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -69,7 +69,7 @@ min-width: 100px;
  
     <img 
       style="display: flex; align-items: center; 
-      width: 22px; max-height: 25px; margin-left: 15px;" 
+      width: 22px; max-height: 22px; margin-left: 15px;" 
       :src="getCurrencyImagePath('balanceusdt')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -86,7 +86,7 @@ align-items: center;"  :ripple="false">
 
     <img 
       style="display: flex; align-items: center; 
-      width: 22px; max-height: 25px; margin-left: 15px;" 
+      width: 22px; max-height: 22px; margin-left: 15px;" 
       :src="getCurrencyImagePath('balanceeth')" 
     />
     <div class="ml-2" style="min-width: 60px; ">

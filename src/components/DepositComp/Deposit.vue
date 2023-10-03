@@ -28,7 +28,7 @@
             <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
              
-                  <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
+                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
           
               </div>
@@ -38,7 +38,7 @@
               <div class="hhdd">
            
        
-                  <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
+                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
       
               </div>
@@ -48,7 +48,7 @@
               <div class="hhdd">
            
              
-                  <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
+                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
            
               </div>
@@ -58,7 +58,7 @@
               <div class="hhdd">
             
  
-                  <img style="display: flex; align-items: center; width: 22px; max-height: 25px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
+                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
       
               </div>

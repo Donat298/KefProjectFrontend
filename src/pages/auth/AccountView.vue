@@ -1,8 +1,8 @@
 
 <template>
-  <div class="jja" >
-    <div v-if="showAccComponent"  style="max-height: 90%; width: 100%; overflow-y: auto;">
-      <div @click.stop  style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+  <div @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
+    <div v-if="showAccComponent"  @mousedown="onMouseDown" @mouseup="onMouseUp" style="max-height: 90%; width: 100%; overflow-y: auto;">
+      <div  @click.stop @mousedown.stop style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
         
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
           
@@ -139,6 +139,16 @@ export default {
       const month = ("0" + (date.getMonth() + 1)).slice(-2);
       const day = ("0" + date.getDate()).slice(-2);
       return `${year}-${month}-${day}`;
+    },
+    onMouseDown() {
+      this.mousePressed = true;
+    },
+    onMouseUp() {
+      if (this.mousePressed) {
+        // Emit the custom event when the button is pressed and released
+        this.$emit('HideAccountOknoo');
+      }
+      this.mousePressed = false;
     },
   },
 };

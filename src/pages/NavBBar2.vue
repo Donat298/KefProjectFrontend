@@ -29,7 +29,7 @@
 
    
 
-<v-btn v-if="!rail" elevation="4" @click="showCustomSnackbar" class="glowg-button2" :ripple="false" style="min-width: 5px;">
+<v-btn v-if="!rail" elevation="4"  @click="$emit('cSWia')" class="glowg-button2" :ripple="false" style="min-width: 5px;">
   <span class="shimmerr-text"><h5>Bonuses</h5></span>
 </v-btn>
 
@@ -203,15 +203,16 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
          background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
     </button>
 
-    <div style="padding: 14px; margin-left: auto; max-height: 64px;  ">
-        <v-btn elevation="4"  @click="$router.push('/auth/register')"
-         style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-         margin-right: 15px; font-size: 17px;"><strong>Register</strong></v-btn>
-        <v-btn elevation="4"  @click="$router.push('/auth/login')" 
-        style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-        font-size: 17px;"><strong> Login</strong> </v-btn>
-    
-    </div>
+    <div style="display: flex; margin-left: auto; align-items: center; height: 64px;">
+    <v-btn elevation="4" @click="$router.push('/auth/register')" :ripple="false"
+    style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
+     margin-right: 15px; height: 48px; font-size: 17px;"><strong>Register</strong></v-btn>
+    <v-btn elevation="4" @click="$router.push('/auth/login')"  :ripple="false"
+    style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); 
+    margin-right: 15px; font-size: 17px; height: 48px;"><strong> Login</strong> </v-btn>
+</div>
+
+
 </div>
 
 

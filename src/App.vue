@@ -1,23 +1,29 @@
 <template>
   <template v-if="$store.getters.sessionChecked">
     <div>
-      <NavBBar2 @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
+      <custom-snackbar ref="customSnackbarWithdraw"></custom-snackbar>
+      <custom-snackbar ref="customSnackbarBonus"></custom-snackbar>
+    
+      <NavBBar2 @cSWia="customSnackbarBonus" @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
-      <Wallet v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" />
+      <Wallet @cSWia="customSnackbarWithdrawr" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
+      />
     </div>
   </template>
   <template v-else>
     <SessionCheckAnimation/>
   </template>
+
 </template>
-v-if="$store.getters.isAuthenticated"
+
 <script>
 import NavBBar2 from "@/pages/NavBBar2.vue";
 import AccountView from "@/pages/auth/AccountView.vue";
 import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
 import Wallet from "./pages/Deposit/Wallet.vue"
+import CustomSnackbar from '@/components/UI/snackbar.vue';
 export default {
-  components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet},
+  components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet, CustomSnackbar},
   data() {
     return {
       showAccountView: false,
@@ -50,6 +56,12 @@ export default {
       this.showDepositOkno = false;
       // Save the state to localStorage
       localStorage.setItem('showdep', 'false');
+    },
+    customSnackbarWithdrawr() {
+      this.$refs.customSnackbarWithdraw.openSnackbar("This is a custom snackbar message.");
+    },
+    customSnackbarBonus() {
+      this.$refs.customSnackbarBonus.openSnackbar("This is a custom snackbar message.");
     },
     
   },
