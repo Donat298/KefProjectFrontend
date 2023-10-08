@@ -293,7 +293,7 @@ export default {
    
   },
 
-setup() {
+setup(props, context) {
  const store = useStore();
  const axiosPrivateInstance = useApiPrivate(store);
  const errorMsg = ref('');
@@ -423,6 +423,7 @@ setup() {
 
     const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
     console.log(response.data);
+    context.emit("cSWi");
 
  
    
@@ -446,7 +447,7 @@ setup() {
         ...buttonStyle.value,
         opacity: 1,
       };
-    }, 10000); // 10 seconds
+    }, 1000); // 10 seconds
 
     errorMsg.value = ''; // Clear any previous error messages
   } catch (error) {
