@@ -19,7 +19,8 @@
     class="glowg-button mr-3"
     :ripple="false"
     style="min-width: 5px;"
-    @click="showCustomSnackbargames"
+
+    @click="$emit('cSWia2')"
   >
     <span class="shimmerr-text"><h5>Games</h5></span>
   </v-btn>
@@ -232,8 +233,7 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
       </div>
     </v-main> 
 
-    <custom-snackbar ref="customSnackbar"></custom-snackbar>
-    <custom-snackbar ref="customSnackbargames"></custom-snackbar>
+  
   </v-layout>
 </template>
 
@@ -243,11 +243,11 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
 import NavigationHeader from '@/components/NavBBar2/NavigationHeader.vue';
 import NavigationList from '@/components/NavBBar2/NavigationList.vue';
 import ChoseCurrency from '@/components/DepositComp/ChoseCurrency.vue';
-import CustomSnackbar from '@/components/UI/snackbar.vue';
+
 
 export default {
 
-components: { NavigationHeader, NavigationList, ChoseCurrency, CustomSnackbar},
+components: { NavigationHeader, NavigationList, ChoseCurrency },
 
 data() {
     return {

@@ -3,10 +3,10 @@
     <div>
       <custom-snackbar ref="customSnackbarWithdraw"></custom-snackbar>
       <custom-snackbar ref="customSnackbarBonus"></custom-snackbar>
-    
-      <NavBBar2 @cSWia="customSnackbarBonus" @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
+      <custom-snackbar ref="customSnackbarGames"></custom-snackbar>
+      <NavBBar2 @cSWia="customSnackbarBonus" @cSWia2="customSnackbarGames" @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
-      <Wallet @cSWia="customSnackbarWithdrawr" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
+      <Wallet @cSWia3="customSnackbarWithdrawr" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
       />
     </div>
   </template>
@@ -61,7 +61,10 @@ export default {
       this.$refs.customSnackbarWithdraw.openSnackbar("This is a custom snackbar message.");
     },
     customSnackbarBonus() {
-      this.$refs.customSnackbarBonus.openSnackbar("This is a custom snackbar message.");
+      this.$refs.customSnackbarBonus.openSnackbar("Bonus.");
+    },
+    customSnackbarGames() {
+      this.$refs.customSnackbarGames.openSnackbar("Games.");
     },
     
   },

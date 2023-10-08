@@ -210,7 +210,7 @@
  <v-btn
      class="mx-auto"
 
-     @click="$emit('cSWi')"
+     @click="sendWithdrawal"
      color="blue"
      elevation="8"
      :ripple="false"
@@ -221,6 +221,22 @@
    >
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
+
+   <v-btn
+     class="mx-auto"
+
+     @click="$emit('cSWi')"
+     color="blue"
+     elevation="8"
+     :ripple="false"
+     :disabled="isButtonDisabled"
+        :style="buttonStyle" 
+     style=" background-color: #2e4659; color: #ffffff; display: flex;
+      align-items: center; justify-content: center; font-size: 17px;"
+   >
+     <span style="color: #ffffff; font-size: 13px;"> cSWi </span>
+   </v-btn>
+   
 
 </template>
 
@@ -234,6 +250,7 @@ import { useApiPrivate } from '../../utils/useApi';
 import toolip from '@/components/UI/toolip.vue';
 import CustomSnackbar from '@/components/UI/snackbar.vue';
 export default {
+  emits: ['cSWi'],
   components: {
     toolip, CustomSnackbar
   },
@@ -259,7 +276,7 @@ export default {
     },
  
   },
-  emits: ['cSWi'], // Declare the emitted event here
+
   methods: {
     checkInputValidity(value) {
       if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
@@ -272,9 +289,7 @@ export default {
         this.errorMsg = false;
       }
     },
-    customSnackbarWithdrawr() {
-      this.$refs.customSnackbarWithdraw.openSnackbar("This is a custom snackbar message.");
-    },
+    
    
   },
 
@@ -397,7 +412,6 @@ setup() {
       message1: message1.value,
       message2: message2.value,
       currency: selectedCurrency.value,
-      
     };
 
     // Check if the selected currency supports a network
@@ -409,6 +423,10 @@ setup() {
 
     const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
     console.log(response.data);
+
+ 
+   
+
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
     store.dispatch('updateBalance', { currency: currency, amount: response.data.balance });
 
@@ -443,6 +461,8 @@ setup() {
     };
   }
 };
+
+
 
 
  return {

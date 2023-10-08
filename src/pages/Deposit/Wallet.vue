@@ -78,7 +78,7 @@ export default {
       };
     },
     changeComponent(componentName) {
-      this.selectedComponent = componentName;
+      this.selectedComponent = componentName; 
       // Store the selected component in localStorage
       localStorage.setItem('selectedComponent', componentName);
     },
@@ -95,7 +95,7 @@ export default {
     handleChildEmit() {
       // This method will be called when the child component emits 'cSWi'
       // You can perform any actions or emit further if needed
-      this.$emit('cSWia'); // Pass it to the parent of this component
+      this.$emit('cSWia3'); // Pass it to the parent of this component
     }
     
   },

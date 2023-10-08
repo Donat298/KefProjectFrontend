@@ -10,7 +10,7 @@
     
         <div>
       
-  <span style="display: inline-block;">From your account was successfully withdrawn</span>
+  <span style="display: inline-block;"> {{ message }}</span>
   <span style="display: flex;"> 10 usdt
     <v-img 
       style=" align-self: center;
