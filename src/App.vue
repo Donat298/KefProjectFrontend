@@ -1,12 +1,14 @@
 <template>
   <template v-if="$store.getters.sessionChecked">
     <div>
-      <custom-snackbar ref="customSnackbarWithdraw"></custom-snackbar>
-      <custom-snackbar ref="customSnackbarBonus"></custom-snackbar>
-      <custom-snackbar ref="customSnackbarGames"></custom-snackbar>
+
+      <my-snackbar ref="customSnackbarWithdraw" />
+    <my-snackbar ref="customSnackbarBonus" />
+    <my-snackbar ref="customSnackbarGames" />
+
       <NavBBar2 @cSWia="customSnackbarBonus" @cSWia2="customSnackbarGames" @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
-      <Wallet @cSWia3="customSnackbarWithdrawr" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
+      <Wallet @cSWia3="showCustomSnackbar" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
       />
     </div>
   </template>
@@ -21,9 +23,9 @@ import NavBBar2 from "@/pages/NavBBar2.vue";
 import AccountView from "@/pages/auth/AccountView.vue";
 import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
 import Wallet from "./pages/Deposit/Wallet.vue"
-import CustomSnackbar from '@/components/UI/snackbar.vue';
+
 export default {
-  components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet, CustomSnackbar},
+  components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet}, 
   data() {
     return {
       showAccountView: false,
@@ -57,8 +59,9 @@ export default {
       // Save the state to localStorage
       localStorage.setItem('showdep', 'false');
     },
-    customSnackbarWithdrawr() {
-      this.$refs.customSnackbarWithdraw.openSnackbar("This is a custom snackbar message.");
+    showCustomSnackbar(data) {
+      const message = data.message || "Your withdrawal was completed for the"; // Use the provided message or a default message
+      this.$refs.customSnackbarWithdraw.openSnackbar(message, data);
     },
     customSnackbarBonus() {
       this.$refs.customSnackbarBonus.openSnackbar("Bonus.");

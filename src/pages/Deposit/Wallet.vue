@@ -42,7 +42,7 @@
         </div>
 
         <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">
-          <component @cSWi="handleChildEmit" :is="selectedComponent" />
+          <component  @cSWi="$emit('cSWia3', $event)" :is="selectedComponent" />
         </div>
       </div>
     </div>
@@ -83,7 +83,7 @@ export default {
       localStorage.setItem('selectedComponent', componentName);
     },
     onMouseDown() {
-      this.mousePressed = true;
+      this.mousePressed = true; 
     },
     onMouseUp() {
       if (this.mousePressed) {
@@ -92,11 +92,7 @@ export default {
       }
       this.mousePressed = false;
     },
-    handleChildEmit() {
-      // This method will be called when the child component emits 'cSWi'
-      // You can perform any actions or emit further if needed
-      this.$emit('cSWia3'); // Pass it to the parent of this component
-    }
+   
     
   },
 }

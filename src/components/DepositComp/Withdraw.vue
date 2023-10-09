@@ -222,20 +222,7 @@
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
 
-   <v-btn
-     class="mx-auto"
-
-     @click="$emit('cSWi')"
-     color="blue"
-     elevation="8"
-     :ripple="false"
-     :disabled="isButtonDisabled"
-        :style="buttonStyle" 
-     style=" background-color: #2e4659; color: #ffffff; display: flex;
-      align-items: center; justify-content: center; font-size: 17px;"
-   >
-     <span style="color: #ffffff; font-size: 13px;"> cSWi </span>
-   </v-btn>
+  
    
 
 </template>
@@ -322,7 +309,7 @@ setup(props, context) {
         default:
           return '';
       }
-    });
+    }); 
  // Initialize the selected networks with empty strings
  const selectedUsdtNetwork = ref('');
  const selectedEthNetwork = ref('');
@@ -422,11 +409,16 @@ setup(props, context) {
     }
 
     const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
-    console.log(response.data);
-    context.emit("cSWi");
 
- 
+    const amountWithdrawn = response.data.amount;
+    const withdrawalCurrency = store.getters.selectedCurrency;
    
+    console.log("Amount Withdrawn:", amountWithdrawn);
+    console.log("Withdrawal Currency:", withdrawalCurrency);
+
+  // Emit the "cSWi" event along with the amount and currency withdrawn
+    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency });
+
 
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
     store.dispatch('updateBalance', { currency: currency, amount: response.data.balance });

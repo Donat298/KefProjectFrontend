@@ -3,7 +3,7 @@ import MyInput from "@/components/UI/MyInput.vue";
 import MyOkno from "@/components/UI/MyOkno.vue";
 import MyButton2 from "@/components/UI/MyButton2.vue";
 import testbtn from "@/components/UI/testbtn.vue";  
-
+import SnackBar from "@/components/UI/snackbar.vue";
 
 
 export default [
@@ -11,5 +11,6 @@ export default [
     MyInput,
     MyOkno,
     MyButton2,
-    testbtn  
+    testbtn,
+    SnackBar  
 ];
