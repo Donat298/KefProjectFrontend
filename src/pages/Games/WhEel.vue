@@ -1,63 +1,72 @@
 <template>
- <div style=" margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
-    <div class="text-center" style="height: 70px; display: flex; align-items: center;
-     justify-content: center; background-color: rgba(4, 3, 3, 0);">
-      <p  v-html="message"></p>
-    </div>
-  <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
-    <div style="min-width: 40px;"></div>
-      <div class="wheel" id="wheel" :style="wheelStyle">
-        <h3 class="half win">2x</h3>
-        <h3 class="half lose">0x</h3>
-      </div>
-      <div style="display: flex; align-items: center; justify-content: center; 
-      margin-left: 10px;">
-        <div style="transform: rotate(90deg); ">
+  <div style=" width: 100%">
+    <div class="mx-auto widFh" style="width: 1200px;max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
+      <!-- v-card -->
+      <div style="min-width: 300px; background-color: #1d2f3f; padding: 10px;"   class="bet-div">
+      <v-card  title="Place your bet!" color="#1d2f3f" elevation="0" class="bet-card">
+        <!-- Bet form -->
+        <div class="bet-form">
+          <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
+            <v-card elevation="5" style="background-color: #15212c00; margin-left: 8px;">
+              <input
+                :disabled="isProcessing"
+                v-focus
+                class="inputbet"
+                v-model="betInput"
+                style="padding: 0px 15px;"
+                :style="{ borderColor: isInputInvalid ? 'red' : '' }"
+                type="number"
+                inputmode="numeric"
+              />
+            </v-card>
+            
+            
+            <div class="d-flex align-center">
+              <button
+                class="ml-2 submit-button"
+                type="submit"
+                style="min-width: 50px; border-radius: 50px; margin-right: 8px; height: 50px; display: flex; align-items: center; justify-content: center;"
+                :disabled="isProcessing"
+              >
+                <font-awesome-icon style="color: rgb(99, 254, 202);" :icon="['fas', 'check']" />
+              </button>
+            </div>
+            
+          </v-form>
+        
+         
+      
           
-          <v-icon icon="mdi-map-marker-outline"></v-icon> 
-        </div> 
+        </div>
+      </v-card>
+      
+      
+   
+    </div>
+      <!-- Content below v-card -->
+      <div style="flex: 1; background-color: #2b445a;" class="betseto">
+        <div style="margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
+        <div class="text-center" style="height: 70px; display: flex; align-items: center; justify-content: center; background-color: rgba(4, 3, 3, 0);">
+          <p v-html="message"></p>
+        </div>
+        <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
+          <div style="min-width: 40px;"></div>
+          <div class="wheel" id="wheel" :style="wheelStyle">
+            <h3 class="half win">2x</h3>
+            <h3 class="half lose">0x</h3>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
+            <div style="transform: rotate(90deg);">
+              <v-icon icon="mdi-map-marker-outline"></v-icon>
+            </div>
+          </div>
+        </div>
+        <div style="min-height: 60px; margin-bottom: 20px; margin-top: 30px;">
+          <GameAlert v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
+        </div>
       </div>
     </div>
-    <div style="min-height: 60px; margin-bottom: 20px; margin-top: 30px;">
-    <GameAlert 
-    v-if="showAlert" 
-    :gameResult="gameResult" 
-    :errorMsg="errorMsg" />
   </div>
-  <v-card title="Place your bet!" color="#1d2f3f" elevation="0" width="1200" class="bet-card mx-auto">
-    
-    <div class="bet-form">
-      
-      <v-form ref="betForm" @submit.prevent="placeBet" style="display: flex;">
-      <v-card  elevation="5" style=" background-color: #15212c00; margin-left: 8px;">
-        <input :disabled="isProcessing" 
-       v-focus
-       class="  inputbet"
-       v-model="betInput"
-       style="padding: 0px 15px; "
-       :style="{ borderColor: isInputInvalid ? 'red' : '' }"
-       type="number"
-        inputmode="numeric"
->
-
-
-        </v-card>
-        <div class="d-flex align-center">
-      
-          <button class="ml-2 submit-button" 
-        type="submit" style="min-width: 50px; border-radius: 50px; margin-right: 8px;
-        height: 50px;  display: flex; align-items: center; justify-content: center;"
-        :disabled="isProcessing"
->
-    <font-awesome-icon style="color:rgb(99, 254, 202);" :icon="['fas', 'check']" />
-</button>
-
-     
-        </div>
-      </v-form>
-    </div>
-  </v-card>
-
 </template>
 
 <script>
@@ -235,6 +244,26 @@ export default {
 -->
 
 <style scoped>
+
+@media (max-width: 800px) {
+  .bet-div {
+    width: 100%;
+    order: 2; /* Change the order to make it appear below */
+  }
+  .betseto {
+    order: 1; /* Change the order to make it appear above */
+  }
+  .bet-form {
+    flex-direction: column;
+    display: flex;
+    align-items: center; /* Center align form elements */
+  }
+  
+  /* Add a rule to remove max-width on .mx-auto when screen width is less than 800px */
+  .widFh {
+    max-width:100% !important; /* This will override the max-width: 90%; */
+  }
+}
 .balance-card {
   height: 70px;
   display: flex; 
@@ -254,8 +283,8 @@ export default {
 .bet-card {
   display: flex; 
   color: #ffffff; 
-  width: 1000px; 
-  max-width: 90%; 
+
+
   flex-direction: column;
   
   justify-content: center; 
@@ -277,6 +306,7 @@ export default {
 }
 .bet-form {
   width: 100%; 
+  
   min-height: 100px; 
   background-color: rgba(255, 228, 196, 0); 
   display: flex; 

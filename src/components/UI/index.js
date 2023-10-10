@@ -4,7 +4,7 @@ import MyOkno from "@/components/UI/MyOkno.vue";
 import MyButton2 from "@/components/UI/MyButton2.vue";
 import testbtn from "@/components/UI/testbtn.vue";  
 import SnackBar from "@/components/UI/snackbar.vue";
-
+import PlayButton from "@/components/UI/PlayButton.vue";
 
 export default [
     MyButton,
@@ -12,5 +12,5 @@ export default [
     MyOkno,
     MyButton2,
     testbtn,
-    SnackBar  
-];
+    SnackBar,
+    PlayButton];

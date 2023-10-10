@@ -9,10 +9,12 @@
     
 
 
-     
+      
     <div class="register1" >
+
     
-      <test-btn ></test-btn>
+
+
         <my-button2 style="margin-right: 50px;" @click="$router.push('/auth/register')">SignUp</my-button2> 
         <my-button2 @click="$router.push('/auth/login')">SignIn</my-button2>
         <br>

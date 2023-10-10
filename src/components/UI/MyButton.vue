@@ -9,7 +9,7 @@
 
 
 <script>
-export default{
+export default{ 
     name: 'my-button'
 }
 </script>

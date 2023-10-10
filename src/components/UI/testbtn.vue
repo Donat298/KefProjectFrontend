@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper">
-      <a class="cta" href="#">
-        <span>{{ buttonText }}</span>
+      <div class="cta" >
+        <span><slot></slot> </span>
         <span>
           <svg
             width="66px"
@@ -29,19 +29,14 @@
             </g>
           </svg>
         </span>
-      </a>
+      </div>
     </div>
   </template>
 
      <script>
      export default {
         name: 'test-btn',
-       props: {
-         buttonText: {
-           type: String,
-           default: "Register",
-         },
-       },
+     
      };
      </script>
   
@@ -54,16 +49,13 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .wrapper {
   display: flex;
   justify-content: center;
+  width: auto;
+  cursor: pointer;
 }
 
 .cta {
@@ -74,6 +66,7 @@ body {
     font-size: 40px;
     color: white;
     background: #1d2f3f;
+    justify-content: center;
     transition: 1s;
     box-shadow: 6px 6px 0 rgb(127, 229, 255);
     transform: skewX(-15deg);
