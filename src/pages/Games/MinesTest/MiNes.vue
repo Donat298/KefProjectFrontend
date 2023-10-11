@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { useApiPrivate } from '../../utils/useApi';
+import { useApiPrivate } from '@/utils/useApi';
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 

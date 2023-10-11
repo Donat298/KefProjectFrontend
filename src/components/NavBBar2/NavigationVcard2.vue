@@ -20,6 +20,8 @@
               
            <v-list-item :ripple="false" prepend-icon="mdi-arrow-top-right"   style="color: #ffffff; padding-left: 15px; "
            to="/mines" >Mines</v-list-item>
+           <v-list-item :ripple="false" prepend-icon="mdi-arrow-top-right"   style="color: #ffffff; padding-left: 15px; "
+           to="/realwheel" >Realwheel</v-list-item>
             <v-list-item :ripple="false" prepend-icon="mdi-currency-usd"   style="color: #ffffff; padding-left: 15px; "
              to="/BalanceManag"  >Balance</v-list-item>
          </v-expansion-panel-text>

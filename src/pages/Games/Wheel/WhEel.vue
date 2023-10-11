@@ -1,8 +1,9 @@
 <template>
-  <div style=" width: 100%">
+  <div style=" width: 100%; margin-top: 40px; ">
     <div class="mx-auto widFh" style="width: 1200px;max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
       <!-- v-card -->
-      <div style="min-width: 300px; background-color: #1d2f3f; padding: 10px;"   class="bet-div">
+      <div style="min-width: 300px; background-color: #1d2f3f; padding: 10px;  border-radius: 10px 0px 0px 10px ;  "  
+       class="bet-div">
       <v-card  title="Place your bet!" color="#1d2f3f" elevation="0" class="bet-card">
         <!-- Bet form -->
         <div class="bet-form">
@@ -44,11 +45,10 @@
    
     </div>
       <!-- Content below v-card -->
-      <div style="flex: 1; background-color: #2b445a;" class="betseto">
-        <div style="margin-top: 50px;"><h1>Wheel of Fortune Game</h1></div>
-        <div class="text-center" style="height: 70px; display: flex; align-items: center; justify-content: center; background-color: rgba(4, 3, 3, 0);">
-          <p v-html="message"></p>
-        </div>
+      <div style="flex: 1; background-color: #15212c; border-radius: 0px 10px 10px 0px ;" class="betseto">
+        <div style="margin: 30px;"><h1>Wheel of Fortune Game</h1></div>
+        
+      
         <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
           <div style="min-width: 40px;"></div>
           <div class="wheel" id="wheel" :style="wheelStyle">
@@ -73,7 +73,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'; 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'; 
-import { useApiPrivate } from '../../utils/useApi';
+import { useApiPrivate } from '@/utils/useApi';
 import GameAlert from './GameAlert.vue';
 import store from '@/store'; // Adjust the path as needed
 export default {
@@ -249,19 +249,22 @@ export default {
   .bet-div {
     width: 100%;
     order: 2; /* Change the order to make it appear below */
+    border-radius: 0px 0px 10px 10px !important;
   }
   .betseto {
     order: 1; /* Change the order to make it appear above */
+    border-radius: 10px 10px 0px 0px !important;
   }
   .bet-form {
     flex-direction: column;
     display: flex;
-    align-items: center; /* Center align form elements */
+    align-items: center;
+      /* Center align form elements */
   }
   
   /* Add a rule to remove max-width on .mx-auto when screen width is less than 800px */
   .widFh {
-    max-width:100% !important; /* This will override the max-width: 90%; */
+    max-width:95% !important; /* This will override the max-width: 90%; */
   }
 }
 .balance-card {

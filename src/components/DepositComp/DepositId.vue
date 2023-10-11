@@ -26,7 +26,7 @@
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import { useApiPrivate } from '../../utils/useApi';
+import { useApiPrivate } from '@/utils/useApi';
 
 export default {
   setup() {

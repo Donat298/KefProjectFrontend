@@ -87,8 +87,8 @@
   </v-footer>
 
 
-      <v-app-bar    :elevation="0" style="z-index: 1; background: var(--color-dark-tr-e);
-          backdrop-filter: blur(10px);">
+      <v-app-bar    :elevation="0" style="z-index: 1; background-color: #0c141b;
+      ">
      
             
        
