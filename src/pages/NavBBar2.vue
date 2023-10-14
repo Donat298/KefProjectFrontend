@@ -150,8 +150,8 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
            ">
 
   <my-button2 v-bind="props" style="display: flex; align-items: center; justify-content: center; 
-  background: var(--color-dark-tr-e);
-          backdrop-filter: blur(10px); height: 48px; width: 48px; border-radius: 50px;">
+
+         ; height: 48px; width: 48px; border-radius: 50px;">
   
   <font-awesome-icon style="color: #ffffff;height: 20px;  "  :icon="['fas', 'user']" />
 </my-button2>
@@ -207,10 +207,10 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
     <div style="display: flex; margin-left: auto; align-items: center; height: 64px;">
     <v-btn elevation="4" @click="$router.push('/auth/register')" :ripple="false"
     style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-     margin-right: 15px; height: 48px; font-size: 17px;"><strong>Register</strong></v-btn>
+     margin-right: 15px; height: 36px; font-size: 17px;"><strong>Register</strong></v-btn>
     <v-btn elevation="4" @click="$router.push('/auth/login')"  :ripple="false"
     style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); 
-    margin-right: 15px; font-size: 17px; height: 48px;"><strong> Login</strong> </v-btn>
+    margin-right: 15px; font-size: 17px; height: 36px;"><strong> Login</strong> </v-btn>
 </div>
 
 
