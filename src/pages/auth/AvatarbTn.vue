@@ -6,12 +6,12 @@
     <input type="file" ref="fileInput" @change="handleAvatarUpload" style="display: none" accept="image/*">
     
 
-    <my-button2 @click="openFileInput" style="background: var(--color-dark-tr-e);
+    <button @click="openFileInput" style="background: var(--color-dark-tr-e);
      height: 48px; width: 48px; border-radius: 50px;">
 
 
       <font-awesome-icon   style="color: #ffffff; height: 20px;"  :icon="['fas', 'pen']" />
-    </my-button2>
+    </button>
     
 
 

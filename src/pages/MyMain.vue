@@ -15,12 +15,12 @@
     
 
 
-        <my-button2 style="margin-right: 50px;" @click="$router.push('/auth/register')">SignUp</my-button2> 
-        <my-button2 @click="$router.push('/auth/login')">SignIn</my-button2>
+        <v-btn style="margin-right: 50px;  background-color: #4d3da0; border: 10px solid #4d3da0;" @click="$router.push('/auth/register')">SignUp</v-btn> 
+        <v-btn style="margin-right: 50px;  background-color: #4d3da0; border: 10px solid #4d3da0;" @click="$router.push('/auth/login')">SignIn</v-btn>
         <br>
      
-        <my-button2 style="margin-top: 30px; background-color: #4d3da0; border: 10px solid #4d3da0;"  
-        @click="$router.push('/SignUptest2')">Login test</my-button2>  
+        <v-btn style="margin-top: 30px; background-color: #4d3da0; border: 10px solid #4d3da0;"  
+        @click="$router.push('/SignUptest2')">Login test</v-btn>  
    
       
        
@@ -35,12 +35,12 @@
   </template>
   
   <script>
-import MyButton2 from '@/components/UI/Buttons/MyButton2.vue'
+
 
   export default {
   
     
-  components: { MyButton2,
+  components: { 
   
   
   },

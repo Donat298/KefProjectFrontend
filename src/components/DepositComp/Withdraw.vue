@@ -185,7 +185,7 @@
 
    <input
      v-model="message2"
-     class="inputwithdrawnumber"
+     class="inputwithdrawnumber" 
      style="padding: 0px 15px; "
      type="number"
      inputmode="numeric"
@@ -234,8 +234,8 @@ import { ref, watch ,computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useApiPrivate } from '../../utils/useApi';
-import toolip from '@/components/UI/toolip.vue';
-import CustomSnackbar from '@/components/UI/snackbar.vue';
+import toolip from '@/components/UI/Other/toolip.vue';
+import CustomSnackbar from '@/components/UI/Other/snackbar.vue';
 export default {
   emits: ['cSWi'],
   components: {

@@ -13,6 +13,7 @@
   
   <script>
   export default {
+    name: 'tool-tip',
     props: {
       text: String,
       showTooltip2: Boolean, // Prop to receive the showTooltip2 value from the parent
@@ -41,13 +42,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     opacity: 1;
     transition: opacity 0.2s ease-in-out;
-    z-index: 2;
+
     margin-right: auto;
- 
-    margin-bottom: 15px;
+width: 400px;
+    margin-bottom: 20px;
     bottom: 100%; /* Position above the element */
     left: 50%;
     max-width: 90%;
+  
     transform: translateX(-50%);
   }
   

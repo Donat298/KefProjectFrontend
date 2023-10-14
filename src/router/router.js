@@ -8,8 +8,7 @@ import login from "@/pages/auth/LoginView";
 import register from "@/pages/auth/RegisterView";
 import ChAt from "@/pages/Chats/ChAt.vue";
 import store from "@/store/index.js";
-import UserPage from "@/pages/UserPage";
-import UserPage2 from "@/pages/UserPage2";
+import CollisionBalls from "@/pages/Tests/CollisionBalls.vue";
 import Realwheel from "@/pages/Games/Realwheel/Realwheel.vue";
 const routes = [
     {
@@ -49,7 +48,7 @@ const routes = [
         path: '/mines',
         name: 'Mines',
         component:  Mines,
-        
+        meta: { requiresAuth: true }
     },
     {
         path: '/chat',
@@ -58,17 +57,12 @@ const routes = [
      
       },
 
+
     {
-        path: '/SignUptest1',
-        name: 'SignUptest1',
-        component: UserPage,
-        meta: { requiresAuth: true }
-    },
-    {
-        path: '/SignUptest2',
-        name: 'SignUptest2',
-        component: UserPage2,
-        meta: { requiresAuth: true }
+        path: '/CollisionBalls',
+        name: 'CollisionBalls',
+        component: CollisionBalls,
+
     },
     
     

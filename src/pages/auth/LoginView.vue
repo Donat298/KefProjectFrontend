@@ -57,7 +57,7 @@
                     <v-btn
                         block
                         type="submit"
-                        style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
+                        style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
                         :loading="loading"
                         @click="login(email, password)"

@@ -97,7 +97,7 @@
       @click="register(username, email, password, password_confirm)"
       size="large"
       type="submit"
-      style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
+      style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
       :loading="loading"
       :ripple="false"
     >
@@ -111,10 +111,11 @@
     </v-btn>
   </v-form>
   <v-card-text class="text-center text-white" style=" margin: auto; 
-                    margin-top: 20px; padding: 0px;" >Already registered? 
+                    margin-top: 20px; padding: 0px; "  >Already registered? 
                         <a
                             class="text-white "
-                            href="/auth/login"             
+                            href="/auth/login" 
+                                   
                         >
                             Login</a>
                     </v-card-text>

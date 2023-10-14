@@ -149,12 +149,12 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
             <div style="display: flex; align-items: center; justify-content: center; height: 64px; width: 64px; margin-left: auto;
            ">
 
-  <my-button2 v-bind="props" style="display: flex; align-items: center; justify-content: center; 
+  <button v-bind="props" style="display: flex; align-items: center; justify-content: center; 
 
          ; height: 48px; width: 48px; border-radius: 50px;">
   
   <font-awesome-icon style="color: #ffffff;height: 20px;  "  :icon="['fas', 'user']" />
-</my-button2>
+</button>
 
 
 </div>

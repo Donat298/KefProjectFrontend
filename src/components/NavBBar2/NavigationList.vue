@@ -7,7 +7,7 @@
         >
              <NavigationVcard style="margin-bottom: 10px;"/>
              <NavigationVcard2 style="margin-bottom: 10px;"/>
-             <NavigationVcard4 style="margin-bottom: 10px;"/>
+             <NavigationVcard3 style="margin-bottom: 10px;"/>
              <div style="height: 56px;">
 
 </div>
@@ -18,9 +18,9 @@
 
   import NavigationVcard from './NavigationVcard.vue'
   import NavigationVcard2 from './NavigationVcard2.vue'
-  import NavigationVcard4 from './NavigationVcard4.vue'
+  import NavigationVcard3 from './NavigationVcard3.vue'
   export default {
-    components: { NavigationVcard, NavigationVcard2, NavigationVcard4 },
+    components: { NavigationVcard, NavigationVcard2, NavigationVcard3 },
     
     data() {
       return {
