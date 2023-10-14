@@ -1,80 +1,118 @@
 <template>
-    <div ref="canvasContainer" class="canvas-container mx-auto">
-      <canvas ref="myCanvas" style="background-color: bisque;"></canvas>
+  <div style="width: 100%; margin-top: 40px;">
+    <div class="mx-auto widFh" style="width: 1200px; max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
+      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 10px; border-radius: 7px 0px 0px 7px;" class="bet-div">
+        <!-- Your content for bet-div here -->
+      </div>
+
+      <div style="flex: 1; padding: 10px; background-color: #15212c; border-radius: 0px 7px 7px 0px;" class="betseto">
+        <canvas id="ballCanvas" style="background-color: rgb(22, 53, 53); width: 100%; position: relative; aspect-ratio: 3/2;">
+          <!-- create canvas here -->
+        </canvas>
+      </div>
     </div>
-  </template>
-  
-  <script>
-  import anime from 'animejs';
-  
-  export default {
-    mounted() {
-      const canvas = this.$refs.myCanvas;
-      const context = canvas.getContext('2d');
-      const canvasContainer = this.$refs.canvasContainer;
-  
-      // Set a fixed width and height for the canvas
-      canvas.width = 400;
-      canvas.height = 200;
-  
-      // Initial rectangle properties
-      const rectangle = {
-        x: 0,
-        y: 100,
-        width: 50,
-        height: 50,
-        color: 'blue',
-      };
-  
-      // Function to draw the rectangle
-      const drawRectangle = () => {
-        context.fillStyle = rectangle.color;
-        context.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-      };
-  
-      // Initial draw
-      drawRectangle();
-  
-      // Animation using Anime.js
-      anime({
-        targets: rectangle,
-        x: 350, // Target x position
-        easing: 'linear', // Animation easing
-        duration: 2000, // Animation duration in milliseconds
-        update: function () {
-          // Clear the canvas
-          context.clearRect(0, 0, canvas.width, canvas.height);
-  
-          // Redraw the rectangle with updated properties
-          drawRectangle();
-        },
+  </div>
+</template>
+
+<script>
+import anime from 'animejs';
+
+export default {
+  mounted() {
+    const canvas = document.getElementById('ballCanvas');
+    canvas.width = canvas.parentElement.clientWidth;
+    canvas.height = canvas.parentElement.clientHeight;
+    const ctx = canvas.getContext('2d');
+
+    const balls = [
+      { x: 50, y: 50, radius: 20, dx: 2, dy: 2 },
+      { x: 150, y: 150, radius: 20, dx: -2, dy: -2 },
+      { x: 250, y: 250, radius: 20, dx: 2, dy: -2 },
+      { x: 350, y: 350, radius: 20, dx: -2, dy: 2 },
+      { x: 450, y: 450, radius: 20, dx: 1, dy: -1 },
+    ];
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      balls.forEach((ball) => {
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = '#FF5733';
+        ctx.fill();
+        ctx.closePath();
+
+        ball.x += ball.dx;
+        ball.y += ball.dy;
+
+        // Elastic collisions with the walls
+        if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) {
+          ball.dx = -ball.dx;
+        }
+        if (ball.y + ball.dy > canvas.height - ball.radius || ball.y + ball.dy < ball.radius) {
+          ball.dy = -ball.dy;
+        }
+
+        balls.forEach((otherBall) => {
+          if (ball !== otherBall) {
+            const dx = ball.x - otherBall.x;
+            const dy = ball.y - otherBall.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < ball.radius + otherBall.radius) {
+              // Elastic collision with other balls
+              const angle = Math.atan2(dy, dx);
+              const relativeVelocityX = ball.dx - otherBall.dx;
+              const relativeVelocityY = ball.dy - otherBall.dy;
+
+              // Calculate the impulse
+              const impulse = (2 * (relativeVelocityX * dx + relativeVelocityY * dy)) / (2 * distance * distance);
+
+              ball.dx -= impulse * dx;
+              ball.dy -= impulse * dy;
+              otherBall.dx += impulse * dx;
+              otherBall.dy += impulse * dy;
+
+              // Separate the balls to avoid overlap
+              const overlap = ball.radius + otherBall.radius - distance;
+              const dxSeparation = (overlap / 2) * Math.cos(angle);
+              const dySeparation = (overlap / 2) * Math.sin(angle);
+              ball.x += dxSeparation;
+              ball.y += dySeparation;
+              otherBall.x -= dxSeparation;
+              otherBall.y -= dySeparation;
+            }
+          }
+        });
       });
-  
-      // Function to update the canvas size based on the container size
-      const updateCanvasSize = () => {
-        canvas.width = canvasContainer.offsetWidth;
-        canvas.height = canvasContainer.offsetHeight;
-      };
-  
-      // Listen for window resize and update canvas size
-      window.addEventListener('resize', updateCanvasSize);
-    },
-  };
-  </script>
-  
-  <style scoped>
-  .canvas-container {
-    width: 100%;
-    max-width: 400px;
-    height: 200px;
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  },
+};
+</script>
+
+<style scoped>
+@media (max-width: 800px) {
+  .bet-div {
+    width: 100% !important;
+    order: 2;
+    border-radius: 0px 0px 7px 7px !important;
+    max-width: 100% !important;
+  }
+  .betseto {
+    order: 1;
+    border-radius: 7px 7px 0px 0px !important;
+  }
+  .bet-form {
+    flex-direction: column;
     display: flex;
-    justify-content: center;
     align-items: center;
   }
-  
-  canvas {
-    max-width: 100%;
-    max-height: 100%;
+  .widFh {
+    max-width: 95% !important;
   }
-  </style>
-  
+}
+</style>

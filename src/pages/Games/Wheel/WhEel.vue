@@ -2,7 +2,7 @@
   <div style=" width: 100%; margin-top: 40px; ">
     <div class="mx-auto widFh" style="width: 1200px;max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
       <!-- v-card -->
-      <div style="min-width: 300px; background-color: #1d2f3f; padding: 10px;  border-radius: 10px 0px 0px 10px ;  "  
+      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 10px;  border-radius: 7px 0px 0px 7px ;  "  
        class="bet-div">
       <v-card  title="Place your bet!" color="#1d2f3f" elevation="0" class="bet-card">
         <!-- Bet form -->
@@ -45,7 +45,7 @@
    
     </div>
       <!-- Content below v-card -->
-      <div style="flex: 1; background-color: #15212c; border-radius: 0px 10px 10px 0px ;" class="betseto">
+      <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
         <div style="margin: 30px;"><h1>Wheel of Fortune Game</h1></div>
         
       
@@ -247,13 +247,14 @@ export default {
 
 @media (max-width: 800px) {
   .bet-div {
-    width: 100%;
+    width: 100% !important;
     order: 2; /* Change the order to make it appear below */
-    border-radius: 0px 0px 10px 10px !important;
+    border-radius: 0px 0px 7px 7px !important;
+    max-width: 100% !important;
   }
   .betseto {
     order: 1; /* Change the order to make it appear above */
-    border-radius: 10px 10px 0px 0px !important;
+    border-radius: 7px 7px 0px 0px !important;
   }
   .bet-form {
     flex-direction: column;
