@@ -31,6 +31,7 @@ export default createStore({
       localStorage.setItem("user", JSON.stringify(user));
     },
 
+
     setSessionChecked(state, sessionChecked) {
       state.sessionChecked = sessionChecked;
     },
@@ -106,6 +107,9 @@ export default createStore({
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
         commit("setUser", data);
+        setInterval(() => {
+          this.dispatch('getBalance');
+        }, 6000);
         commit("setUserAvatar", data.avatar);
         return data;
       } catch (error) {
@@ -137,6 +141,19 @@ export default createStore({
         throw error.response?.data?.message || "An error occurred during token refresh.";
       }
     },
+    async getBalance({ commit }) {
+      try {
+        console.log("getBalance");
+        const response = await useApiPrivate(this).get(`/api/user/getUpdates`);
+        commit('setUserBalance', {currency: 'eur', amount: response.data.balanceeur});
+        commit('setUserBalance', {currency: 'usdt', amount: response.data.balanceusdt});
+        commit('setUserBalance', {currency: 'btc', amount: response.data.balancebtc});
+        commit('setUserBalance', {currency: 'eth', amount: response.data.balanceeth});
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
   },
 
   modules: {},
