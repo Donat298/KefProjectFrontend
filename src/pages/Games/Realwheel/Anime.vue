@@ -25,7 +25,8 @@
               />
           
             </v-card>
-          
+            <!-- Here I imported bet slider-->
+          <bet-slider style="margin-top: 10px;"></bet-slider>
               <bet-btn style="width: 100%; margin: 25px 0px;" type="submit"
                   :disabled="isProcessing"
                   :style="{ opacity: isProcessing ? 0.5 : 1 }"
