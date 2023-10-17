@@ -1,3 +1,4 @@
+
 <template>
   <transition name="slide">
     <v-card v-if="showSnackbar" class="custom-snackbar">
@@ -12,7 +13,7 @@
             <v-img
               style="
                 align-self: center;
-                max-width: 22px;
+                max-width: 22px; 
                 max-height: 22px;
                 margin-left: 5px;
               "
@@ -78,7 +79,7 @@ export default {
       // Automatically close the snackbar after 3 seconds
       this.snackbarTimeout = setTimeout(() => {
         this.closeSnackbar();
-      }, 3000);
+      }, 6000);
     },
     closeSnackbar() {
       this.showSnackbar = false;

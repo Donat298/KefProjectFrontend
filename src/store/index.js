@@ -4,11 +4,12 @@ import { useApi, useApiPrivate } from "../utils/useApi";
 export default createStore({
   state: () => ({
     user: {},
-    
+    gameInProgress: false,
     sessionChecked: false,
     accessToken: localStorage.getItem("accessToken") || "",
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
     avatar: localStorage.getItem("userAvatar") || "",
+    incomingMessage: null,
 
   }),
 
@@ -55,6 +56,12 @@ export default createStore({
 
     setUserBalance(state, { currency, amount }) {
       state.user[`balance${currency}`] = amount;
+    },
+    setGameInProgress(state, value) {
+      state.gameInProgress = value;
+    },
+    setIncomingMessage(state, messageData) {
+      state.incomingMessage = messageData;
     },
   
   },
@@ -141,18 +148,34 @@ export default createStore({
         throw error.response?.data?.message || "An error occurred during token refresh.";
       }
     },
-    async getBalance({ commit }) {
+    async getBalance({ commit, state }) {
       try {
         console.log("getBalance");
-        const response = await useApiPrivate(this).get(`/api/user/getUpdates`);
-        commit('setUserBalance', {currency: 'eur', amount: response.data.balanceeur});
-        commit('setUserBalance', {currency: 'usdt', amount: response.data.balanceusdt});
-        commit('setUserBalance', {currency: 'btc', amount: response.data.balancebtc});
-        commit('setUserBalance', {currency: 'eth', amount: response.data.balanceeth});
+        if (!state.gameInProgress) {
+          const response = await useApiPrivate(this).get(`/api/user/getUpdates`);
+    
+          if (Array.isArray(response.data.userMessages)) {
+            const depositAddedMessages = response.data.userMessages.filter(
+              (message) => message.type === "DEPOSIT-ADDED-TO-BALANCE"
+            );
+    
+            if (depositAddedMessages.length > 0) {
+              console.log("Received Balance Updates:", response.data);
+              commit('setIncomingMessage', depositAddedMessages[0]);
+            }
+          }
+    
+          commit('setUserBalance', { currency: 'eur', amount: response.data.balanceeur });
+          commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
+          commit('setUserBalance', { currency: 'btc', amount: response.data.balancebtc });
+          commit('setUserBalance', { currency: 'eth', amount: response.data.balanceeth });
+        }
       } catch (error) {
         console.error(error);
       }
-    },
+    }
+   
+   
 
   },
 

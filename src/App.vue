@@ -2,13 +2,12 @@
   <template v-if="$store.getters.sessionChecked">
     <div>
 
-      <my-snackbar ref="customSnackbarWithdraw" />
-    <my-snackbar ref="customSnackbarBonus" />
-    <my-snackbar ref="customSnackbarGames" />
-
-      <NavBBar2 @cSWia="customSnackbarBonus" @cSWia2="customSnackbarGames" @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
+      <my-snackbar ref="customSnackbar1" />
+      <my-snackbar ref="customSnackbar2" />
+      
+      <NavBBar2 @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
-      <Wallet @cSWia3="showCustomSnackbar" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
+      <Wallet @cSWia3="showCustomSnackbarWithdraw" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
       />
     </div>
   </template>
@@ -59,20 +58,32 @@ export default {
       // Save the state to localStorage
       localStorage.setItem('showdep', 'false');
     },
-    showCustomSnackbar(data) {
-      const message = data.message || "Your withdrawal was completed for the"; // Use the provided message or a default message
-      this.$refs.customSnackbarWithdraw.openSnackbar(message, data);
+    showCustomSnackbarWithdraw(data) {
+    console.log(data); // Add this line to display the data in the console
+
+    const message = data.message || "Your withdrawal was completed for the"; // Use the provided message or a default message
+    this.$refs.customSnackbar1.openSnackbar(message, data);
+  },
+  showCustomSnackbarDeposit(data) {
+    console.log(data);
+    const message = data.message || "Your deposit has been completed for"; // Use the provided message or a default message
+      this.$refs.customSnackbar2.openSnackbar(message, data);
     },
-    customSnackbarBonus() {
-      this.$refs.customSnackbarBonus.openSnackbar("Bonus.");
-    },
-    customSnackbarGames() {
-      this.$refs.customSnackbarGames.openSnackbar("Games.");
-    },
+
     
   },
   mounted() {
     this.$store.dispatch("attempt");
+  },
+  watch: {
+    '$store.state.incomingMessage': function (messageData) {
+      if (messageData && messageData.type === 'DEPOSIT-ADDED-TO-BALANCE') {
+        this.showCustomSnackbarDeposit({
+            amount: messageData.properties.amount,
+            currency: messageData.properties.currency,
+        });
+      }
+    },
   },
 };
 </script>

@@ -20,7 +20,7 @@
     :ripple="false"
     style="min-width: 5px;"
 
-    @click="$emit('cSWia2')"
+   
   >
     <span class="shimmerr-text"><h5>Games</h5></span>
   </v-btn>
@@ -30,7 +30,7 @@
 
    
 
-<v-btn v-if="!rail" elevation="4"  @click="$emit('cSWia')" class="glowg-button2" :ripple="false" style="min-width: 5px;">
+<v-btn v-if="!rail" elevation="4"   class="glowg-button2" :ripple="false" style="min-width: 5px;">
   <span class="shimmerr-text"><h5>Bonuses</h5></span>
 </v-btn>
 

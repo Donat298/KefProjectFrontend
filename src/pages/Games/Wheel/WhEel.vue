@@ -129,7 +129,7 @@ export default {
     const placeBet = async () => {
       errorMsg.value = '';
       betInput.value = roundBalance(parseFloat(betInput.value)); 
-
+      store.commit('setGameInProgress', true);
       if (!store.getters.isAuthenticated) {
         router.push('/auth/register'); 
         return;
@@ -189,6 +189,7 @@ export default {
             store.dispatch('updateBalance', {currency: currency, amount: roundBalance(response.data.balance) });
             isProcessing.value = false;
             showAlert.value = true;
+            store.commit('setGameInProgress', false);
           }, 4400);
         } catch (error) {
           console.log(error);
