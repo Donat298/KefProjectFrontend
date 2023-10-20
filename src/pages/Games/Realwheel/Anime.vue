@@ -10,23 +10,26 @@
    " text="The bet cannot be more than your balance.">
           <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; ">
            
-            <v-card elevation="5" style="background-color: #15212c00;  ">
+           
             
-              <input
+              <!--input
                 :disabled="isProcessing"
 
                 v-focus
                 class="inputbet"
-                v-model="betInput"
+                aaaav-model="betInput"
                 style="padding: 0px 15px;"
                 :style="{ borderColor: isInputInvalid  ? 'red' : '' }, { opacity: isProcessing ? 0.8 : 1 }"
                 type="number"
                 inputmode="numeric"
-              />
-          
-            </v-card>
+              /-->
+              <betInput v-model="betInput"
+              :invalid="isInputInvalid"
+              :processing="isProcessing"
+              ></betInput>
+      
             <!-- Here I imported bet slider-->
-          <bet-slider style="margin-top: 10px;"></bet-slider>
+         
               <bet-btn style="width: 100%; margin: 25px 0px;" type="submit"
                   :disabled="isProcessing"
                   :style="{ opacity: isProcessing ? 0.5 : 1 }"
