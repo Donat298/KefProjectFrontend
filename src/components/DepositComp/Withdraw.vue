@@ -417,11 +417,12 @@ setup(props, context) {
     console.log("Withdrawal Currency:", withdrawalCurrency);
 
   // Emit the "cSWi" event along with the amount and currency withdrawn
-    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency });
+    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency,
+      message: "Your withdrawal was completed for the", });
 
 
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
-    store.dispatch('updateBalance', { currency: currency, amount: response.data.balance });
+    store.dispatch('updateBalance', { currency: currency, amount: response.data.balance,  });
 
     // Update button state and message
     buttonText.value = 'Withdrawal Sent!';

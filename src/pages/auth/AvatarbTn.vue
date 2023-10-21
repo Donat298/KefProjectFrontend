@@ -12,7 +12,7 @@
 
       <font-awesome-icon   style="color: #ffffff; height: 20px;"  :icon="['fas', 'pen']" />
     </button>
-    
+     
 
 
   </div>

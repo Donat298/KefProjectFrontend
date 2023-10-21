@@ -1,13 +1,17 @@
 <template>
   <template v-if="$store.getters.sessionChecked">
     <div>
-
+      <div style="position: absolute; z-index: 13; display: flex; flex-direction: column;
+      top: 50px;   right: 20px;">
       <my-snackbar ref="customSnackbar1" />
       <my-snackbar ref="customSnackbar2" />
-      
+
+    </div>
+    
+
       <NavBBar2 @ShowAccountOknoo="openAccountView" @ShowDepositOknoo="openDepositView" />
       <AccountView v-if="showAccountView && $store.getters.isAuthenticated" @HideAccountOknoo="closeAccountView" />
-      <Wallet @cSWia3="showCustomSnackbarWithdraw" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
+      <Wallet @cSWia3="showCustomSnackbar" v-if="showDepositOkno && $store.getters.isAuthenticated"  @HideDepositOknoo="closeDepositView" 
       />
     </div>
   </template>
@@ -58,17 +62,19 @@ export default {
       // Save the state to localStorage
       localStorage.setItem('showdep', 'false');
     },
-    showCustomSnackbarWithdraw(data) {
-    console.log(data); // Add this line to display the data in the console
 
-    const message = data.message || "Your withdrawal was completed for the"; // Use the provided message or a default message
-    this.$refs.customSnackbar1.openSnackbar(message, data);
-  },
-  showCustomSnackbarDeposit(data) {
-    console.log(data);
-    const message = data.message || "Your deposit has been completed for"; // Use the provided message or a default message
-      this.$refs.customSnackbar2.openSnackbar(message, data);
+
+
+
+    showCustomSnackbar(data) {
+      console.log(data); // Add this line to display the data in the console
+      this.$refs.customSnackbar1.openSnackbar(data);
     },
+    showCustomSnackbar2(data) {
+      console.log(data); // Add this line to display the data in the console
+      this.$refs.customSnackbar2.openSnackbar(data);
+    },
+
 
     
   },
@@ -78,9 +84,10 @@ export default {
   watch: {
     '$store.state.incomingMessage': function (messageData) {
       if (messageData && messageData.type === 'DEPOSIT-ADDED-TO-BALANCE') {
-        this.showCustomSnackbarDeposit({
+        this.showCustomSnackbar2({
             amount: messageData.properties.amount,
             currency: messageData.properties.currency,
+            message: "Your deposit has been completed for",
         });
       }
     },
@@ -95,3 +102,4 @@ export default {
 
 
 </style>
+

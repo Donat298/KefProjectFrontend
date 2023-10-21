@@ -3,48 +3,37 @@
     <input
       type="range"
       min="0"
-      :max="maxBet"
+      max="100"
       v-model="betAmount"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="updateSliderColor"
       class="bet-slider"
-      aaastyle="linear-gradient(to right, #37556b ${{percentage}}%, #15212c ${{percentage}}%)"
     />
   </div>
 </template>
 
 <script>
 export default {
-  name: "bet-slider",
-  props: {
-    maxBet: Number,
-    value: Number, 
-
-  },
+  name: 'bet-slider',
   data() {
     return {
-      betAmount: this.value,
+      betAmount: 0,
     };
   },
- /* computed: {
-    percentage() {
-        return ((this.betAmount - 0) / (this.maxBet - 0)) * 100;
-        },
-      },
   methods: {
     updateSliderColor() {
-      const slider = document.querySelector(".bet-slider");
+      const slider = document.querySelector('.bet-slider');
       const minValue = slider.min;
       const maxValue = slider.max;
       const value = slider.value;
 
       // Calculate the percentage of the value in the range
-      const percentage = ((this.betAmount - minValue) / (maxValue - minValue)) * 100;
+      const percentage = ((value - minValue) / (maxValue - minValue)) * 100;
 
       // Set the background color based on the percentage
       const backgroundColor = `linear-gradient(to right, #37556b ${percentage}%, #15212c ${percentage}%)`;
       slider.style.background = backgroundColor;
     },
-  },*/
+  },
 };
 </script>
 
@@ -57,6 +46,7 @@ export default {
   -webkit-appearance: none;
   appearance: none;
   border-radius: 5px;
+ 
 }
 
 .bet-slider::-webkit-slider-thumb {

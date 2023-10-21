@@ -7,7 +7,7 @@
       </div>
       <div class="snackbar-content">
         <div>
-          <span style="display: inline-block;"> {{ message }}</span>
+          <span style="display: inline-block;"> {{ data.message }}</span>
           <span style="display: flex;">
             {{ data.amount }} {{ selectedCurrencyName }}
             <v-img
@@ -27,16 +27,15 @@
     </v-card>
   </transition>
 </template>
-
+ 
 <script>
-import { computed } from 'vue';
+
 
 export default {
   name: 'my-snackbar',
   data() {
     return {
       showSnackbar: false,
-      message: '',
       data: {},
     };
   },
@@ -66,8 +65,8 @@ export default {
     },
   },
   methods: {
-    openSnackbar(message, data) {
-      this.message = message;
+    openSnackbar(data) {
+
       this.data = data;
       this.showSnackbar = true;
 
@@ -83,7 +82,6 @@ export default {
     },
     closeSnackbar() {
       this.showSnackbar = false;
-      this.message = '';
       this.data = {};
       clearTimeout(this.snackbarTimeout); // Clear the timeout when closing manually
     },
@@ -95,11 +93,10 @@ export default {
 <style scoped>
 
 .custom-snackbar {
-  position: fixed; 
-  margin-top: 70px;
-  right: 20px;
+ 
+  margin-top: 30px;
+
   background-color: #37556b;
-  top: 0px;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;

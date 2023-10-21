@@ -11,24 +11,15 @@
           <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; ">
            
            
-            
-              <!--input
-                :disabled="isProcessing"
+           
+            <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isProcessing" />
 
-                v-focus
-                class="inputbet"
-                aaaav-model="betInput"
-                style="padding: 0px 15px;"
-                :style="{ borderColor: isInputInvalid  ? 'red' : '' }, { opacity: isProcessing ? 0.8 : 1 }"
-                type="number"
-                inputmode="numeric"
-              /-->
-              <betInput v-model="betInput"
-              :invalid="isInputInvalid"
-              :processing="isProcessing"
-              ></betInput>
+
+
+
+
       
-            <!-- Here I imported bet slider-->
+    
          
               <bet-btn style="width: 100%; margin: 25px 0px;" type="submit"
                   :disabled="isProcessing"
@@ -112,6 +103,17 @@ export default {
       }
     },
   },
+  computed: {
+  betInputWithDefault: {
+    get() {
+      return this.betInput || 0;
+    },
+    set(value) {
+      this.betInput = value;
+    },
+  },
+},
+
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
@@ -141,7 +143,7 @@ export default {
 
     const placeBet = async () => {
       errorMsg.value = '';
-      betInput.value = roundBalance(parseFloat(betInput.value)); 
+      betInput.value = roundBalance(parseFloat(betInput.value));
       store.commit('setGameInProgress', true);
       if (!store.getters.isAuthenticated) {
         router.push('/auth/register'); 

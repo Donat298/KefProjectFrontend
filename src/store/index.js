@@ -10,6 +10,7 @@ export default createStore({
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
     avatar: localStorage.getItem("userAvatar") || "",
     incomingMessage: null,
+    getBalanceTimer: null,
 
   }),
 
@@ -110,13 +111,21 @@ export default createStore({
       }
     },
 
-    async getUser({ commit }) {
+    async getUser({ commit, dispatch, state }) {
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
         commit("setUser", data);
-        setInterval(() => {
-          this.dispatch('getBalance');
+
+        // Clear the existing timer if it exists
+        if (state.getBalanceTimer) {
+          clearInterval(state.getBalanceTimer);
+        }
+
+        // Set up a new timer to call 'getBalance' every 6 seconds
+        state.getBalanceTimer = setInterval(() => {
+          dispatch('getBalance');
         }, 6000);
+
         commit("setUserAvatar", data.avatar);
         return data;
       } catch (error) {
@@ -124,6 +133,7 @@ export default createStore({
         throw error;
       }
     },
+    
 
     async logout({ commit }) {
       try {
