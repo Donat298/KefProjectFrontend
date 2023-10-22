@@ -14,6 +14,9 @@
         @keyup="updateSliderFromInput"
       />
     </v-card>
+    <bet-slider :slider-value="numericValue" @update:slider-value="updateSliderValue">
+    </bet-slider>
+
   </div>
 </template>
 
@@ -23,14 +26,12 @@ export default {
   props: {
     invalid: Boolean,
     processing: Boolean,
-    modelValue: Number,// Change the type of the prop to Number
+    modelValue: Number,
   },
-  emits: ["update:modelValue"],
+
   computed: {
-    
     numericValue: {
       get() {
-        // Ensure that modelValue is a valid number, and return it as a Number
         return isNaN(this.modelValue) ? 0 : this.modelValue;
       },
       set(value) {
@@ -40,11 +41,15 @@ export default {
   },
   methods: {
     updateNumericValue(value) {
-      this.$emit("update:modelValue", value); // Convert the string value back to a number
+      this.$emit("update:modelValue", value);
+    },
+    updateSliderValue(sliderValue) {
+      this.numericValue = sliderValue;
     },
   },
 };
 </script>
+
 
 <style scoped>
 .inputbet {
@@ -60,7 +65,4 @@ export default {
   outline: none; /* Optionally, remove the default outline */
 }
 </style>
-
-
-
 

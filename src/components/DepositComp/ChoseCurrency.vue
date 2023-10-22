@@ -5,7 +5,7 @@
       <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
         height: 48px;   display: flex; align-items: center; color: #ffffff;">
 
-
+                            
 {{ $store.getters.userDetail[selectedCurrency] }}
 
 <img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
@@ -15,14 +15,14 @@
 
           </template>
 <v-list
-elevation="5"
+elevation="5" 
 :ripple="false"
 style=" 
 visibility: visible;
 opacity: 1;
 background-color: #1d2f3f;
 color: #ffffff;
-margin-top: 10px;
+margin-top: 10px; 
 min-width: 100px;
 " 
 >
@@ -110,8 +110,7 @@ data() {
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
       },
-    };
-    
+    };  
   },
   computed: {
     // Add a computed property to watch for changes in selectedCurrency

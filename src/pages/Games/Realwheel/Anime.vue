@@ -8,40 +8,17 @@
         <div class="bet-form">
           <toolip :showTooltip2="showTooltip2" style=" z-index: 1;  
    " text="The bet cannot be more than your balance.">
-          <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; ">
-           
-           
-           
+          <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; "> 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isProcessing" />
-
-
-
-
-
-      
-    
-         
               <bet-btn style="width: 100%; margin: 25px 0px;" type="submit"
                   :disabled="isProcessing"
                   :style="{ opacity: isProcessing ? 0.5 : 1 }"
-                  >
-                
-              </bet-btn>
-              
-    
- 
-          
-            
-          </v-form>
-        
-        </toolip>
-      
-          
+                  > 
+              </bet-btn> 
+          </v-form>  
+        </toolip>         
         </div>
-  
-      
-      
-   
+
     </div>
       <!-- Content below v-card -->
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
@@ -106,7 +83,7 @@ export default {
   computed: {
   betInputWithDefault: {
     get() {
-      return this.betInput || 0;
+      return this.betInput || 0; 
     },
     set(value) {
       this.betInput = value;
@@ -117,7 +94,7 @@ export default {
   setup() {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);
-    const betInput = ref(''); 
+    const betInput = ref(); 
     const gameResult = ref(null);
     const errorMsg = ref('');    
     const showAlert = ref(true);
@@ -127,11 +104,11 @@ export default {
 
     const roundBalance = (value) => {
  
-      if (value > 10000000) {
-        return 10000000;
+      if (value > 100000000) {
+        return 100000000;
       }
 
-      return Math.round(value * 10000000) / 10000000;
+      return Math.round(value * 100000000) / 100000000;
     };
 
     const tempBalance = computed(() => {
