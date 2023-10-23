@@ -12,7 +12,7 @@ export default createStore({
     incomingMessage: null,
     getBalanceTimer: null,
 
-  }),
+  }), 
 
   getters: {
     accessToken: (state) => state.accessToken,
