@@ -10,7 +10,7 @@
    " text="The bet cannot be more than your balance.">
           <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; "> 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isProcessing" />
-              <bet-btn style="width: 100%; margin: 25px 0px;" type="submit"
+              <bet-btn style="width: 100%;" type="submit"
                   :disabled="isProcessing"
                   :style="{ opacity: isProcessing ? 0.5 : 1 }"
                   > 
@@ -83,7 +83,7 @@ export default {
   computed: {
   betInputWithDefault: {
     get() {
-      return this.betInput || 0; 
+      return this.betInput; 
     },
     set(value) {
       this.betInput = value;
@@ -91,146 +91,161 @@ export default {
   },
 },
 
-  setup() {
-    const store = useStore();
-    const axiosPrivateInstance = useApiPrivate(store);
-    const betInput = ref(); 
-    const gameResult = ref(null);
-    const errorMsg = ref('');    
-    const showAlert = ref(true);
-    const isProcessing = ref(false);
-    const message = ref('');
-    const router = useRouter(); 
+setup() {
+  const store = useStore();
+  const axiosPrivateInstance = useApiPrivate(store);
+  const betInput = ref();
+  const gameResult = ref(null);
+  const errorMsg = ref('');
+  const showAlert = ref(true);
+  const isProcessing = ref(false);
+  const message = ref('');
+  const router = useRouter();
+  const isInputInvalid = ref(false); // Define isInputInvalid
+  const showTooltip2 = ref(false); 
 
-    const roundBalance = (value) => {
- 
-      if (value > 100000000) {
-        return 100000000;
-      }
+  const roundBalance = (value) => {
+    if (value > 100000000) {
+      return 100000000;
+    }
+    return Math.round(value * 100000000) / 100000000;
+  };
 
-      return Math.round(value * 100000000) / 100000000;
-    };
+  const tempBalance = computed(() => {
+    const currentBalance = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - parseFloat(betInput.value));
+    return isProcessing.value ? currentBalance : roundBalance(store.getters.userDetail[store.getters.selectedCurrency]);
+  });
 
-    const tempBalance = computed(() => {
-      const currentBalance = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - parseFloat(betInput.value));
-      return isProcessing.value ? currentBalance : roundBalance(store.getters.userDetail[store.getters.selectedCurrency]);
-    });
+  const wheelStyle = ref('');
 
-    const wheelStyle = ref(''); 
+  const checkInputValidity = (value) => {
+    if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
+      isInputInvalid.value = true;
+      showTooltip2.value = true;
+    } else {
+      isInputInvalid.value = false;
+      showTooltip2.value = false;
+    }
+  };
 
-    const placeBet = async () => {
-      errorMsg.value = '';
-      betInput.value = roundBalance(parseFloat(betInput.value));
-      store.commit('setGameInProgress', true);
-      if (!store.getters.isAuthenticated) {
-        router.push('/auth/register'); 
-        return;
-      }
+  const placeBet = async () => {
+    errorMsg.value = '';
+    betInput.value = roundBalance(parseFloat(betInput.value));
+    store.commit('setGameInProgress', true);
+    if (!store.getters.isAuthenticated) {
+      router.push('/auth/register');
+      return;
+    }
 
-      if (betInput.value < 0) {
-        errorMsg.value = 'The bet cannot be less than zero.';
-        return;
-      }
+    if (betInput.value < 0) {
+      errorMsg.value = 'The bet cannot be less than zero.';
+      return;
+    }
 
-      if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
-        errorMsg.value = 'Your balance is less than the bet amount';
-        return;
-      }
+    if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
+      errorMsg.value = 'Your balance is less than the bet amount';
+      return;
+    }
 
-      isProcessing.value = true;
-      showAlert.value = false; 
+    isProcessing.value = true;
+    showAlert.value = false;
 
-      wheelStyle.value = `transform: rotate(0deg); transition: none;`;
+    wheelStyle.value = `transform: rotate(0deg); transition: none;`;
 
-      setTimeout(async () => {
-        try {
-          const balanceFieldsMap = {
-            'balanceusdt': 'usdt', 
-            'balanceeur': 'eur',
-            'balancebtc': 'btc',
-            'balanceeth': 'eth',
+    setTimeout(async () => {
+      try {
+        const balanceFieldsMap = {
+          'balanceusdt': 'usdt',
+          'balanceeur': 'eur',
+          'balancebtc': 'btc',
+          'balanceeth': 'eth',
+        };
+
+        const currency = balanceFieldsMap[store.getters.selectedCurrency];
+
+        const response = await axiosPrivateInstance.put('/games/wheel2', {
+          betAmount: betInput.value,
+          currency: currency
+        });
+
+        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
+        store.dispatch('updateBalance', { currency: currency, amount: newAmount });
+
+        let rotation = '0';
+        let baseRotation = Math.random() * 180;
+
+        if (response.data.message === 'You won!') {
+          rotation = baseRotation + 3600;
+        } else {
+          rotation = baseRotation + 3600 + 180;
+        }
+
+        wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
+
+        setTimeout(() => {
+          gameResult.value = {
+            won: response.data.message === 'You won!',
+            balance: roundBalance(response.data.balance)
           };
 
-          const currency = balanceFieldsMap[store.getters.selectedCurrency];
-
-          const response = await axiosPrivateInstance.put('/games/wheel2', {
-            betAmount: betInput.value,
-            currency: currency
-          });
-
-          const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
-          store.dispatch('updateBalance', {currency: currency, amount: newAmount});
-
-          let rotation = '0';
-          let baseRotation = Math.random() * 180;
-
-          if (response.data.message === 'You won!') {
-            rotation = baseRotation + 3600; 
-          } else {
-            rotation = baseRotation + 3600 + 180; 
-          }
-
-          wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
-          
-          setTimeout(() => {  
-            gameResult.value = {
-              won: response.data.message === 'You won!',
-              balance: roundBalance(response.data.balance)
-            };
-
-            store.dispatch('updateBalance', {currency: currency, amount: roundBalance(response.data.balance) });
-            isProcessing.value = false;
-            showAlert.value = true;
-            store.commit('setGameInProgress', false);
-          }, 4400);
-        } catch (error) {
-          console.log(error);
-
-          if (error.response && error.response.data && error.response.data.message) {
-            errorMsg.value = error.response.data.message;
-          } else {
-            errorMsg.value = "An unknown error occurred.";
-          }
-
+          store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
           isProcessing.value = false;
-          showAlert.value = true; 
-        }
-      }, 0); 
-    };
+          showAlert.value = true;
+          store.commit('setGameInProgress', false);
 
-    const enterListener = (event) => {
-      if (event.key === 'Enter') {
-        if (isProcessing.value) {
-          return;
+          // Call checkInputValidity after the game ends
+          checkInputValidity(betInput.value);
+        }, 4400);
+      } catch (error) {
+        console.log(error);
+
+        if (error.response && error.response.data && error.response.data.message) {
+          errorMsg.value = error.response.data.message;
+        } else {
+          errorMsg.value = "An unknown error occurred.";
         }
-        placeBet();
+
+        isProcessing.value = false;
+        showAlert.value = true;
       }
-    };
+    }, 0);
+  };
 
-    onMounted(() => {
-      window.addEventListener('keydown', enterListener);
-    });
+  const enterListener = (event) => {
+    if (event.key === 'Enter') {
+      if (isProcessing.value) {
+        return;
+      }
+      placeBet();
+    }
+  };
 
-    onUnmounted(() => {
-      window.removeEventListener('keydown', enterListener);
-    });
+  onMounted(() => {
+    window.addEventListener('keydown', enterListener);
+  });
 
-    return {
-      placeBet,
-      betInput,
-      gameResult,
-      errorMsg,
-      isProcessing,
-      tempBalance,
-      showAlert,
-      wheelStyle,
-      message,
-    };
-  },
+  onUnmounted(() => {
+    window.removeEventListener('keydown', enterListener);
+  });
+
+  return {
+    placeBet,
+    betInput,
+    gameResult,
+    errorMsg,
+    isProcessing,
+    tempBalance,
+    showAlert,
+    wheelStyle,
+    message,
+    isInputInvalid, 
+    showTooltip2,
+  };
+},
+
 };
 </script>
 
-     
 
 <!--
 

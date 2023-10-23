@@ -42,7 +42,7 @@
           <button class="ml-2" 
         type="submit" style="background-color: rgb(30, 44, 56); min-width: 50px; border-radius: 50px; 
         height: 50px;  display: flex; align-items: center; justify-content: center;  margin: auto;"
-        :disabled="newMessage.length > 200 || isLoading" 
+        :disabled="newMessage.length > 200 || isLoading" :style="{ opacity: newMessage.length > 200 ? 0.7 : 1 }"
 >
 <font-awesome-icon  style="color: #ffffff;  height: 15px;"  :icon="['fas', 'paper-plane']" />
 </button>

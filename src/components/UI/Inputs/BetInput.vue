@@ -6,15 +6,15 @@
         v-focus
         class="inputbet"
         style="padding: 0px 15px"
-        :style="{ borderColor: invalid ? 'red' : '', opacity: processing ? 0.8 : 1 }"
-        type="number"
+        :style="{ borderColor: invalid ? 'red' : '', opacity: processing ? 0.7 : 1 }"
+        type="text"
         inputmode="numeric"
-        :value="numericValue"
-        @input="updateNumericValue($event.target.value)"
+        :value="stringValue"
+        @input="updateStringValue($event.target.value)"
         @keyup="updateSliderFromInput"
       />
     </v-card>
-    <bet-slider :slider-value="numericValue" @update:slider-value="updateSliderValue">
+    <bet-slider :slider-value="numericValue"  :sliprocessing="processing" @update:slider-value="updateSliderValue">
     </bet-slider>
 
   </div>
@@ -26,13 +26,24 @@ export default {
   props: {
     invalid: Boolean,
     processing: Boolean,
-    modelValue: Number,
+    modelValue: {
+      type: Number,
+      default: null,
+    },
   },
 
   computed: {
+    stringValue: {
+      get() {
+        return isNaN(this.modelValue) || this.modelValue === null ? "" : this.modelValue.toString();
+      },
+      set(value) {
+        this.updateNumericValue(value);
+      },
+    },
     numericValue: {
       get() {
-        return isNaN(this.modelValue) ? 0 : this.modelValue;
+        return isNaN(this.modelValue) || this.modelValue === null ? 0 : parseFloat(this.modelValue);
       },
       set(value) {
         this.updateNumericValue(value);
@@ -43,13 +54,22 @@ export default {
     updateNumericValue(value) {
       this.$emit("update:modelValue", value);
     },
+    updateStringValue(value) {
+      if (value === "") {
+        this.updateNumericValue(null);
+      } else if (!isNaN(parseFloat(value))) {
+        this.updateNumericValue(parseFloat(value));
+      }
+    },
     updateSliderValue(sliderValue) {
       this.numericValue = sliderValue;
+    },
+    updateSliderFromInput() {
+      this.$emit("update:sliderValue", this.numericValue);
     },
   },
 };
 </script>
-
 
 <style scoped>
 .inputbet {

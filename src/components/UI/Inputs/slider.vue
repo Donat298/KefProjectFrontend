@@ -1,6 +1,8 @@
 <template>
-  <div style="margin: 10px 0px;">
+  <div style="margin: 15px 0px;">
     <input
+    :style="{  opacity: sliprocessing ? 0.7 : 1 }"
+    :disabled="sliprocessing"
       type="range"
       min="0"
       max="40"
@@ -8,44 +10,43 @@
       @input="updateSliderColor"
       class="bet-slider"
     />
-    <div style="color: aliceblue;">
-
-  </div>
+ 
   </div>
 </template>
 
 <script>
 export default {
   name: 'bet-slider',
- data() {
+  data() {
     return {
-      amount: 85.4,
-
+      // Remove the 'amount' property from here
     };
   },
   props: {
     sliderValue: Number,
+    sliprocessing: Boolean,
   },
-
- computed: {
+  computed: {
     computedSliderValue() {
       // Calculate the modified value for the slider
-      return (this.sliderValue * 40) / this.amount;
+      return (this.sliderValue * 40) / this.computedAmount;
+    },
+    // Create a computed property to get the Amount based on selectedCurrency
+    computedAmount() {
+      const selectedCurrency = this.$store.getters.selectedCurrency;
+      return this.$store.getters.userDetail[selectedCurrency];
     },
   },
-
-
   watch: {
     computedSliderValue: 'updateSliderGradient',
   },
-  
   methods: {
-        updateSliderColor() {
+    updateSliderColor() {
       const slider = document.querySelector('.bet-slider');
       const minValue = slider.min - (0.05 * (slider.max - slider.min));
       const maxValue = slider.max - (-0.05 * slider.max);
       const value = slider.value;
-      const slivalue = (value * this.amount / 40).toFixed(2); // Round to two decimal places
+      const slivalue = (value * this.computedAmount / 40).toFixed(2); // Round to two decimal places
 
       const percentage = ((value - minValue) / (maxValue - minValue)) * 100;
       const backgroundColor = `linear-gradient(to right, #37556b ${percentage}%, #15212c ${percentage}%)`;
@@ -54,11 +55,10 @@ export default {
       // Emit an event to update the parent component with the rounded value
       this.$emit('update:sliderValue', slivalue);
     },
-
     updateSliderGradient(value) {
       const slider = document.querySelector('.bet-slider');
       const minValue = slider.min - (0.05 * (slider.max - slider.min));
-      const maxValue = slider.max - (-0.05 * (slider.max));
+      const maxValue = slider.max - (-0.05 * slider.max);
 
       const percentage = ((value - minValue) / (maxValue - minValue)) * 100;
       const backgroundColor = `linear-gradient(to right, #37556b ${percentage}%, #15212c ${percentage}%)`;
@@ -67,8 +67,6 @@ export default {
   },
 };
 </script>
-
-Can you round slivalue if its for example 3.333 then it will be 3.33 and if its 35.555 then it will be 35.55
 
 
 <style scoped>
