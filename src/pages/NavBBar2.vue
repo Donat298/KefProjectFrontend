@@ -14,28 +14,17 @@
 
   <div style="min-height: 64px;  display: flex; justify-content: center; align-items: center;">
 
-  <v-btn
-    v-if="!rail"
-    elevation="4"
-    class="glowg-button mr-3"
-    :ripple="false"
-    style="min-width: 5px;"
-
-   
-  >
-    <span class="shimmerr-text"><h5>Games</h5></span>
-  </v-btn>
-  
 
 
 
-   
 
-<v-btn v-if="!rail" elevation="4"   class="glowg-button2" :ripple="false" style="min-width: 5px;">
-  <span class="shimmerr-text"><h5>Bonuses</h5></span>
+   <div  v-if="!rail" style="padding:0px 20px; width: 100%; ">
+
+<v-btn elevation="4"   class="glowg-button2" :ripple="false" style="min-width: 5px;">
+  <span class="shimmerr-text"><h5>Get Bonuses</h5></span>
 </v-btn>
 
-
+</div>
 
 
 
@@ -58,7 +47,7 @@
         :ripple="false"
         :color="drawer ? '#37556b' : '#2e4659'"
         style="max-width: calc(33.33% - 10px); min-width: 5px; color: #ffffff;
-         transform: skewX(-6deg);
+  
          
         flex-direction: column; align-items: center; text-align: center;">
         <v-icon style="color: #ffffff;" icon="mdi-menu"></v-icon>
@@ -71,7 +60,7 @@
         :color="$route.path === '/wheel' ? '#37556b' : '#2e4659'" 
         style="max-width: calc(33.33% - 10px); min-width: 5px;
      
-    transform: skewX(-6deg);
+
          ">
         <v-icon icon="mdi-cards"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Games</span>
@@ -81,7 +70,7 @@
         :ripple="false"
         :color="$route.path === '/chat' ? '#37556b' : '#2e4659'" 
         to="/chat" style="max-width: calc(33.33% - 10px); min-width: 5px;
-           transform: skewX(-6deg);" >
+          " >
         <v-icon icon="mdi-chat"></v-icon>
         <span style="color: #ffffff; font-size: 13px;">Chat</span>
     </v-btn>
@@ -402,16 +391,12 @@ border-radius: 5px 0px 0px 5px !important;
 }
 
 /* Apply shimmer animation to the button */
-.glowg-button {
-  background: linear-gradient(45deg, #ff00fb, #6745d7, #0095ff, #6745d7, #ff00fb);
-  background-size: 200% 100%;
-  animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
-  color: #fff; /* Text color */
-}
+
 
 .glowg-button2 {
-  background: linear-gradient(45deg, #15ff00, #d7d545, #ff5100, #d7d545, #15ff00);
+  background: linear-gradient(45deg,  #ffffff, #abfffe, #ffffff);
   background-size: 200% 100%;
+  width: 100%;
   animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
   color: #fff; /* Text color */
 }

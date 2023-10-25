@@ -148,7 +148,7 @@
      </div>
 
 
-   <div>
+   <div style="padding:0px 10px;">
    <div style="   color: white" class="text-color-white d-flex align-center justify-space-between">
    <p style="font-size: 17px;">  Address {{ selectedCurrencyName }} 
                  </p>
