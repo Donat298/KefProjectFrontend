@@ -100,9 +100,9 @@
       style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
       :loading="loading"
       :ripple="false"
-      class="shimmerr-text mb-8"
+      class="mb-8"
     >
-    <h5>  REG</h5>
+      <strong>REG</strong>
     <template v-slot:loader>
                             <v-progress-circular :size="25" :width="1"
       indeterminate
