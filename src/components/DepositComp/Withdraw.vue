@@ -174,13 +174,14 @@
    </div>
    <toolip :showTooltip2="showTooltip2" style="  width: 100%; 
    " text="The amount cannot be more than your balance.">
-   <div style="position: relative;
+   <div style="position: relative; align-items: center;  display: flex;
     flex-grow: 1;
  
 
     height: 42px;">
    
-   <img style="height: 42px; width: 17px; right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
+   <img 
+   style="width: 17px; height: 17px;  right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
 
 
 

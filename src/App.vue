@@ -1,7 +1,7 @@
 <template>
   <template v-if="$store.getters.sessionChecked">
     <div>
-      <div style="position: absolute; z-index: 13; display: flex; flex-direction: column;
+      <div style="position: fixed; z-index: 13; display: flex; flex-direction: column;
       top: 50px;   right: 20px;">
       <my-snackbar ref="customSnackbar1" />
       <my-snackbar ref="customSnackbar2" />
