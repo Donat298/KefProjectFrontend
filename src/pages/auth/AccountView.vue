@@ -1,8 +1,10 @@
 
 <template>
+
+<div class="ppj">
   <div @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
-    <div v-if="showAccComponent"  @mousedown="onMouseDown" @mouseup="onMouseUp" style="max-height: 90%; width: 100%; overflow-y: auto;">
-      <div  @click.stop @mousedown.stop style="max-height: 90%; width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+    <div v-if="showAccComponent"  style="max-height: 90%; width: 100%;  ">
+      <div  @mousedown.stop  @mouseup.stop="onMouseUpCheck"   style="max-height: 90%;width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
         
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
           
@@ -60,8 +62,8 @@
       </div>  
       </div>
 
-      <div v-else  style="overflow-y: auto; max-height: 90%; width: 100%;">
-      <div @click.stop  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
+      <div v-else  style=" max-height: 90%; width: 100%;">
+      <div  @mousedown.stop @mouseup.stop="onMouseUpCheck"  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
         <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
@@ -109,6 +111,8 @@
       </div>
      
 </div>
+
+</div>
 </template>
 <script>
 import AvatarbTn from '@/pages/auth/AvatarbTn.vue'
@@ -143,31 +147,45 @@ export default {
     onMouseDown() {
       this.mousePressed = true;
     },
+    onMouseUpCheck() {
+      this.mousePressed = false;
+    },
     onMouseUp() {
       if (this.mousePressed) {
         // Emit the custom event when the button is pressed and released
         this.$emit('HideAccountOknoo');
-      }
-      this.mousePressed = false;
+      } 
+       this.mousePressed = false;
     },
   },
 };
 </script>
 
 <style scoped>
-.jja {
+  .jja {
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  position: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: fixed;   display: flex;    align-items: center;
+
   z-index: 4;
-}
+
+  } 
+
+
+
+.ppj{
+    top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(5px);
+  position: fixed; 
+  z-index: 4;
+  overflow-y: auto;
+  }
 
 
 /* Scrollbar styles */

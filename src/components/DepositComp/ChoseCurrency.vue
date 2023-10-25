@@ -15,12 +15,12 @@
 
           </template>
 <v-list
-elevation="5" 
+elevation="7" 
 :ripple="false"
 style=" 
 visibility: visible;
 opacity: 1;
-background-color: #1d2f3f;
+background-color: #15212c;
 color: #ffffff;
 margin-top: 10px; 
 min-width: 100px;

@@ -8,7 +8,8 @@
    <!-- Activator -->
    <template v-slot:activator="{ props }">
           <div class="rounded" style="flex: 1; margin: 5px;  display: flex; justify-content: center; align-items: center;">
-            <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
+            <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; 
+            display: flex; align-items: center; background-color: #2e4659;" elevation="5">
 
                
                  <p style=" font-size: 15px; color: #ffffff;">
@@ -23,7 +24,7 @@
           </div>
         </template>
         <!-- Currency List -->
-        <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px; margin-top: 10px;">
+        <v-list elevation="7" style="background-color: #15212c; color: #ffffff; min-width: 100px; margin-top: 10px;">
           <!-- EUR -->
           <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
             <div class="hhdd">

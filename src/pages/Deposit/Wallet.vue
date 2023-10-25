@@ -1,7 +1,8 @@
 <template>
-  <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" style="width: 100%; overflow-y: auto;">
-    <div  @mousedown="onMouseDown" @mouseup="onMouseUp"  style="max-height: 90%; width: 100%; overflow-y: auto;">
-      <div @click.stop @mousedown.stop style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
+  <div class="ppj">
+  <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
+    <div style="max-height: 90%; width: 100%; ">
+      <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
         <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
           <div style="color: #ffffff; padding: 10px;">
             Wallet   
@@ -47,6 +48,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -83,14 +85,17 @@ export default {
       localStorage.setItem('selectedComponent', componentName);
     },
     onMouseDown() {
-      this.mousePressed = true; 
+      this.mousePressed = true;
+    },
+    onMouseUpCheck() {
+      this.mousePressed = false;
     },
     onMouseUp() {
       if (this.mousePressed) {
         // Emit the custom event when the button is pressed and released
         this.$emit('HideDepositOknoo');
-      }
-      this.mousePressed = false;
+      } 
+       this.mousePressed = false;
     },
    
     
@@ -105,12 +110,26 @@ export default {
   bottom: 0;
   right: 0;
   left: 0;
+  position: fixed;   display: flex;    align-items: center;
+
+  z-index: 4;
+
+  } 
+
+  .ppj{
+    top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   background: rgba(0,0,0,0.5);
   backdrop-filter: blur(5px);
-  position: fixed;   display: flex;    align-items: center;
-   justify-content: center;
+  position: fixed; 
   z-index: 4;
-  } 
+  overflow-y: auto;
+  }
+
+
+  
   ::-webkit-scrollbar {
     width: 5px;
     
