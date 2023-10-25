@@ -93,15 +93,16 @@
     <v-btn
      
       block
-      class="mb-8"
+    
       @click="register(username, email, password, password_confirm)"
       size="large"
       type="submit"
       style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
       :loading="loading"
       :ripple="false"
+      class="shimmerr-text mb-8"
     >
-    REG
+    <h5>  REG</h5>
     <template v-slot:loader>
                             <v-progress-circular :size="25" :width="1"
       indeterminate

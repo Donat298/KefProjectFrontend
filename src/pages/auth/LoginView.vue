@@ -56,6 +56,7 @@
 
                     <v-btn
                         block
+                        class="shimmerr-text"
                         type="submit"
                         style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
@@ -63,7 +64,7 @@
                         @click="login(email, password)"
                         size="large"
                     >
-                        Log In
+                  <h5> Log In </h5> 
                         <template v-slot:loader>
                             <v-progress-circular :size="25" :width="1"
       indeterminate
