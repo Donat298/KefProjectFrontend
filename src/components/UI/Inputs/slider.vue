@@ -1,8 +1,8 @@
 <template>
   <div style="margin: 15px 0px;">
     <input
-    :style="{  opacity: sliprocessing ? 0.7 : 1 }"
-    :disabled="sliprocessing"
+      :style="{ opacity: sliprocessing || computedAmount === 0 ? 0.7 : 1 }"
+      :disabled="sliprocessing || computedAmount === 0"
       type="range"
       min="0"
       max="40"
@@ -10,7 +10,6 @@
       @input="updateSliderColor"
       class="bet-slider"
     />
- 
   </div>
 </template>
 
@@ -18,9 +17,7 @@
 export default {
   name: 'bet-slider',
   data() {
-    return {
-      // Remove the 'amount' property from here
-    };
+    return {};
   },
   props: {
     sliderValue: Number,
@@ -28,10 +25,11 @@ export default {
   },
   computed: {
     computedSliderValue() {
-      // Calculate the modified value for the slider
+      if (this.computedAmount === 0) {
+        return 0;
+      }
       return (this.sliderValue * 40) / this.computedAmount;
     },
-    // Create a computed property to get the Amount based on selectedCurrency
     computedAmount() {
       const selectedCurrency = this.$store.getters.selectedCurrency;
       return this.$store.getters.userDetail[selectedCurrency];
@@ -52,7 +50,6 @@ export default {
       const backgroundColor = `linear-gradient(to right, #37556b ${percentage}%, #15212c ${percentage}%)`;
       slider.style.background = backgroundColor;
 
-      // Emit an event to update the parent component with the rounded value
       this.$emit('update:sliderValue', slivalue);
     },
     updateSliderGradient(value) {
@@ -67,7 +64,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .bet-slider {

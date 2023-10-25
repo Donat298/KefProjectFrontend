@@ -9,7 +9,7 @@
     align-items: center;
     max-width: 90%;
     justify-content: center; 
-    overflow-y: auto;">
+    ">
       <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
           <div style="display: flex; max-width: 100%; width: 340px;height: 190px; margin: auto; margin-bottom: 20px;">
             <img style="margin-left: auto; 
@@ -188,9 +188,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 z-index: 4;
+overflow-y: auto;
 }
 
-::-webkit-scrollbar {
-  width: 0px;
-}
+
 </style>

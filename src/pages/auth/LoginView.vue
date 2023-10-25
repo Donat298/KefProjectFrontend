@@ -1,6 +1,6 @@
 <template>
     <div class="jjl">
-      <div style="max-width: 90%; width: 460px; align-items: center; max-height: 100%; justify-content: center; overflow-y: auto;">
+      <div style="max-width: 90%; width: 460px; align-items: center; max-height: 100%; justify-content: center; ">
         <div style="max-width: 420px; margin-left: auto; margin-right: auto;">
           <div style="display: flex; max-width: 100%; width: 340px; height: 190px; margin: auto; margin-bottom: 20px;">
             <img style="margin-left: auto; margin-right: auto; width: 100%; height: auto;
@@ -139,7 +139,7 @@ export default {
 };
 </script>
   
-  <style scoped>
+  <style>
 .jjl {
     top: 0;
     bottom: 0;
@@ -151,12 +151,8 @@ export default {
     align-items: center;
     justify-content: center;
     z-index: 4;
+    overflow-y: auto;
 }
 
-::-webkit-scrollbar {
-  width: 0px;
-  
-  
-}
 
 </style>

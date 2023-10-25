@@ -10,10 +10,11 @@ body {
   font-family: proxima-nova,sans-serif;
   background-size: 150%;
   font-size: 17px;
+
 }
 
 ::-webkit-scrollbar {
-width: 5px;
+width: 0px;
 
 
 
@@ -32,6 +33,7 @@ margin-block: 15px;
 ::-webkit-scrollbar-thumb {
 background: #2c4257;
 border-radius: 30px;
+
 }
 
 

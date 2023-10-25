@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <div style="overflow-y:auto;  margin-left: auto; margin-right: auto; width: 100%;">
+    <div style="  margin-left: auto; margin-right: auto; width: 100%;">
     <v-img class="logh" src="@/assets/5opka.png" />
     <div>
 
@@ -70,4 +70,6 @@
 .wet {
   font-size: 60px;
 }
+
+
   </style>

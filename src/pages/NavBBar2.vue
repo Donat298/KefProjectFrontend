@@ -1,8 +1,9 @@
 <template>
-  <v-layout  class=""> 
+  <v-layout > 
   
     <v-navigation-drawer
     style="z-index: 3; min-height: 100%; background-color: #1d2f3f ; border-right: 2px solid #1d2f3f;
+
     "
     :rail="rail"
     v-model="drawer"
@@ -92,7 +93,8 @@
      
             
        
-          <button v-if="!rail && showRbsbbtn" style="color: #ffffff; background-color: #15212c00; min-width: 64px;  height: 64px;" 
+          <button v-if="!rail && showRbsbbtn" style="color: #ffffff; background-color: #15212c00; 
+          min-width: 64px;  height: 64px;" 
      @click="rail = true"><font-awesome-icon :icon="['fas', 'angle-double-left']" />
     </button>          
                   
@@ -108,7 +110,7 @@
 
           
                   <div v-if="$store.getters.isAuthenticated" style="  
-                   overflow-x: auto; /* Add this to enable horizontal scrolling when necessary */
+                   overflow-x: auto;  overflow-y: hidden; /* Add this to enable horizontal scrolling when necessary */
     white-space: nowrap; max-height: 64px; max-width: 1200px; 
    margin: auto;  align-items: center;
    display: grid;  grid-template-columns: 1fr auto 1fr; width: 100%;
@@ -197,6 +199,8 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
     display: flex;
     width: 100%;
     overflow-x: auto; 
+    overflow-y: hidden;
+
     white-space: nowrap; 
 ">
     <button style="color: #ffffff; background-color: #15212c00; padding: 0 1vw;"  @click="$router.push('/')">
@@ -228,7 +232,7 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
   color: #ffffff;
   ">
         <div>
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </v-main> 
@@ -446,6 +450,7 @@ border-radius: 5px 0px 0px 5px !important;
     right: 0;
     justify-content: flex-end; /* Align child elements to the right */
 }
+
 
 
 
