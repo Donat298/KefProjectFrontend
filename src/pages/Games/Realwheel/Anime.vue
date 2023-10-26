@@ -1,6 +1,6 @@
 <template>
   <div style=" width: 100%; margin-top: 40px; ">
-    <div class="mx-auto widFh" style="width: 1200px;max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
+    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
       <!-- v-card -->
       <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 15px;  border-radius: 7px 0px 0px 7px ;  "  
        class="bet-div">
@@ -10,7 +10,7 @@
    " text="The bet cannot be more than your balance.">
           <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; "> 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isProcessing" />
-              <bet-btn style="width: 100%;" type="submit"
+              <bet-btn  style="width: 100%;" type="submit"
                   :disabled="isProcessing"
                   :style="{ opacity: isProcessing ? 0.5 : 1 }"
                   > 

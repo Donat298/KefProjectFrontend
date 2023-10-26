@@ -74,10 +74,10 @@ export default {
 <style scoped>
 .inputbet {
   width: 100%;
-  height: 48px;
+  height: 46px;
   background-color: #15212c;
   color: #ffffff;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 2px solid #2e4659; /* Add a default border color */
 }
 .inputbet:focus {

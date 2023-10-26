@@ -20,8 +20,8 @@
 
    <div  v-if="!rail" style="padding:0px 20px; width: 100%; ">
 
-<v-btn elevation="4"   class="glowg-button2" :ripple="false" style="min-width: 5px;">
-  <span class="shimmerr-text"><h5>Get Bonuses</h5></span>
+<v-btn elevation="0" rounded="lg"  class="glowg-button2" :ripple="false" style="min-width: 5px;">
+  <span style="color: #ffffff;" class="shimmerr-text">Get Bonus</span>
 </v-btn>
 
 </div>
@@ -117,15 +117,15 @@
 
 
 
-          <div style="display: flex; ">
+          <div style="display: flex; align-items: center;">
           
          <ChoseCurrency> 
 
          </ChoseCurrency>
          
-          <v-btn    :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
+          <v-btn  rounded="lg" elevation="0"  :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
 font-size: 17px; 
-height: 48px;   
+height: 46px;   
 background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
 <strong>{{ buttonLabel }}   <font-awesome-icon  style="color: #15212c;"  :icon="['fas', 'wallet']" /> </strong>
 </v-btn>
@@ -193,17 +193,19 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
     white-space: nowrap; 
 ">
     <button style="color: #ffffff; background-color: #15212c00; padding: 0 1vw;"  @click="$router.push('/')">
-      <v-img    style="min-height: 54px; max-width: 96px;
+      <v-img     rounded=""  style="min-height: 54px; max-width: 96px;
          background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
     </button>
 
     <div style="display: flex; margin-left: auto; align-items: center; height: 64px;">
-    <v-btn elevation="4" @click="$router.push('/auth/register')" :ripple="false"
+    <v-btn rounded="lg" elevation="0" @click="$router.push('/auth/register')" :ripple="false"
     style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-     margin-right: 15px; height: 36px; font-size: 17px;"><strong>Register</strong></v-btn>
-    <v-btn elevation="4" @click="$router.push('/auth/login')"  :ripple="false"
+     margin-right: 15px; height: 40px; font-size: 17px;"><strong>Register</strong></v-btn>
+
+     
+    <v-btn rounded="lg" elevation="0" @click="$router.push('/auth/login')"  :ripple="false"
     style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); 
-    margin-right: 15px; font-size: 17px; height: 36px;"><strong> Login</strong> </v-btn>
+    margin-right: 15px; font-size: 17px; height: 40px;"><strong> Login</strong> </v-btn>
 </div>
 
 
@@ -394,9 +396,10 @@ border-radius: 5px 0px 0px 5px !important;
 
 
 .glowg-button2 {
-  background: linear-gradient(45deg,  #ffffff, #abfffe, #ffffff);
+  background: linear-gradient(45deg,  #000000,  #540001, #000000);
   background-size: 200% 100%;
   width: 100%;
+  min-height: 40px;
   animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
   color: #fff; /* Text color */
 }

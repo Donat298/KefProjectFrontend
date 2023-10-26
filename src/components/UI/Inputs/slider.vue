@@ -13,6 +13,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: 'bet-slider',
@@ -25,6 +26,9 @@ export default {
   },
   computed: {
     computedSliderValue() {
+      if (isNaN(this.computedAmount)) {
+        return 0; // If computedAmount is NaN, set computedSliderValue to 0
+      }
       if (this.computedAmount === 0) {
         return 0;
       }
@@ -32,7 +36,8 @@ export default {
     },
     computedAmount() {
       const selectedCurrency = this.$store.getters.selectedCurrency;
-      return this.$store.getters.userDetail[selectedCurrency];
+      const amount = this.$store.getters.userDetail[selectedCurrency];
+      return isNaN(amount) ? 0 : amount; // If amount is NaN, set computedAmount to 0
     },
   },
   watch: {
@@ -65,6 +70,7 @@ export default {
 };
 </script>
 
+Can you do it, if computedAmount is NaN so  computedSliderValue is 0 and sliprocessing true
 <style scoped>
 .bet-slider {
   width: 100%;

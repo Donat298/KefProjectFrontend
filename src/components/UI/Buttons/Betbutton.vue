@@ -1,7 +1,8 @@
 <template>
   <button
-                class=" submit-button mx-auto"
+                class="submit-button mx-auto"
                 type="submit"
+         
                 style=" color: #15212c;
                 background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
                  margin-right: 8px; height: 50px; min-width: 100px;
@@ -23,9 +24,9 @@ export default {
 <style>
 
 .submit-button {
-  max-height: 48px; 
+  max-height: 46px; 
  padding: 10px;
- border-radius: 5px;
+ border-radius: 8px;
   color: rgb(99, 254, 202); 
   background-color: #15212c;
 }

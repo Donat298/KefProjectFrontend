@@ -93,11 +93,11 @@
     <v-btn
      
       block
-    
+      rounded="lg"
       @click="register(username, email, password, password_confirm)"
       size="large"
       type="submit"
-      style="height: 48px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
+      style="height: 46px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
       :loading="loading"
       :ripple="false"
       class="mb-8"
