@@ -329,7 +329,7 @@ setup(props, context) {
  const isUsdtNetworkMenuOpen = ref(false);
  const isEthNetworkMenuOpen = ref(false);
  
- const checkAuthentication = () => {
+ const checkAuthentication = () => { 
    if (!store.getters.isAuthenticated) {
      router.push('/auth/register');
      return false;
@@ -442,7 +442,7 @@ setup(props, context) {
         ...buttonStyle.value,
         opacity: 1,
       };
-    }, 1000); // 10 seconds
+    }, 60000); 
 
     errorMsg.value = ''; // Clear any previous error messages
   } catch (error) {

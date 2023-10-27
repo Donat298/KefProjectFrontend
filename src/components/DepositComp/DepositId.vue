@@ -1,8 +1,12 @@
 <template>
   <!-- Your existing template code -->
   <div style="margin: 10px; word-break: break-word; white-space: pre-wrap; color: #ffffff;">
-    Be sure to click on the (Made a transaction) button after transferring crypto.
+    Be sure to click on the (Made a transaction) button after transferring crypto!!!
   </div>
+  <div v-if="errorMsg" 
+         class="text-color-white align-center justify-space-between"
+         style="color: red; font-size: 17px; margin: 10px; text-align: center;">{{ errorMsg }}
+    </div>
   <div style="display: flex; flex-shrink: 0;">
     <div style="position: relative; flex-grow: 1; display: flex;">
       <v-btn
