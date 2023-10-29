@@ -123,12 +123,9 @@
 
          </ChoseCurrency>
          
-          <v-btn  rounded="lg" elevation="0"  :ripple="false" @click="$emit('ShowDepositOknoo')" color="black"  style=" 
-font-size: 17px; 
-height: 46px;   
-background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
-<strong>{{ buttonLabel }}   <font-awesome-icon  style="color: #15212c;"  :icon="['fas', 'wallet']" /> </strong>
-</v-btn>
+
+<def2button @click="$emit('ShowDepositOknoo')">{{ buttonLabel }} 
+    <font-awesome-icon  style="color: #15212c;"  :icon="['fas', 'wallet']" /></def2button>
 </div>
 
 
@@ -198,14 +195,9 @@ background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); ">
     </button>
 
     <div style="display: flex; margin-left: auto; align-items: center; height: 64px;">
-    <v-btn rounded="lg" elevation="0" @click="$router.push('/auth/register')" :ripple="false"
-    style="background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-     margin-right: 15px; height: 40px; font-size: 17px;"><strong>Register</strong></v-btn>
 
-     
-    <v-btn rounded="lg" elevation="0" @click="$router.push('/auth/login')"  :ripple="false"
-    style="background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244)); 
-    margin-right: 15px; font-size: 17px; height: 40px;"><strong> Login</strong> </v-btn>
+<Defbutton @click="$router.push('/auth/login')">Login</Defbutton>
+<Defbutton  @click="$router.push('/auth/register')">Register</Defbutton>
 </div>
 
 

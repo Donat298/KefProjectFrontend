@@ -7,8 +7,7 @@
         class="inputbet"
         style="padding: 0px 15px"
         :style="{ borderColor: invalid ? 'red' : '', opacity: processing ? 0.7 : 1 }"
-        type="text"
-        inputmode="numeric"
+        type="number"
         :value="stringValue"
         @input="updateStringValue($event.target.value)"
         @keyup="updateSliderFromInput"
@@ -52,10 +51,13 @@ export default {
   },
   methods: {
     updateNumericValue(value) {
+      if (value === "") {
+        value = null; // Convert empty string to null
+      }
       this.$emit("update:modelValue", value);
     },
     updateStringValue(value) {
-      if (value === "") {
+      if (value === "" || value === ".") {  // Handle empty or dot values
         this.updateNumericValue(null);
       } else if (!isNaN(parseFloat(value))) {
         this.updateNumericValue(parseFloat(value));
@@ -70,6 +72,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style scoped>
 .inputbet {

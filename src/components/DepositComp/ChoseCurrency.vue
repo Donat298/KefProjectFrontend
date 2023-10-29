@@ -3,7 +3,7 @@
           <template v-slot:activator="{ props }">
  
       <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
-        height: 48px;   display: flex; align-items: center; color: #ffffff;">
+        height: 46px;   display: flex; align-items: center; color: #ffffff;">
 
                             
 {{ $store.getters.userDetail[selectedCurrency] }}
