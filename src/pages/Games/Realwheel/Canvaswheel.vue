@@ -32,7 +32,7 @@ export default {
     emits: ['betfal'],
   
     components: {
-        GameAlert,Testanime
+        GameAlert 
     },
   props: {
     betInputValue: {
