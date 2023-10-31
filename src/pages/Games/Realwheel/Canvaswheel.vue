@@ -1,11 +1,7 @@
 <template>
-
-
     <div>
 
-    <div style="margin: 30px;"><h1>Wheel of Fortune Game</h1></div>
-        
-      
+    <div style="margin: 30px;"><h1>Wheel of Fortune Game</h1></div>      
         <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
           <div style="min-width: 40px;"></div>
           <div class="wheel" id="wheel" :style="wheelStyle">
@@ -13,7 +9,7 @@
             <h3 class="half lose">0x</h3>
           </div>
           <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
-            <div style="transform: rotate(90deg);">
+            <div style="transform: rotate(90deg);"> 
               <v-icon icon="mdi-map-marker-outline"></v-icon>
             </div>
           </div>
@@ -22,20 +18,21 @@
           <GameAlert v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
         </div>
     </div>
+
 </template>
 
 
 <script>
 import { useStore } from 'vuex';
-
 import { useApiPrivate } from '@/utils/useApi';
 import { ref, onMounted, onUnmounted, watch } from 'vue'; 
 import { useRouter } from 'vue-router'; 
-import GameAlert from '@/pages/Games/Wheel/GameAlert.vue';
+import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 export default {
     emits: ['betfal'],
+  
     components: {
-        GameAlert,
+        GameAlert,Testanime
     },
   props: {
     betInputValue: {
@@ -66,7 +63,7 @@ export default {
 
     watch(() => props.betButtonPressed, (newValue) => {
     if (newValue) {
-      placeBet(); // Call placeBet when betButtonPressed is true
+      placeBet();
     }
 
 
@@ -106,9 +103,10 @@ export default {
     isProcessing.value = true;
     showAlert.value = false;
 
-    wheelStyle.value = `transform: rotate(0deg); transition: none;`;
+  
 
     setTimeout(async () => {
+      wheelStyle.value = `transform: rotate(0deg); transition: none;`;
       try {
         const balanceFieldsMap = {
           'balanceusdt': 'usdt',

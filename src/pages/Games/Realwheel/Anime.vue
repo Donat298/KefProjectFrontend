@@ -26,7 +26,7 @@
     </div>
       <!-- Content below v-card -->
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
-
+   
         <Canvaswheel @betfal="Betfalse()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"></Canvaswheel>
 
       </div>

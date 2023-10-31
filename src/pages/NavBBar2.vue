@@ -54,10 +54,10 @@
         <span style="color: #ffffff; font-size: 13px;">Menu</span>
     </v-btn>
 
-    <v-btn to="/wheel" elevation="4" class="mx-auto glow-button ma-4"
+    <v-btn to="/realwheel" elevation="4" class="mx-auto glow-button ma-4"
         :ripple="false"
     
-        :color="$route.path === '/wheel' ? '#37556b' : '#2e4659'" 
+        :color="$route.path === '/realwheel' ? '#37556b' : '#2e4659'" 
         style="max-width: calc(33.33% - 10px); min-width: 5px;
      
 

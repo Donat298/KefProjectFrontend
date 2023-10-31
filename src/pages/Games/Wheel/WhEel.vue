@@ -74,7 +74,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'; 
 import { useApiPrivate } from '@/utils/useApi';
-import GameAlert from '@/pages/Games/Wheel/GameAlert.vue';
+import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import store from '@/store'; // Adjust the path as needed
 export default {
   components: {
