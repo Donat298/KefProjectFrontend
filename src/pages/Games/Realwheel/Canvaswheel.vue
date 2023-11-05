@@ -1,27 +1,23 @@
 <template>
-    <div>
-
-   
-        
-        <div style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
-       ">   <div style="margin-top: 30px;"><h1>Wheel of Fortune Game!</h1></div>  
-              <div style="display: flex; justify-content: center; align-items: center;">
-   <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;"></wheelsvg>
+  <div>
+    <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2; display: flex; flex-direction: column;">  
+      <div style="margin-top: 30px;"><h1>Wheel of Fortune Game!</h1></div>  
+      <div style="display: flex; justify-content: center; align-items: center;">
+      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;"></wheelsvg>
 
   
   
 
 
 <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; "></wheelpointersvg>
-</div>
-<div style="min-height: 60px;  ">
-          <GameAlert style=" " v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
-        </div>
-    </div>
+              </div>
 
+
+              <div name="bottomdiv" style="min-height: 60px; margin-top: auto;">
+        <GameAlert style="" v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
+      </div>
     </div>
-    
-    
+  </div>
 </template>
 
 
@@ -96,11 +92,13 @@ export default {
 
     if (betInput.value < 0) {
       errorMsg.value = 'The bet cannot be less than zero.';
+      context.emit("betfal");
       return;
     }
 
     if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
       errorMsg.value = 'Your balance is less than the bet amount';
+      context.emit("betfal");
       return;
     }
 
@@ -172,22 +170,6 @@ export default {
     }, 0);
   };
 
-  const enterListener = (event) => {
-    if (event.key === 'Enter') {
-      if (isProcessing.value) {
-        return;
-      }
-      placeBet();
-    }
-  };
-
-  onMounted(() => {
-    window.addEventListener('keydown', enterListener);
-  });
-
-  onUnmounted(() => {
-    window.removeEventListener('keydown', enterListener);
-  });
 
   return {
     placeBet,

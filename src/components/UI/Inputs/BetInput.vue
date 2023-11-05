@@ -57,9 +57,7 @@ export default {
       this.$emit("update:modelValue", value);
     },
     updateStringValue(value) {
-      if (value === "" || value === ".") {  // Handle empty or dot values
-        this.updateNumericValue(null);
-      } else if (!isNaN(parseFloat(value))) {
+     if (!isNaN(parseFloat(value))) {
         this.updateNumericValue(parseFloat(value));
       }
     },
@@ -72,7 +70,6 @@ export default {
   },
 };
 </script>
-
 
 
 <style scoped>

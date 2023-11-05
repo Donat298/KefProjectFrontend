@@ -8,7 +8,7 @@
         <div class="bet-form">
           <toolip :showTooltip2="showTooltip2" style="  
    " text="The bet cannot be more than your balance.">
-          <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; "> 
+          <v-form ref="betForm" @submit.prevent="placeBet"   style=" align-items: center; "> 
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
@@ -87,12 +87,12 @@ export default {
       this.isBetButtonPressed = true; 
       
     }
-  },
+    },
   },
 };
 </script>
 
-
+Can you do so that if I press enter on my keyboard isBetButtonPressed will call.
 
 <style scoped>
 
