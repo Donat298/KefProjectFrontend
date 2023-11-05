@@ -1,38 +1,42 @@
 <template>
     <div>
 
-    <div style="margin: 30px;"><h1>Wheel of Fortune Game</h1></div>      
-        <div class="whwh" style="display: flex; justify-content: center; align-items: center;">
-          <div style="min-width: 40px;"></div>
-          <div class="wheel" id="wheel" :style="wheelStyle">
-            <h3 class="half win">2x</h3>
-            <h3 class="half lose">0x</h3>
-          </div>
-          <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
-            <div style="transform: rotate(90deg);"> 
-              <v-icon icon="mdi-map-marker-outline"></v-icon>
-            </div>
-          </div>
-        </div>
-        <div style="min-height: 60px; margin-bottom: 20px; margin-top: 30px;">
-          <GameAlert v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
+   
+        
+        <div style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
+       ">   <div style="margin-top: 30px;"><h1>Wheel of Fortune Game!</h1></div>  
+              <div style="display: flex; justify-content: center; align-items: center;">
+   <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;"></wheelsvg>
+
+  
+  
+
+
+<wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; "></wheelpointersvg>
+</div>
+<div style="min-height: 60px;  ">
+          <GameAlert style=" " v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
         </div>
     </div>
 
+    </div>
+    
+    
 </template>
 
 
 <script>
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
-import { ref, onMounted, onUnmounted, watch } from 'vue'; 
-import { useRouter } from 'vue-router'; 
+import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { useRouter } from 'vue-router';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
+import wheelsvg from "@/assets/GameObjects/Originalwheel.vue";
+import wheelpointersvg from "@/assets/GameObjects/Wheelpointer.vue";
 export default {
     emits: ['betfal'],
-  
     components: {
-        GameAlert 
+        GameAlert, wheelsvg, wheelpointersvg
     },
   props: {
     betInputValue: {
@@ -77,7 +81,7 @@ export default {
   };
 
 
-
+  const circleRotation = ref(0);
   const wheelStyle = ref('');
 
 
@@ -106,6 +110,7 @@ export default {
   
 
     setTimeout(async () => {
+      circleRotation.value = 0;
       wheelStyle.value = `transform: rotate(0deg); transition: none;`;
       try {
         const balanceFieldsMap = {
@@ -135,7 +140,7 @@ export default {
         }
 
         wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
-
+        circleRotation.value = rotation;
         setTimeout(() => {
           gameResult.value = {
             won: response.data.message === 'You won!',
@@ -193,6 +198,7 @@ export default {
     showAlert,
     wheelStyle,
     message,
+    circleRotation
   };
 },
 

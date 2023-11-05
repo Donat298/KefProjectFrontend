@@ -6,7 +6,7 @@
        class="bet-div">
        <div style="margin: 20px; font-size: 25px;"><strong>Place your BET!</strong></div>
         <div class="bet-form">
-          <toolip :showTooltip2="showTooltip2" style=" z-index: 1;  
+          <toolip :showTooltip2="showTooltip2" style="  
    " text="The bet cannot be more than your balance.">
           <v-form ref="betForm" @submit.prevent="placeBet" style=" align-items: center; "> 
 
@@ -15,7 +15,7 @@
               <bet-btn  style="width: 100%;" type="submit"
                   :disabled="isBetButtonPressed"
                   :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }"
-                  > 
+                  >  
               </bet-btn> 
 
               
@@ -41,7 +41,7 @@ import store from '@/store'; // Adjust the path as needed
 
 export default {
   components: {
-    toolip, Canvaswheel
+    toolip, Canvaswheel,
   },
   data() {
     return {

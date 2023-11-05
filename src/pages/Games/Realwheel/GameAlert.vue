@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div >
       <v-alert
         v-if="gameResult && gameResult.won && !errorMsg"
         border="start"
