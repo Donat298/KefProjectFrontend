@@ -35,7 +35,9 @@ export default {
   const errorMsg = ref('');
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024; // 1MB
   // Initialize userAvatar with the value from the Vuex store
-  const userAvatar = ref(store.state.avatar);
+  //const userAvatar = ref(store.state.avatar);
+
+  const userAvatar = !store.state.avatar ? require('@/assets/kefu.svg'): store.state.avatar;
 
   const openFileInput = () => {
     const fileInput = document.querySelector('input[type="file"]');
