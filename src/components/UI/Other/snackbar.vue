@@ -100,7 +100,7 @@ export default {
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
-  box-shadow: 6px 6px 0px rgb(127, 229, 255);
+  box-shadow: 6px 6px 0px rgb(99, 254, 202);
 
   display: flex;
   align-items: center;

@@ -1,15 +1,14 @@
 <template>
   <div>
-    <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2; display: flex; flex-direction: column;">  
+    <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
+     display: flex; flex-direction: column;">  
       <div style="margin-top: 30px;"><h1>Wheel of Fortune Game!</h1></div>  
-      <div style="display: flex; justify-content: center; align-items: center;">
-      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;"></wheelsvg>
+      <div style="display: flex; justify-content: center; align-items: center; margin: 0px 30px;">
 
-  
-  
-
-
-<wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; "></wheelpointersvg>
+      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;">
+      </wheelsvg>
+        <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
+        </wheelpointersvg>
               </div>
 
 

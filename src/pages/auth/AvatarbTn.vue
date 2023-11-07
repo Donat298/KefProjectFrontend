@@ -2,7 +2,9 @@
 <template>
   <div style="display: flex; align-items: center; justify-content: center;">
     <div style="width: 48px;"></div>
-    <img :src="userAvatar" alt="User Avatar" style="height: 70px; width: 70px; border-radius: 50%;">
+    <img :src="userAvatar" alt="User Avatar" style="height: 70px; width: 70px; border-radius: 50%; 
+     box-shadow: 0px 0px 30px 0px rgb(127, 229, 255);
+ ">
     <input type="file" ref="fileInput" @change="handleAvatarUpload" style="display: none" accept="image/*">
     
 
@@ -13,9 +15,9 @@
       <font-awesome-icon   style="color: #ffffff; height: 20px;"  :icon="['fas', 'pen']" />
     </button>
      
- 
+  
 
-  </div>
+  </div> 
   <div v-if="errorMsg"
   class="text-subtitle-1 text-color-white align-center justify-space-between"
   style="color: red; 
@@ -37,7 +39,7 @@ export default {
   // Initialize userAvatar with the value from the Vuex store
   //const userAvatar = ref(store.state.avatar);
 
-  const userAvatar = !store.state.avatar ? require('@/assets/kefu.svg'): store.state.avatar;
+  const userAvatar = ref(!store.state.avatar ? require('@/assets/Kefdeflogo.svg') : store.state.avatar);
 
   const openFileInput = () => {
     const fileInput = document.querySelector('input[type="file"]');
