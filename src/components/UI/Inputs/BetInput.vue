@@ -34,7 +34,7 @@ export default {
   computed: {
     stringValue: {
       get() {
-        return isNaN(this.modelValue) || this.modelValue === null ? "" : this.modelValue.toString();
+      return isNaN(this.modelValue) || this.modelValue === null ? "0" : this.modelValue.toString();
       },
       set(value) {
         this.updateNumericValue(value);
@@ -70,7 +70,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .inputbet {

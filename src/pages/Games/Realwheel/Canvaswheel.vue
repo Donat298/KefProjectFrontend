@@ -2,17 +2,18 @@
   <div>
     <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
      display: flex; flex-direction: column;">  
-      <div style="margin-top: 30px;"><h1>Wheel of Fortune Game!</h1></div>  
-      <div style="display: flex; justify-content: center; align-items: center; margin: 0px 30px;">
+      <div :style="{ margin: displaywidth ? '30px' : '10px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+        <h1 v-else>Wheel Game!</h1></div>  
+      <div style="display: flex; justify-content: center; align-items: center; ">
 
-      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 30px 10px; position: relative;">
+      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
         <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
         </wheelpointersvg>
               </div>
 
 
-              <div name="bottomdiv" style="min-height: 60px; margin-top: auto;">
+              <div  class="bottomdiv">
         <GameAlert style="" v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
       </div>
     </div>
@@ -33,16 +34,19 @@ export default {
     components: {
         GameAlert, wheelsvg, wheelpointersvg
     },
+  
   props: {
     betInputValue: {
       type: Number,
       required: true
     },
     betButtonPressed: {
-      // Define the prop for button press
       type: Boolean,
       default: false,
     },
+    displaywidth: {
+      type: Boolean,
+    }
   },
   setup(props, context) {
    
@@ -56,18 +60,18 @@ export default {
   const message = ref('');
   const router = useRouter();
 
-  watch(() => props.betInputValue, (newValue) => {
+    watch(() => props.betInputValue, (newValue) => {
       betInput.value = newValue;
     });
 
     watch(() => props.betButtonPressed, (newValue) => {
     if (newValue) {
       placeBet();
+
     }
+   });
 
-
-
-  });
+   
   const roundBalance = (value) => {
     if (value > 100000000) {
       return 100000000;
@@ -78,26 +82,34 @@ export default {
 
   const circleRotation = ref(0);
   const wheelStyle = ref('');
-
-
-
-  const placeBet = async () => {
-    errorMsg.value = '';
-    store.commit('setGameInProgress', true);
+  const handleCommonChecks = () => {
     if (!store.getters.isAuthenticated) {
       router.push('/auth/register');
-      return;
+      return false;
     }
 
     if (betInput.value < 0) {
       errorMsg.value = 'The bet cannot be less than zero.';
       context.emit("betfal");
-      return;
+      return false;
     }
 
     if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
       errorMsg.value = 'Your balance is less than the bet amount';
       context.emit("betfal");
+      return false;
+    }
+
+    return true;
+  };
+
+
+  const placeBet = async () => {
+    errorMsg.value = '';
+    store.commit('setGameInProgress', true);
+
+     
+    if (!handleCommonChecks()) {
       return;
     }
 
@@ -106,7 +118,7 @@ export default {
 
   
 
-    setTimeout(async () => {
+
       circleRotation.value = 0;
       wheelStyle.value = `transform: rotate(0deg); transition: none;`;
       try {
@@ -142,7 +154,8 @@ export default {
           gameResult.value = {
             won: response.data.message === 'You won!',
             balance: roundBalance(response.data.balance)
-          };
+          }; 
+        
 
           store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
           isProcessing.value = false;
@@ -166,7 +179,7 @@ export default {
         showAlert.value = true;
         context.emit("betfal");
       }
-    }, 0);
+   
   };
 
 
@@ -188,8 +201,21 @@ export default {
 }
 </script>
 
-
 <style scoped>
+@media (max-width: 800px) {
+  .bottomdiv {
+    min-height: none !important;
+    margin-top: 30px;
+  }
+
+}
+@media (min-width: 801px) {
+  .bottomdiv {
+  min-height: 60px;
+  margin-top: 30px;
+  }
+
+}
 
 .wheel {
   width: 200px;

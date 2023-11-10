@@ -1,4 +1,5 @@
 <template>
+
   <div style=" width: 100%;  "  :style="{ 'margin-top': isWideScreen ? '40px' : '5px' }">
     <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
       <!-- v-card -->
@@ -12,37 +13,39 @@
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
-              <bet-btn  style="width: 100%;" type="submit"
+              <bet-btn style="width: 100%;" type="submit"
                   :disabled="isBetButtonPressed"
-                  :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }"
-                  >
-              </bet-btn> 
-
-              
-          </v-form>  
+                  :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }">
+              </bet-btn>
+            </v-form>  
         </toolip>         
         </div>
 
     </div>
-      <!-- Content below v-card -->
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
-        <Canvaswheel @betfal="Betfalse()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
-        :displaywidth="isWideScreen"></Canvaswheel>
+        <CanvasMines @betfal="Betfalse()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
+        :displaywidth="isWideScreen"></CanvasMines>
 
       </div>
     </div>
   </div>
-</template> 
+</template>
+
+
+
+
+
+
 
 <script>
 import toolip from '@/components/UI/Other/toolip.vue';
-import Canvaswheel from '@/pages/Games/Realwheel/Canvaswheel.vue';
+import CanvasMines from '@/pages/Games/Mines/CanvasMines.vue';
 import store from '@/store'; // Adjust the path as needed
 
 export default {
   components: {
-    toolip, Canvaswheel,
+    toolip, CanvasMines,
   },
   data() {
     return {
@@ -105,10 +108,11 @@ export default {
 </script>
 
 
-<style scoped>
 
+
+<style scoped>
 @media (max-width: 800px) {
-  .bet-div {
+  .bet-div {  
     width: 100% !important;
     order: 2; /* Change the order to make it appear below */
     border-radius: 0px 0px 7px 7px !important;
@@ -134,58 +138,4 @@ export default {
 
 
 }
-
-.balance-card {
-  height: 70px;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-}
-.text-center {
-  color: #ffffff; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-}
-.balance-icon {
-  width: 25px; 
-  margin-left: 5px;
-}
-.bet-card {
-  display: flex; 
-  color: #ffffff; 
-
-
-  flex-direction: column;
-  
-  justify-content: center; 
-  align-items: center;
-  
-}
-
-.inputbet {
-  width: 100%;
-  height: 48px;
-  background-color: #15212c;
-  color: #ffffff;
-  border-radius: 5px;
-  border: 2px solid #2e4659; /* Add a default border color */
-}
-.inputbet:focus {
-  border-color: #2e4659; /* Set the border color to green when focused */
-  outline: none; /* Optionally, remove the default outline */
-}
-.bet-form {
-  width: 100%; 
-  
-  min-height: 100px; 
-  background-color: rgba(255, 228, 196, 0); 
-  display: flex; 
-  align-items: center;  
-  justify-content: center;
-}
-
-
-/* Hide the number input spinners */
-
 </style>

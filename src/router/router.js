@@ -3,7 +3,7 @@ import MyMain from "@/pages/MyMain";
 import {createRouter, createWebHistory} from "vue-router";
 import Wheel from "@/pages/Games/Wheel/WhEel.vue";
 import BalanceManag from "@/pages/Games/BalanceManag.vue";
-import Mines from "@/pages/Games/MinesTest/MiNes.vue";
+import Mines from "@/pages/Games/Mines/MiNes.vue";
 import login from "@/pages/auth/LoginView";
 import register from "@/pages/auth/RegisterView";
 import ChAt from "@/pages/Chats/ChAt.vue";
