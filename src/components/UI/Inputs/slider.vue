@@ -69,8 +69,7 @@ export default {
   },
 };
 </script>
-
-Can you do it, if computedAmount is NaN so  computedSliderValue is 0 and sliprocessing true
+slivalue
 <style scoped>
 .bet-slider {
   width: 100%;

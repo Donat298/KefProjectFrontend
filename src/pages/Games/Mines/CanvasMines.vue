@@ -13,12 +13,20 @@
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(5) ? 0.5 : 1 }" @click="selectsectormines(5)">5</button>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(6) ? 0.5 : 1 }" @click="selectsectormines(6)">6</button>
       </div>
+      <div>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(7) ? 0.5 : 1 }" @click="selectsectormines(7)">7</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
+      </div>
   
   <div v-if="errorMsg"
          class="text-color-white align-center justify-space-between"
          style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
     </div>
- <h4>{{ profit }}x</h4> 
+    <div style="min-height: 60px;">
+ <h4 v-if="betButtonPressed"> {{ profit }}x</h4> 
+ <h4 v-if="betButtonPressed" >{{ betAmountwill }}</h4>
+</div>
   </div>
     </div>
   </div>
@@ -54,11 +62,12 @@ export default {
     const store = useStore();
     const axiosPrivateInstance = useApiPrivate(store);  
     const betInput = ref(props.betInputValue); 
-    const sectorsnum = ref(6);
+    const sectorsnum = ref(9);
     const mines = ref(1);
     const errorMsg = ref('');
     const selectedButtons = ref([]);
-    const profit = ref(1.00);
+    const profit = ref("1.00"); 
+    const betAmountwill = ref(props.betInputValue);
    
   const roundBalance = (value) => {
     if (value > 100000000) {
@@ -68,16 +77,38 @@ export default {
   };
   const selectsectormines = async (buttonNumber) => {
     if (props.betButtonPressed && !selectedButtons.value.includes(buttonNumber)) {
-      // Button is not selected, add it to the array
-      selectedButtons.value.push(buttonNumber);
+     
       
       try {
         const response = await axiosPrivateInstance.put('/games/mines/sel', {
           selectedsector: buttonNumber,
         });
-
-        // Handle the response if needed
+  
+        if (response.data.message == "Winmines") {
+        selectedButtons.value.push(buttonNumber);
+        profit.value = parseFloat(response.data.profit).toFixed(2);
+        betAmountwill.value = parseFloat(response.data.profit * betInput.value).toFixed(2);
         console.log(response);
+        } else if (response.data.message == "Losemines") {
+          betAmountwill.value = props.betInputValue;
+          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          selectedButtons.value = newSelectedButtons;
+          errorMsg.value = 'User lose'
+          context.emit("betfal");
+        } else if (response.data.message == "WinF") {
+          betAmountwill.value = props.betInputValue;
+          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          selectedButtons.value = newSelectedButtons;
+          errorMsg.value = 'User won'
+          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+          context.emit("betfal");
+        }
+
+
+
+
+
+
       } catch (error) {
         console.error(error);
         // Handle errors if needed
@@ -87,7 +118,9 @@ export default {
   
   watch(() => props.betInputValue, (newValue) => {
       betInput.value = newValue;
+      betAmountwill.value = newValue;
     });
+
    watch(() => props.betButtonPressed, (newValue) => {
       if (newValue) {
          placeBet();
@@ -104,7 +137,11 @@ export default {
       context.emit("betfal");
       return false;
     }
-
+    if (betInput.value == 0) {
+      errorMsg.value = 'Invalid bet amount.';
+      context.emit("betfal");
+      return false;
+    }
     if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
       errorMsg.value = 'Your balance is less than the bet amount';
       context.emit("betfal");
@@ -116,7 +153,8 @@ export default {
 
    const placeBet = async () => {
     errorMsg.value = '';
-
+    profit.value = "1.00"; 
+    selectedButtons.value = []; 
   
     if (!handleCommonChecks()) {
       return;
@@ -131,19 +169,19 @@ export default {
         };
 
         const currency = balanceFieldsMap[store.getters.selectedCurrency];
-        
+        console.log(currency);
         const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
         store.dispatch('updateBalance', { currency: currency, amount: newAmount });
 
         
-        const response = await axiosPrivateInstance.put('/games/mines/bet', {
+        const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
           betAmount: betInput.value,
           currency: currency,
           sectorsnum: sectorsnum.value,
           mines: mines.value,
         });
-
-
+        console.log(responsebet);
+   
       } catch (error) {
         console.log(error);
 
@@ -161,19 +199,12 @@ export default {
     errorMsg,
     selectedButtons,
     selectsectormines,
-    profit
+    profit,
+    betAmountwill
   };
   } ,
 }
 </script>
-
-
-
-
-
-
-
-
 
 
 

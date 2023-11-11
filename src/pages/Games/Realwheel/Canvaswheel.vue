@@ -2,7 +2,7 @@
   <div>
     <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
      display: flex; flex-direction: column;">  
-      <div :style="{ margin: displaywidth ? '30px' : '10px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+      <div :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
         <h1 v-else>Wheel Game!</h1></div>  
       <div style="display: flex; justify-content: center; align-items: center; ">
 
@@ -117,7 +117,7 @@ export default {
     showAlert.value = false;
 
   
-
+ 
 
       circleRotation.value = 0;
       wheelStyle.value = `transform: rotate(0deg); transition: none;`;
@@ -205,7 +205,7 @@ export default {
 @media (max-width: 800px) {
   .bottomdiv {
     min-height: none !important;
-    margin-top: 30px;
+    margin-top: 20px;
   }
 
 }
