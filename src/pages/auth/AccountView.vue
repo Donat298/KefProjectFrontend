@@ -144,11 +144,15 @@ export default {
       const day = ("0" + date.getDate()).slice(-2);
       return `${year}-${month}-${day}`;
     },
-    onMouseDown() {
+    onMouseDown(event) {
+      if (event.button === 0) {
       this.mousePressed = true;
+      }
     },
-    onMouseUpCheck() {
+    onMouseUpCheck(event) {
+      if (event.button === 0) {
       this.mousePressed = false;
+      }
     },
     onMouseUp() {
       if (this.mousePressed) {

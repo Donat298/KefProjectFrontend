@@ -107,7 +107,7 @@
     ">   
                     <div  style="justify-self: start; display: flex;  position:relative; " >
           
-          <button  style="color: #ffffff;  background-color: #29384500;    padding: 0 1vw;" 
+          <button  style="color: #ffffff;  background-color: #29384500;    padding: 0 10px;" 
           @click="$router.push('/')">    <v-img    style="min-height: 54px; max-width: 96px;
          background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
   
@@ -189,7 +189,7 @@
 
     white-space: nowrap; 
 ">
-    <button style="color: #ffffff; background-color: #15212c00; padding: 0 1vw;"  @click="$router.push('/')">
+    <button style="color: #ffffff; background-color: #15212c00; padding: 0 10px;"  @click="$router.push('/')">
       <v-img     rounded=""  style="min-height: 54px; max-width: 96px;
          background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')"/>
     </button>

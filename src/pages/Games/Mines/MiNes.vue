@@ -13,18 +13,22 @@
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
-              <bet-btn style="width: 100%;" type="submit"
-                  :disabled="isBetButtonPressed"
-                  :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }">
+
+
+              <bet-btn v-if="!isBetButtonPressed" style="width: 100%;" >BET
+              </bet-btn>
+              <bet-btn @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
             </v-form>  
         </toolip>         
-        </div>
+        </div> 
 
     </div>
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
-        <CanvasMines @betfal="Betfalse()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
+        <CanvasMines  @newbetamount="updateBetInput" @betfal="Betfalse()" @cashoutfal="Cashfalse()"
+        :cashoutButtonPressed="isCashoutButtonPressed"
+         @bettrue="placeBet()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
 
       </div>
@@ -53,6 +57,7 @@ export default {
       isInputInvalid: false,
       showTooltip2: false,
       isBetButtonPressed: false, 
+      isCashoutButtonPressed: false,
       isWideScreen: false, 
     };
   },
@@ -74,7 +79,7 @@ export default {
   },
   methods: {
     checkInputValidity(value) {
-      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
+      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value && !this.isBetButtonPressed) {
         this.isInputInvalid = true;
         this.showTooltip2 = true;
       } else {
@@ -86,12 +91,20 @@ export default {
       this.isBetButtonPressed = false; 
       this.checkInputValidity(this.betInput);
     },
+    Cashfalse() {
+      this.isCashoutButtonPressed = false; 
+      this.checkInputValidity(this.betInput);
+    },
     placeBet() {
     // Other processing logic here
     if (!this.isBetButtonPressed) {
       this.isBetButtonPressed = true; 
       
     }
+    },
+    updateBetInput(newBetAmount) {
+      this.betInput = newBetAmount;
+      this.checkInputValidity(newBetAmount);
     },
     checkScreenWidth() {
       this.isWideScreen = window.innerWidth > 800; // Check screen width
@@ -106,7 +119,7 @@ export default {
   },
 };
 </script>
-
+How make so that watch will be work only if isBetButtonPressed is false?
 
 
 

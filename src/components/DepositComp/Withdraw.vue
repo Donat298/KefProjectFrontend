@@ -197,12 +197,13 @@
 
    
   </div>
-  <div style="margin: 10px; height: 40px; display: flex; align-items: center; justify-content: center;">
+  <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
     <div v-if="errorMsg"
          class="text-color-white align-center justify-space-between"
          style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
     </div>
   </div>
+  
   
 </toolip>
 
@@ -225,7 +226,15 @@
    </v-btn>
 
   
-   
+   <div   
+   style="border-radius: 5px; word-break: break-word; white-space: pre-wrap; color: #ffffff;
+    font-size: 12px;padding: 5px; margin-top: 8%; text-align: center; background-color: #15212c;">
+
+    <span style="color: rgba(240, 255, 255, 0.294);"> If you have any questions please contact us by email.
+ 
+ supercryptomegagames@gmail.com</span>
+    
+  </div>
 
 </template>
 

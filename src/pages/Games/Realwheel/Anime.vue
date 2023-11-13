@@ -15,7 +15,7 @@
               <bet-btn  style="width: 100%;" type="submit"
                   :disabled="isBetButtonPressed"
                   :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }"
-                  >
+                  >Bet
               </bet-btn> 
 
               
@@ -71,7 +71,7 @@ export default {
   },
   methods: {
     checkInputValidity(value) {
-      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value) {
+      if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value && !this.isBetButtonPressed) {
         this.isInputInvalid = true;
         this.showTooltip2 = true;
       } else {

@@ -8,7 +8,7 @@
                  margin-right: 8px; height: 50px; min-width: 100px;
                  font-size: 17px;"
            
-              ><strong>BET</strong>
+              ><strong><slot></slot></strong>
                 <font-awesome-icon style="color: #15212c; margin-left: 5px;" :icon="['fas', 'check']" />
               </button>
 

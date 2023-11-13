@@ -84,11 +84,15 @@ export default {
       // Store the selected component in localStorage
       localStorage.setItem('selectedComponent', componentName);
     },
-    onMouseDown() {
+    onMouseDown(event) {
+      if (event.button === 0) {
       this.mousePressed = true;
+      }
     },
-    onMouseUpCheck() {
+    onMouseUpCheck(event) {
+      if (event.button === 0) {
       this.mousePressed = false;
+      }
     },
     onMouseUp() {
       if (this.mousePressed) {

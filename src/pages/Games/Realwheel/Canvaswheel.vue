@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div name="thisdiv" style="margin-bottom: 20px; width: 100%; position: relative; aspect-ratio: 3/2;
+
+    <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
      display: flex; flex-direction: column;">  
       <div :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
         <h1 v-else>Wheel Game!</h1></div>  
@@ -14,10 +14,10 @@
 
 
               <div  class="bottomdiv">
-        <GameAlert style="" v-if="showAlert" :gameResult="gameResult" :errorMsg="errorMsg" />
+        <GameAlert v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
     </div>
-  </div>
+
 </template>
 
 
@@ -53,7 +53,7 @@ export default {
   const store = useStore();
   const axiosPrivateInstance = useApiPrivate(store);
   const betInput = ref(props.betInputValue); 
-  const gameResult = ref(null);
+  const GameResult = ref(null);
   const errorMsg = ref('');
   const showAlert = ref(true);
   const isProcessing = ref(false);
@@ -151,11 +151,18 @@ export default {
         wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
         circleRotation.value = rotation;
         setTimeout(() => {
-          gameResult.value = {
-            won: response.data.message === 'You won!',
-            balance: roundBalance(response.data.balance)
-          }; 
-        
+       
+          if (response.data.message === 'You won!') {
+            GameResult.value = {
+                won: true,
+                wonMsg: betInput.value * 2,
+                currency: currency
+            };
+          } else {
+            GameResult.value = {
+                lose: true,
+            };
+          }
 
           store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
           isProcessing.value = false;
@@ -186,7 +193,7 @@ export default {
   return {
     placeBet,
     betInput,
-    gameResult,
+    GameResult,
     errorMsg,
     isProcessing,
     showAlert,
@@ -206,13 +213,15 @@ export default {
   .bottomdiv {
     min-height: none !important;
     margin-top: 20px;
+    margin-bottom: 10px;
   }
 
 }
-@media (min-width: 801px) {
+@media (min-width: 800px) {
   .bottomdiv {
   min-height: 60px;
   margin-top: 30px;
+  margin-bottom: 20px;
   }
 
 }

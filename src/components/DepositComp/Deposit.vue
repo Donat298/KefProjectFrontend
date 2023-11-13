@@ -151,10 +151,10 @@
     <div class="mx-auto" style="display: flex; padding: 10px; overflow-x: auto;">
       <v-card elevation="5" class="pa-2 pl-4 mx-auto" style="background-color: #2e4659;
        color: #ffffff; display: flex; height: 48px;">
-        <v-card elevation="0" style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center;
-         justify-content: center; font-size: 17px;">
-          {{ selectedCurrencyAddress }}
-        </v-card>
+      <v-card elevation="0" class="unselectable" style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center;
+  justify-content: center; font-size: 17px;">
+  {{ selectedCurrencyAddress }}
+</v-card>
         <button @click="copyAddress" :disabled="showTooltip" 
         class="copied-button ml-2" :class="{ 'copied-icon': showTooltip }"
          :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }" style="min-width: 32px;
@@ -166,7 +166,7 @@
       </v-card>
     </div>
     <!-- Deposit ID (Assuming it's a custom component) -->
-    <DepositId></DepositId>
+    <DepositId :copyadresspressed="copyadresspressed"></DepositId>
   </div>
 </template>
 
@@ -184,7 +184,7 @@ export default {
     const store = useStore();
     const selectedCurrency = ref(localStorage.getItem('selectedCurrency') || 'balanceusdt');
     const showTooltip = ref(false);
-  
+    const copyadresspressed = ref(false);
     const selectedCurrencyName = computed(() => {
       switch (selectedCurrency.value) {
         case 'balanceusdt':
@@ -252,7 +252,7 @@ const selectedETHAddressName = computed(() => {
     // Function to copy the address to the clipboard
     const copyAddress = () => {
       const address = selectedCurrencyAddress.value;
-
+      copyadresspressed.value = true;
       // Create a temporary text area element to hold the text to copy
       const textArea = document.createElement('textarea');
       textArea.value = address;
@@ -267,13 +267,16 @@ const selectedETHAddressName = computed(() => {
 
       // Show the copied tooltip
       showCopiedTooltip();
+    
     };
 
     // Function to show the copied tooltip
     const showCopiedTooltip = () => {
+      
         showTooltip.value = true;
         setTimeout(() => {
           showTooltip.value = false;
+          copyadresspressed.value = false;
         }, 1000); // Hide the tooltip after 1 second
       };
 
@@ -373,6 +376,7 @@ const selectedETHAddressName = computed(() => {
       selectETHAddress,
       selectedUSDTAddressName,
       selectedETHAddressName,
+      copyadresspressed,
     };
   },
 };
@@ -380,7 +384,9 @@ const selectedETHAddressName = computed(() => {
 
 
 <style>
-
+ .unselectable {
+    user-select: none;
+  }
 </style>
 
 
