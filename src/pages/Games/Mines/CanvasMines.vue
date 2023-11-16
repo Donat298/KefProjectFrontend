@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
+    
+
+ 
+    <div  name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
      display: flex; flex-direction: column;"> 
-     <div style="margin: auto;">
+
+<div v-if="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+      <vproGressMini style="max-height: 66px; max-width: 118px;"/>  
+    </div>
+     <div v-if="!isLoading" style="margin: auto;">
       <div>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(2) ? 0.5 : 1 }" @click="selectsectormines(2)">2</button>
@@ -25,13 +31,15 @@
       </div>
     <div style="min-height: 60px;">
  <h4 v-if="betButtonPressed"> {{ profit }}x</h4> 
- <h4 v-if="betButtonPressed" >{{ betAmountwill }}</h4>
+ <h4 v-if="betButtonPressed" >{{ betAmountwill }} </h4>
+
 
 </div>
 
   </div>
+
     </div>
-  </div>
+  
 </template>
 
 
@@ -41,11 +49,11 @@ import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
 import { ref, watch } from 'vue';
-
+import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
-    emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal'],
+    emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled'],
     components: {
-      GameAlert
+      GameAlert, vproGressMini
     },
   
   props: {
@@ -67,6 +75,7 @@ export default {
   },
   setup(props, context) {
     const store = useStore();
+    const isLoading = ref(true);
     const axiosPrivateInstance = useApiPrivate(store);  
     const betInput = ref(props.betInputValue); 
     const sectorsnum = ref(9);
@@ -77,6 +86,7 @@ export default {
     const profit = ref("1.00"); 
     const betAmountwill = ref(props.betInputValue);
     const countinuemines = ref(false);
+    const cashdisabled = ref(true);
   const roundBalance = (value) => {
     if (value > 100000000) {
       return 100000000;
@@ -85,24 +95,32 @@ export default {
   };
 
   const beforeCreate = async () => {
-      try {
+    try {
         // Send an initial request before the component is created
         const response = await axiosPrivateInstance.get('/games/mines/get');
         console.log(response.data.profit, response.data.betAmount, response.data.selectednum);
         console.log(betAmountwill.value);
         context.emit("newbetamount", response.data.betAmount);
+
         selectedButtons.value.push(...response.data.selectednum);
         profit.value = parseFloat(response.data.profit).toFixed(2);
         betAmountwill.value = parseFloat(response.data.profit * response.data.betAmount).toFixed(2);
         countinuemines.value = true;
         context.emit("bettrue");
-      } catch (error) {
+        if (response.data.selectednum.length === 0) {
+            cashdisabled.value = true;
+            context.emit("cashdisabled", cashdisabled.value);
+        }
+    } catch (error) {
         console.error(error);
         // Handle errors if needed
-      }
-    };
+    } finally {
+        // This block will always execute, regardless of whether there was an error or not
+        isLoading.value = false;
+    }
+};
 
-    beforeCreate();
+beforeCreate();
 
 
   const selectsectormines = async (buttonNumber) => {
@@ -139,8 +157,8 @@ export default {
           store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
           context.emit("betfal");
         }
-
-
+        cashdisabled.value = false;
+        context.emit("cashdisabled", cashdisabled.value);
 
 
 
@@ -152,7 +170,7 @@ export default {
     }
   };
   watch(() => props.cashoutButtonPressed, (newValue) => {
-    console.log("cashout1");
+
     console.log(newValue);
     console.log(props.cashoutButtonPressed);
       if (newValue) {
@@ -202,16 +220,18 @@ export default {
   };
 
    const placeBet = async () => {
-    GameResult.value = null;
-    errorMsg.value = '';
-    profit.value = "1.00"; 
-    selectedButtons.value = []; 
+   
   
     if (!handleCommonChecks()) {
       return;
     }
       try {
-    
+        GameResult.value = null;
+        errorMsg.value = '';
+        profit.value = "1.00"; 
+        selectedButtons.value = []; 
+        cashdisabled.value = true;
+        context.emit("cashdisabled", cashdisabled.value);
         const balanceFieldsMap = {
           'balanceusdt': 'usdt',
           'balanceeur': 'eur',
@@ -246,6 +266,8 @@ export default {
   };
 
   const cashOut = async () => {
+    console.log("cashout");
+    context.emit("cashoutfal");
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       if (response.data.message == "WinF") {
@@ -259,7 +281,7 @@ export default {
           };
           store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
           console.log(response.data.winamount);
-          context.emit("cashoutfal");
+        
           context.emit("betfal");
           
         }
@@ -278,6 +300,8 @@ export default {
     selectsectormines,
     profit,
     betAmountwill,
+    cashdisabled,
+    isLoading
   };
   } ,
 }

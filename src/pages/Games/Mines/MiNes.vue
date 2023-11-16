@@ -15,18 +15,22 @@
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
 
 
-              <bet-btn v-if="!isBetButtonPressed" style="width: 100%;" >BET
+              <bet-btn  v-if="!isBetButtonPressed" style="width: 100%;"  >BET
               </bet-btn>
-              <bet-btn @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
-              </bet-btn>
+           
             </v-form>  
+        
+            <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
+             @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
+              </bet-btn>
+   
         </toolip>         
         </div> 
 
     </div>
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
-        <CanvasMines  @newbetamount="updateBetInput" @betfal="Betfalse()" @cashoutfal="Cashfalse()"
+        <CanvasMines  @newbetamount="updateBetInput" @cashdisabled="cashdisabled" @betfal="Betfalse()" @cashoutfal="Cashfalse()"
         :cashoutButtonPressed="isCashoutButtonPressed"
          @bettrue="placeBet()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
@@ -57,6 +61,7 @@ export default {
       isInputInvalid: false,
       showTooltip2: false,
       isBetButtonPressed: false, 
+      CashButtonDisabled: false,
       isCashoutButtonPressed: false,
       isWideScreen: false, 
     };
@@ -95,11 +100,16 @@ export default {
       this.isCashoutButtonPressed = false; 
       this.checkInputValidity(this.betInput);
     },
+    cashdisabled(tof) {
+        this.CashButtonDisabled = tof;     
+    },
+   
     placeBet() {
     // Other processing logic here
     if (!this.isBetButtonPressed) {
       this.isBetButtonPressed = true; 
-      
+      this.isCashoutButtonPressed = false;
+
     }
     },
     updateBetInput(newBetAmount) {

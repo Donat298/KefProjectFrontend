@@ -6,7 +6,7 @@
         <h1 v-else>Wheel Game!</h1></div>  
       <div style="display: flex; justify-content: center; align-items: center; ">
 
-      <wheelsvg :style="wheelStyle" style="max-width: 400px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
+      <wheelsvg :style="wheelStyle" style="max-width: 360px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
         <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
         </wheelpointersvg>
@@ -212,7 +212,7 @@ export default {
 @media (max-width: 800px) {
   .bottomdiv {
     min-height: none !important;
-    margin-top: 20px;
+    margin-top: auto;
     margin-bottom: 10px;
   }
 
@@ -220,7 +220,7 @@ export default {
 @media (min-width: 800px) {
   .bottomdiv {
   min-height: 60px;
-  margin-top: 30px;
+  margin-top: auto;
   margin-bottom: 20px;
   }
 
