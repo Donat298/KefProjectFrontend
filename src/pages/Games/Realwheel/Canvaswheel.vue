@@ -2,18 +2,22 @@
 
     <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
      display: flex; flex-direction: column;">  
-      <div :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
-        <h1 v-else>Wheel Game!</h1></div>  
-      <div style="display: flex; justify-content: center; align-items: center; ">
 
+
+      <div :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+        <h1 v-else>Wheel Game!</h1>
+      </div>  
+
+
+      <div style="display: flex; justify-content: center; align-items: center; ">
       <wheelsvg :style="wheelStyle" style="max-width: 360px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
-        <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
-        </wheelpointersvg>
-              </div>
+      <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
+      </wheelpointersvg>
+      </div>
 
 
-              <div  class="bottomdiv">
+      <div  class="bottomdiv">
         <GameAlert v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
     </div>

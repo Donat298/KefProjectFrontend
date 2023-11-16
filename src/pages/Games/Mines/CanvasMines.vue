@@ -8,7 +8,10 @@
 <div v-if="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
       <vproGressMini style="max-height: 66px; max-width: 118px;"/>  
     </div>
+
+    
      <div v-if="!isLoading" style="margin: auto;">
+  
       <div>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(2) ? 0.5 : 1 }" @click="selectsectormines(2)">2</button>
@@ -24,22 +27,22 @@
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
       </div>
-  
-
-    <div  class="bottomdiv">
-        <GameAlert style="" :GameResult="GameResult" :errorMsg="errorMsg" />
-      </div>
-    <div style="min-height: 60px;">
- <h4 v-if="betButtonPressed"> {{ profit }}x</h4> 
- <h4 v-if="betButtonPressed" >{{ betAmountwill }} </h4>
-
-
-</div>
-
+    <div style="min-height: 50px;">
+ <h4> {{ profit }}x</h4> 
+ <h4 >{{ betAmountwill }} </h4>
   </div>
 
+
+
+
+
+  </div>
+  <div v-if="!isLoading" class="bottomdiv">
+        <GameAlert style="" :GameResult="GameResult" :errorMsg="errorMsg" />
+      </div>
+
     </div>
-  
+ 
 </template>
 
 
@@ -131,7 +134,6 @@ beforeCreate();
         const response = await axiosPrivateInstance.put('/games/mines/sel', {
           selectedsector: buttonNumber,
         });
-        countinuemines.value = false;
         if (response.data.message == "Winmines") {
         selectedButtons.value.push(buttonNumber);
         profit.value = parseFloat(response.data.profit).toFixed(2);
@@ -270,6 +272,7 @@ beforeCreate();
     context.emit("cashoutfal");
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
+      countinuemines.value = false;
       if (response.data.message == "WinF") {
           betAmountwill.value = props.betInputValue;
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
@@ -318,16 +321,15 @@ beforeCreate();
 @media (max-width: 800px) {
   .bottomdiv {
     min-height: none !important;
-    margin-top: 20px;
+    margin-top: auto;
     margin-bottom: 10px;
-    
   }
 
 }
 @media (min-width: 800px) {
   .bottomdiv {
-  min-height: 60px;
-  margin-top: 30px;
+    min-height: 60px;
+  margin-top: auto;
   margin-bottom: 20px;
   }
 
