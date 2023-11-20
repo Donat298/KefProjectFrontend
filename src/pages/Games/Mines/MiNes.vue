@@ -129,7 +129,6 @@ export default {
   },
 };
 </script>
-How make so that watch will be work only if isBetButtonPressed is false?
 
 
 

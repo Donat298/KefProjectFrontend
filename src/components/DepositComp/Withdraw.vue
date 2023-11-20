@@ -291,13 +291,13 @@ export default {
    
   },
 
-setup(props, context) {
+setup(context) {
  const store = useStore();
  const axiosPrivateInstance = useApiPrivate(store);
  const errorMsg = ref('');
  const router = useRouter();
  const selectedNetwork = ref(''); // Initialize it with an empty string
- const isMenuOpen = ref(false);
+ const isMenuOpen = ref(false); 
  const userId = ref(store.getters.userDetail._id);
  const message1 = ref('');
  const message2 = ref('');

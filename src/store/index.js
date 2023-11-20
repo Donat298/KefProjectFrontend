@@ -37,7 +37,7 @@ export default createStore({
     setSessionChecked(state, sessionChecked) {
       state.sessionChecked = sessionChecked;
     },
-
+ 
     clearAuthData(state) {
       state.accessToken = "";
       state.user = { balanceusdt: 0, balanceeur: 0, balancebtc: 0, balanceeth: 0 };

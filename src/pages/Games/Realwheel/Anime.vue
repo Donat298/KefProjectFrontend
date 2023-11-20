@@ -12,10 +12,10 @@
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
-              <bet-btn  style="width: 100%;" type="submit"
+              <bet-btn  style="width: 100%;"
                   :disabled="isBetButtonPressed"
                   :style="{ opacity: isBetButtonPressed ? 0.5 : 1 }"
-                  >Bet
+                  >BET
               </bet-btn> 
 
               

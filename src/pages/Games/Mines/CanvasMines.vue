@@ -27,12 +27,19 @@
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
       </div>
-    <div style="min-height: 50px;">
- <h4> {{ profit }}x</h4> 
- <h4 >{{ betAmountwill }} </h4>
+      <div style="min-height: 57.5px; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: rgba(127, 255, 212, 0.279);">
+  <div>
+    <strong>{{ profit }}x</strong>
   </div>
+  <div>
+    <strong>{{ betAmountwill }}   <img
+      :src="currencyImage"
+        style="width: 17px; height: 17px; right: 10px; position: absolute;"
+      /></strong>
+  </div>
+</div>
 
-
+ 
 
 
 
@@ -51,7 +58,7 @@
 import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
-import { ref, watch } from 'vue';
+import { ref, watch, computed, } from 'vue';
 import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
     emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled'],
@@ -87,9 +94,32 @@ export default {
     const GameResult = ref(null);
     const selectedButtons = ref([]);
     const profit = ref("1.00"); 
+    const currencyImagetag = ref("");
     const betAmountwill = ref(props.betInputValue);
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
+      const selectedCurrencyImages = {
+        balanceusdt: require('@/assets/Cryptologos/tether-usdt-logo.svg'),
+        balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
+        balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
+        balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+      };
+
+
+    const currencyImage = computed(() => {
+      if (countinuemines.value) {
+        const currencyKey = currencyImagetag.value;
+        return selectedCurrencyImages[currencyKey];
+      }
+      else {
+        const currencyKey = store.getters.selectedCurrency; // Assuming you have a getter for selectedCurrency
+        return selectedCurrencyImages[currencyKey];
+      }
+
+    });
+
+
+
   const roundBalance = (value) => {
     if (value > 100000000) {
       return 100000000;
@@ -97,17 +127,19 @@ export default {
     return Math.round(value * 100000000) / 100000000;
   };
 
+
   const beforeCreate = async () => {
     try {
         // Send an initial request before the component is created
         const response = await axiosPrivateInstance.get('/games/mines/get');
-        console.log(response.data.profit, response.data.betAmount, response.data.selectednum);
-        console.log(betAmountwill.value);
+   
         context.emit("newbetamount", response.data.betAmount);
-
+      
+        currencyImagetag.value = `balance${response.data.currency}`;
+  
         selectedButtons.value.push(...response.data.selectednum);
-        profit.value = parseFloat(response.data.profit).toFixed(2);
-        betAmountwill.value = parseFloat(response.data.profit * response.data.betAmount).toFixed(2);
+        profit.value = response.data.profit
+        betAmountwill.value =  parseFloat(response.data.profit * response.data.betAmount).toFixed(2)
         countinuemines.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
@@ -136,8 +168,8 @@ beforeCreate();
         });
         if (response.data.message == "Winmines") {
         selectedButtons.value.push(buttonNumber);
-        profit.value = parseFloat(response.data.profit).toFixed(2);
-        betAmountwill.value = parseFloat(response.data.profit * betInput.value).toFixed(2);
+        profit.value = response.data.profit
+        betAmountwill.value = parseFloat(response.data.profit * betInput.value).toFixed(2) ,
         console.log(response);
         } else if (response.data.message == "Losemines") {
           betAmountwill.value = props.betInputValue;
@@ -146,7 +178,9 @@ beforeCreate();
           GameResult.value = {
                 lose: true,
           };
+          countinuemines.value = false;
           context.emit("betfal");
+       
         } else if (response.data.message == "WinF") {
           betAmountwill.value = props.betInputValue;
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
@@ -157,6 +191,7 @@ beforeCreate();
                 currency: response.data.currency,
           };
           store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+          countinuemines.value = false;
           context.emit("betfal");
         }
         cashdisabled.value = false;
@@ -175,7 +210,7 @@ beforeCreate();
 
     console.log(newValue);
     console.log(props.cashoutButtonPressed);
-      if (newValue) {
+      if (newValue && countinuemines.value) {
         console.log("cashout2");
          cashOut(); 
       }
@@ -190,6 +225,8 @@ beforeCreate();
     });
 
    watch(() => props.betButtonPressed, (newValue) => {
+    console.log("bet2");
+    console.log(countinuemines.value);
       if (newValue && !countinuemines.value) {
          placeBet();
       }
@@ -204,11 +241,6 @@ beforeCreate();
 
     if (betInput.value < 0) {
       errorMsg.value = 'The bet cannot be less than zero.';
-      context.emit("betfal");
-      return false;
-    }
-    if (betInput.value == 0) {
-      errorMsg.value = 'Invalid bet amount.';
       context.emit("betfal");
       return false;
     }
@@ -228,11 +260,13 @@ beforeCreate();
       return;
     }
       try {
+        currencyImagetag.value = store.getters.selectedCurrency;
         GameResult.value = null;
         errorMsg.value = '';
         profit.value = "1.00"; 
         selectedButtons.value = []; 
         cashdisabled.value = true;
+        countinuemines.value = true;
         context.emit("cashdisabled", cashdisabled.value);
         const balanceFieldsMap = {
           'balanceusdt': 'usdt',
@@ -240,8 +274,8 @@ beforeCreate();
           'balancebtc': 'btc',
           'balanceeth': 'eth',
         };
-
         const currency = balanceFieldsMap[store.getters.selectedCurrency];
+      
         console.log(currency);
         const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
         store.dispatch('updateBalance', { currency: currency, amount: newAmount });
@@ -304,7 +338,10 @@ beforeCreate();
     profit,
     betAmountwill,
     cashdisabled,
-    isLoading
+    isLoading,
+    currencyImage,
+    selectedCurrencyImages,
+    currencyImagetag
   };
   } ,
 }
@@ -322,7 +359,7 @@ beforeCreate();
   .bottomdiv {
     min-height: none !important;
     margin-top: auto;
-    margin-bottom: 10px;
+    margin: 20px 0px ;
   }
 
 }
@@ -330,8 +367,8 @@ beforeCreate();
   .bottomdiv {
     min-height: 60px;
   margin-top: auto;
-  margin-bottom: 20px;
-  }
+  margin: 20px 0px;
+  } 
 
 }
 .Stybutton{

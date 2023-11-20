@@ -31,6 +31,7 @@
   .tooltip-container {
     position: relative;
     display: inline-block;
+    z-index: 1;
   }
   
   .tooltip {

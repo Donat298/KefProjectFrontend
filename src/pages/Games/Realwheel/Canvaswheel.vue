@@ -217,16 +217,16 @@ export default {
   .bottomdiv {
     min-height: none !important;
     margin-top: auto;
-    margin-bottom: 10px;
+    margin: 20px 0px ;
   }
 
 }
 @media (min-width: 800px) {
   .bottomdiv {
-  min-height: 60px;
+    min-height: 60px;
   margin-top: auto;
-  margin-bottom: 20px;
-  }
+  margin: 20px 0px;
+  } 
 
 }
 

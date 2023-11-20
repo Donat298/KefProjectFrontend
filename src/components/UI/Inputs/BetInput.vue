@@ -1,7 +1,13 @@
 <template>
   <div>
-    <v-card elevation="5" style="background-color: #15212c00">
-      <input
+    <v-card elevation="5" style=" border-radius: 8px; align-items: center;  display: flex; background-color: #bd323200">
+   
+      <img
+        :src="currencyImage"
+        style="width: 17px; height: 17px; right: 10px; position: absolute;"
+      />
+
+      <input  
         :disabled="processing"
         v-focus
         class="inputbet"
@@ -12,14 +18,28 @@
         @input="updateStringValue($event.target.value)"
         @keyup="updateSliderFromInput"
       />
-    </v-card>
-    <bet-slider :slider-value="numericValue"  :sliprocessing="processing" @update:slider-value="updateSliderValue">
-    </bet-slider>
 
+    </v-card>
+    <bet-slider
+      :slider-value="numericValue"
+      :sliprocessing="processing"
+      @update:slider-value="updateSliderValue"
+    >
+    </bet-slider>
   </div>
 </template>
 
 <script>
+import { useStore } from 'vuex';
+import { ref, watch } from 'vue';
+
+const selectedCurrencyImages = {
+  balanceusdt: require('@/assets/Cryptologos/tether-usdt-logo.svg'),
+  balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
+  balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
+  balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+};
+
 export default {
   name: "BetInput",
   props: {
@@ -30,11 +50,14 @@ export default {
       default: null,
     },
   },
-
   computed: {
+    currencyImage() {
+      const currencyKey = this.$store.getters.selectedCurrency; // Assuming you have a getter for selectedCurrency
+      return selectedCurrencyImages[currencyKey];
+    },
     stringValue: {
       get() {
-      return isNaN(this.modelValue) || this.modelValue === null ? "0" : this.modelValue.toString();
+        return isNaN(this.modelValue) || this.modelValue === null ? "0" : this.modelValue.toString();
       },
       set(value) {
         this.updateNumericValue(value);
@@ -52,12 +75,12 @@ export default {
   methods: {
     updateNumericValue(value) {
       if (value === "") {
-        value = null; // Convert empty string to null
+        value = null; // Convert an empty string to null
       }
       this.$emit("update:modelValue", value);
     },
     updateStringValue(value) {
-     if (!isNaN(parseFloat(value))) {
+      if (!isNaN(parseFloat(value))) {
         this.updateNumericValue(parseFloat(value));
       }
     },
@@ -70,6 +93,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .inputbet {
