@@ -3,10 +3,10 @@
   <transition name="slide">
     <v-card v-if="showSnackbar" class="custom-snackbar">
       <div style="margin-right: 20px;">
-        <font-awesome-icon style="color: #ffffff;" :icon="['fas', 'wallet']" />
+        <font-awesome-icon style="color: #ffffff;" :icon="['fas', icons]" />
       </div>
       <div class="snackbar-content">
-        <div>
+        <div style="margin-right: auto;">
           <span style="display: inline-block;"> {{ data.message }}</span>
           <span style="display: flex;">
             {{ data.amount }} {{ selectedCurrencyName }}
@@ -37,6 +37,7 @@ export default {
     return {
       showSnackbar: false,
       data: {},
+      icons: '',
     };
   },
   computed: {
@@ -69,7 +70,11 @@ export default {
 
       this.data = data;
       this.showSnackbar = true;
-
+      if (data.message === 'Bonus received!') {
+        this.icons = 'gift';
+      } else {
+        this.icons = 'wallet';
+      }
       if (this.snackbarTimeout) {
         // Clear the previous timeout if it exists
         clearTimeout(this.snackbarTimeout);
@@ -106,7 +111,9 @@ export default {
   align-items: center;
   margin-left: 10px;
   justify-content: space-between;
-  width: 330px;
+  max-width: 330px;
+
+  width: auto;
   max-height: 100px;
   z-index: 5; 
 
@@ -153,6 +160,6 @@ export default {
   cursor: pointer;
   outline: none;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 15px;
 }
 </style>

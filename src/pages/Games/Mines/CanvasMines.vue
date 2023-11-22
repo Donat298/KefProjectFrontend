@@ -1,16 +1,19 @@
 <template>
     
-
  
-    <div  name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
-     display: flex; flex-direction: column;"> 
+    <div v-if="isLoading" class="canvasstyle" > 
 
-<div v-if="isLoading" style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
+    <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
       <vproGressMini style="max-height: 66px; max-width: 118px;"/>  
     </div>
+   </div>
+
+ 
+    <div v-if="!isLoading" class="canvasstyle" > 
+
 
     
-     <div v-if="!isLoading" style="margin: auto;">
+     <div  style="margin: auto;">
   
       <div>
         <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
@@ -44,8 +47,8 @@
 
 
   </div>
-  <div v-if="!isLoading" class="bottomdiv">
-        <GameAlert style="" :GameResult="GameResult" :errorMsg="errorMsg" />
+  <div style="padding: 20px 0px;" class="bottomdiv">
+        <GameAlert   :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
 
     </div>
@@ -359,7 +362,7 @@ beforeCreate();
   .bottomdiv {
     min-height: none !important;
     margin-top: auto;
-    margin: 20px 0px ;
+
   }
 
 }
@@ -367,7 +370,7 @@ beforeCreate();
   .bottomdiv {
     min-height: 60px;
   margin-top: auto;
-  margin: 20px 0px;
+
   } 
 
 }
@@ -379,6 +382,13 @@ margin: 15px;
 border-radius: 20px;
 box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.218);
 
+
+}
+
+.canvasstyle{
+
+  width: 100%; position: relative; aspect-ratio: 3/2;
+     display: flex; flex-direction: column;
 
 }
 

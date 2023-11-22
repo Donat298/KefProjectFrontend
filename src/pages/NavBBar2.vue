@@ -20,7 +20,7 @@
 
    <div  v-if="!rail" style="padding:0px 20px; width: 100%; ">
 
-<v-btn elevation="0" rounded="lg"  class="glowg-button2" :ripple="false" style="min-width: 5px;">
+<v-btn @click="$emit('ShowPromocodeOknoo')" elevation="0" rounded="lg"  class="glowg-button2" :ripple="false" style="min-width: 5px;">
   <span style="color: #ffffff;" class="shimmerr-text">Get Bonus</span>
 </v-btn>
 

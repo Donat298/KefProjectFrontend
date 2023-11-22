@@ -141,6 +141,7 @@ export default {
       selectedCurrency: currency
     });
     errorMsg.value = '';
+    
     store.dispatch('updateBalance', {currency: currency, amount: response.data.balance });
   } catch (error) {
     errorMsg.value = error.response.data.message;

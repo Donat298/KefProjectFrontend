@@ -149,7 +149,7 @@
 
 
    <div style="padding:0px 10px;">
-   <div style="   color: white" class="text-color-white d-flex align-center justify-space-between">
+   <div style="   color: white">
    <p style="font-size: 17px;">  Address {{ selectedCurrencyName }} 
                  </p>
    </div>
@@ -166,7 +166,7 @@
 
    
 
-   <div style="color: white" class="text-color-white d-flex align-center justify-space-between">
+   <div style="color: white" >
     <p style="font-size: 17px;">
      Amount <span style="color: rgba(240, 255, 255, 0.294);">(The transaction fee will be 1%)</span>
   
@@ -199,7 +199,7 @@
   </div>
   <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
     <div v-if="errorMsg"
-         class="text-color-white align-center justify-space-between"
+     
          style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
     </div>
   </div>
@@ -214,12 +214,12 @@
      class="mx-auto"
 
      @click="sendWithdrawal"
-     color="blue"
+     
      elevation="8"
      :ripple="false"
      :disabled="isButtonDisabled"
         :style="buttonStyle" 
-     style=" background-color: #2e4659; color: #ffffff; display: flex;
+     style=" color: #ffffff; display: flex;
       align-items: center; justify-content: center; font-size: 17px;"
    >
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
@@ -291,7 +291,7 @@ export default {
    
   },
 
-setup(context) {
+setup(props, context) {
  const store = useStore();
  const axiosPrivateInstance = useApiPrivate(store);
  const errorMsg = ref('');
@@ -424,11 +424,10 @@ setup(context) {
     const amountWithdrawn = response.data.amount;
     const withdrawalCurrency = store.getters.selectedCurrency;
    
-    console.log("Amount Withdrawn:", amountWithdrawn);
-    console.log("Withdrawal Currency:", withdrawalCurrency);
+
 
   // Emit the "cSWi" event along with the amount and currency withdrawn
-    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency,
+    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency, 
       message: "Your withdrawal was completed for the", });
 
 

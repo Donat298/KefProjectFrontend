@@ -25,7 +25,7 @@
   </v-row>
   <v-bottom-navigation style="background-color: #0c141b; z-index: 0;" height="100" v-model="value" color="teal" elevation="0" grow>
     <div style="width: 800px; max-width: 90%; min-height: 100px; background-color: rgba(255, 228, 196, 0); display: flex; align-items: center; justify-content: center;">
-      <v-form style="display: flex; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
+      <v-form style="display: flex;align-items: center; width: 100%; width: 842px;" ref="form" @submit.prevent="sendMessage">
        
         <input 
         :counter="200" 
@@ -41,10 +41,11 @@
           
           <button class="ml-2" 
         type="submit" style="background-color: rgb(30, 44, 56); min-width: 50px; border-radius: 50px; 
-        height: 50px;  display: flex; align-items: center; justify-content: center;  margin: auto;"
+        display: flex; align-items: center; justify-content: center; 
+        height: 50px; "
         :disabled="newMessage.length > 200 || isLoading" :style="{ opacity: newMessage.length > 200 ? 0.7 : 1 }"
 >
-<font-awesome-icon  style="color: #ffffff;  height: 15px;"  :icon="['fas', 'paper-plane']" />
+<font-awesome-icon  style="color: #ffffff; height: 17px;margin-right: 2px;"  :icon="['fas', 'paper-plane']" />
 </button>
           
       

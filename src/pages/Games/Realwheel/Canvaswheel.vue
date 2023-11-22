@@ -17,7 +17,7 @@
       </div>
 
 
-      <div  class="bottomdiv">
+      <div  style="padding: 20px 0px;"  class="bottomdiv">
         <GameAlert v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
     </div>
@@ -28,7 +28,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
-import { ref, onMounted, onUnmounted, watch } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import wheelsvg from "@/assets/GameObjects/Originalwheel.vue";
@@ -217,7 +217,7 @@ export default {
   .bottomdiv {
     min-height: none !important;
     margin-top: auto;
-    margin: 20px 0px ;
+
   }
 
 }
@@ -225,7 +225,7 @@ export default {
   .bottomdiv {
     min-height: 60px;
   margin-top: auto;
-  margin: 20px 0px;
+
   } 
 
 }

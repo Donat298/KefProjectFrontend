@@ -43,7 +43,7 @@
         </div>
 
         <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">
-          <component  @cSWi="$emit('cSWia3', $event)" :is="selectedComponent" />
+          <component @cSWi="handleEmit" :is="selectedComponent" />
         </div>
       </div>
     </div>
@@ -101,6 +101,10 @@ export default {
       } 
        this.mousePressed = false;
     },
+    handleEmit(data) {
+   
+      this.$emit('cSWia3', data);
+    }
    
     
   },

@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
-import { ref, watch } from 'vue';
 
 const selectedCurrencyImages = {
   balanceusdt: require('@/assets/Cryptologos/tether-usdt-logo.svg'),

@@ -11,6 +11,7 @@ export default createStore({
     avatar: localStorage.getItem("userAvatar") || "",
     incomingMessage: null,
     getBalanceTimer: null,
+    snackbarBonus: null,
 
   }), 
 
@@ -23,13 +24,16 @@ export default createStore({
   },
 
   mutations: {
+    setSnackbarBonusData(state, data) {
+      state.snackbarBonus = data;
+    },
     setAccessToken(state, accessToken) {
       state.accessToken = accessToken;
       localStorage.setItem("accessToken", accessToken);
     },
 
     setUser(state, user) {
-      state.user = user;
+      state.user = user; 
       localStorage.setItem("user", JSON.stringify(user));
     },
 
@@ -47,7 +51,7 @@ export default createStore({
 
     setUserAvatar(state, avatarUrl) {
       state.avatar = avatarUrl;
-      localStorage.setItem("userAvatar", avatarUrl);
+      localStorage.setItem("userAvatar", avatarUrl); 
     },
 
     setSelectedCurrency(state, newSelectedCurrency) {
@@ -64,6 +68,7 @@ export default createStore({
     setIncomingMessage(state, messageData) {
       state.incomingMessage = messageData;
     },
+
   
   },
 
@@ -183,7 +188,11 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
-    }
+    },
+    async dispatchSnackbarBonusData({ commit }, data) {
+      commit('setSnackbarBonusData', data);
+    },
+    
    
    
 

@@ -15,7 +15,7 @@
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
 
 
-              <bet-btn  v-if="!isBetButtonPressed" style="width: 100%;"  >BET
+              <bet-btn v-if="!isBetButtonPressed" style="width: 100%;"  >BET
               </bet-btn>
            
             </v-form>  
