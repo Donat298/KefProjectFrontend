@@ -1,15 +1,21 @@
 <template>
 
   <div style=" width: 100%;  "  :style="{ 'margin-top': isWideScreen ? '40px' : '5px' }">
-    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
+    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; 
+    justify-content: center;">
       <!-- v-card -->
-      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 15px;  border-radius: 7px 0px 0px 7px ;  "  
+      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 30px;
+        border-radius: 7px 0px 0px 7px ;  "  
        class="bet-div">
-       <div v-if="isWideScreen" style="margin: 20px; font-size: 25px;"><strong>Place your BET!</strong></div>
+       <div v-if="isWideScreen" style=" font-size: 25px;"><strong>Place your BET!</strong></div>
         <div class="bet-form">
-          <toolip :showTooltip2="showTooltip2" style="
+       
+          <toolip :showTooltip2="showTooltip2" style="width: 100%;
    " text="The bet cannot be more than your balance.">  
-          <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center; "> 
+     </toolip>  
+
+          <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center;
+           "> 
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
@@ -24,7 +30,7 @@
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
    
-        </toolip>         
+        
         </div> 
 
     </div>
@@ -136,18 +142,16 @@ export default {
 
 <style scoped>
 @media (max-width: 800px) {
-  .bet-div {  
+  .bet-div {
     width: 100% !important;
     order: 2; /* Change the order to make it appear below */
     border-radius: 0px 0px 7px 7px !important;
     max-width: 100% !important;
   }
-
   .betseto {
     order: 1; /* Change the order to make it appear above */
     border-radius: 7px 7px 0px 0px !important;
   }
-
   .bet-form {
     flex-direction: column;
     display: flex;
