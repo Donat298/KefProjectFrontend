@@ -10,14 +10,13 @@
     max-width: 90%;
     justify-content: center; 
     ">
-      <div style=" max-width: 420px; margin-left: auto; margin-right: auto;">
-          <div style="display: flex; max-width: 100%; width: 340px;height: 190px; margin: auto; margin-bottom: 20px;">
-            <img style="margin-left: auto; 
-                margin-right: auto; width: 100%; height: auto; 
-                background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
-      </div>
+      <div style=" max-width: 420px; margin-left: auto; margin-right: auto; padding-bottom:30px; ">
+        <div style="display: flex; max-width: 100%; width: 306px; height: 171px; margin: auto; margin-bottom: 20px;">
+            <img style="margin-left: auto; margin-right: auto; width: 100%; height: auto;
+             background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
+          </div>
   <v-card
-    class="mx-auto pa-8 pb-8 mb-5"
+    class="mx-auto px-8 pt-8 pb-4"
     elevation="8"
     rounded="lg"
     style="background-color: rgb(37, 56, 74) ; border: 7px solid rgb(37, 56, 74);"

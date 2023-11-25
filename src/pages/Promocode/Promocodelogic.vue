@@ -16,6 +16,10 @@
                   class="text-color-white align-center justify-space-between"
                   style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
              </div>
+             <div v-if="goodMsg && !errorMsg"
+                  class="text-color-white align-center justify-space-between"
+                  style="color: rgb(0, 255, 0); font-size: 17px; text-align: center;">{{ goodMsg }}
+             </div>
            </div>    
 <v-btn
               class="mx-auto"
@@ -41,6 +45,8 @@ import { useApiPrivate } from '@/utils/useApi';
 export default {
     setup() {
       const errorMsg = ref('');
+      const goodMsg = ref('');
+
       const promocode = ref('');
       const store = useStore();
       const axiosPrivateInstance = useApiPrivate(store);  
@@ -72,6 +78,7 @@ export default {
                 amount: responsepromo.data.bonus,
                 message: 'Bonus received!'
               });
+              goodMsg.value = "Successfully";
             }  
             else {
                 
@@ -103,6 +110,7 @@ export default {
         axiosPrivateInstance,
         buttonStyle,
         buttonText,
+        goodMsg
       }
     },
 }

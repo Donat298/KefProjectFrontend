@@ -7,9 +7,9 @@
        class="bet-div">
        <div v-if="isWideScreen" style="margin: 20px; font-size: 25px;"><strong>Place your BET!</strong></div>
         <div class="bet-form">
-          <toolip :showTooltip2="showTooltip2" style="  
-   " text="The bet cannot be more than your balance.">
-          <v-form ref="betForm" @submit.prevent="placeBet"   style=" align-items: center; "> 
+          <toolip :showTooltip2="showTooltip2" style="
+   " text="The bet cannot be more than your balance.">  
+          <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center; "> 
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
@@ -19,7 +19,7 @@
               </bet-btn>
            
             </v-form>  
-        
+         
             <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
@@ -30,9 +30,10 @@
     </div>
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
-        <CanvasMines  @newbetamount="updateBetInput" @cashdisabled="cashdisabled" @betfal="Betfalse()" @cashoutfal="Cashfalse()"
+        <CanvasMines  @newbetamount="updateBetInput" @cashdisabled="cashdisabled" @betfal="Betfalse()"
+         @cashoutfal="Cashfalse()"
         :cashoutButtonPressed="isCashoutButtonPressed"
-         @bettrue="placeBet()" :betInputValue="betInput || 0" :betButtonPressed="isBetButtonPressed"
+         @bettrue="placeBet()" :betInputValue="betInput" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
 
       </div>
@@ -57,7 +58,7 @@ export default {
   },
   data() {
     return {
-      betInput: null,
+      betInput: 0,
       isInputInvalid: false,
       showTooltip2: false,
       isBetButtonPressed: false, 
@@ -111,6 +112,7 @@ export default {
       this.isCashoutButtonPressed = false;
 
     }
+ 
     },
     updateBetInput(newBetAmount) {
       this.betInput = newBetAmount;

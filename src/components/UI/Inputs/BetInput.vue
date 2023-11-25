@@ -45,7 +45,7 @@ export default {
     processing: Boolean,
     modelValue: {
       type: Number,
-      default: null,
+      default: 0,
     },
   },
   computed: {

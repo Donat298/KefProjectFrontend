@@ -1,8 +1,8 @@
 <template>
   <div style="margin: 15px 0px;">
     <input
-      :style="{ opacity: sliprocessing || computedAmount === 0 ? 0.7 : 1 }"
-      :disabled="sliprocessing || computedAmount === 0"
+      :style="{ opacity: sliprocessing ? 0.7 : 1 }"
+      :disabled="sliprocessing"
       type="range"
       min="0"
       max="40"
@@ -17,23 +17,25 @@
 <script>
 export default {
   name: 'bet-slider',
-  data() {
-    return {};
-  },
+
   props: {
     sliderValue: Number,
     sliprocessing: Boolean,
   },
   computed: {
     computedSliderValue() {
+      console.log("computedSliderValue");
       if (isNaN(this.computedAmount)) {
-        return 0; // If computedAmount is NaN, set computedSliderValue to 0
+        return 0;
       }
       if (this.computedAmount === 0) {
         return 0;
       }
+    
+  
       return (this.sliderValue * 40) / this.computedAmount;
     },
+ 
     computedAmount() {
       const selectedCurrency = this.$store.getters.selectedCurrency;
       const amount = this.$store.getters.userDetail[selectedCurrency];
@@ -41,15 +43,30 @@ export default {
     },
   },
   watch: {
+    sliprocessing() {
+   
+      this.updateSliderGradient(this.computedSliderValue);
+    },
+    computedAmount(newValue) {
+      // Do something when watchValue changes
+      // Call the function you need here
+      this.updateSliderGradient(this.computedSliderValue);
+    },
+    
     computedSliderValue: 'updateSliderGradient',
-  },
+
+  }, 
   methods: {
+
+ 
+    
+
     updateSliderColor() {
       const slider = document.querySelector('.bet-slider');
       const minValue = slider.min - (0.05 * (slider.max - slider.min));
       const maxValue = slider.max - (-0.05 * slider.max);
       const value = slider.value;
-      const slivalue = (value * this.computedAmount / 40).toFixed(2); // Round to two decimal places
+      const slivalue = Math.floor(value * this.computedAmount / 40 * 100) / 100; // Round down to two decimal places
 
       const percentage = ((value - minValue) / (maxValue - minValue)) * 100;
       const backgroundColor = `linear-gradient(to right, #37556b ${percentage}%, #15212c ${percentage}%)`;
@@ -69,7 +86,8 @@ export default {
   },
 };
 </script>
-slivalue
+
+
 <style scoped>
 .bet-slider {
   width: 100%;
