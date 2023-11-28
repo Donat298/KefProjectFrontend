@@ -17,7 +17,7 @@
       </div>
 
 
-      <div  style=" background-color: rgba(165, 42, 42, 0.143);"  class="bottomdiv">
+      <div  class="bottomdiv">
         <GameAlert style="margin: 15px 0px; " v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
     </div>

@@ -8,7 +8,7 @@
                             
 {{ $store.getters.userDetail[selectedCurrency] }}
 
-<img style="margin-left: 10px;  width: 22px; " :src="getCurrencyImagePath(selectedCurrency)" />
+<img style="margin-left: 10px;  width: 22px; user-select: none; " :src="getCurrencyImagePath(selectedCurrency)" />
 <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
 </div>  
@@ -21,6 +21,7 @@ style="
 visibility: visible;
 opacity: 1;
 background-color: #15212c;
+border: 2px solid #2e4659; 
 color: #ffffff;
 margin-top: 10px; 
 min-width: 100px;

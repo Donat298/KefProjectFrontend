@@ -21,6 +21,31 @@
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
 
 
+
+
+            <div style="display: flex; flex-wrap: wrap;
+             justify-content: center; margin: 10px 0px;" v-if="isBetButtonPressed">
+    <div>
+        Total profit:
+    </div>
+
+    <div style="display: flex; align-items: center; justify-content: center; margin: auto;">
+       <strong>{{ betAmountwill }} </strong> 
+        <img
+            :src="currencyImage"
+            style="width: 17px; height: 17px; margin-left: 5px;"
+        /> 
+    </div>
+
+    <div>
+      <strong> {{ profit }}x</strong> 
+    </div>
+</div>
+                    
+
+
+
+
               <bet-btn v-if="!isBetButtonPressed" style="width: 100%; user-select: none;"  >BET
               </bet-btn>
               <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
@@ -28,8 +53,7 @@
               </bet-btn>
    
             </v-form>  
-         
-         
+
         
         </div> 
 
@@ -37,7 +61,8 @@
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
         <CanvasMines  @newbetamount="updateBetInput" @cashdisabled="cashdisabled" @betfal="Betfalse()"
-         @cashoutfal="Cashfalse()"
+         @cashoutfal="Cashfalse()" @setparentprofit="profit = $event" @setparentbet="betAmountwill = $event"
+         @seturrencyImage="currencyImage = $event"
         :cashoutButtonPressed="isCashoutButtonPressed"
          @bettrue="placeBet()" :betInputValue="betInput" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
@@ -65,6 +90,9 @@ export default {
   data() {
     return {
       betInput: 0,
+      profit: "1.00",
+      betAmountwill: 0,
+      currencyImage: null,
       isInputInvalid: false,
       showTooltip2: false,
       isBetButtonPressed: false, 
@@ -128,6 +156,7 @@ export default {
       this.isWideScreen = window.innerWidth > 800; // Check screen width
     },
   },
+
   mounted() {
     this.checkScreenWidth(); // Call the function to check screen width on mount
     window.addEventListener('resize', this.checkScreenWidth); // Listen for screen resize

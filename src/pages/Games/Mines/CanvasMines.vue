@@ -14,12 +14,11 @@
 
 
       
-
+      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Mines and hearts!</h1>
+        <h1 v-else>Mines!</h1>
+      </div>  
     
      <div class="inside">
-
-
-
     <div class="divinside" >
        
         <button @click="selectsectormines(1)" class="sectormines">
@@ -150,48 +149,19 @@
 
     </div>
     </div>
-  <div style="min-height: 57.5px; display: flex; 
-       flex-direction: column; justify-content: center; 
-       margin-top: auto;
-       align-items: center; ">
-  <div>
-    <strong>{{ profit }}x</strong>
-  </div>
-  <div >
-    <span style="display: flex;">
-    <strong>{{ betAmountwill }} </strong>  <img
-      :src="currencyImage"
-        style="width: 17px; height: 17px; margin-left: 5px;    align-self: center;"
-      />
-    </span>
-  </div> 
-</div>
 
-  <div style="background-color: rgba(165, 42, 42, 0.143);" class="bottomdiv">
-  
+
+ 
+
+
+
+
+
+      <div style="" class="bottomdiv">
         <GameAlert v-if="showAlert"  style="margin: 15px 0px; "  :GameResult="GameResult" :errorMsg="errorMsg" />
-        
       </div>
 
     </div>
-   <!--
-      <div>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(2) ? 0.5 : 1 }" @click="selectsectormines(2)">2</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(3) ? 0.5 : 1 }" @click="selectsectormines(3)">3</button>
-      </div>
-      <div>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(4) ? 0.5 : 1 }" @click="selectsectormines(4)">4</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(5) ? 0.5 : 1 }" @click="selectsectormines(5)">5</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(6) ? 0.5 : 1 }" @click="selectsectormines(6)">6</button>
-      </div>
-      <div>
-      
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(7) ? 0.5 : 1 }" @click="selectsectormines(7)">7</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
-      </div>
--->
 </template>
 
 
@@ -208,7 +178,7 @@ import { useApiPrivate } from '@/utils/useApi';
 import { ref, watch, computed, } from 'vue';
 import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
-    emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled'],
+    emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled', 'setparentprofit', 'setparentbet', 'seturrencyImage'],
     components: {
       GameAlert, vproGressMini, Sectorsvg, Serdsesvg, Mineob
     },
@@ -236,17 +206,23 @@ export default {
     const axiosPrivateInstance = useApiPrivate(store);  
     const betInput = ref(props.betInputValue); 
     const sectorsnum = ref(25);
-    const mines = ref(24);
+    const mines = ref(3);
     const errorMsg = ref(''); 
     const GameResult = ref(null);
     const selectedButtons = ref([]);
     const selectedMinesButtons = ref([]);
     const profit = ref("1.00"); 
     const showAlert = ref(false);
-    const currencyImagetag = ref("");
+   
     const betAmountwill = ref(props.betInputValue);
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
+
+
+
+    const currencyImagetag = ref("");
+
+
       const selectedCurrencyImages = {
         balanceusdt: require('@/assets/Cryptologos/tether-usdt-logo.svg'),
         balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
@@ -266,8 +242,8 @@ export default {
       }
 
     });
-
-
+    context.emit("seturrencyImage", currencyImage);
+   
 
   const roundBalance = (value) => {
     if (value > 100000000) {
@@ -287,9 +263,15 @@ export default {
         currencyImagetag.value = `balance${response.data.currency}`;
   
         selectedButtons.value.push(...response.data.selectednum);
+
+
         profit.value = response.data.profit
+        context.emit("setparentprofit", response.data.profit);
+
         betAmountwill.value = parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString();
-    
+        context.emit("setparentbet", parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString());
+
+
         countinuemines.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
@@ -318,13 +300,17 @@ beforeCreate();
         });
         if (response.data.message == "Winmines") {
         selectedButtons.value.push(buttonNumber);
+
         profit.value = response.data.profit
+        context.emit("setparentprofit", response.data.profit);
         betAmountwill.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
+        context.emit("setparentbet", parseFloat((response.data.profit * betInput.value).toFixed(5)).toString());
 
         console.log(response);
         } else if (response.data.message == "Losemines") {
           betAmountwill.value = props.betInputValue;
-
+          context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           response.data.mines
 
            selectedMinesButtons.value.push(buttonNumber);
@@ -360,6 +346,9 @@ beforeCreate();
           selectedButtons.value = newSelectedButtons;
           showAlert.value = true;
           profit.value = response.data.profit
+        
+          context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           GameResult.value = {
                 won: true,
                 wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
@@ -431,7 +420,7 @@ beforeCreate();
   };
 
    const placeBet = async () => {
-   
+    
     showAlert.value = false;
     if (!handleCommonChecks()) {
       return;
@@ -440,7 +429,11 @@ beforeCreate();
         currencyImagetag.value = store.getters.selectedCurrency;
         GameResult.value = null;
         errorMsg.value = '';
+        
         profit.value = "1.00"; 
+        context.emit("setparentprofit", "1.00");
+        context.emit("setparentbet", betInput.value);
+
         selectedButtons.value = []; 
         selectedMinesButtons.value = []; 
         cashdisabled.value = true;
@@ -501,6 +494,8 @@ beforeCreate();
         const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         selectedButtons.value = newSelectedButtons;
         showAlert.value = true;
+        context.emit("setparentbet", "0");
+        context.emit("setparentprofit", "1.00");
         GameResult.value = {
           won: true,
           wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
@@ -596,7 +591,8 @@ button.sectormines {
   justify-content: center;
 }
 .inside{
-  width: 100%;
+  width: 95%;
+  padding-bottom: 5%;
   display: flex;
   flex-direction: column;
     justify-content: center;
@@ -612,7 +608,7 @@ button.sectormines {
   display: grid;
   position: relative;
   width: 100%;
-  max-width: 580px;
+  max-width: 550px;
   grid-template-columns: repeat(5,auto);
   margin: auto;
 }

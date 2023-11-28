@@ -24,7 +24,7 @@
           </div>
         </template>
         <!-- Currency List -->
-        <v-list elevation="7" style="background-color: #15212c; color: #ffffff; min-width: 100px; margin-top: 10px;">
+        <v-list elevation="7" style="background-color: #15212c; border: 2px solid #2e4659;  color: #ffffff; min-width: 100px; margin-top: 10px;">
           <!-- EUR -->
           <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
             <div class="hhdd">
@@ -87,7 +87,7 @@
          </div>
        </template>
        <!-- USDT Address List -->
-       <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px;
+       <v-list elevation="5" style="background-color: #15212c; border: 2px solid #2e4659;  color: #ffffff; min-width: 100px;
         margin-top: 10px;">
          <v-list-item @click="selectNetwork('ETH')" style="height: 40px; align-items: 
          center;" :ripple="false">
@@ -127,7 +127,7 @@
          </div>
        </template>
        <!-- USDT Address List -->
-       <v-list elevation="5" style="background-color: #15212c; color: #ffffff; min-width: 100px;
+       <v-list elevation="5" style="background-color: #15212c; border: 2px solid #2e4659; color: #ffffff; min-width: 100px;
         margin-top: 10px;">
          <v-list-item @click="selectNetwork('ETH')" style="height: 40px; align-items: 
          center;" :ripple="false">
