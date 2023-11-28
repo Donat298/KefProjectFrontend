@@ -7,7 +7,7 @@
       <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 30px;
         border-radius: 7px 0px 0px 7px ;  "  
        class="bet-div">
-       <div v-if="isWideScreen" style=" font-size: 25px;"><strong>Place your BET!</strong></div>
+       <div v-if="isWideScreen" style=" font-size: 25px; user-select: none;"><strong>Place your BET!</strong></div>
         <div class="bet-form">
        
           <toolip :showTooltip2="showTooltip2" style="width: 100%;
@@ -21,7 +21,7 @@
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
 
 
-              <bet-btn v-if="!isBetButtonPressed" style="width: 100%;"  >BET
+              <bet-btn v-if="!isBetButtonPressed" style="width: 100%; user-select: none;"  >BET
               </bet-btn>
               <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout

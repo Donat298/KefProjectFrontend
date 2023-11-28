@@ -4,7 +4,7 @@
    
       <img
         :src="currencyImage"
-        style="width: 17px; height: 17px; right: 10px; position: absolute;"
+        style="width: 17px; height: 17px; right: 10px; position: absolute; user-select: none;"
       />
 
       <input  

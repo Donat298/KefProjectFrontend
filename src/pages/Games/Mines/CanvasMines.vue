@@ -236,7 +236,7 @@ export default {
     const axiosPrivateInstance = useApiPrivate(store);  
     const betInput = ref(props.betInputValue); 
     const sectorsnum = ref(25);
-    const mines = ref(12);
+    const mines = ref(24);
     const errorMsg = ref(''); 
     const GameResult = ref(null);
     const selectedButtons = ref([]);
@@ -325,10 +325,7 @@ beforeCreate();
         } else if (response.data.message == "Losemines") {
           betAmountwill.value = props.betInputValue;
 
-
           response.data.mines
-
-
 
            selectedMinesButtons.value.push(buttonNumber);
 
