@@ -33,8 +33,7 @@ min-width: 100px;
   {{ $store.getters.userDetail.balanceeur }}
   
     <img 
-      style="display: flex; align-items: center; 
-      width: 22px; max-height: 22px; margin-left: 15px;" 
+      class="imginlist"
       :src="getCurrencyImagePath('balanceeur')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -52,8 +51,7 @@ min-width: 100px;
   {{ $store.getters.userDetail.balancebtc }}
 
     <img 
-      style="display: flex; align-items: center; 
-      width: 22px; max-height: 22px; margin-left: 15px;" 
+    class="imginlist"
       :src="getCurrencyImagePath('balancebtc')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -69,8 +67,7 @@ min-width: 100px;
   {{ $store.getters.userDetail.balanceusdt }}
  
     <img 
-      style="display: flex; align-items: center; 
-      width: 22px; max-height: 22px; margin-left: 15px;" 
+    class="imginlist"
       :src="getCurrencyImagePath('balanceusdt')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -86,8 +83,7 @@ align-items: center;"  :ripple="false">
   {{ $store.getters.userDetail.balanceeth }}
 
     <img 
-      style="display: flex; align-items: center; 
-      width: 22px; max-height: 22px; margin-left: 15px;" 
+    class="imginlist"
       :src="getCurrencyImagePath('balanceeth')" 
     />
     <div class="ml-2" style="min-width: 60px; ">
@@ -139,3 +135,17 @@ methods: {
 },
 };
 </script>
+
+<style>
+
+.imginlist{
+  display: flex; align-items: center; 
+      width: 22px; max-height: 22px; margin-left: 15px;
+      user-select: none; 
+
+}
+
+
+
+
+</style>

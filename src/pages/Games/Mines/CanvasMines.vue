@@ -14,8 +14,9 @@
 
 
       
-      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Mines and hearts!</h1>
-        <h1 v-else>Mines!</h1>
+      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '5px' }">
+        <h1 v-if="displaywidth">Mines and hearts!</h1>
+     
       </div>  
     
      <div class="inside">
@@ -592,7 +593,7 @@ button.sectormines {
 }
 .inside{
   width: 95%;
-  padding-bottom: 5%;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
     justify-content: center;

@@ -3,8 +3,8 @@
     <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap;
      justify-content: center;">
       <!-- v-card -->
-      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 30px; 
-       border-radius: 7px 0px 0px 7px ;  "  
+      <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; 
+       border-radius: 7px 0px 0px 7px ;  "  :style="{ 'padding': isWideScreen ? '30px' : '10px' }"  
        class="bet-div">
        <div v-if="isWideScreen" style=" font-size: 25px; user-select: none;"><strong>Place your BET!</strong></div>
         <div class="bet-form">

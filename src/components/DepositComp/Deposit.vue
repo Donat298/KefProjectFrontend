@@ -28,7 +28,7 @@
             <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
               <div class="hhdd">
              
-                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeur')" />
+                  <img class="imginlist" :src="getCurrencyImagePath('balanceeur')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
           
               </div>
@@ -38,7 +38,7 @@
               <div class="hhdd">
            
        
-                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balancebtc')" />
+                  <img class="imginlist" :src="getCurrencyImagePath('balancebtc')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
       
               </div>
@@ -48,7 +48,7 @@
               <div class="hhdd">
            
              
-                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceusdt')" />
+                  <img class="imginlist" :src="getCurrencyImagePath('balanceusdt')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
            
               </div>
@@ -58,7 +58,7 @@
               <div class="hhdd">
             
  
-                  <img style="display: flex; align-items: center; width: 22px; max-height:  22px; margin-left: 15px;" :src="getCurrencyImagePath('balanceeth')" />
+                  <img class="imginlist" :src="getCurrencyImagePath('balanceeth')" />
                   <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
       
               </div>
@@ -384,6 +384,12 @@ const selectedETHAddressName = computed(() => {
 
 
 <style>
+.imginlist{
+  display: flex; align-items: center; 
+      width: 22px; max-height: 22px; margin-left: 15px;
+      user-select: none; 
+
+}
  .unselectable {
     user-select: none;
   }
