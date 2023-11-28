@@ -12,36 +12,147 @@
     <div v-if="!isLoading" class="canvasstyle" > 
 
 
-    
-     <div>
-  
-      <div>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(2) ? 0.5 : 1 }" @click="selectsectormines(2)">2</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(3) ? 0.5 : 1 }" @click="selectsectormines(3)">3</button>
-      </div>
-      <div>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(4) ? 0.5 : 1 }" @click="selectsectormines(4)">4</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(5) ? 0.5 : 1 }" @click="selectsectormines(5)">5</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(6) ? 0.5 : 1 }" @click="selectsectormines(6)">6</button>
-      </div>
-      <div>
-        <Sectorsvg></Sectorsvg>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(7) ? 0.5 : 1 }" @click="selectsectormines(7)">7</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
-        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
-      </div>
-
 
       
-  
- 
+
+    
+     <div class="inside">
 
 
 
-  </div>
+    <div class="divinside" >
+       
+        <button @click="selectsectormines(1)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(1)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(1)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(2)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(2)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(2)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(3)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(3)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(3)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(4)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(4)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(4)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(5)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(5)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(5)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(6)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(6)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(6)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(7)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(7)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(7)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(8)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(8)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(8)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(9)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(9)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(9)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(10)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(10)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(10)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(11)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(11)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(11)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(12)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(12)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(12)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(13)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(13)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(13)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(14)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(14)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(14)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(15)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(15)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(15)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(16)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(16)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(16)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(17)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(17)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(17)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(18)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(18)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(18)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(19)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(19)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(19)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(20)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(20)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(20)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(21)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(21)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(21)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(22)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(22)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(22)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(23)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(23)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(23)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(24)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(24)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(24)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+        <button @click="selectsectormines(25)" class="sectormines">
+          <Mineob v-if="selectedMinesButtons.includes(25)" class="sectorbtn" />
+          <Serdsesvg v-else-if="selectedButtons.includes(25)" class="sectorbtn"></Serdsesvg>
+          <Sectorsvg v-else class="sectorbtn" />
+        </button>
+
+    </div>
+    </div>
   <div style="min-height: 57.5px; display: flex; 
        flex-direction: column; justify-content: center; 
+       margin-top: auto;
        align-items: center; ">
   <div>
     <strong>{{ profit }}x</strong>
@@ -56,20 +167,41 @@
   </div> 
 </div>
 
-  <div style="" class="bottomdiv">
+  <div style="background-color: rgba(165, 42, 42, 0.143);" class="bottomdiv">
   
-        <GameAlert style="padding: 15px 0px; "  :GameResult="GameResult" :errorMsg="errorMsg" />
-  
+        <GameAlert v-if="showAlert"  style="margin: 15px 0px; "  :GameResult="GameResult" :errorMsg="errorMsg" />
+        
       </div>
 
     </div>
- 
+   <!--
+      <div>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(1) ? 0.5 : 1 }" @click="selectsectormines(1)">1</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(2) ? 0.5 : 1 }" @click="selectsectormines(2)">2</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(3) ? 0.5 : 1 }" @click="selectsectormines(3)">3</button>
+      </div>
+      <div>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(4) ? 0.5 : 1 }" @click="selectsectormines(4)">4</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(5) ? 0.5 : 1 }" @click="selectsectormines(5)">5</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(6) ? 0.5 : 1 }" @click="selectsectormines(6)">6</button>
+      </div>
+      <div>
+      
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(7) ? 0.5 : 1 }" @click="selectsectormines(7)">7</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(8) ? 0.5 : 1 }" @click="selectsectormines(8)">8</button>
+        <button class="Stybutton" :style="{ 'opacity': selectedButtons.includes(9) ? 0.5 : 1 }" @click="selectsectormines(9)">9</button>
+      </div>
+-->
 </template>
 
 
 <script>
 //Vue frontend
 import Sectorsvg from '@/assets/GameObjects/Minesobjects/sector.vue';
+import Serdsesvg from '@/assets/GameObjects/Minesobjects/serdse.vue';
+import Mineob from '@/assets/GameObjects/Minesobjects/mineob.vue';
+
+
 import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
@@ -78,7 +210,7 @@ import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
     emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled'],
     components: {
-      GameAlert, vproGressMini, Sectorsvg
+      GameAlert, vproGressMini, Sectorsvg, Serdsesvg, Mineob
     },
   
   props: {
@@ -103,12 +235,14 @@ export default {
     const isLoading = ref(true);
     const axiosPrivateInstance = useApiPrivate(store);  
     const betInput = ref(props.betInputValue); 
-    const sectorsnum = ref(9);
-    const mines = ref(1);
-    const errorMsg = ref('');
+    const sectorsnum = ref(25);
+    const mines = ref(12);
+    const errorMsg = ref(''); 
     const GameResult = ref(null);
     const selectedButtons = ref([]);
+    const selectedMinesButtons = ref([]);
     const profit = ref("1.00"); 
+    const showAlert = ref(false);
     const currencyImagetag = ref("");
     const betAmountwill = ref(props.betInputValue);
     const countinuemines = ref(false);
@@ -190,8 +324,29 @@ beforeCreate();
         console.log(response);
         } else if (response.data.message == "Losemines") {
           betAmountwill.value = props.betInputValue;
-          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+
+
+          response.data.mines
+
+
+
+           selectedMinesButtons.value.push(buttonNumber);
+
+           let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+
+          for (let i = 0; i < response.data.mines - 1; i++) {
+            const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+            selectedMinesButtons.value.push(availableNumbers[randomIndex]);
+            availableNumbers.splice(randomIndex, 1); // remove the selected number from availableNumbers
+          }
+
+
+
+          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
           selectedButtons.value = newSelectedButtons;
+       
+          showAlert.value = true;
           GameResult.value = {
                 lose: true,
           };
@@ -200,8 +355,14 @@ beforeCreate();
        
         } else if (response.data.message == "WinF") {
           betAmountwill.value = props.betInputValue;
+
+
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
+          selectedMinesButtons.value = newSelectedMinesButtons;
           selectedButtons.value = newSelectedButtons;
+          showAlert.value = true;
+          profit.value = response.data.profit
           GameResult.value = {
                 won: true,
                 wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
@@ -257,11 +418,13 @@ beforeCreate();
     }
 
     if (betInput.value < 0) {
+      showAlert.value = true;
       errorMsg.value = 'The bet cannot be less than zero.';
       context.emit("betfal");
       return false;
     }
     if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
+      showAlert.value = true;
       errorMsg.value = 'Your balance is less than the bet amount';
       context.emit("betfal");
       return false;
@@ -272,7 +435,7 @@ beforeCreate();
 
    const placeBet = async () => {
    
-  
+    showAlert.value = false;
     if (!handleCommonChecks()) {
       return;
     }
@@ -282,6 +445,7 @@ beforeCreate();
         errorMsg.value = '';
         profit.value = "1.00"; 
         selectedButtons.value = []; 
+        selectedMinesButtons.value = []; 
         cashdisabled.value = true;
         countinuemines.value = true;
 
@@ -327,19 +491,29 @@ beforeCreate();
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       countinuemines.value = false;
       if (response.data.message == "WinF") {
-          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
-          selectedButtons.value = newSelectedButtons;
-          GameResult.value = {
-                won: true,
-                wonMsg:    parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
-                currency: response.data.currency,
-          };
-          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
-          console.log(response.data.winamount);
-        
-          context.emit("betfal");
-          
+
+        let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+        availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
+
+        for (let i = 0; i < response.data.mines; i++) {
+          const randomIndex = Math.floor(Math.random() * availableNumbers.length);
+          selectedMinesButtons.value.push(availableNumbers[randomIndex]);
+          availableNumbers.splice(randomIndex, 1); // remove the selected number from availableNumbers
         }
+
+        const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+        selectedButtons.value = newSelectedButtons;
+        showAlert.value = true;
+        GameResult.value = {
+          won: true,
+          wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
+          currency: response.data.currency,
+        };
+        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+        console.log(response.data.winamount);
+
+        context.emit("betfal");
+      }
     } catch (error) {
         console.error(error);
         // Handle errors if needed
@@ -359,7 +533,10 @@ beforeCreate();
     isLoading,
     currencyImage,
     selectedCurrencyImages,
-    currencyImagetag
+    currencyImagetag,
+    countinuemines,
+    showAlert,
+    selectedMinesButtons,
   };
   } ,
 }
@@ -402,11 +579,46 @@ box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.218);
 
 .canvasstyle{
 
-  width: 100%; position: relative; aspect-ratio: 3/2;
+  width: 100%; position: relative; aspect-ratio: 3/2.5;
      display: flex; flex-direction: column;
 
 }
 
+.sectorbtn{
+width: 100%; height: 100%;
+
+
+}
+.sectormines {
+ margin: 4%;
+}
+button.sectormines {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.inside{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+
+}
+
+.divinside{
+  display: grid;
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  grid-template-columns: repeat(5,auto);
+  margin: auto;
+}
 </style>
 
 

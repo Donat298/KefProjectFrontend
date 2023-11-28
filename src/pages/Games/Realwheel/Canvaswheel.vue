@@ -1,6 +1,6 @@
 <template>
 
-    <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2;
+    <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2.5;
      display: flex; flex-direction: column;">  
 
 
@@ -9,16 +9,16 @@
       </div>  
 
 
-      <div style="display: flex; justify-content: center; align-items: center; ">
-      <wheelsvg :style="wheelStyle" style="max-width: 360px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
+      <div style="display: flex; justify-content: center; align-items: center; margin: auto 0px; padding-bottom: 20px;">
+      <wheelsvg :style="wheelStyle" style="max-width: 450px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
       <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
       </wheelpointersvg>
       </div>
 
 
-      <div  style="padding: 20px 0px;"  class="bottomdiv">
-        <GameAlert v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
+      <div  style=" background-color: rgba(165, 42, 42, 0.143);"  class="bottomdiv">
+        <GameAlert style="margin: 15px 0px; " v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
       </div>
     </div>
 
@@ -59,7 +59,7 @@ export default {
   const betInput = ref(props.betInputValue); 
   const GameResult = ref(null);
   const errorMsg = ref('');
-  const showAlert = ref(true);
+  const showAlert = ref(false);
   const isProcessing = ref(false);
   const message = ref('');
   const router = useRouter();
@@ -93,12 +93,14 @@ export default {
     }
 
     if (betInput.value < 0) {
+      showAlert.value = true;
       errorMsg.value = 'The bet cannot be less than zero.';
       context.emit("betfal");
       return false;
     }
 
     if (store.getters.userDetail[store.getters.selectedCurrency] < betInput.value) {
+      showAlert.value = true;
       errorMsg.value = 'Your balance is less than the bet amount';
       context.emit("betfal");
       return false;
@@ -216,15 +218,15 @@ export default {
 @media (max-width: 800px) {
   .bottomdiv {
     min-height: none !important;
-    margin-top: auto;
+
 
   }
 
 }
 @media (min-width: 800px) {
   .bottomdiv {
-    min-height: 60px;
-  margin-top: auto;
+    min-height: 87.5px;
+
 
   } 
 

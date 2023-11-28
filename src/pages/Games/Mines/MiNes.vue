@@ -23,13 +23,13 @@
 
               <bet-btn v-if="!isBetButtonPressed" style="width: 100%;"  >BET
               </bet-btn>
-           
-            </v-form>  
-         
-            <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
+              <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
    
+            </v-form>  
+         
+         
         
         </div> 
 
