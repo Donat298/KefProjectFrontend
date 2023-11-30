@@ -1,6 +1,6 @@
 <template>
 
-    <div name="thisdiv" style=" width: 100%; position: relative; aspect-ratio: 3/2.5;
+    <div name="thisdiv" style=" width: 100%; position: relative;   padding-bottom: 10px; aspect-ratio: 3/2.5;
      display: flex; flex-direction: column;">  
 
 
@@ -9,7 +9,7 @@
       </div>  
 
 
-      <div style="display: flex; justify-content: center; align-items: center; margin: auto 0px; padding-bottom: 20px;">
+      <div style="display: flex; justify-content: center; align-items: center; margin: auto 0px;">
       <wheelsvg :style="wheelStyle" style="max-width: 450px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
       <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
@@ -18,7 +18,9 @@
 
 
       <div  class="bottomdiv">
-        <GameAlert style="margin: 15px 0px; " v-if="showAlert" :GameResult="GameResult" :errorMsg="errorMsg" />
+        <GameAlert style="margin: 15px 0px; " v-if="showAlert" 
+        :GameResult="GameResult" :errorMsg="errorMsg" />
+        
       </div>
     </div>
 

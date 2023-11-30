@@ -20,10 +20,11 @@
 
    <div  v-if="!rail" style="padding:0px 20px; width: 100%; ">
 
-<v-btn @click="$emit('ShowPromocodeOknoo')" elevation="0" rounded="lg"  class="glowg-button2" :ripple="false" style="min-width: 5px;">
+
+
+<v-btn class="glowg-button2" @click="$emit('ShowPromocodeOknoo')" elevation="5" rounded="lg" :ripple="false">
   <span style="color: #ffffff;" class="shimmerr-text">Get Bonus</span>
 </v-btn>
-
 </div>
 
 
@@ -391,7 +392,7 @@ border-radius: 5px 0px 0px 5px !important;
   width: 100%;
   min-height: 40px;
   animation: shimmer 4s infinite linear; /* Adjusted animation duration and timing function */
-  color: #fff; /* Text color */
+
 }
 
 /* Style the text inside the button */

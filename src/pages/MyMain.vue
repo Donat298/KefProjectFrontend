@@ -11,6 +11,14 @@
         <v-btn class="explore-btn" @click="$router.push('/games')">Explore Games</v-btn>
       </div>
       <div class="game-selection">
+        <div class="svglist">
+
+  
+
+        </div>
+
+
+
         <h2>Choose Your Game</h2>
         <div class="game-list">
           <!-- Replace the placeholder images and titles with your actual game options -->
@@ -38,7 +46,9 @@
 </template>
 
 <script>
+
 export default {
+
   // Your Vue component logic goes here
 }
 </script>

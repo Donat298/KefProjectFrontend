@@ -324,7 +324,7 @@ const selectedETHAddressName = computed(() => {
 
     // Images for different currencies
     const selectedCurrencyImages = {
-      balanceusdt: require('@/assets/Cryptologos/tether-usdt-logo.svg'),
+      balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
       balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),

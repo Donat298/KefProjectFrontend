@@ -2,10 +2,10 @@
   <button
                 class="submit-button mx-auto"
                 type="submit"
-         
+                rounded="lg" 
                 style=" color: #15212c;
                 background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
-                 margin-right: 8px; height: 50px; min-width: 100px;
+                 margin-right: 8px; min-width: 100px;
                  font-size: 17px;"
            
               ><strong><slot></slot></strong>

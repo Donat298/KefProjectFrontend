@@ -19,7 +19,7 @@
 
 
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
-
+      
 
 
 
@@ -48,10 +48,31 @@
 
               <bet-btn v-if="!isBetButtonPressed" style="width: 100%; user-select: none;"  >BET
               </bet-btn>
-              <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled=" CashButtonDisabled" 
+              <bet-btn :style="{ opacity: CashButtonDisabled ? 0.7 : 1 }" :disabled="CashButtonDisabled" 
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
    
+
+              <div v-if="!isBetButtonPressed" style=" margin: 15px 0px;">
+              <div style="display: flex;" >
+        Mines:
+</div>
+          
+              <v-card elevation="5" style=" 
+              border-radius: 8px; align-items: center;  display: flex;
+               background-color: #bd323200">
+   
+   <font-awesome-icon style="color: #ffffff;position: absolute;
+    height: 14px; margin-left: 10px; right: 10px;" :icon="['fas', 'chevron-down']" />
+
+              <select :disabled="isBetButtonPressed" v-model="minesAmount" style="width: 100%; height: 46px; padding: 0px 15px; background-color: #15212c; color: #ffffff; border-radius: 8px; border: 2px solid #2e4659; border-color: #2e4659; outline: none; overflow: auto;">
+    <option v-for="n in 24" :key="n" :value="n">{{ n }}</option>
+    
+  </select>
+  
+</v-card>
+</div>
+
             </v-form>  
 
         
@@ -64,7 +85,8 @@
          @cashoutfal="Cashfalse()" @setparentprofit="profit = $event" @setparentbet="betAmountwill = $event"
          @seturrencyImage="currencyImage = $event"
         :cashoutButtonPressed="isCashoutButtonPressed"
-         @bettrue="placeBet()" :betInputValue="betInput" :betButtonPressed="isBetButtonPressed"
+         @bettrue="placeBet()" :betInputValue="betInput"
+         :betMines="minesAmount" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
 
       </div>
@@ -90,6 +112,7 @@ export default {
   data() {
     return {
       betInput: 0,
+      minesAmount: 10,
       profit: "1.00",
       betAmountwill: 0,
       currencyImage: null,
@@ -195,4 +218,12 @@ export default {
 
 
 }
+
+::-webkit-scrollbar {
+width: 5px;
+
+
+
+}
+
 </style>
