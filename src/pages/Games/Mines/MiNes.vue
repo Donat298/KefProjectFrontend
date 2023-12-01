@@ -65,7 +65,9 @@
    <font-awesome-icon style="color: #ffffff;position: absolute;
     height: 14px; margin-left: 10px; right: 10px;" :icon="['fas', 'chevron-down']" />
 
-              <select :disabled="isBetButtonPressed" v-model="minesAmount" style="width: 100%; height: 46px; padding: 0px 15px; background-color: #15212c; color: #ffffff; border-radius: 8px; border: 2px solid #2e4659; border-color: #2e4659; outline: none; overflow: auto;">
+              <select :disabled="isBetButtonPressed" v-model="minesAmount" 
+              style="width: 100%; height: 46px; padding: 0px 15px; background-color: #15212c; 
+              color: #ffffff; border-radius: 8px; border: 2px solid #2e4659; border-color: #2e4659; outline: none; overflow: auto;">
     <option v-for="n in 24" :key="n" :value="n">{{ n }}</option>
     
   </select>
@@ -112,7 +114,7 @@ export default {
   data() {
     return {
       betInput: 0,
-      minesAmount: 10,
+      minesAmount: 15,
       profit: "1.00",
       betAmountwill: 0,
       currencyImage: null,

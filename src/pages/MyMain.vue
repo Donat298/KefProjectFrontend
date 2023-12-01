@@ -41,19 +41,55 @@
         <p>Get a 100% deposit bonus on your first deposit! Don't miss out on this limited offer.</p>
         <v-btn class="bonus-btn" @click="$router.push('/promotions')">Claim Bonus</v-btn>
       </div>
+      <button @click="toggleShowResult">Click me</button>
+          <Transition name="bounce">
+      <p v-if="showResult" style="text-align: center;">
+        Hello here is some bouncy text!
+      </p>
+    </Transition>
     </div>
   </div>
 </template>
 
 <script>
-
+  import { ref } from 'vue';
 export default {
 
+  setup() {
+      const showResult = ref(false);
+  
+      const toggleShowResult = () => {
+        showResult.value = true;
+      };
+  
+      return {
+        showResult,
+        toggleShowResult,
+      };
+    },
   // Your Vue component logic goes here
 }
 </script>
 
 <style>
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .casino-home {
   display: flex;
   justify-content: center;

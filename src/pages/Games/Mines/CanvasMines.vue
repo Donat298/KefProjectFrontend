@@ -21,13 +21,14 @@
     
      <div class="inside">
     <div class="divinside" >
-  
+
+    <!-- rest of your code -->
         <button
         v-for="i in 25"
         :key="i"
         :style="{
           'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-          'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px) brightness(2)' : 'none'
+          'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
         }"
         @click="selectsectormines(i)"
         class="sectormines"
@@ -36,6 +37,23 @@
         <Serdsesvg v-else-if="selectedButtons.includes(i)" class="sectorbtn"></Serdsesvg>
         <Sectorsvg v-else class="sectorbtn" />
       </button>
+
+
+      <Transition name="bounce">
+      <v-card elevation="5" v-if="showResult" class="center-square">
+ 
+        <h2>{{ profit }}x</h2>
+     
+
+ <div style="display: flex; align-items: center; justify-content: center;">
+  <h4>{{ betAmountwill }} </h4>
+        <img
+          :src="currencyImage"
+          style="width: 17px; height: 17px; margin: 0px 5px; "
+        /> {{ currencyname }}
+      </div>
+      </v-card>
+    </Transition>
 
     </div>
     </div>
@@ -107,7 +125,8 @@ export default {
     const selectedButtonsOpticay = ref([]);
     const profit = ref("1.00"); 
     const showAlert = ref(false);
-   
+    const showResult = ref(false);
+    const currencyname = ref("");
     const betAmountwill = ref(props.betInputValue);
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
@@ -231,9 +250,8 @@ beforeCreate();
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
+          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
           betAmountwill.value = props.betInputValue;
-
-
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
           selectedMinesButtons.value = newSelectedMinesButtons;
@@ -244,13 +262,14 @@ beforeCreate();
         
           context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
+          showResult.value = true;
+          currencyname.value = response.data.currency;
           GameResult.value = {
                 won: true,
                 wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
                 currency: response.data.currency,
           };
-          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
-          countinuemines.value = false;
+           countinuemines.value = false;
           context.emit("betfal");
         }
         cashdisabled.value = false;
@@ -332,7 +351,7 @@ beforeCreate();
         profit.value = "1.00"; 
         context.emit("setparentprofit", "1.00");
         context.emit("setparentbet", betInput.value);
-
+        showResult.value = false;
         selectedButtons.value = []; 
         selectedMinesButtons.value = []; 
         selectedButtonsOpticay.value = [];
@@ -381,6 +400,7 @@ beforeCreate();
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       countinuemines.value = false;
       if (response.data.message == "WinF") {
+        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
 
@@ -397,12 +417,15 @@ beforeCreate();
         showAlert.value = true;
         context.emit("setparentbet", "0");
         context.emit("setparentprofit", "1.00");
+        showResult.value = true;
+        currencyname.value = response.data.currency;
+        
         GameResult.value = {
           won: true,
           wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
           currency: response.data.currency,
         };
-        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+
         console.log(response.data.winamount);
 
         context.emit("betfal");
@@ -432,6 +455,8 @@ beforeCreate();
     selectedMinesButtons,
     selectedButtonsOpticay,
     mines,
+    showResult,
+    currencyname
   };
   } ,
 }
@@ -506,7 +531,6 @@ button.sectormines {
     margin: 0 auto;
 
 }
-
 .divinside{
   display: grid;
   position: relative;
@@ -515,6 +539,82 @@ button.sectormines {
   grid-template-columns: repeat(5,auto);
   margin: auto;
 }
-</style>
 
+
+
+
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.center-square {
+  position: absolute;
+  
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+ max-width: 90%;
+  border-radius: 10px;
+  width: 200px;
+  padding: 20px;
+  color: #ffffff;
+  background-color: #2e4659;
+  border-radius: 8px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
+   rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
+linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
+    rgba(170, 170, 170, 0.01) 50%, rgba(170, 170, 170, 0.01) 100%),
+     linear-gradient(278deg, rgba(16, 16, 16, 0.03) 0%, rgba(16, 16, 16, 0.03) 50%,
+      rgba(24, 24, 24, 0.03) 50%, rgba(24, 24, 24, 0.03) 100%),
+       linear-gradient(205deg, rgba(116, 116, 116, 0.03) 0%,
+        rgba(116, 116, 116, 0.03) 50%, rgba(0, 0, 0, 0.03) 50%,
+         rgba(0, 0, 0, 0.03) 100%), linear-gradient(150deg, rgba(5, 5, 5, 0.03) 0%,
+          rgba(5, 5, 5, 0.03) 50%, rgba(80, 80, 80, 0.03) 50%,
+           rgba(80, 80, 80, 0.03) 100%), linear-gradient(198deg, rgba(231, 231, 231, 0.03) 0%,
+            rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
+             linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
+   rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(135deg,#2e4659, #15212c );
+
+}
+
+
+
+
+
+</style>
 
