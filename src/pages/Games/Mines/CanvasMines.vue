@@ -145,14 +145,11 @@ export default {
 
 
     const currencyImage = computed(() => {
-      if (countinuemines.value) {
+     
         const currencyKey = currencyImagetag.value;
         return selectedCurrencyImages[currencyKey];
-      }
-      else {
-        const currencyKey = store.getters.selectedCurrency; // Assuming you have a getter for selectedCurrency
-        return selectedCurrencyImages[currencyKey];
-      }
+    
+      
 
     });
     context.emit("seturrencyImage", currencyImage);
@@ -251,7 +248,6 @@ beforeCreate();
        
         } else if (response.data.message == "WinF") {
           store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
-          betAmountwill.value = props.betInputValue;
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
           selectedMinesButtons.value = newSelectedMinesButtons;
