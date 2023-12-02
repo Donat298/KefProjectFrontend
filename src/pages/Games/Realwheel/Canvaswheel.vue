@@ -14,12 +14,28 @@
       </wheelsvg>
       <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
       </wheelpointersvg>
+      
+      <Transition name="bounce">
+      <v-card rounded="lg" elevation="5" v-if="showResult" class="center-square">
+ 
+        <h2>2x</h2>
+     
+
+ <div style="display: flex; align-items: center; justify-content: center;">
+  <h4>{{ cashresult }} </h4>
+        <img
+          :src="currencyImage"
+          style="width: 17px; height: 17px; margin: 0px 5px; "
+        /> {{ currencyname }}
+      </div>
+      </v-card>
+    </Transition>
       </div>
 
 
       <div  class="bottomdiv">
         <GameAlert style="margin: 15px 0px; " v-if="showAlert" 
-        :GameResult="GameResult" :errorMsg="errorMsg" />
+       :errorMsg="errorMsg" />
         
       </div>
     </div>
@@ -30,7 +46,7 @@
 <script>
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import wheelsvg from "@/assets/GameObjects/Originalwheel.vue";
@@ -59,12 +75,35 @@ export default {
   const store = useStore();
   const axiosPrivateInstance = useApiPrivate(store);
   const betInput = ref(props.betInputValue); 
-  const GameResult = ref(null);
   const errorMsg = ref('');
   const showAlert = ref(false);
   const isProcessing = ref(false);
   const message = ref('');
   const router = useRouter();
+  const showResult = ref(false);
+  const cashresult = ref("");
+  const currencyname = ref("");
+  
+  const currencyImagetag = ref("");
+
+
+  const selectedCurrencyImages = {
+    usdt: require('@/assets/Cryptologos/usdt.svg'),
+    eur: require('@/assets/Cryptologos/euro-logo.svg'),
+    btc: require('@/assets/Cryptologos/Currency=btc.svg'),
+    eth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+  };
+
+
+  const currencyImage = computed(() => {
+
+    const currencyKey = currencyImagetag.value;
+    return selectedCurrencyImages[currencyKey];
+
+
+
+  });
+
 
     watch(() => props.betInputValue, (newValue) => {
       betInput.value = newValue;
@@ -130,6 +169,7 @@ export default {
       circleRotation.value = 0;
       wheelStyle.value = `transform: rotate(0deg); transition: none;`;
       try {
+        showResult.value = false;
         const balanceFieldsMap = {
           'balanceusdt': 'usdt',
           'balanceeur': 'eur',
@@ -161,20 +201,17 @@ export default {
         setTimeout(() => {
        
           if (response.data.message === 'You won!') {
-            GameResult.value = {
-                won: true,
-                wonMsg: betInput.value * 2,
-                currency: currency
-            };
+            showResult.value = true;
+            cashresult.value = parseFloat((betInput.value * 2).toFixed(5)).toString();
+            currencyname.value = currency;
+            currencyImagetag.value = currency;
+        
           } else {
-            GameResult.value = {
-                lose: true,
-            };
+         
           }
-
+         
           store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
           isProcessing.value = false;
-          showAlert.value = true;
           context.emit("betfal");
           store.commit('setGameInProgress', false);
 
@@ -191,7 +228,6 @@ export default {
         }
 
         isProcessing.value = false;
-        showAlert.value = true;
         context.emit("betfal");
       }
    
@@ -201,13 +237,20 @@ export default {
   return {
     placeBet,
     betInput,
-    GameResult,
+   
     errorMsg,
     isProcessing,
     showAlert,
     wheelStyle,
     message,
-    circleRotation
+    circleRotation,
+    cashresult,
+    showResult,
+    currencyname,
+    currencyImage,
+    currencyImagetag,
+    selectedCurrencyImages,
+
   };
 },
 
@@ -259,4 +302,66 @@ export default {
 .lose {
   background: red;
 }
+
+
+.bounce-enter-active {
+  animation: bounce-in 0.7s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.7s reverse;
+}
+
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+
+  }
+  50% {
+    transform: scale(1.25);
+
+  }
+  100% {
+    transform: scale(1);
+
+  }
+}
+
+
+
+
+
+.center-square {
+  position: absolute;
+  
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+ max-width: 90%;
+
+  width: 200px;
+  padding: 20px;
+  color: #ffffff;
+  background-color: #2e4659;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
+   rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
+linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
+    rgba(170, 170, 170, 0.01) 50%, rgba(170, 170, 170, 0.01) 100%),
+     linear-gradient(278deg, rgba(16, 16, 16, 0.03) 0%, rgba(16, 16, 16, 0.03) 50%,
+      rgba(24, 24, 24, 0.03) 50%, rgba(24, 24, 24, 0.03) 100%),
+       linear-gradient(205deg, rgba(116, 116, 116, 0.03) 0%,
+        rgba(116, 116, 116, 0.03) 50%, rgba(0, 0, 0, 0.03) 50%,
+         rgba(0, 0, 0, 0.03) 100%), linear-gradient(150deg, rgba(5, 5, 5, 0.03) 0%,
+          rgba(5, 5, 5, 0.03) 50%, rgba(80, 80, 80, 0.03) 50%,
+           rgba(80, 80, 80, 0.03) 100%), linear-gradient(198deg, rgba(231, 231, 231, 0.03) 0%,
+            rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
+             linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
+   rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(135deg,#2e4659, #15212c );
+
+}
+
+
 </style>

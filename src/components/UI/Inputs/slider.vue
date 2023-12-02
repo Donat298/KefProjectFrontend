@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     computedSliderValue() {
-      console.log("computedSliderValue");
+  
       if (isNaN(this.computedAmount)) {
         return 0;
       }

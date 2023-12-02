@@ -23,30 +23,44 @@
     <div class="divinside" >
 
     <!-- rest of your code -->
-        <button
-        v-for="i in 25"
-        :key="i"
-        :style="{
-          'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-          'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-        }"
-        @click="selectsectormines(i)"
-        class="sectormines"
-      >
-        <Mineob v-if="selectedMinesButtons.includes(i)" class="sectorbtn" />
-        <Serdsesvg v-else-if="selectedButtons.includes(i)" class="sectorbtn"></Serdsesvg>
-        <Sectorsvg v-else class="sectorbtn" />
-      </button>
+    <button
+  v-for="i in 25"
+  :key="i"
+  @click="selectsectormines(i)"
+  class="sectormines"
+>
+<Transition name="bounceheart">
+  <Mineob   :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }" v-if="showMine[i] && selectedMinesButtons.includes(i)" class="sectorbtn" />
+</Transition>
+
+<Transition name="bounceheart">
+
+  <Serdsesvg   :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }" v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" class="sectorbtn"/>
+</Transition>
+
+  <Transition name="bouncemines" @after-leave="() => afterLeave(i)">
+    <Sectorsvg v-if="!selectedMinesButtons.includes(i) && !selectedButtons.includes(i)" class="sectorbtn" />
+  </Transition>
+</button>
+
+
+
 
 
       <Transition name="bounce">
-      <v-card elevation="5" v-if="showResult" class="center-square">
+      <v-card rounded="lg" elevation="5" v-if="showResult" class="center-square">
  
         <h2>{{ profit }}x</h2>
      
 
  <div style="display: flex; align-items: center; justify-content: center;">
-  <h4>{{ betAmountwill }} </h4>
+  <h4>{{ cashresult }} </h4>
         <img
           :src="currencyImage"
           style="width: 17px; height: 17px; margin: 0px 5px; "
@@ -66,7 +80,7 @@
 
       <div style="" class="bottomdiv">
         <GameAlert v-if="showAlert"  style="margin: 15px 0px; " 
-         :GameResult="GameResult" :errorMsg="errorMsg" />
+       :errorMsg="errorMsg" />
       </div>
 
     </div>
@@ -90,7 +104,7 @@ export default {
     components: {
       GameAlert, vproGressMini, Sectorsvg, Serdsesvg, Mineob
     },
-  
+
   props: {
     betInputValue: {
       type: Number,
@@ -118,8 +132,7 @@ export default {
     const betInput = ref(props.betInputValue); 
     const sectorsnum = ref(25);
     const mines = ref(props.betMines);
-    const errorMsg = ref(''); 
-    const GameResult = ref(null);
+    const errorMsg = ref('');
     const selectedButtons = ref([]);
     const selectedMinesButtons = ref([]);
     const selectedButtonsOpticay = ref([]);
@@ -128,8 +141,17 @@ export default {
     const showResult = ref(false);
     const currencyname = ref("");
     const betAmountwill = ref(props.betInputValue);
+    const cashresult = ref("");
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
+    const showHeart = ref(Array(25).fill(false));
+    const showMine = ref(Array(25).fill(false));
+
+    function afterLeave(index) {
+      showHeart.value[index] = true;
+      showMine.value[index] = true;
+    }
+    
 
 
 
@@ -175,6 +197,10 @@ export default {
         selectedButtons.value.push(...response.data.selectednum);
 
 
+        response.data.selectednum.forEach(num => {
+          showHeart.value[num] = true;
+        });
+        
         profit.value = response.data.profit
         context.emit("setparentprofit", response.data.profit);
 
@@ -239,10 +265,7 @@ beforeCreate();
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
           selectedButtons.value = newSelectedButtons;
        
-          showAlert.value = true;
-          GameResult.value = {
-                lose: true,
-          };
+  
           countinuemines.value = false;
           context.emit("betfal");
        
@@ -253,18 +276,14 @@ beforeCreate();
           selectedMinesButtons.value = newSelectedMinesButtons;
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
           selectedButtons.value = newSelectedButtons;
-          showAlert.value = true;
+        
           profit.value = response.data.profit
         
           context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
           showResult.value = true;
           currencyname.value = response.data.currency;
-          GameResult.value = {
-                won: true,
-                wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
-                currency: response.data.currency,
-          };
+          cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
            countinuemines.value = false;
           context.emit("betfal");
         }
@@ -334,14 +353,15 @@ beforeCreate();
   };
 
    const placeBet = async () => {
-    
+    showHeart.value = ref(Array(25).fill(false));
+    showMine.value = ref(Array(25).fill(false));
+
     showAlert.value = false;
     if (!handleCommonChecks()) {
       return;
     }
       try {
         currencyImagetag.value = store.getters.selectedCurrency;
-        GameResult.value = null;
         errorMsg.value = '';
         
         profit.value = "1.00"; 
@@ -410,17 +430,11 @@ beforeCreate();
         selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num));
         selectedButtons.value = newSelectedButtons;
 
-        showAlert.value = true;
         context.emit("setparentbet", "0");
         context.emit("setparentprofit", "1.00");
         showResult.value = true;
         currencyname.value = response.data.currency;
-        
-        GameResult.value = {
-          won: true,
-          wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
-          currency: response.data.currency,
-        };
+        cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
 
         console.log(response.data.winamount);
 
@@ -432,11 +446,12 @@ beforeCreate();
       }
 
   }
+  
   return {
     placeBet,
     betInput,
     errorMsg,
-    GameResult,
+  
     selectedButtons,
     selectsectormines,
     profit,
@@ -452,7 +467,11 @@ beforeCreate();
     selectedButtonsOpticay,
     mines,
     showResult,
-    currencyname
+    currencyname,
+    cashresult,
+    showHeart,
+    showMine,
+    afterLeave,
   };
   } ,
 }
@@ -537,26 +556,67 @@ button.sectormines {
 }
 
 
+.bounceheart-enter-active {
+  animation: bounceheart-in 0.25s;
+}
+.bounceheart-leave-active {
+  animation: bounceheart-in 0.5s reverse;
+}
+
+
+@keyframes bounceheart-in {
+  0% {
+    transform: scale(0) rotate(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+
+.bouncemines-enter-active {
+  animation: bouncemines-in 0.5s;
+}
+.bouncemines-leave-active {
+  animation: bouncemines-in 0.25s reverse;
+}
+
+
+@keyframes bouncemines-in {
+  0% {
+    transform: scale(0) rotate(-180deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
 
 
 
 .bounce-enter-active {
-  animation: bounce-in 0.5s;
+  animation: bounce-in 0.7s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
+  animation: bounce-in 0.7s reverse;
 }
 
 
 @keyframes bounce-in {
   0% {
     transform: scale(0);
+
   }
   50% {
     transform: scale(1.25);
+
   }
   100% {
     transform: scale(1);
+
   }
 }
 
@@ -564,17 +624,6 @@ button.sectormines {
 
 
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 .center-square {
   position: absolute;
   
@@ -583,12 +632,11 @@ button.sectormines {
   align-self: center;
   justify-self: center;
  max-width: 90%;
-  border-radius: 10px;
+
   width: 200px;
   padding: 20px;
   color: #ffffff;
   background-color: #2e4659;
-  border-radius: 8px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
    rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
