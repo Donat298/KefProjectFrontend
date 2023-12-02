@@ -20,7 +20,7 @@
       </div>  
     
      <div class="inside">
-    <div class="divinside" >
+    <div  class="divinside" >
 
     <!-- rest of your code -->
     <button
@@ -29,24 +29,33 @@
   @click="selectsectormines(i)"
   class="sectormines"
 >
-<Transition name="bounceheart">
-  <Mineob   :style="{
+
+  <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
     'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
     'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-  }" v-if="showMine[i] && selectedMinesButtons.includes(i)" class="sectorbtn" />
-</Transition>
+  }"  class="sectorbtn" />
 
-<Transition name="bounceheart">
 
-  <Serdsesvg   :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-  }" v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" class="sectorbtn"/>
-</Transition>
-
-  <Transition name="bouncemines" @after-leave="() => afterLeave(i)">
-    <Sectorsvg v-if="!selectedMinesButtons.includes(i) && !selectedButtons.includes(i)" class="sectorbtn" />
+<template v-if="enableTransition">
+  <Transition name="bounceheart">
+    <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
+      'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+      'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+    }" class="sectorbtn"/>
   </Transition>
+</template>
+
+<template v-else>
+  <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }" class="sectorbtn"/>
+</template>
+
+<Transition :name="enableTransition ? 'bouncemines' : ''" @after-leave="() => afterLeave(i)">
+      <Sectorsvg v-if="!selectedButtons.includes(i) && !selectedMinesButtons.includes(i)"
+       class="sectorbtn" />
+    </Transition>
 </button>
 
 
@@ -144,12 +153,14 @@ export default {
     const cashresult = ref("");
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
-    const showHeart = ref(Array(25).fill(false));
     const showMine = ref(Array(25).fill(false));
-
+    const showHeart = ref(Array(25).fill(false));
+    const enableTransition = ref(false);
+    
     function afterLeave(index) {
-      showHeart.value[index] = true;
       showMine.value[index] = true;
+      showHeart.value[index] = true;
+
     }
     
 
@@ -209,6 +220,7 @@ export default {
 
 
         countinuemines.value = true;
+        enableTransition.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
             cashdisabled.value = true;
@@ -245,6 +257,7 @@ beforeCreate();
           betAmountwill.value = props.betInputValue;
           context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
+          enableTransition.value = false;
           response.data.mines
 
            selectedMinesButtons.value.push(buttonNumber);
@@ -270,6 +283,7 @@ beforeCreate();
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
+          enableTransition.value = false;
           store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
@@ -325,6 +339,7 @@ beforeCreate();
     console.log("bet2");
     console.log(countinuemines.value);
       if (newValue && !countinuemines.value) {
+       
          placeBet();
       }
  
@@ -352,69 +367,82 @@ beforeCreate();
     return true;
   };
 
-   const placeBet = async () => {
-    showHeart.value = ref(Array(25).fill(false));
-    showMine.value = ref(Array(25).fill(false));
-
-    showAlert.value = false;
+  const placeBet = async () => {
+  
     if (!handleCommonChecks()) {
       return;
     }
-      try {
-        currencyImagetag.value = store.getters.selectedCurrency;
-        errorMsg.value = '';
-        
-        profit.value = "1.00"; 
-        context.emit("setparentprofit", "1.00");
-        context.emit("setparentbet", betInput.value);
-        showResult.value = false;
-        selectedButtons.value = []; 
-        selectedMinesButtons.value = []; 
-        selectedButtonsOpticay.value = [];
-        cashdisabled.value = true;
-        countinuemines.value = true;
+    try {
+  
+      const balanceFieldsMap = {
+        'balanceusdt': 'usdt',
+        'balanceeur': 'eur',
+        'balancebtc': 'btc',
+        'balanceeth': 'eth',
+      };
+      const currency = balanceFieldsMap[store.getters.selectedCurrency];
+      const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
 
-        context.emit("cashdisabled", cashdisabled.value);
-        const balanceFieldsMap = {
-          'balanceusdt': 'usdt',
-          'balanceeur': 'eur',
-          'balancebtc': 'btc',
-          'balanceeth': 'eth',
-        };
-        const currency = balanceFieldsMap[store.getters.selectedCurrency];
-      
-        console.log(currency);
-        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
-        store.dispatch('updateBalance', { currency: currency, amount: newAmount });
+      // Group all value changes here
+      showAlert.value = false;
+      currencyImagetag.value = store.getters.selectedCurrency;
+      errorMsg.value = '';
+      profit.value = "1.00"; 
+      cashdisabled.value = true;
+      countinuemines.value = true;
+      showResult.value = false;
+      // Emit events after value changes
+      context.emit("setparentprofit", "1.00");
+      context.emit("setparentbet", betInput.value);
+      context.emit("cashdisabled", cashdisabled.value);
 
-        
-        const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
-          betAmount: betInput.value,
-          currency: currency,
-          sectorsnum: sectorsnum.value,
-          mines: mines.value,
-        });
- 
-        console.log(responsebet);
+      // Dispatch updateBalance after value changes
+      store.dispatch('updateBalance', { currency: currency, amount: newAmount });
+
+      const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
+        betAmount: betInput.value,
+        currency: currency,
+        sectorsnum: sectorsnum.value,
+        mines: mines.value,
+      });
+      showMine.value = ref(Array(25).fill(false)); 
+      showHeart.value = ref(Array(25).fill(false));
+      console.log(responsebet);
+
+  
+      selectedButtons.value = [],
+      selectedButtonsOpticay.value = [],
+      selectedMinesButtons.value = [],
    
-      } catch (error) {
-        console.log(error);
 
-        if (error.response && error.response.data && error.response.data.message) {
-          errorMsg.value = error.response.data.message;
-        } else {
-          errorMsg.value = "An unknown error occurred.";
-        }
-        context.emit("betfal");
+
+      enableTransition.value = true;
+    
+    } catch (error) {
+      console.log(error);
+
+      if (error.response && error.response.data && error.response.data.message) {
+        errorMsg.value = error.response.data.message;
+      } else {
+        errorMsg.value = "An unknown error occurred.";
       }
+
+      context.emit("betfal");
+      
+   
+    } 
   };
 
+
   const cashOut = async () => {
-    console.log("cashout");
-    context.emit("cashoutfal");
+
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
+      console.log("cashout");
+      context.emit("cashoutfal");
       countinuemines.value = false;
+      enableTransition.value = false;
+      
       if (response.data.message == "WinF") {
         store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
@@ -472,6 +500,8 @@ beforeCreate();
     showHeart,
     showMine,
     afterLeave,
+    enableTransition,
+
   };
   } ,
 }
@@ -556,11 +586,11 @@ button.sectormines {
 }
 
 
+
+
+
 .bounceheart-enter-active {
   animation: bounceheart-in 0.25s;
-}
-.bounceheart-leave-active {
-  animation: bounceheart-in 0.5s reverse;
 }
 
 
@@ -576,9 +606,6 @@ button.sectormines {
 
 
 
-.bouncemines-enter-active {
-  animation: bouncemines-in 0.5s;
-}
 .bouncemines-leave-active {
   animation: bouncemines-in 0.25s reverse;
 }
