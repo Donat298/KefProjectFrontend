@@ -255,8 +255,7 @@ beforeCreate();
         console.log(response);
         } else if (response.data.message == "Losemines") {
           betAmountwill.value = props.betInputValue;
-          context.emit("setparentbet", "0");
-          context.emit("setparentprofit", "1.00");
+       
           enableTransition.value = false;
           response.data.mines
 
@@ -280,6 +279,8 @@ beforeCreate();
        
   
           countinuemines.value = false;
+          context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
@@ -393,7 +394,8 @@ beforeCreate();
       showResult.value = false;
       // Emit events after value changes
       context.emit("setparentprofit", "1.00");
-      context.emit("setparentbet", betInput.value);
+      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
+ 
       context.emit("cashdisabled", cashdisabled.value);
 
       // Dispatch updateBalance after value changes

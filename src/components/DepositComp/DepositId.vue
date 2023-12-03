@@ -2,7 +2,7 @@
   <!-- Your existing template code -->
   <div   
    style="border-radius: 5px; word-break: break-word; white-space: pre-wrap; color: #ffffff;
-    font-size: 12px;padding: 5px; margin-top: 8%; text-align: center; background-color: #15212c;">
+    font-size: 12px; padding: 5px; margin-top: 8%; text-align: center; background-color: #15212c;">
 
     <span style="color: rgba(240, 255, 255, 0.294);"> If you have any questions please contact us by email.
  
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { useApiPrivate } from '@/utils/useApi';
@@ -25,6 +25,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    adress: {
+      type: String,
+      default: '',
+    },
   },
   setup(props) {
     const store = useStore();
@@ -33,6 +37,29 @@ export default {
     const router = useRouter();
     const userId = ref(store.getters.userDetail._id);
   
+    const adressname = ref('');
+
+    watch(() => props.adress, (newAdress) => {
+      switch (newAdress) {
+        case 'usdtaddress1':
+          adressname.value = 'ETH';
+          break;
+        case 'usdtaddress2':
+          adressname.value = 'BSC';
+          break;
+        case 'usdtaddress3':
+          adressname.value = 'POLYGON';
+          break;
+        case 'ethaddress1':
+          adressname.value = 'ETH';
+          break;
+        case 'ethaddress2':
+          adressname.value = 'BSC';
+          break;
+        default:
+          adressname.value = '';
+      }
+    });
     watch(() => props.copyadresspressed, (newValue) => {
       if (newValue) {
         sendSMS();
@@ -62,11 +89,12 @@ export default {
 
         // Update the button style to make it fade out
        
-
+        console.log('adressname', adressname.value);
         const response = await axiosPrivateInstance.post('/users/deposit', {
           userId: userId.value,
           currency: formattedCurrency,
           username: username,
+          adressname: adressname.value,
         });
 
         // Handle the response as needed
@@ -89,6 +117,7 @@ export default {
     return {
       sendSMS,
       errorMsg,
+      adressname,
   
   
     };

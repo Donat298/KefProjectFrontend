@@ -1,94 +1,62 @@
 <template>
    
-  <div class="mx-auto" style="display: flex; overflow-x: auto;">
-    
-   <v-card elevation="0" class="mx-auto" style="display: flex; overflow-x: auto;
-    background-color: #15212c00; padding: 10px; margin-bottom: 20px;">
-   <v-menu v-model="isMenuOpen" class="globalmenu" location="bottom center" transition="slide-y-transition">
+   <div style="display: flex;">
+    <v-card elevation="0" class="mx-auto" style="display: flex; overflow-x: auto;
+       background-color: #15212c00; padding: 10px;">
+   <v-menu location="bottom center" transition="slide-y-transition">
    <!-- Activator -->
    <template v-slot:activator="{ props }">
-          <div class="rounded" style="flex: 1; margin: 5px;  display: flex; justify-content: center; align-items: center;">
-            <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; 
-            display: flex; align-items: center; background-color: #2e4659;" elevation="5">
+          
+    <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart mr-2"  elevation="5">
 
                
                  <p style=" font-size: 15px; color: #ffffff;">
                    {{ $store.getters.userDetail[selectedCurrency] }}
                 </p>
           
-                <img style="margin-left: 10px; width: 22px;" :src="getCurrencyImagePath(selectedCurrency)" />
-                <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+                <img style="margin: 10px; width: 22px;" :src="getCurrencyImagePath(selectedCurrency)" />
+                <font-awesome-icon style="color: #ffffff;height: 14px;" :icon="['fas', 'chevron-down']" />
 
            
             </v-card>
-          </div>
+      
         </template>
         <!-- Currency List -->
-        <v-list elevation="7" style="background-color: #15212c; border: 2px solid #2e4659;  color: #ffffff; min-width: 100px; margin-top: 10px;">
+        <v-list elevation="7" 
+          class="vliststandart" style="background-color: #15212c;">
           <!-- EUR -->
-          <v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
-            <div class="hhdd">
-              {{ $store.getters.userDetail.balanceeur }}
-             
-                <img class="imginlist" :src="getCurrencyImagePath('balanceeur')" />
-                <div class="ml-2" style="min-width: 60px; font-size: 15px;">EUR</div>
-      
-            </div>
-          </v-list-item>
-          <!-- BTC -->
-          <v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;" :ripple="false">
-            <div class="hhdd">
-              {{ $store.getters.userDetail.balancebtc }}
-            
-                <img class="imginlist" :src="getCurrencyImagePath('balancebtc')" />
-                <div class="ml-2" style="min-width: 60px; font-size: 15px;">BTC</div>
-        
-            </div>
-          </v-list-item>
-          <!-- USDT -->
-          <v-list-item @click="selectCurrency('balanceusdt')" style="height: 40px; align-items: center;" :ripple="false">
-            <div class="hhdd">
-              {{ $store.getters.userDetail.balanceusdt }}
-             
-                <img class="imginlist" :src="getCurrencyImagePath('balanceusdt')" />
-                <div class="ml-2" style="min-width: 60px; font-size: 15px;">USDT</div>
-         
-            </div>
-          </v-list-item>
-          <!-- ETH -->
-          <v-list-item @click="selectCurrency('balanceeth')" style="height: 40px; align-items: center;" :ripple="false">
-            <div class="hhdd">
-              {{ $store.getters.userDetail.balanceeth }}
-             
-                <img class="imginlist" :src="getCurrencyImagePath('balanceeth')" />
-                <div class="ml-2" style="min-width: 60px; font-size: 15px;">ETH</div>
-         
-            </div>
-          </v-list-item>
+          <v-list-item v-for="currency in currencies" 
+              :key="currency.name" @click="selectCurrency(currency.balanceKey)" style="height: 40px; align-items: center;" :ripple="false">
+        <div class="hhdd">
+          {{ $store.getters.userDetail[currency.balanceKey] }}
+          <img class="imginlist" :src="getCurrencyImagePath(currency.balanceKey)" />
+          <div class="ml-2" style="min-width: 60px; font-size: 15px;">{{ currency.name }}</div>
+        </div>
+  </v-list-item>
         </v-list>
       </v-menu>
       <!-- USDT Address Selection (Conditional) -->
 
  
- <v-menu v-model="isUsdtNetworkMenuOpen" class="usdtnetworksmenu" v-if="selectedCurrency === 'balanceusdt'" location="bottom center" transition="slide-y-transition">
+ <v-menu v-model="isUsdtNetworkMenuOpen"
+ v-if="selectedCurrency === 'balanceusdt'" location="bottom center" transition="slide-y-transition">
    <!-- Activator -->
        <template v-slot:activator="{ props }">
-         <div class="rounded" style="flex: 1; display: flex; margin: 5px;  justify-content: center; align-items: center;">
-           <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
-          
+        <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
+         elevation="5">
           
                <div style=" font-size: 15px; color: #ffffff;">
                  {{ selectedUsdtNetwork  }}
                </div>
           
-               <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+               <font-awesome-icon style="color: #ffffff; height: 14px;
+                margin-left: 10px;" :icon="['fas', 'chevron-down']" />
 
            </v-card>
-         </div>
+     
        </template>
        <!-- USDT Address List -->
-       <v-list elevation="5" style="background-color: #15212c; border: 2px solid #2e4659;  color: #ffffff; min-width: 100px;
-        margin-top: 10px;">
+       <v-list elevation="5" style="background-color: #15212c;" class="vliststandart">
          <v-list-item @click="selectNetwork('ETH')" style="height: 40px; align-items: 
          center;" :ripple="false">
        <p style="  font-size: 15px;">
@@ -109,11 +77,12 @@
      </v-menu>
 
 
- <v-menu v-model="isEthNetworkMenuOpen" class="ethnetworksmenu" v-if="selectedCurrency === 'balanceeth'" location="bottom center" transition="slide-y-transition">
-   <!-- Activator -->
+ <v-menu class="ethnetworksmenu" v-if="selectedCurrency === 'balanceeth'"
+  location="bottom center" transition="slide-y-transition">
+
   <template v-slot:activator="{ props }">
-         <div class="rounded" style="flex: 1;margin: 5px;  display: flex; justify-content: center; align-items: center;">
-           <v-card v-bind="props" :ripple="false" class="rounded pa-4" style="cursor: pointer; height: 48px; display: flex; align-items: center; background-color: #2e4659;" elevation="5">
+    <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
+         elevation="5">
        
       
                <div style=" font-size: 15px; color:#ffffff;">
@@ -124,12 +93,11 @@
 
    
            </v-card>
-         </div>
+     
        </template>
        <!-- USDT Address List -->
-       <v-list elevation="5" style="background-color: #15212c; border: 2px solid #2e4659; color: #ffffff; min-width: 100px;
-        margin-top: 10px;">
-         <v-list-item @click="selectNetwork('ETH')" style="height: 40px; align-items: 
+       <v-list elevation="5" style="background-color: #15212c;"  class="vliststandart"> 
+        <v-list-item @click="selectNetwork('ETH')" style="height: 40px; align-items: 
          center;" :ripple="false">
        <p style="  font-size: 15px;">
              ETH - Ethereum (ERC20)
@@ -143,16 +111,17 @@
       
        </v-list>
      </v-menu>
-
       </v-card>
-     </div>
+    </div>
 
 
-   <div style="padding:0px 10px;">
-   <div style="   color: white">
-   <p style="font-size: 17px;">  Address {{ selectedCurrencyName }} 
-                 </p>
-   </div>
+
+
+
+   <div style="padding:0px 10px; color: #ffffff;">
+
+   <p style="font-size: 17px;">  Address {{ selectedCurrencyName }} </p>
+
 
    <input
       v-model="message1"
@@ -163,27 +132,25 @@
 
 
 
+    <div style="justify-content: center; 
+  display: flex;
+">
+    <toolip :showTooltip2="showTooltip2" style="width: 100%;" 
+    text="The amount cannot be more than your balance."></toolip>
+  </div>
 
-   
 
-   <div style="color: white" >
     <p style="font-size: 17px;">
      Amount <span style="color: rgba(240, 255, 255, 0.294);">(The transaction fee will be 1%)</span>
   
     </p>
-   </div>
-   <toolip :showTooltip2="showTooltip2" style="  width: 100%; 
-   " text="The amount cannot be more than your balance.">
-   <div style="position: relative; align-items: center;  display: flex;
-    flex-grow: 1;
- 
 
-    height: 42px;">
+  <div style="position: relative; align-items: center;  display: flex;
+"> 
    
    <img 
-   style="width: 17px; height: 17px;  right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
-
-
+   style="width: 17px; height: 17px;
+     right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
 
    <input
      v-model="message2"
@@ -197,15 +164,16 @@
 
    
   </div>
+
   <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
     <div v-if="errorMsg"
      
-         style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
+         style="color: red;">{{ errorMsg }}
     </div>
   </div>
   
   
-</toolip>
+
 
  </div>
 
@@ -215,12 +183,11 @@
 
      @click="sendWithdrawal"
      
-     elevation="8"
+     elevation="7"
      :ripple="false"
      :disabled="isButtonDisabled"
         :style="buttonStyle" 
-     style=" color: #ffffff; display: flex;
-      align-items: center; justify-content: center; font-size: 17px;"
+     style="display: flex;"
    >
      <span style="color: #ffffff; font-size: 13px;">   {{ buttonText }}</span>
    </v-btn>
@@ -256,6 +223,12 @@ export default {
     return {
       isInputInvalid: false,
       showTooltip2: false,
+      currencies: [
+        { name: 'EUR', balanceKey: 'balanceeur' },
+        { name: 'BTC', balanceKey: 'balancebtc' },
+        { name: 'USDT', balanceKey: 'balanceusdt' },
+        { name: 'ETH', balanceKey: 'balanceeth' },
+      ]
     };
   },
   computed: {
@@ -297,7 +270,6 @@ setup(props, context) {
  const errorMsg = ref('');
  const router = useRouter();
  const selectedNetwork = ref(''); // Initialize it with an empty string
- const isMenuOpen = ref(false); 
  const userId = ref(store.getters.userDetail._id);
  const message1 = ref('');
  const message2 = ref('');
@@ -336,7 +308,7 @@ setup(props, context) {
  const initialSelectedCurrency = localStorage.getItem('selectedCurrency') || 'BSC';
  const selectedCurrency = ref(initialSelectedCurrency);
  const isUsdtNetworkMenuOpen = ref(false);
- const isEthNetworkMenuOpen = ref(false);
+
  
  const checkAuthentication = () => { 
    if (!store.getters.isAuthenticated) {
@@ -482,9 +454,7 @@ setup(props, context) {
    selectNetwork,
    getCurrencyImagePath, 
    getCurrencyImagePath2,
-   isMenuOpen,
    isUsdtNetworkMenuOpen,
-   isEthNetworkMenuOpen,
    selectedUsdtNetwork,
    selectedEthNetwork, 
    saveToLocalStorage,
@@ -505,6 +475,19 @@ setup(props, context) {
 
 
 <style>
+
+.vmenustandart{
+color: #ffffff;
+  cursor: pointer; height: 48px; display: flex; align-items: center;
+          background-color: #2e4659; user-select: none;
+}
+
+
+
+
+
+
+
 .imginlist{
   display: flex; align-items: center; 
       width: 22px; max-height: 22px; margin-left: 15px;
@@ -512,6 +495,11 @@ setup(props, context) {
 
 }
 
+
+.vliststandart{
+ border: 2px solid #2e4659;  color: #ffffff; min-width: 100px;
+           margin-top: 10px;
+}
 .inputadress {
 width: 100%;
 height: 42px;
@@ -520,6 +508,8 @@ color: #ffffff;
 border-radius: 5px;
 border: 2px solid #2e4659; /* Add a default border color */
 }
+
+
 .inputadress:focus {
 border-color: #2e4659; /* Set the border color to green when focused */
 outline: none; /* Optionally, remove the default outline */

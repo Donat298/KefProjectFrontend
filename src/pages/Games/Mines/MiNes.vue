@@ -35,7 +35,7 @@
        <strong>{{ betAmountwill }} </strong> 
         <img
             :src="currencyImage"
-            style="width: 17px; height: 17px; margin-left: 5px;"
+            style="width: 17px; height: 17px; margin:0px 5px;"
         /> 
     </div>
 

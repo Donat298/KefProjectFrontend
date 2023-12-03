@@ -8,9 +8,12 @@
         border-radius: 7px 0px 0px 7px ;  "   :style="{ 'padding': isWideScreen ? '30px' : '20px' }" 
        class="bet-div">
  <div class="bet-form">
+   
+
           <toolip :showTooltip2="showTooltip2" style="width: 100%;
    " text="The bet cannot be more than your balance.">  
-     </toolip>   
+     </toolip>  
+  
            <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center;
            "> 
 
