@@ -1,4 +1,4 @@
-//Child component
+
 <template>
     <div class="tooltip-container">
       <div v-if="showTooltip2" class="tooltip">

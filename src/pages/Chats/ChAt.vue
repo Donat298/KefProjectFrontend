@@ -6,14 +6,16 @@
     <v-card elevation="0" class="chat-container pa-0" style="height: 100%; width: 100%; display: flex; justify-content: center;">
       <v-card-text style="background-color: #0c141b; align-items: center;" class="chat-messages">
         <div ref="messagesContainer" style="max-width: 100%; width: 100%; overflow-y: auto;">
-          <div class="my-2 mx-auto" v-for="(message, index) in messages" :key="index" style="width: 800px; max-width: 90%;">
+          <div class="my-2 mx-auto" v-for="(message, index) in messages" :key="index" style="width: 800px; 
+          max-width: 90%;">
             <div :class="`bubble-container ${message.username === user ? 'right' : 'left'}`">
               <div :class="`bubble ${message.username === user ? 'right' : 'left'}`">
                 <div class="avatar-container">
-                  <img :src="message.userAvatar" alt="User Avatar" class="user-avatar" />
+                  <img :src="message.userAvatar ? message.userAvatar : require('@/assets/Kefdeflogo.svg')"
+                   alt="User Avatar" class="user-avatar" />
                 </div>
                 <div class="message-content">
-                  <div class="sender">{{ message.username }}</div>
+                  <div class="sender">{{ message.username }} </div>
                   <div class="text">{{ message.MessageText }}</div>
                 </div>
               </div>
@@ -30,7 +32,7 @@
         <input 
         :counter="200" 
          v-focus
-         class=" inputbet"
+         class=" inputbet" 
          @keyup.enter.exact="sendMessage"
          v-model="newMessage"
          style="padding: 0px 15px; font-size: 17px; "
@@ -147,12 +149,13 @@ export default {
 
   .bubble {
     display: flex;
-    padding: 10px 10px;
+    padding: 15px 15px;
     margin-bottom: 10px;
     border-radius: 10px;
     word-break: break-word;
     white-space: pre-wrap;
     max-width: 70%;
+   
   }
   .bubble-container {
     display: flex;
@@ -160,18 +163,18 @@ export default {
   }
 
   .bubble.left .avatar-container {
-    width: 34px;
-    min-width: 34px;
-    height: 34px;
+    width: 54px;
+    min-width: 54px;
+    height: 54px;
     overflow: hidden;
     border-radius: 50%;
    margin-right: 10px;
   }
 
   .bubble.right .avatar-container {
-    width: 34px;
-    height: 34px;
-    min-width: 34px;
+    width: 54px;
+    min-width: 54px;
+    height: 54px;
     overflow: hidden;
     border-radius: 50%;
     margin-left: 10px;
@@ -194,19 +197,25 @@ export default {
 
   .bubble .sender {
     font-weight: bold;
-    color: white;
+    font-size: 20px;
+    color: rgb(99, 254, 202);
+
   }
   .bubble.right .sender {
     text-align: right;
-    margin-top: 5px;
+
   }
   .bubble.left .sender {
     text-align: left;
-    margin-top: 5px;
+    
+
   }
   .bubble .text {
     margin-top: 5px;
     color: white;
+    font-size: 17px;
+
+
   }
   .bubble.left {
     background-color: rgb(30, 44, 56);
@@ -262,5 +271,6 @@ export default {
   .user-avatar {
     width: 100%;
     height: 100%;
+
   }
 </style>
