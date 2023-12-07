@@ -2,8 +2,12 @@
   <div class="ppj">
   <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
     <div style="max-height: 90%; width: 100%; ">
-      <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" style="background-color: #1d2f3f; border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
+      <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" 
+       class="insidedivglob">
+
+
+
+        <div style="display: flex; justify-content: space-between; padding: 5px 10px 10px 10px; ">
           <div style="color: #ffffff; padding: 10px;">
             Wallet   
             <font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'wallet']" />
@@ -14,35 +18,41 @@
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
     
-    <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
+        <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
             </button>
             
        
         </div>
+
+
+
        <div  elevation="0" style="background-color: #15212c;    ">
          <div style="overflow-x:
          auto;margin: 0px 10px 0px 10px;padding: 10px 10px; width: auto; "  class="d-flex align-center">
-          <v-btn :class="getButtonClass('Deposit')" @click="changeComponent('Deposit')" elevation="4" class="glow-button" 
-          :ripple="false" 
-          style="color: #ffffff; display: flex; flex-direction: column; align-items: center;
-           text-align: center; flex-grow: 1; flex-shrink: 1;">
+
+         
+          <v-btn :class="getButtonClass('Deposit')" 
+          @click="changeComponent('Deposit')" elevation="4" class="glow-button"
+          :ripple="false">
             <span style="color: #ffffff; font-size: 13px;">Deposit</span>
           </v-btn>
-   
-
-          <v-btn :class="getButtonClass('Withdraw')"  @click="changeComponent('Withdraw')" elevation="4" class="glow-button"
-           :ripple="false" style="margin-inline: 10px; flex-grow: 1; flex-shrink: 1;">
+          <v-btn :class="getButtonClass('Withdraw')"
+          @click="changeComponent('Withdraw')"  elevation="4" class="glow-button"
+          :ripple="false">
             <span style="color: #ffffff; font-size: 13px;">Withdraw</span>
           </v-btn>
 
-          <v-btn :class="getButtonClass('BuyCrypto')"  @click="changeComponent('BuyCrypto')" elevation="4" class="glow-button" 
-          :ripple="false" style="flex-grow: 1; flex-shrink: 1;">
+        <v-btn :class="getButtonClass('BuyCrypto')"  
+        @click="changeComponent('BuyCrypto')"  elevation="4" class="glow-button"
+          :ripple="false">
             <span style="color: #ffffff; font-size: 13px;">Buy crypto</span>
           </v-btn>
+      
+   
         </div>
         </div>
 
-        <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin-left: 10px; margin-right: 10px; border-radius: 10px;">
+        <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin: 0px 10px;">
           <component @cSWi="handleEmit" :is="selectedComponent" />
         </div>
       </div>
@@ -169,10 +179,13 @@ export default {
   background-color: #1d2f3f;
   color: #ffffff;
   min-height: 48px;
+  margin: 0px 5px;
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
   width: 155px; min-width: 110px;
+   display: flex; 
+  flex-shrink: 1;
 }
 
 
@@ -182,5 +195,13 @@ export default {
   color: white; /* Text color when highlighted */
 
 }
+
+.insidedivglob {
+
+  background-color: #1d2f3f; border-radius: 10px; max-width: 90%;
+       margin: auto; max-height: 90%; width: 500px;
+}
+
+
   </style>
   

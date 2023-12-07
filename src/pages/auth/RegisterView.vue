@@ -3,126 +3,125 @@
 
 <template>
   <div class="jjl">
-    <div style="
-    width: 460px;
-    max-height: 100%;
-    align-items: center;
-    max-width: 90%;
-    justify-content: center; 
+    <div style="max-width: 90%; max-height: 100%; width: 420px;   
     ">
-      <div style=" max-width: 420px; margin-left: auto; margin-right: auto; padding-bottom:30px; ">
-        <div style="display: flex; max-width: 100%; width: 306px; height: 171px; margin: auto; margin-bottom: 20px;">
-            <img style="margin-left: auto; margin-right: auto; width: 100%; height: auto;
+         <div style="display: flex; max-width: 100%; width: 306px; height: 171px; margin: auto; margin-bottom: 20px;">
+            <img style=" width: 100%; 
              background-color: rgba(127, 255, 212, 0);" :src="require('@/assets/kefu.svg')" />
           </div>
-  <v-card
-    class="mx-auto px-8 pt-8 pb-4"
-    elevation="8"
-    rounded="lg"
-    style="background-color: rgb(37, 56, 74) ; border: 7px solid rgb(37, 56, 74);"
-  >
+          <v-card class="mx-auto px-8 pt-8 pb-4" elevation="0" rounded="lg  "
+           style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74); ">
   <v-form
         v-model="form"
         @submit.prevent="onSubmit"
       >
-    <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
-      Username
-    </div>
-
-    <v-text-field
-      density="compact"
-      placeholder=""
-      v-model="username"
-      variant="solo"
-      :readonly="loading"
-      @input="removeSpaces('username')"
-    ></v-text-field>
-
-    <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
-      Email
-    </div>
-
-    <v-text-field
-      density="compact"
-      placeholder=""
-      v-model="email"
-      variant="solo"
-      :readonly="loading"
-      @input="removeSpaces('email')"
-    ></v-text-field>
-
-    <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
-      password
-    </div>
-
-    <v-text-field
-      :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="visible ? 'text' : 'password'"
-      density="compact"
-      placeholder=""
-      v-model="password"
-      variant="solo"
-      @click:append-inner="visible = !visible"
-      :readonly="loading"
-      @input="removeSpaces('password')"
-    ></v-text-field>
-
-    <div style="color: white;" class="text-subtitle-1  text-color-white d-flex align-center justify-space-between">
-      password confirm
-    </div>
-
-    <v-text-field
-      :append-inner-icon="visible2 ? 'mdi-eye' : 'mdi-eye-off'"
-      :type="visible2 ? 'text' : 'password'"
-      density="compact"
-      placeholder=""
-      v-model="password_confirm"
-      variant="solo"
-      @click:append-inner="visible2 = !visible2"
-      :readonly="loading"
-      @input="removeSpaces('password_confirm')"
-    ></v-text-field>
 
 
-    <div style=" align-items: center;" >
-                       <div class="text-subtitle-1 text-color-white d-flex align-center justify-space-between"
-                        style="color: red; text-align: left ;
-                        " >{{ errorMessage }}⠀</div>
+                    <v-text-field
+                        density="compact"
+                        placeholder="Username"
+                        variant="solo"
+                        v-model="email"
+                        style="margin-top: 15px;"
+                        :readonly="loading"
+                        @input="removeSpaces('username')"
+                        hide-details="true"
+                    ></v-text-field>
+                    
+
+  
+                    <v-text-field
+                        density="compact"
+                        placeholder="Email"
+                        variant="solo"
+                        v-model="email"
+                        style="margin-top: 45px;"
+                        :readonly="loading"
+                        @input="removeSpaces('email')"
+                        hide-details="true"
+                    ></v-text-field>
+                    
+
+
+                    <v-text-field
+                        :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="visible ? 'text' : 'password'"
+                        density="compact"
+                        placeholder="Password"
+                        variant="solo"
+                        style="margin-top: 45px;"
+                        @click:append-inner="visible = !visible"
+                        v-model="password"
+                        @input="removeSpaces('password')"
+                        :readonly="loading"
+                        hide-details="true"
+                    ></v-text-field>
+
+
+                    <v-text-field
+                        :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="visible ? 'text' : 'password'"
+                        density="compact"
+                        placeholder="Password confirm"
+                        variant="solo"
+                        style="margin-top: 45px;"
+                        @click:append-inner="visible = !visible"
+                        v-model="password"
+                        @input="removeSpaces('password_confirm')"
+                        :readonly="loading"
+                        hide-details="true"
+                    ></v-text-field>
+                    
+
+
+                    <div style="display: flex; align-items: center; justify-content: center;  color: red;  height: 45px;">
+                        {{ errorMessage }}
                     </div>
+
+
     <v-btn
-     
-      block
-      rounded="lg"
-      @click="register(username, email, password, password_confirm)"
-      size="large"
-      type="submit"
-      style="height: 46px; background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
-      :loading="loading"
-      :ripple="false"
-      class="mb-8"
-    >
-      <strong>REG</strong>
-    <template v-slot:loader>
-                            <v-progress-circular :size="25" :width="1"
+                        block
+                        rounded="lg"
+                        type="submit"
+                        style="height: 46px; 
+                        background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
+                        :ripple="false"
+                        :loading="loading"
+                        @click="register(username, email, password, password_confirm)"
+                        size="large"
+                    >
+                    <strong>REG</strong>
+                        <template v-slot:loader>
+                            <v-progress-circular :size="25" :width="2"
       indeterminate
     
     ></v-progress-circular>
       </template>
-    </v-btn>
+                    </v-btn>
+
+
+
+
+
+
   </v-form>
-  <v-card-text class="text-center text-white" style=" margin: auto; 
-                    margin-top: 20px; padding: 0px; "  >Already registered? 
+
+                    <v-card-text class="text-white" style="
+                    margin-top: 20px; padding: 0px;" >Already registered? 
                         <a
                             class="text-white "
                             href="/auth/login" 
-                                   
+                            
+                            
+                            
                         >
-                            Login</a>
+                        Login</a>
                     </v-card-text>
+         
   </v-card>
       </div>
     </div>
-  </div>
+
 </template> 
 
 <script>

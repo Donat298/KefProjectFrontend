@@ -263,7 +263,11 @@ beforeCreate();
 
            let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
-
+          
+          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
+          selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+          selectedButtons.value = newSelectedButtons;
+       
           for (let i = 0; i < response.data.mines - 1; i++) {
             const randomIndex = Math.floor(Math.random() * availableNumbers.length);
             selectedMinesButtons.value.push(availableNumbers[randomIndex]);
@@ -273,12 +277,9 @@ beforeCreate();
 
 
 
-          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
-          selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
-          selectedButtons.value = newSelectedButtons;
-       
   
           countinuemines.value = false;
+          
           context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
           context.emit("betfal");
