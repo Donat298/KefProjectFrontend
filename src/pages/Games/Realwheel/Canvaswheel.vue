@@ -4,7 +4,7 @@
      display: flex; flex-direction: column;">  
 
 
-      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+      <div style="user-select: none;   text-align: center;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
         <h1 v-else>Wheel Game!</h1>
       </div>  
 
@@ -339,7 +339,7 @@ export default {
   align-self: center;
   justify-self: center;
  max-width: 90%;
-
+ text-align: center;
   width: 200px;
   padding: 20px;
   color: #ffffff;

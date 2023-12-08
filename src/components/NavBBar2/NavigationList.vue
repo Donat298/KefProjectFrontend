@@ -2,8 +2,7 @@
     <v-list
           density="compact"
           nav
-         
-          class="pa-2" 
+      
         >
              <NavigationVcard style="margin-bottom: 10px;"/>
              <NavigationVcard2 style="margin-bottom: 10px;"/>

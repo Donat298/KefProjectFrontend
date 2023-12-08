@@ -14,7 +14,7 @@
 
 
       
-      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '5px' }">
+      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '30px' : '5px' }">
         <h1 v-if="displaywidth">Mines and hearts!</h1>
      
       </div>  
@@ -36,15 +36,13 @@
 <template v-if="enableTransition">
   <Transition name="bounceheart">
     <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
-      'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-      'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+
     }" class="sectorbtn"/>
     </Transition>
 
     <Transition name="bounceheart">
     <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+
   }"  class="sectorbtn" />
      </Transition>
 </template>
@@ -669,13 +667,12 @@ button.sectormines {
 
 .center-square {
   position: absolute;
-  
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
  max-width: 90%;
-
+text-align: center;
   width: 200px;
   padding: 20px;
   color: #ffffff;
