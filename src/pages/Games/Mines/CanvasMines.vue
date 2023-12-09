@@ -14,7 +14,7 @@
 
 
       
-      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '30px' : '5px' }">
+      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }">
         <h1 v-if="displaywidth">Mines and hearts!</h1>
      
       </div>  
@@ -288,8 +288,10 @@ beforeCreate();
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
-          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
-          
+
+          const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
+          store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
+        
           selectedButtons.value.push(buttonNumber);
           await new Promise((resolve) => setTimeout(resolve, 500));
           enableTransition.value = false;
@@ -432,15 +434,15 @@ beforeCreate();
       enableTransition.value = true;
     
     } catch (error) {
-      console.log(error);
-
+     
+      context.emit("betfal");
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg.value = error.response.data.message;
       } else {
         errorMsg.value = "An unknown error occurred.";
       }
 
-      context.emit("betfal");
+  
       
    
     } 
@@ -453,11 +455,12 @@ beforeCreate();
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       console.log("cashout");
       context.emit("cashoutfal");
-      countinuemines.value = false;
+      countinuemines.value = false;  
       enableTransition.value = false;
       
       if (response.data.message == "WinF") {
-        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+        const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
+        store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
 
@@ -594,7 +597,7 @@ button.sectormines {
   display: grid;
   position: relative;
   width: 100%;
-  max-width: 540px;
+  max-width: 560px;
   grid-template-columns: repeat(5,auto);
   margin: auto;
 }

@@ -4,7 +4,7 @@
      display: flex; flex-direction: column;">  
 
 
-      <div style="user-select: none;   text-align: center;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+      <div style="user-select: none;   text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
         <h1 v-else>Wheel Game!</h1>
       </div>  
 
@@ -174,7 +174,7 @@ export default {
           'balanceusdt': 'usdt',
           'balanceeur': 'eur',
           'balancebtc': 'btc',
-          'balanceeth': 'eth',
+          'balanceeth': 'eth', 
         };
 
         const currency = balanceFieldsMap[store.getters.selectedCurrency];
@@ -184,7 +184,7 @@ export default {
           currency: currency
         });
 
-        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
+        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - response.data.betAmount);
         store.dispatch('updateBalance', { currency: currency, amount: newAmount });
 
         let rotation = '0';
@@ -205,12 +205,12 @@ export default {
             cashresult.value = parseFloat((betInput.value * 2).toFixed(5)).toString();
             currencyname.value = currency;
             currencyImagetag.value = currency;
-        
+            const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.balance);
+            store.dispatch('updateBalance', { currency: currency, amount: userWonFin, });
           } else {
          
           }
-         
-          store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
+          
           isProcessing.value = false;
           context.emit("betfal");
           store.commit('setGameInProgress', false);
@@ -237,7 +237,6 @@ export default {
   return {
     placeBet,
     betInput,
-   
     errorMsg,
     isProcessing,
     showAlert,
