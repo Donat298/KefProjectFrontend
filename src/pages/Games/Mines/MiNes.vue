@@ -27,7 +27,7 @@
             <div style="display: flex; flex-wrap: wrap;
              justify-content: center; margin: 10px 0px;" v-if="isBetButtonPressed">
     <div> <strong>
-        Profit:
+        Total profit:
       </strong>
     </div>
 
@@ -186,8 +186,6 @@ export default {
     }
  
     },
-
-    
     updateBetInput(newBetAmount) {
       this.betInput = newBetAmount;
       this.checkInputValidity(newBetAmount);

@@ -7,7 +7,7 @@
       variant="tonal"
       color="red lighten-1"
       class="mx-auto"
-      style="max-width: 90%; text-align: center;"
+      style="max-width: 90%;"
     >
       {{ errorMsg }}
     </v-alert>

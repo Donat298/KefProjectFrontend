@@ -4,7 +4,7 @@
      display: flex; flex-direction: column;">  
 
 
-      <div style="user-select: none;   text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
+      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '15px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
         <h1 v-else>Wheel Game!</h1>
       </div>  
 
@@ -174,7 +174,7 @@ export default {
           'balanceusdt': 'usdt',
           'balanceeur': 'eur',
           'balancebtc': 'btc',
-          'balanceeth': 'eth', 
+          'balanceeth': 'eth',
         };
 
         const currency = balanceFieldsMap[store.getters.selectedCurrency];
@@ -184,7 +184,7 @@ export default {
           currency: currency
         });
 
-        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - response.data.betAmount);
+        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
         store.dispatch('updateBalance', { currency: currency, amount: newAmount });
 
         let rotation = '0';
@@ -205,12 +205,12 @@ export default {
             cashresult.value = parseFloat((betInput.value * 2).toFixed(5)).toString();
             currencyname.value = currency;
             currencyImagetag.value = currency;
-            const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.balance);
-            store.dispatch('updateBalance', { currency: currency, amount: userWonFin, });
+        
           } else {
          
           }
-          
+         
+          store.dispatch('updateBalance', { currency: currency, amount: roundBalance(response.data.balance) });
           isProcessing.value = false;
           context.emit("betfal");
           store.commit('setGameInProgress', false);
@@ -237,6 +237,7 @@ export default {
   return {
     placeBet,
     betInput,
+   
     errorMsg,
     isProcessing,
     showAlert,
@@ -332,12 +333,13 @@ export default {
 
 .center-square {
   position: absolute;
+  
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
  max-width: 90%;
-text-align: center;
+
   width: 200px;
   padding: 20px;
   color: #ffffff;
@@ -357,7 +359,7 @@ linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
             rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
              linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
    rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#361c00, #1e0036 );
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(135deg,#2e4659, #15212c );
 
 }
 

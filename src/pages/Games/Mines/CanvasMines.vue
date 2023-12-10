@@ -14,7 +14,7 @@
 
 
       
-      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }">
+      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '5px' }">
         <h1 v-if="displaywidth">Mines and hearts!</h1>
      
       </div>  
@@ -30,33 +30,26 @@
   class="sectormines"
 >
 
-
+  <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }"  class="sectorbtn" />
 
 
 <template v-if="enableTransition">
   <Transition name="bounceheart">
     <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
-
+      'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
+      'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
     }" class="sectorbtn"/>
-    </Transition>
-
-    <Transition name="bounceheart">
-    <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
-
-  }"  class="sectorbtn" />
-     </Transition>
+  </Transition>
 </template>
 
 <template v-else>
   <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.5 : 1,
     'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
   }" class="sectorbtn"/>
-
-<Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-  }"  class="sectorbtn" />
 </template>
 
 <Transition :name="enableTransition ? 'bouncemines' : ''" @after-leave="() => afterLeave(i)">
@@ -252,7 +245,6 @@ beforeCreate();
           selectedsector: buttonNumber,
         });
         if (response.data.message == "Winmines") {
-          enableTransition.value = true;
         selectedButtons.value.push(buttonNumber);
 
         profit.value = response.data.profit
@@ -262,41 +254,39 @@ beforeCreate();
 
         console.log(response);
         } else if (response.data.message == "Losemines") {
-  
           betAmountwill.value = props.betInputValue;
-          countinuemines.value = false;
-
-          selectedMinesButtons.value.push(buttonNumber);
-          
-          await new Promise((resolve) => setTimeout(resolve, 500));
+       
           enableTransition.value = false;
-          let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          response.data.mines
+
+           selectedMinesButtons.value.push(buttonNumber);
+
+           let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+          
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
           selectedButtons.value = newSelectedButtons;
+       
           for (let i = 0; i < response.data.mines - 1; i++) {
             const randomIndex = Math.floor(Math.random() * availableNumbers.length);
             selectedMinesButtons.value.push(availableNumbers[randomIndex]);
       
             availableNumbers.splice(randomIndex, 1); // remove the selected number from availableNumbers
           }
-        
 
+
+
+  
+          countinuemines.value = false;
+          
           context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
-
-          const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
-          store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
-        
-          selectedButtons.value.push(buttonNumber);
-          await new Promise((resolve) => setTimeout(resolve, 500));
           enableTransition.value = false;
-
-          
+          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
           selectedMinesButtons.value = newSelectedMinesButtons;
@@ -305,14 +295,12 @@ beforeCreate();
         
           profit.value = response.data.profit
         
-         
+          context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           showResult.value = true;
           currencyname.value = response.data.currency;
           cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
            countinuemines.value = false;
-           
-           context.emit("setparentbet", "0");
-          context.emit("setparentprofit", "1.00");
           context.emit("betfal");
         }
         cashdisabled.value = false;
@@ -434,15 +422,15 @@ beforeCreate();
       enableTransition.value = true;
     
     } catch (error) {
-     
-      context.emit("betfal");
+      console.log(error);
+
       if (error.response && error.response.data && error.response.data.message) {
         errorMsg.value = error.response.data.message;
       } else {
         errorMsg.value = "An unknown error occurred.";
       }
 
-  
+      context.emit("betfal");
       
    
     } 
@@ -455,12 +443,11 @@ beforeCreate();
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       console.log("cashout");
       context.emit("cashoutfal");
-      countinuemines.value = false;  
+      countinuemines.value = false;
       enableTransition.value = false;
       
       if (response.data.message == "WinF") {
-        const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
-        store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
+        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
 
@@ -474,15 +461,14 @@ beforeCreate();
         selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num));
         selectedButtons.value = newSelectedButtons;
 
-        
+        context.emit("setparentbet", "0");
+        context.emit("setparentprofit", "1.00");
         showResult.value = true;
         currencyname.value = response.data.currency;
         cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
 
         console.log(response.data.winamount);
-    
-        context.emit("setparentbet", "0");
-        context.emit("setparentprofit", "1.00");
+
         context.emit("betfal");
       }
     } catch (error) {
@@ -597,7 +583,7 @@ button.sectormines {
   display: grid;
   position: relative;
   width: 100%;
-  max-width: 560px;
+  max-width: 540px;
   grid-template-columns: repeat(5,auto);
   margin: auto;
 }
@@ -670,12 +656,13 @@ button.sectormines {
 
 .center-square {
   position: absolute;
+  
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
  max-width: 90%;
-text-align: center;
+
   width: 200px;
   padding: 20px;
   color: #ffffff;
@@ -695,9 +682,10 @@ linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
             rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
              linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
    rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#361c00, #1e0036 );
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(135deg,#2e4659, #15212c );
 
 }
+
 
 
 

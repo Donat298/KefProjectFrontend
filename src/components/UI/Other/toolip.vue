@@ -32,7 +32,7 @@
     position: relative;
     display: inline-block;
     z-index: 1;
-   max-width: 400px;
+    max-width: 400px;
   }
   
   .tooltip {
@@ -46,8 +46,7 @@
     transition: opacity 0.2s ease-in-out;
 
     margin-right: auto;
-   width: 100%;
-
+width: 400px;
     margin-bottom: 10px;
     bottom: 100%; /* Position above the element */
     left: 50%;

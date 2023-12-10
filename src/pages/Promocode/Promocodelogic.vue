@@ -1,5 +1,5 @@
 <template>
-<div style="padding:0px 20px 20px 20px; "> 
+<div style="padding:0px 20px 20px 20px;background-color: rgb(0, 126, 126); "> 
           <span style="color: rgba(240, 255, 255, 0.294);">(Enter a secret promocode to get a bonus!)</span>
             <v-form ref="betForm" @submit.prevent="SendPromo"> 
 <input

@@ -1,15 +1,15 @@
 <template>
-  <div class="mx-auto widFh" style="width: 1200px; max-width: 90%; display: flex;
-   flex-wrap: wrap; justify-content: center;">
-       
+    <div style="width: 100%; margin-top: 40px;">
+      <div class="mx-auto widFh" style="width: 1200px; max-width: 90%; display: flex; flex-wrap: wrap; justify-content: center;">
+        <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; padding: 10px; border-radius: 7px 0px 0px 7px;" class="bet-div">
+          <!-- Your content for bet-div here -->
+        </div>
   
-        <div style="flex: 1; padding: 10px; background-color: #15212c; 
-        border-radius: 7px;" class="betseto">
-      <Canvastest> </Canvastest>
-    
+        <div style="flex: 1; padding: 10px; background-color: #15212c; border-radius: 0px 7px 7px 0px;" class="betseto">
+      <Canvastest/>
         </div>
       </div>
-   
+    </div>
   </template>
   
   <script>
