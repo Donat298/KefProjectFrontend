@@ -1,20 +1,25 @@
 <template>
+
   <div style=" width: 100%;  "  :style="{ 'margin-top': isWideScreen ? '40px' : '5px' }">
-    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap;
-     justify-content: center;">
+    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; 
+    justify-content: center;">
       <!-- v-card -->
       <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; 
-       border-radius: 7px 0px 0px 7px ;  "  :style="{ 'padding': isWideScreen ? '30px' : '10px' }"  
+        border-radius: 7px 0px 0px 7px ;  "   :style="{ 'padding': isWideScreen ? '30px' : '20px' }" 
        class="bet-div">
-       <div v-if="isWideScreen" style=" font-size: 25px; user-select: none;"><strong>Place your BET!</strong></div>
-        <div class="bet-form">
+ <div class="bet-form">
+   
+
           <toolip :showTooltip2="showTooltip2" style="width: 100%;
    " text="The bet cannot be more than your balance.">  
-     </toolip>   
+     </toolip>  
+  
            <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center;
            "> 
 
-
+<div style="display: flex;" >
+ <strong>Bet amount:</strong>  
+</div>
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
 
 
@@ -67,6 +72,12 @@ export default {
   watch: {
     betInput(newValue) {
       this.checkInputValidity(newValue);
+    },
+    '$store.getters.selectedCurrency': {
+      handler() {
+        this.checkInputValidity(this.betInput);
+      },
+      deep: true,
     },
   },
   computed: {
@@ -125,12 +136,10 @@ export default {
     border-radius: 0px 0px 7px 7px !important;
     max-width: 100% !important;
   }
-
   .betseto {
     order: 1; /* Change the order to make it appear above */
     border-radius: 7px 7px 0px 0px !important;
   }
-
   .bet-form {
     flex-direction: column;
     display: flex;
@@ -146,5 +155,12 @@ export default {
 
 }
 
+.bet-form {
 
+flex-direction: column;
+  display: flex;
+
+
+
+}
 </style>

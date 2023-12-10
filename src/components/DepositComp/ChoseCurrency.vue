@@ -2,24 +2,23 @@
       <v-menu location="bottom center"  transition="slide-y-transition">          
           <template v-slot:activator="{ props }">
  
-      <div v-bind="props" class="left-rounded pa-4"  style="  cursor: pointer; 
-        height: 46px;   display: flex; align-items: center; color: #ffffff;">
+      <div v-bind="props" class="pa-4 selectcurrency" >
 
                             
 {{ $store.getters.userDetail[selectedCurrency] }}
 
-<img style="margin-left: 10px;  width: 22px; user-select: none; " :src="getCurrencyImagePath(selectedCurrency)" />
-<font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
+<img style="margin: 10px;  width: 22px; user-select: none; " :src="getCurrencyImagePath(selectedCurrency)" />
+<font-awesome-icon style="color: #ffffff;height: 14px; " :icon="['fas', 'chevron-down']" />
 
 </div>  
 
           </template>
+
+
 <v-list
 elevation="7" 
 :ripple="false"
 style=" 
-visibility: visible;
-opacity: 1;
 background-color: #15212c;
 border: 2px solid #2e4659; 
 color: #ffffff;
@@ -28,70 +27,26 @@ min-width: 100px;
 " 
 >
 
-<v-list-item @click="selectCurrency('balanceeur')" style="height: 40px; align-items: center;" :ripple="false">
-<div class="hhdd" >
-  {{ $store.getters.userDetail.balanceeur }}
-  
-    <img 
-      class="imginlist"
-      :src="getCurrencyImagePath('balanceeur')" 
-    />
-    <div class="ml-2" style="min-width: 60px; ">
-      EUR
-    </div>
-
-</div>
-</v-list-item>
-
-
-
-
-<v-list-item @click="selectCurrency('balancebtc')" style="height: 40px; align-items: center;"  :ripple="false">
-<div class="hhdd" >
-  {{ $store.getters.userDetail.balancebtc }}
-
-    <img 
-    class="imginlist"
-      :src="getCurrencyImagePath('balancebtc')" 
-    />
-    <div class="ml-2" style="min-width: 60px; ">
-      BTC
-    </div>
-
-</div>
-</v-list-item>
+<v-list-item 
+      v-for="currency in currencies" 
+      :key="currency.code"
+      @click="selectCurrency(currency.code)" 
+      style="height: 40px; align-items: center;" 
+      :ripple="false"
+    >
+      <div class="hhdd">
+        {{ $store.getters.userDetail[currency.code] }}
+        <img 
+          class="imginlist"
+          :src="getCurrencyImagePath(currency.code)" 
+        />
+        <div style="min-width: 60px;">
+          {{ currency.name }}
+        </div>
+      </div>
+    </v-list-item>
 
 
-<v-list-item @click="selectCurrency('balanceusdt')" style="height: 40px; align-items: center;" :ripple="false">
-<div class="hhdd" >
-  {{ $store.getters.userDetail.balanceusdt }}
- 
-    <img 
-    class="imginlist"
-      :src="getCurrencyImagePath('balanceusdt')" 
-    />
-    <div class="ml-2" style="min-width: 60px; ">
-      USDT
-    </div>
- 
-</div>
-</v-list-item>
-
-<v-list-item @click="selectCurrency('balanceeth')" style="height: 40px;
-align-items: center;"  :ripple="false">
-<div class="hhdd"> <!-- Add align-items: center; here -->
-  {{ $store.getters.userDetail.balanceeth }}
-
-    <img 
-    class="imginlist"
-      :src="getCurrencyImagePath('balanceeth')" 
-    />
-    <div class="ml-2" style="min-width: 60px; ">
-      ETH
-    </div>
-
-</div>
-</v-list-item>
 </v-list>
   
         </v-menu>
@@ -107,6 +62,12 @@ data() {
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
       },
+      currencies: [
+        { name: 'EUR', code: 'balanceeur' },
+        { name: 'BTC', code: 'balancebtc' },
+        { name: 'USDT', code: 'balanceusdt' },
+        { name: 'ETH', code: 'balanceeth' },
+      ],
     };  
   },
   computed: {
@@ -140,11 +101,14 @@ methods: {
 
 .imginlist{
   display: flex; align-items: center; 
-      width: 22px; max-height: 22px; margin-left: 15px;
+      width: 22px; max-height: 22px; margin: 15px;
       user-select: none; 
 
 }
-
+.selectcurrency{
+  cursor: pointer; 
+height: 46px;  justify-content: center; display: flex; align-items: center; color: #ffffff;
+}
 
 
 

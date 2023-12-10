@@ -33,7 +33,7 @@ export default {
   setup() {
   const store = useStore();
   const axiosPrivateInstance = useApiPrivate(store);
-  const userId = ref(store.getters.userDetail._id);
+  const userId = ref(store.getters.userDetail._id); 
   const errorMsg = ref('');
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024; // 1MB
   // Initialize userAvatar with the value from the Vuex store

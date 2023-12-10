@@ -2,8 +2,7 @@
     <div class="ppj">
     <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
       <div style="max-height: 90%; width: 100%; ">
-        <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" style="background-color: #1d2f3f; 
-        border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;">
+        <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" class="insidedivglob" >
           <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
               Promocode  
@@ -16,8 +15,6 @@
       
       <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
               </button>
-              
-         
           </div>
 
 <Promocodelogic></Promocodelogic>
@@ -97,7 +94,11 @@
     overflow-y: auto;
     }
   
-  
+  .insidedivglob{
+
+    background-color: #1d2f3f; 
+        border-radius: 10px; max-width: 90%; margin: auto; max-height: 90%; width: 500px;
+  }
     
     ::-webkit-scrollbar {
       width: 5px;

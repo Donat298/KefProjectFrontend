@@ -1,7 +1,7 @@
 <template>
 <div style="padding:0px 20px 20px 20px; "> 
           <span style="color: rgba(240, 255, 255, 0.294);">(Enter a secret promocode to get a bonus!)</span>
-            <v-form ref="betForm" @submit.prevent="SendPromo"   style=" align-items: center; "> 
+            <v-form ref="betForm" @submit.prevent="SendPromo"> 
 <input
           v-focus
           class="inputwithdrawnumber" 
@@ -11,14 +11,14 @@
           :style="{
           }"
         >  
+
+        
         <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
-             <div v-if="errorMsg"
-                  class="text-color-white align-center justify-space-between"
-                  style="color: red; font-size: 17px; text-align: center;">{{ errorMsg }}
+             <div v-if="errorMsg" 
+                  style="color: red; font-size: 17px; ">{{ errorMsg }}
              </div>
              <div v-if="goodMsg && !errorMsg"
-                  class="text-color-white align-center justify-space-between"
-                  style="color: rgb(0, 255, 0); font-size: 17px; text-align: center;">{{ goodMsg }}
+                  style="color: rgb(0, 255, 0); font-size: 17px; ">{{ goodMsg }}
              </div>
            </div>    
 <v-btn

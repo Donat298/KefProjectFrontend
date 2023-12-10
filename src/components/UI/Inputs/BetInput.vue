@@ -1,3 +1,4 @@
+Parent component
 <template>
   <div>
     <v-card elevation="5" style=" border-radius: 8px; align-items: center;  display: flex; background-color: #bd323200">
@@ -44,7 +45,7 @@ export default {
     invalid: Boolean,
     processing: Boolean,
     modelValue: {
-      type: Number,
+      type: Number, 
       default: 0,
     },
   },

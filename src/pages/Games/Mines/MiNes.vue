@@ -5,11 +5,10 @@
     justify-content: center;">
       <!-- v-card -->
       <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; 
-        border-radius: 7px 0px 0px 7px ;  "   :style="{ 'padding': isWideScreen ? '30px' : '10px' }" 
+        border-radius: 7px 0px 0px 7px ;  "   :style="{ 'padding': isWideScreen ? '30px' : '20px' }" 
        class="bet-div">
-       <div v-if="isWideScreen" style=" font-size: 25px; user-select: none;"><strong>Place your BET!</strong></div>
-        <div class="bet-form">
-       
+ <div class="bet-form">
+
           <toolip :showTooltip2="showTooltip2" style="width: 100%;
    " text="The bet cannot be more than your balance.">  
      </toolip>  
@@ -17,7 +16,9 @@
           <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center;
            "> 
 
-
+<div style="display: flex; " >
+     <strong>   Bet amount:</strong>
+</div>
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
       
 
@@ -25,15 +26,16 @@
 
             <div style="display: flex; flex-wrap: wrap;
              justify-content: center; margin: 10px 0px;" v-if="isBetButtonPressed">
-    <div>
-        Total profit:
+    <div> <strong>
+        Profit:
+      </strong>
     </div>
 
     <div style="display: flex; align-items: center; justify-content: center; margin: auto;">
        <strong>{{ betAmountwill }} </strong> 
         <img
             :src="currencyImage"
-            style="width: 17px; height: 17px; margin-left: 5px;"
+            style="width: 17px; height: 17px; margin:0px 5px;"
         /> 
     </div>
 
@@ -48,14 +50,14 @@
 
               <bet-btn v-if="!isBetButtonPressed" style="width: 100%; user-select: none;"  >BET
               </bet-btn>
-              <bet-btn :style="{ opacity: CashButtonDisabled ? 0.2 : 1 }" :disabled="CashButtonDisabled" 
+              <bet-btn :style="{ opacity: CashButtonDisabled ? 0.5 : 1 }" :disabled="CashButtonDisabled" 
              @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
               </bet-btn>
    
 
               <div v-if="!isBetButtonPressed" style=" margin: 15px 0px;">
               <div style="display: flex;" >
-        Mines:
+                <strong>  Mines:</strong>   
 </div>
           
               <v-card elevation="5" style=" 
@@ -130,6 +132,14 @@ export default {
     betInput(newValue) {
       this.checkInputValidity(newValue);
     },
+    '$store.getters.selectedCurrency': {
+      handler() {
+        this.checkInputValidity(this.betInput);
+      },
+      deep: true,
+    },
+    
+   
   },
   computed: {
     betInputWithDefault: {
@@ -140,10 +150,13 @@ export default {
         this.betInput = value;
       },
     },
+    
 
   },
+  
   methods: {
     checkInputValidity(value) {
+
       if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value && !this.isBetButtonPressed) {
         this.isInputInvalid = true;
         this.showTooltip2 = true;
@@ -169,10 +182,12 @@ export default {
     if (!this.isBetButtonPressed) {
       this.isBetButtonPressed = true; 
       this.isCashoutButtonPressed = false;
-
+  
     }
  
     },
+
+    
     updateBetInput(newBetAmount) {
       this.betInput = newBetAmount;
       this.checkInputValidity(newBetAmount);
@@ -217,6 +232,15 @@ export default {
   .widFh {
     max-width:95% !important; /* This will override the max-width: 90%; */
   }
+
+
+}
+
+.bet-form {
+
+  flex-direction: column;
+    display: flex;
+
 
 
 }

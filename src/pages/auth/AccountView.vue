@@ -3,25 +3,23 @@
 
 <div class="ppj">
   <div @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
-    <div v-if="showAccComponent"  style="max-height: 90%; width: 100%;  ">
-      <div  @mousedown.stop  @mouseup.stop="onMouseUpCheck"   style="max-height: 90%;width: 600px; min-height: 50px; box-sizing: border-box; margin: auto;">
+
+
+    <div  style="max-height: 90%; width: 100%;">
+      <div  @mousedown.stop  @mouseup.stop="onMouseUpCheck" class="authglobpage">
         
-        <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; display: flex; width: 600px;">
-          
+        <v-card elevation="0" rounded="lg" class="vcardauth"
+   >
+      
+<div v-if="showAccComponent" style="display: flex; width: 100%;">
           <div style="background-color: #1d2f3f; width: 50%; padding: 5px 10px 20px 10px;">
             <div style="display: flex; justify-content: space-between; align-items: center; ">
           <div style="color: #ffffff; padding: 10px;">
             Account   
-            <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />
-           
-           
+            <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />      
           </div>
-          </div>
+          </div>  
   <AvatarbTn></AvatarbTn>
-
-
-
-
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; padding: 5px; ">
         {{ $store.getters.userDetail.username }}     
       </div>      
@@ -30,9 +28,10 @@
       </div> 
       <div style="color: #ffffff;  text-align: center; font-size: 17px; padding: 5px;">
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
-      </div>  
-      
+      </div> 
+       
     </div>  
+
     <div style="width: 50%; background-color: #15212c; padding: 5px 10px 20px 10px;">
       <div style="display: flex; justify-content: space-between; align-items: center; height: 45.5px;">
          
@@ -58,13 +57,10 @@
     <img style="width: 22px; max-height: 25px; margin-left: 10px;" :src="require('@/assets/Cryptologos/usdt.svg')" />
   </v-card>
     </div >
-    </v-card>
-      </div>  
-      </div>
 
-      <div v-else  style=" max-height: 90%; width: 100%;">
-      <div  @mousedown.stop @mouseup.stop="onMouseUpCheck"  style="width: 300px; margin: auto; align-items: center; min-height: 50px; max-width: 90%; margin: auto;">
-        <v-card elevation="0" rounded="lg" style="background-color: #1d2f3f; margin-left: auto; margin-right: auto;">
+  </div>
+
+  <div v-else>
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
             Account       <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />
@@ -82,8 +78,9 @@
          
        
         </div>
-          <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">
-            <AvatarbTn></AvatarbTn> 
+
+        
+        <AvatarbTn></AvatarbTn> 
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
         {{ $store.getters.userDetail.username }}     
       </div>      
@@ -92,9 +89,13 @@
       </div> 
       <div style="color: #ffffff;  text-align: center; font-size: 17px;">
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
-      </div>          
+      </div>   
+        
+        <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">
+              
     </div>  
-    <v-divider width="5"></v-divider>
+
+
     <div style="width: 50%; background-color: #15212c; padding: 20px 10px; width: 100%;">
            
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
@@ -106,9 +107,20 @@
     <img style="width: 22px; max-height: 25px;  margin-left: 10px;" :src="require('@/assets/Cryptologos/usdt.svg')" />
   </v-card>    
     </div >
+  </div>
+
+
+
+
+
+  
     </v-card>
-        </div> 
+      </div>  
       </div>
+
+
+
+
      
 </div>
 
@@ -135,7 +147,7 @@ export default {
   methods: {
     handleResize() {
       const screenWidth = window.innerWidth;
-      this.showAccComponent = screenWidth >= 900;
+      this.showAccComponent = screenWidth >= 800;
     },
     formatDate(dateString) {
       const date = new Date(dateString);
@@ -166,6 +178,35 @@ export default {
 </script>
 
 <style scoped>
+
+
+@media (max-width: 800px) {
+  .authglobpage {
+    
+    width: 300px; margin: auto; align-items: center; max-width: 90%; margin: auto;
+
+  }
+
+  .vcardauth{
+
+    background-color: #1d2f3f; margin-left: auto; margin-right: auto;
+
+  }
+
+}
+@media (min-width: 800px) {
+  .authglobpage {
+    max-height: 90%; width: 600px;  margin: auto;
+
+
+  } 
+  .vcardauth{
+    background-color: #1d2f3f; display: flex; width: 600px;
+
+  }
+
+
+}
   .jja {
   top: 0;
   bottom: 0;

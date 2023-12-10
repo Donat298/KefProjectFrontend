@@ -14,39 +14,69 @@
 
 
       
-      <div style="user-select: none;" :style="{ margin: displaywidth ? '30px' : '5px' }">
+      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }">
         <h1 v-if="displaywidth">Mines and hearts!</h1>
      
       </div>  
     
      <div class="inside">
-    <div class="divinside" >
+    <div  class="divinside" >
 
     <!-- rest of your code -->
-        <button
-        v-for="i in 25"
-        :key="i"
-        :style="{
-          'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-          'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-        }"
-        @click="selectsectormines(i)"
-        class="sectormines"
-      >
-        <Mineob v-if="selectedMinesButtons.includes(i)" class="sectorbtn" />
-        <Serdsesvg v-else-if="selectedButtons.includes(i)" class="sectorbtn"></Serdsesvg>
-        <Sectorsvg v-else class="sectorbtn" />
-      </button>
+    <button
+  v-for="i in 25"
+  :key="i"
+  @click="selectsectormines(i)"
+  class="sectormines"
+>
+
+
+
+
+<template v-if="enableTransition">
+  <Transition name="bounceheart">
+    <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
+
+    }" class="sectorbtn"/>
+    </Transition>
+
+    <Transition name="bounceheart">
+    <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
+
+  }"  class="sectorbtn" />
+     </Transition>
+</template>
+
+<template v-else>
+  <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }" class="sectorbtn"/>
+
+<Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
+  }"  class="sectorbtn" />
+</template>
+
+<Transition :name="enableTransition ? 'bouncemines' : ''" @after-leave="() => afterLeave(i)">
+      <Sectorsvg v-if="!selectedButtons.includes(i) && !selectedMinesButtons.includes(i)"
+       class="sectorbtn" />
+    </Transition>
+</button>
+
+
+
 
 
       <Transition name="bounce">
-      <v-card elevation="5" v-if="showResult" class="center-square">
+      <v-card rounded="lg" elevation="5" v-if="showResult" class="center-square">
  
         <h2>{{ profit }}x</h2>
      
 
  <div style="display: flex; align-items: center; justify-content: center;">
-  <h4>{{ betAmountwill }} </h4>
+  <h4>{{ cashresult }} </h4>
         <img
           :src="currencyImage"
           style="width: 17px; height: 17px; margin: 0px 5px; "
@@ -66,7 +96,7 @@
 
       <div style="" class="bottomdiv">
         <GameAlert v-if="showAlert"  style="margin: 15px 0px; " 
-         :GameResult="GameResult" :errorMsg="errorMsg" />
+       :errorMsg="errorMsg" />
       </div>
 
     </div>
@@ -90,7 +120,7 @@ export default {
     components: {
       GameAlert, vproGressMini, Sectorsvg, Serdsesvg, Mineob
     },
-  
+
   props: {
     betInputValue: {
       type: Number,
@@ -118,8 +148,7 @@ export default {
     const betInput = ref(props.betInputValue); 
     const sectorsnum = ref(25);
     const mines = ref(props.betMines);
-    const errorMsg = ref(''); 
-    const GameResult = ref(null);
+    const errorMsg = ref('');
     const selectedButtons = ref([]);
     const selectedMinesButtons = ref([]);
     const selectedButtonsOpticay = ref([]);
@@ -128,8 +157,19 @@ export default {
     const showResult = ref(false);
     const currencyname = ref("");
     const betAmountwill = ref(props.betInputValue);
+    const cashresult = ref("");
     const countinuemines = ref(false);
     const cashdisabled = ref(true);
+    const showMine = ref(Array(25).fill(false));
+    const showHeart = ref(Array(25).fill(false));
+    const enableTransition = ref(false);
+    
+    function afterLeave(index) {
+      showMine.value[index] = true;
+      showHeart.value[index] = true;
+
+    }
+    
 
 
 
@@ -175,6 +215,10 @@ export default {
         selectedButtons.value.push(...response.data.selectednum);
 
 
+        response.data.selectednum.forEach(num => {
+          showHeart.value[num] = true;
+        });
+        
         profit.value = response.data.profit
         context.emit("setparentprofit", response.data.profit);
 
@@ -183,6 +227,7 @@ export default {
 
 
         countinuemines.value = true;
+        enableTransition.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
             cashdisabled.value = true;
@@ -207,6 +252,7 @@ beforeCreate();
           selectedsector: buttonNumber,
         });
         if (response.data.message == "Winmines") {
+          enableTransition.value = true;
         selectedButtons.value.push(buttonNumber);
 
         profit.value = response.data.profit
@@ -216,56 +262,57 @@ beforeCreate();
 
         console.log(response);
         } else if (response.data.message == "Losemines") {
+  
           betAmountwill.value = props.betInputValue;
-          context.emit("setparentbet", "0");
-          context.emit("setparentprofit", "1.00");
-          response.data.mines
+          countinuemines.value = false;
 
-           selectedMinesButtons.value.push(buttonNumber);
-
-           let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+          selectedMinesButtons.value.push(buttonNumber);
+          
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          enableTransition.value = false;
+          let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
-
+          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
+          selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+          selectedButtons.value = newSelectedButtons;
           for (let i = 0; i < response.data.mines - 1; i++) {
             const randomIndex = Math.floor(Math.random() * availableNumbers.length);
             selectedMinesButtons.value.push(availableNumbers[randomIndex]);
       
             availableNumbers.splice(randomIndex, 1); // remove the selected number from availableNumbers
           }
+        
 
-
-
-          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
-          selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
-          selectedButtons.value = newSelectedButtons;
-       
-          showAlert.value = true;
-          GameResult.value = {
-                lose: true,
-          };
-          countinuemines.value = false;
+          context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           context.emit("betfal");
        
         } else if (response.data.message == "WinF") {
-          store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+
+          const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
+          store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
+        
+          selectedButtons.value.push(buttonNumber);
+          await new Promise((resolve) => setTimeout(resolve, 500));
+          enableTransition.value = false;
+
+          
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
           selectedMinesButtons.value = newSelectedMinesButtons;
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
           selectedButtons.value = newSelectedButtons;
-          showAlert.value = true;
+        
           profit.value = response.data.profit
         
-          context.emit("setparentbet", "0");
-          context.emit("setparentprofit", "1.00");
+         
           showResult.value = true;
           currencyname.value = response.data.currency;
-          GameResult.value = {
-                won: true,
-                wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
-                currency: response.data.currency,
-          };
+          cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
            countinuemines.value = false;
+           
+           context.emit("setparentbet", "0");
+          context.emit("setparentprofit", "1.00");
           context.emit("betfal");
         }
         cashdisabled.value = false;
@@ -306,6 +353,7 @@ beforeCreate();
     console.log("bet2");
     console.log(countinuemines.value);
       if (newValue && !countinuemines.value) {
+       
          placeBet();
       }
  
@@ -333,70 +381,86 @@ beforeCreate();
     return true;
   };
 
-   const placeBet = async () => {
-    
-    showAlert.value = false;
+  const placeBet = async () => {
+  
     if (!handleCommonChecks()) {
       return;
     }
-      try {
-        currencyImagetag.value = store.getters.selectedCurrency;
-        GameResult.value = null;
-        errorMsg.value = '';
-        
-        profit.value = "1.00"; 
-        context.emit("setparentprofit", "1.00");
-        context.emit("setparentbet", betInput.value);
-        showResult.value = false;
-        selectedButtons.value = []; 
-        selectedMinesButtons.value = []; 
-        selectedButtonsOpticay.value = [];
-        cashdisabled.value = true;
-        countinuemines.value = true;
+    try {
+  
+      const balanceFieldsMap = {
+        'balanceusdt': 'usdt',
+        'balanceeur': 'eur',
+        'balancebtc': 'btc',
+        'balanceeth': 'eth',
+      };
+      const currency = balanceFieldsMap[store.getters.selectedCurrency];
+      const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
 
-        context.emit("cashdisabled", cashdisabled.value);
-        const balanceFieldsMap = {
-          'balanceusdt': 'usdt',
-          'balanceeur': 'eur',
-          'balancebtc': 'btc',
-          'balanceeth': 'eth',
-        };
-        const currency = balanceFieldsMap[store.getters.selectedCurrency];
-      
-        console.log(currency);
-        const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
-        store.dispatch('updateBalance', { currency: currency, amount: newAmount });
-
-        
-        const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
-          betAmount: betInput.value,
-          currency: currency,
-          sectorsnum: sectorsnum.value,
-          mines: mines.value,
-        });
+      // Group all value changes here
+      showAlert.value = false;
+      currencyImagetag.value = store.getters.selectedCurrency;
+      errorMsg.value = '';
+      profit.value = "1.00"; 
+      cashdisabled.value = true;
+      countinuemines.value = true;
+      showResult.value = false;
+      // Emit events after value changes
+      context.emit("setparentprofit", "1.00");
+      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
  
-        console.log(responsebet);
-   
-      } catch (error) {
-        console.log(error);
+      context.emit("cashdisabled", cashdisabled.value);
 
-        if (error.response && error.response.data && error.response.data.message) {
-          errorMsg.value = error.response.data.message;
-        } else {
-          errorMsg.value = "An unknown error occurred.";
-        }
-        context.emit("betfal");
+      // Dispatch updateBalance after value changes
+      store.dispatch('updateBalance', { currency: currency, amount: newAmount });
+
+      const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
+        betAmount: betInput.value,
+        currency: currency,
+        sectorsnum: sectorsnum.value,
+        mines: mines.value,
+      });
+      showMine.value = ref(Array(25).fill(false)); 
+      showHeart.value = ref(Array(25).fill(false));
+      console.log(responsebet);
+
+  
+      selectedButtons.value = [],
+      selectedButtonsOpticay.value = [],
+      selectedMinesButtons.value = [],
+   
+
+
+      enableTransition.value = true;
+    
+    } catch (error) {
+     
+      context.emit("betfal");
+      if (error.response && error.response.data && error.response.data.message) {
+        errorMsg.value = error.response.data.message;
+      } else {
+        errorMsg.value = "An unknown error occurred.";
       }
+
+  
+      
+   
+    } 
   };
 
+
   const cashOut = async () => {
-    console.log("cashout");
-    context.emit("cashoutfal");
+
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
-      countinuemines.value = false;
+      console.log("cashout");
+      context.emit("cashoutfal");
+      countinuemines.value = false;  
+      enableTransition.value = false;
+      
       if (response.data.message == "WinF") {
-        store.dispatch('updateBalance', { currency: response.data.currency, amount: roundBalance(response.data.winamount) });
+        const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
+        store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
 
@@ -410,20 +474,15 @@ beforeCreate();
         selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num));
         selectedButtons.value = newSelectedButtons;
 
-        showAlert.value = true;
-        context.emit("setparentbet", "0");
-        context.emit("setparentprofit", "1.00");
+        
         showResult.value = true;
         currencyname.value = response.data.currency;
-        
-        GameResult.value = {
-          won: true,
-          wonMsg: parseFloat((response.data.profit * betInput.value).toFixed(5)).toString(),
-          currency: response.data.currency,
-        };
+        cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
 
         console.log(response.data.winamount);
-
+    
+        context.emit("setparentbet", "0");
+        context.emit("setparentprofit", "1.00");
         context.emit("betfal");
       }
     } catch (error) {
@@ -432,11 +491,12 @@ beforeCreate();
       }
 
   }
+  
   return {
     placeBet,
     betInput,
     errorMsg,
-    GameResult,
+  
     selectedButtons,
     selectsectormines,
     profit,
@@ -452,7 +512,13 @@ beforeCreate();
     selectedButtonsOpticay,
     mines,
     showResult,
-    currencyname
+    currencyname,
+    cashresult,
+    showHeart,
+    showMine,
+    afterLeave,
+    enableTransition,
+
   };
   } ,
 }
@@ -531,7 +597,7 @@ button.sectormines {
   display: grid;
   position: relative;
   width: 100%;
-  max-width: 540px;
+  max-width: 560px;
   grid-template-columns: repeat(5,auto);
   margin: auto;
 }
@@ -540,23 +606,61 @@ button.sectormines {
 
 
 
+.bounceheart-enter-active {
+  animation: bounceheart-in 0.25s;
+}
+
+
+@keyframes bounceheart-in {
+  0% {
+    transform: scale(0) rotate(180deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+
+.bouncemines-leave-active {
+  animation: bouncemines-in 0.25s reverse;
+}
+
+
+@keyframes bouncemines-in {
+  0% {
+    transform: scale(0) rotate(-180deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+
+
+
 .bounce-enter-active {
-  animation: bounce-in 0.5s;
+  animation: bounce-in 0.7s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
+  animation: bounce-in 0.7s reverse;
 }
 
 
 @keyframes bounce-in {
   0% {
     transform: scale(0);
+
   }
   50% {
     transform: scale(1.25);
+
   }
   100% {
     transform: scale(1);
+
   }
 }
 
@@ -564,31 +668,18 @@ button.sectormines {
 
 
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 .center-square {
   position: absolute;
-  
   align-items: center;
   justify-content: center;
   align-self: center;
   justify-self: center;
  max-width: 90%;
-  border-radius: 10px;
+text-align: center;
   width: 200px;
   padding: 20px;
   color: #ffffff;
   background-color: #2e4659;
-  border-radius: 8px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
    rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
@@ -604,10 +695,9 @@ linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
             rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
              linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
    rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(135deg,#2e4659, #15212c );
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#361c00, #1e0036 );
 
 }
-
 
 
 

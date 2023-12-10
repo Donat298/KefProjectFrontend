@@ -61,24 +61,13 @@ export default {
 }
 
 .v-expansion-panel-title {
-   
-   padding: 12px 24px  !important;
+  height: 64px !important;
    padding-left: 2px !important;
-   padding-top: 0px ;
 
-  
 }
 .v-expansion-panel-title__icon {
-   display: inline-flex;
-   margin-bottom: -4px;
-   margin-top: -4px;
- 
-   margin-left: 170px !important;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   user-select: none;
-   -webkit-margin-start: auto;
-   margin-inline-start: auto;
+
+   margin-left: 175px !important;
    position: absolute;
 }
 .v-expansion-panel-title--active > .v-expansion-panel-title__overlay,
@@ -86,18 +75,7 @@ export default {
    opacity: 0 !important;
 }
 
-.v-list-item__overlay {
-    background-color: currentColor;
-    border-radius: inherit;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    right: 0;
-    top: 0;
 
-}
 .v-list-item--active > .v-list-item__overlay, .v-list-item[aria-haspopup=menu][aria-expanded=true] > .v-list-item__overlay {
   opacity: 0 !important; 
 }
@@ -106,12 +84,12 @@ export default {
 }
 
 .v-list-item:hover > .v-list-item__overlay {
-  opacity: 0.05s !important; 
+  opacity: 0 !important; 
 }
 
 /* Adding transition */
 .v-list-item {
-  transition: color 0.05s;
+  transition: 0;
 }
 .v-list-item--active .v-list-item__prepend > .v-icon, .v-list-item--active .v-list-item__append > .v-icon {
     opacity: null !important;

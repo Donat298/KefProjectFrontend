@@ -1,3 +1,4 @@
+Child Component
 <template>
   <div style="margin: 15px 0px;">
     <input
@@ -23,12 +24,16 @@ export default {
     sliprocessing: Boolean,
   },
   computed: {
+    
     computedSliderValue() {
-      console.log("computedSliderValue");
+  
       if (isNaN(this.computedAmount)) {
+     
         return 0;
+    
       }
       if (this.computedAmount === 0) {
+      
         return 0;
       }
     
@@ -39,20 +44,23 @@ export default {
     computedAmount() {
       const selectedCurrency = this.$store.getters.selectedCurrency;
       const amount = this.$store.getters.userDetail[selectedCurrency];
+
       return isNaN(amount) ? 0 : amount; // If amount is NaN, set computedAmount to 0
+   
     },
   },
   watch: {
     sliprocessing() {
-   
+
       this.updateSliderGradient(this.computedSliderValue);
     },
     computedAmount(newValue) {
-      // Do something when watchValue changes
-      // Call the function you need here
+
       this.updateSliderGradient(this.computedSliderValue);
     },
-    
+    sliderValue() {
+    this.updateSliderGradient(this.computedSliderValue);
+  },
     computedSliderValue: 'updateSliderGradient',
 
   }, 

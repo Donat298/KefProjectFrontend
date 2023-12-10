@@ -1,4 +1,4 @@
-//Child component
+
 <template>
     <div class="tooltip-container">
       <div v-if="showTooltip2" class="tooltip">
@@ -32,6 +32,7 @@
     position: relative;
     display: inline-block;
     z-index: 1;
+   max-width: 400px;
   }
   
   .tooltip {
@@ -45,8 +46,9 @@
     transition: opacity 0.2s ease-in-out;
 
     margin-right: auto;
-width: 400px;
-    margin-bottom: 20px;
+   width: 100%;
+
+    margin-bottom: 10px;
     bottom: 100%; /* Position above the element */
     left: 50%;
     max-width: 90%;
