@@ -16,7 +16,8 @@
 
 
 
-<v-btn class="glowg-button2" @click="$emit('ShowPromocodeOknoo')" elevation="5" rounded="lg" :ripple="false">
+<v-btn class="glowg-button2" @click="$emit('ShowPromocodeOknoo')"
+ elevation="5" rounded="lg" :ripple="false">
   <span style="color: #ffffff;" >Get Bonus</span>
 </v-btn>
 </div>

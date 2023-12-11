@@ -6,6 +6,7 @@ import Def2Button from "@/components/UI/Buttons/Def2button.vue";
 import BetButton from "@/components/UI/Buttons/Betbutton.vue";
 import BetInput from "@/components/UI/Inputs/BetInput.vue";
 import Slider from "@/components/UI/Inputs/slider.vue";
+import BottomInfo from "@/components/UI/Other/Bottominfo.vue";
 export default [
     BetButton,
     testbtn,
@@ -14,5 +15,6 @@ export default [
     Slider,
     BetInput,
     DefButton,
-    Def2Button
+    Def2Button,
+    BottomInfo,
    ];

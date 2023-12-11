@@ -10,13 +10,13 @@
        <v-expansion-panel elevation="4"  style="background-color: #2e4659; color: rgb(255, 255, 255);">
          <v-expansion-panel-title > <v-list-item prepend-icon="mdi-note-multiple"  style="color: #ffffff;  
          font-size: 17px; padding-left: 13px;  " 
-             >Tests</v-list-item>
+             >More</v-list-item>
          </v-expansion-panel-title>
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
   
            <v-list-item :ripple="false" prepend-icon="mdi-login-variant"  style="color: #ffffff;padding-left: 15px;  margin-top: 8px; " 
-           to="/CollisionBalls"   >CollisionBalls</v-list-item>
+           to="/relax"   >Relax</v-list-item>
        
          </v-expansion-panel-text>
          

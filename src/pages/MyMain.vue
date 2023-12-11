@@ -1,6 +1,6 @@
 <template>
-  <div class="casino-home">
-    <div class="content">
+  <div>
+    <div class="content"> 
       <h1 class="casino-title">Welcome to KEF</h1>
       <p class="casino-description">
         Experience the thrill of premium casino games. Sign up now to start playing!
@@ -48,30 +48,21 @@
       </p>
     </Transition>
     </div>
+    <bottom-info></bottom-info>
+ 
+  
   </div>
 </template>
 
-<script>
-  import { ref } from 'vue';
-export default {
 
-  setup() {
-      const showResult = ref(false);
-  
-      const toggleShowResult = () => {
-        showResult.value = true;
-      };
-  
-      return {
-        showResult,
-        toggleShowResult,
-      };
-    },
-  // Your Vue component logic goes here
-}
-</script>
 
 <style>
+
+
+
+
+
+
 .bounce-enter-active {
   animation: bounce-in 0.5s;
 }
@@ -90,13 +81,6 @@ export default {
   }
 }
 
-.casino-home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-/* Set your desired background color */
-}
 
 .content {
   text-align: center;
@@ -152,6 +136,8 @@ export default {
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  max-width: 700px;
+  margin: auto;
 }
 
 .game-option {
@@ -183,3 +169,22 @@ export default {
   padding: 15px 40px;
 }
 </style>
+<script>
+  import { ref } from 'vue';
+export default {
+
+  setup() {
+      const showResult = ref(false);
+  
+      const toggleShowResult = () => {
+        showResult.value = true;
+      };
+  
+      return {
+        showResult,
+        toggleShowResult,
+      };
+    },
+  // Your Vue component logic goes here
+}
+</script>

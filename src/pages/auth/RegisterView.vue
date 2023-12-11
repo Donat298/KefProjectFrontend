@@ -16,18 +16,18 @@
         @submit.prevent="onSubmit"
       >
 
-
                     <v-text-field
                         density="compact"
                         placeholder="Username"
                         variant="solo"
-                        v-model="email"
+                        v-model="username"
                         style="margin-top: 15px;"
                         :readonly="loading"
                         @input="removeSpaces('username')"
                         hide-details="true"
                     ></v-text-field>
                     
+   
 
   
                     <v-text-field
@@ -41,7 +41,7 @@
                         hide-details="true"
                     ></v-text-field>
                     
-
+  
 
                     <v-text-field
                         :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
@@ -59,21 +59,20 @@
 
 
                     <v-text-field
-                        :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="visible ? 'text' : 'password'"
+                        :append-inner-icon="visible2 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :type="visible2 ? 'text' : 'password'"
                         density="compact"
                         placeholder="Password confirm"
                         variant="solo"
                         style="margin-top: 45px;"
-                        @click:append-inner="visible = !visible"
-                        v-model="password"
+                        @click:append-inner="visible2 = !visible2"
+                        v-model="password_confirm"
                         @input="removeSpaces('password_confirm')"
                         :readonly="loading"
                         hide-details="true"
                     ></v-text-field>
                     
-
-
+        
                     <div style="display: flex; align-items: center; justify-content: center;  color: red;  height: 45px;">
                         {{ errorMessage }}
                     </div>
@@ -106,7 +105,7 @@
 
   </v-form>
 
-                    <v-card-text class="text-white" style="
+                    <v-card-text class="text-white" style="text-align: center;
                     margin-top: 20px; padding: 0px;" >Already registered? 
                         <a
                             class="text-white "

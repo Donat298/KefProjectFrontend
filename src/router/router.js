@@ -27,13 +27,13 @@ const routes = [
         component: register
     },
     {
-        path: '/wheel',
+        path: '/realwheel',
         name: 'Wheel',
         component: Wheel,
         
     },
     {
-        path: '/realwheel',
+        path: '/wheel',
         name: 'Realwheel',
         component: Realwheel,
         
@@ -48,7 +48,6 @@ const routes = [
         path: '/mines',
         name: 'Mines',
         component:  Mines,
-        meta: { requiresAuth: true }
     },
     {
         path: '/chat',
@@ -59,7 +58,7 @@ const routes = [
 
 
     {
-        path: '/CollisionBalls',
+        path: '/relax',
         name: 'CollisionBalls',
         component: CollisionBalls,
 

@@ -1,14 +1,13 @@
 <template>
   <div>
-    <canvas id="ballCanvas" style="background-color: rgb(22, 53, 53); width: 100%; position: relative; aspect-ratio: 3/2;">
+    <canvas id="ballCanvas" 
+    style="background-color: rgb(22, 53, 53); width: 100%;  aspect-ratio: 1.63/1;">
       <!-- create canvas here -->
     </canvas>
   </div>
 </template>
 
 <script>
-import anime from 'animejs';
-
 export default {
   mounted() {
     const canvas = document.getElementById('ballCanvas');

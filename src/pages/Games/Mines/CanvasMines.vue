@@ -114,6 +114,7 @@ import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
 import { ref, watch, computed, } from 'vue';
+import { useRouter } from 'vue-router';
 import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
     emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled', 'setparentprofit', 'setparentbet', 'seturrencyImage'],
@@ -149,6 +150,7 @@ export default {
     const sectorsnum = ref(25);
     const mines = ref(props.betMines);
     const errorMsg = ref('');
+    const router = useRouter();
     const selectedButtons = ref([]);
     const selectedMinesButtons = ref([]);
     const selectedButtonsOpticay = ref([]);

@@ -1,7 +1,8 @@
 <template>
 
-  <div style=" width: 100%;  "  :style="{ 'margin-top': isWideScreen ? '40px' : '5px' }">
-    <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; 
+<div style="width: 100%;"
+ :style="{ 'margin-top': isWideScreen ? '40px' : '5px', 'margin-bottom': isWideScreen ? '80px' : '10px' }">
+   <div class="mx-auto widFh" style="width: 1200px;  max-width: 90%; display: flex; flex-wrap: wrap; 
     justify-content: center;">
       <!-- v-card -->
       <div style="width: 300px; max-width: 300px; background-color: #1d2f3f; 
@@ -49,6 +50,7 @@
       </div>
     </div>
   </div>
+  <bottom-info></bottom-info>
 </template> 
 
 <script>

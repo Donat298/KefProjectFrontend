@@ -67,7 +67,7 @@
                 </v-form>
                     
 
-                    <v-card-text class="text-white" style="
+                    <v-card-text class="text-white" style="text-align: center;
                     margin-top: 20px; padding: 0px;" >No account? 
                         <a
                             class="text-white "

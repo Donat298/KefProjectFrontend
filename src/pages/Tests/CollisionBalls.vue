@@ -1,5 +1,6 @@
 <template>
-  <div class="mx-auto widFh" style="width: 1200px; max-width: 90%; display: flex;
+  <div :style="{ 'margin-top': isWideScreen ? '40px' : '5px', 'margin-bottom': isWideScreen ? '80px' : '10px' }" class="mx-auto widFh" 
+  style="width: 1200px;   max-width: 90%; display: flex;
    flex-wrap: wrap; justify-content: center;">
        
   
@@ -9,16 +10,35 @@
     
         </div>
       </div>
-   
+      <bottom-info></bottom-info>
   </template>
   
   <script>
-  import anime from 'animejs';
+
   import Canvastest from '@/pages/Tests/Canvastest.vue';
   export default {
     components: {
       Canvastest
     },
+    data() {
+    return {
+      isWideScreen: false, 
+    };
+  },
+    methods: {
+      checkScreenWidth() {
+        this.isWideScreen = window.innerWidth > 800; // Set the isWideScreen data property to true if the screen width is greater than 800px
+      },
+    },
+
+
+    mounted() {
+    this.checkScreenWidth(); // Call the function to check screen width on mount
+    window.addEventListener('resize', this.checkScreenWidth); // Listen for screen resize
+    } ,
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkScreenWidth); // Clean up the event listener
+  },
  
   };
   </script>
