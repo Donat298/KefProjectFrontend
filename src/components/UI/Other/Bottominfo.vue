@@ -100,7 +100,7 @@
 <v-img 
       v-for="logo in logos" 
       :key="logo" 
-      style="width: 100%; max-width: 52px; margin: 30px auto; user-select: none;" 
+      style="width: 100%; max-width: 52px; margin: 30px auto; " 
       :src="require(`@/assets/Cryptologos/${logo}.svg`)"
   >
   </v-img>
@@ -131,8 +131,8 @@ export default {
 
  data() {
     return {
-      logos: ['usdt','Currency=btc','Currency=Ethereum','lite','doge', 'usdc', 'btccash', 'ada', 
-         'eos', 'trx', 'zec','euro-logo',],
+      logos: ['usdt','Currency=btc','Currency=Ethereum','lite','bnb','doge', 'usdc', 'btccash', 'ada', 
+         'matic', 'trx',],
    
     };
   },

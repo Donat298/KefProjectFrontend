@@ -370,7 +370,7 @@ border-radius: 5px 0px 0px 5px !important;
 
 
 .glowg-button2 {
-  background: linear-gradient(45deg,  #000000,  #540001, #000000);
+  background: linear-gradient(45deg,  #000000, #0a0027, #170027, #000000);
   background-size: 200% 100%;
   width: 100%;
   min-height: 40px;

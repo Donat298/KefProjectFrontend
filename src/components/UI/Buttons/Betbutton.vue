@@ -4,7 +4,7 @@
                 type="submit"
                 rounded="lg" 
                 style=" color: #15212c;
-                background: linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));
+                background: linear-gradient(230deg,#63feca, #7ffff4);
                  margin-right: 8px; min-width: 100px;
                  font-size: 17px;"
            

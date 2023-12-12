@@ -55,7 +55,7 @@
               </bet-btn>
    
 
-              <div v-if="!isBetButtonPressed" style=" margin: 15px 0px;">
+              <div style=" margin: 15px 0px;">
               <div style="display: flex;" >
                 <strong>  Mines:</strong>   
 </div>

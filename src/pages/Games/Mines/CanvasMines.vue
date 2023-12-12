@@ -67,7 +67,7 @@
 
 
 
-
+<!--v-if="showResult" -->
 
       <Transition name="bounce">
       <v-card rounded="lg" elevation="5" v-if="showResult" class="center-square">
@@ -87,7 +87,6 @@
 
     </div>
     </div>
-
 
  
 
@@ -296,6 +295,12 @@ beforeCreate();
         
           selectedButtons.value.push(buttonNumber);
           await new Promise((resolve) => setTimeout(resolve, 500));
+          profit.value = response.data.profit
+          currencyname.value = response.data.currency;
+          cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
+          showResult.value = true;
+          await new Promise((resolve) => setTimeout(resolve, 500));
+      
           enableTransition.value = false;
 
           
@@ -305,13 +310,11 @@ beforeCreate();
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
           selectedButtons.value = newSelectedButtons;
         
-          profit.value = response.data.profit
+        
         
          
-          showResult.value = true;
-          currencyname.value = response.data.currency;
-          cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
-           countinuemines.value = false;
+      
+       countinuemines.value = false;
            
            context.emit("setparentbet", "0");
           context.emit("setparentprofit", "1.00");
@@ -463,6 +466,15 @@ beforeCreate();
       if (response.data.message == "WinF") {
         const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
         store.dispatch('updateBalance', { currency: response.data.currency, amount: userWonFin });
+        currencyname.value = response.data.currency;
+        cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
+
+        showResult.value = true;
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+
+
+
         let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
         availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
 
@@ -477,9 +489,7 @@ beforeCreate();
         selectedButtons.value = newSelectedButtons;
 
         
-        showResult.value = true;
-        currencyname.value = response.data.currency;
-        cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
+
 
         console.log(response.data.winamount);
     
@@ -644,10 +654,10 @@ button.sectormines {
 
 
 .bounce-enter-active {
-  animation: bounce-in 0.7s;
+  animation: bounce-in 0.5s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.7s reverse;
+  animation: bounce-in 0.5s reverse;
 }
 
 
@@ -657,7 +667,7 @@ button.sectormines {
 
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.15);
 
   }
   100% {
@@ -683,21 +693,13 @@ text-align: center;
   color: #ffffff;
   background-color: #2e4659;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
-   rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
-linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
-    rgba(170, 170, 170, 0.01) 50%, rgba(170, 170, 170, 0.01) 100%),
-     linear-gradient(278deg, rgba(16, 16, 16, 0.03) 0%, rgba(16, 16, 16, 0.03) 50%,
-      rgba(24, 24, 24, 0.03) 50%, rgba(24, 24, 24, 0.03) 100%),
-       linear-gradient(205deg, rgba(116, 116, 116, 0.03) 0%,
-        rgba(116, 116, 116, 0.03) 50%, rgba(0, 0, 0, 0.03) 50%,
-         rgba(0, 0, 0, 0.03) 100%), linear-gradient(150deg, rgba(5, 5, 5, 0.03) 0%,
-          rgba(5, 5, 5, 0.03) 50%, rgba(80, 80, 80, 0.03) 50%,
-           rgba(80, 80, 80, 0.03) 100%), linear-gradient(198deg, rgba(231, 231, 231, 0.03) 0%,
-            rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
-             linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
+  background-image: 
+         
+              linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%,
+               rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%,
+                rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
    rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#361c00, #1e0036 );
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#0a0027, #170027 );
 
 }
 

@@ -10,7 +10,8 @@
 
 
       <div style="display: flex; justify-content: center; align-items: center; margin: auto 0px;">
-      <wheelsvg :style="wheelStyle" style="max-width: 450px; width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
+      <wheelsvg :style="wheelStyle" style="max-width: 500px;
+       width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
       <wheelpointersvg style="max-width: 60px; width: 20%; margin-right: 10px; ">
       </wheelpointersvg>
@@ -191,12 +192,12 @@ export default {
         let baseRotation = Math.random() * 180;
 
         if (response.data.message === 'You won!') {
-          rotation = baseRotation + 3600;
+          rotation = baseRotation + 2520;
         } else {
-          rotation = baseRotation + 3600 + 180;
+          rotation = baseRotation + 2520 + 180;
         }
 
-        wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 4s cubic-bezier(0,1,.9,1)`;
+        wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 2s cubic-bezier(0,1,.9,1)`;
         circleRotation.value = rotation;
         setTimeout(() => {
        
@@ -217,7 +218,7 @@ export default {
 
           // Call checkInputValidity after the game ends
        
-        }, 4400);
+        }, 2200);
       } catch (error) {
         console.log(error);
 
@@ -304,10 +305,10 @@ export default {
 
 
 .bounce-enter-active {
-  animation: bounce-in 0.7s;
+  animation: bounce-in 0.5s;
 }
 .bounce-leave-active {
-  animation: bounce-in 0.7s reverse;
+  animation: bounce-in 0.5s reverse;
 }
 
 
@@ -317,7 +318,7 @@ export default {
 
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.15);
 
   }
   100% {
@@ -325,7 +326,6 @@ export default {
 
   }
 }
-
 
 
 
@@ -343,21 +343,13 @@ text-align: center;
   color: #ffffff;
   background-color: #2e4659;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  background-image: linear-gradient(230deg, rgba(93, 93, 93, 0.03) 0%,
-   rgba(93, 93, 93, 0.03) 50%, rgba(78, 78, 78, 0.03) 50%, rgba(78, 78, 78, 0.03) 100%),
-linear-gradient(107deg, rgba(55, 55, 55, 0.01) 0%, rgba(55, 55, 55, 0.01) 50%,
-    rgba(170, 170, 170, 0.01) 50%, rgba(170, 170, 170, 0.01) 100%),
-     linear-gradient(278deg, rgba(16, 16, 16, 0.03) 0%, rgba(16, 16, 16, 0.03) 50%,
-      rgba(24, 24, 24, 0.03) 50%, rgba(24, 24, 24, 0.03) 100%),
-       linear-gradient(205deg, rgba(116, 116, 116, 0.03) 0%,
-        rgba(116, 116, 116, 0.03) 50%, rgba(0, 0, 0, 0.03) 50%,
-         rgba(0, 0, 0, 0.03) 100%), linear-gradient(150deg, rgba(5, 5, 5, 0.03) 0%,
-          rgba(5, 5, 5, 0.03) 50%, rgba(80, 80, 80, 0.03) 50%,
-           rgba(80, 80, 80, 0.03) 100%), linear-gradient(198deg, rgba(231, 231, 231, 0.03) 0%,
-            rgba(231, 231, 231, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%),
-             linear-gradient(278deg, rgba(89, 89, 89, 0.03) 0%, rgba(89, 89, 89, 0.03) 50%, rgba(26, 26, 26, 0.03) 50%, rgba(26, 26, 26, 0.03) 100%), linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%, rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%, rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
+  background-image: 
+         
+              linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%,
+               rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%,
+                rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
    rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#361c00, #1e0036 );
+     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#0a0027, #170027 );
 
 }
 
