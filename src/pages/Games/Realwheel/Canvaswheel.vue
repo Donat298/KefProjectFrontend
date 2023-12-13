@@ -340,18 +340,14 @@ export default {
 text-align: center;
   width: 200px;
   padding: 20px;
-  color: #ffffff;
-  background-color: #2e4659;
+  color: rgb(255, 255, 255);
+  border: solid 4px #63feca;
+  background-color: #1d2f3f; 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   background-image: 
          
-              linear-gradient(217deg, rgba(28, 28, 28, 0.03) 0%,
-               rgba(28, 28, 28, 0.03) 50%, rgba(202, 202, 202, 0.03) 50%,
-                rgba(202, 202, 202, 0.03) 100%), linear-gradient(129deg,
-   rgba(23, 23, 23, 0.03) 0%, rgba(23, 23, 23, 0.03) 50%, rgba(244, 244, 244, 0.03) 50%,
-     rgba(244, 244, 244, 0.03) 100%), linear-gradient(110deg,#0a0027, #170027 );
+           linear-gradient(110deg,#1d2f3f, #15212c );
 
 }
-
 
 </style>
