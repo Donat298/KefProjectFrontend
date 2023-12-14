@@ -17,7 +17,7 @@
       </wheelpointersvg>
       
       <Transition name="bounce">
-      <v-card rounded="lg" elevation="5" v-if="showResult" class="center-square">
+      <v-card rounded="lg" v-if="showResult" class="center-square">
  
         <h2>2x</h2>
      
@@ -327,9 +327,6 @@ export default {
   }
 }
 
-
-
-
 .center-square {
   position: absolute;
   align-items: center;
@@ -344,10 +341,11 @@ text-align: center;
   border: solid 4px #63feca;
   background-color: #1d2f3f; 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  background-image: 
-         
-           linear-gradient(110deg,#1d2f3f, #15212c );
+  box-shadow: 0px 0px 100px -10px #63feca;
+  background-image:       
+    linear-gradient(110deg,#1d2f3f, #15212c );
+  }
 
-}
+
 
 </style>

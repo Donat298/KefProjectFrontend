@@ -162,6 +162,7 @@ export default {
 }
 .info-mini-liks{
 color: gray;
-
+word-break: break-word;
+   
 }
 </style>
