@@ -56,13 +56,11 @@
   <Transition name="bounceheartfinal">
   <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
     'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(1px)' : 'none'
   }" class="sectorbtn"/>
  </Transition>
  <Transition name="bounceheartfinal">
 <Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
     'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(1px)' : 'none'
   }"  class="sectorbtn" />
       </Transition>
       <Transition name="bounceminesfinal" @after-leave="() => afterLeave(i)">
@@ -100,9 +98,6 @@
     </div>
 
  
-
-
-
 
       <div style="" class="bottomdiv">
         <GameAlert v-if="showAlert"  style="margin: 15px 0px; " 
@@ -176,7 +171,7 @@ export default {
     const showMine = ref(Array(25).fill(false));
     const showHeart = ref(Array(25).fill(false));
     const enableTransition = ref(false);
-    
+    const noBet = ref(false);
     function afterLeave(index) {
       showMine.value[index] = true;
       showHeart.value[index] = true;
@@ -231,7 +226,7 @@ export default {
         response.data.selectednum.forEach(num => {
           showHeart.value[num] = true;
         });
-        
+    
         profit.value = response.data.profit
         context.emit("setparentprofit", response.data.profit);
 
@@ -243,6 +238,7 @@ export default {
 
         countinuemines.value = true;
         enableTransition.value = true;
+        noBet.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
             cashdisabled.value = true;
@@ -375,18 +371,18 @@ beforeCreate();
   
     });
 
-   watch(() => props.betButtonPressed, (newValue) => {
-
-      if (newValue && !countinuemines.value) {
-       
-         placeBet();
-      }
-      else {
-        context.emit("betfal");
-      }
-     
- 
-   }); 
+    watch(() => props.betButtonPressed, (newValue) => {
+    if (newValue && !countinuemines.value) {
+      placeBet();
+    }
+    else if (noBet.value) {
+      noBet.value = false;
+    }
+    else {
+      context.emit("betfal");
+      noBet.value = false;
+    }
+  });
  
    const handleCommonChecks = () => {
     if (!store.getters.isAuthenticated) {
@@ -539,6 +535,7 @@ beforeCreate();
     betAmountwill,
     cashdisabled,
     isLoading,
+    noBet,
     currencyImage,
     selectedCurrencyImages,
     currencyImagetag,
