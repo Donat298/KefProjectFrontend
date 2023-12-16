@@ -14,12 +14,12 @@
 
 
       
-      <div style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }">
+      <div  style="user-select: none; text-align: center;" :style="{ margin: displaywidth ? '20px' : '0.1px' }">
         <h1 v-if="displaywidth">Mines and hearts!</h1>
      
       </div>  
     
-     <div class="inside">
+     <div class="inside"  :style="{ padding: displaywidth ? '0px 0px' : '3% 0px' }">
     <div  class="divinside" >
 
     <!-- rest of your code -->
@@ -45,24 +45,35 @@
 
   }"  class="sectorbtn" />
      </Transition>
-</template>
-
-<template v-else>
-  <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-  }" class="sectorbtn"/>
-
-<Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
-    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
-    'filter': selectedButtonsOpticay.includes(i) ? 'blur(2px)' : 'none'
-  }"  class="sectorbtn" />
-</template>
-
-<Transition :name="enableTransition ? 'bouncemines' : ''" @after-leave="() => afterLeave(i)">
+     <Transition name="bouncemines" @after-leave="() => afterLeave(i)">
       <Sectorsvg v-if="!selectedButtons.includes(i) && !selectedMinesButtons.includes(i)"
        class="sectorbtn" />
     </Transition>
+     
+</template>
+
+<template v-else>
+  <Transition name="bounceheartfinal">
+  <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(1px)' : 'none'
+  }" class="sectorbtn"/>
+ </Transition>
+ <Transition name="bounceheartfinal">
+<Mineob v-if="showMine[i] && selectedMinesButtons.includes(i)" :style="{
+    'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
+    'filter': selectedButtonsOpticay.includes(i) ? 'blur(1px)' : 'none'
+  }"  class="sectorbtn" />
+      </Transition>
+      <Transition name="bounceminesfinal" @after-leave="() => afterLeave(i)">
+      <Sectorsvg v-if="!selectedButtons.includes(i) && !selectedMinesButtons.includes(i)"
+       class="sectorbtn" />
+    </Transition>
+
+</template>
+
+
+    
 </button>
 
 
@@ -117,7 +128,7 @@ import { useRouter } from 'vue-router';
 import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
 export default {
     emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled', 'setparentprofit', 
-    'setparentbet', 'seturrencyImage'],
+    'setparentbet', 'seturrencyImage','betMineschange'],
     components: {
       GameAlert, vproGressMini, Sectorsvg, Serdsesvg, Mineob
     },
@@ -224,6 +235,8 @@ export default {
         profit.value = response.data.profit
         context.emit("setparentprofit", response.data.profit);
 
+        context.emit("betMineschange", response.data.mines);
+       
         betAmountwill.value = parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString();
         context.emit("setparentbet", parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString());
 
@@ -264,21 +277,23 @@ beforeCreate();
 
         console.log(response);
         } else if (response.data.message == "Losemines") {
-        let timeoutId = null;
+       
         betAmountwill.value = props.betInputValue;
         selectedMinesButtons.value.push(buttonNumber);
         context.emit("betfal");
         
         profit.value = response.data.profit
         
-        countinuemines.value = false;
-
-        timeoutId = setTimeout(() => {
-          if (!countinuemines.value) {
-            enableTransition.value = false;
-
+     
+        setTimeout(() => {
+        new Promise((resolve) => {
+          enableTransition.value = false;
+          resolve();
+        }).then(() => {
+  
             let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
             availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+
             const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1); 
             selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
             selectedButtons.value = newSelectedButtons;
@@ -288,14 +303,13 @@ beforeCreate();
 
               availableNumbers.splice(randomIndex, 1); // remove the selected number from availableNumbers
             }
-          }
-        }, 500);
-
-        watch(() => countinuemines.value, (newValue) => {
-          if (newValue && timeoutId) {
-            clearTimeout(timeoutId);
-          }
+            setTimeout(() => {
+              countinuemines.value = false;
+            }, 500);
         });
+        }, 500);
+   
+    
       }  else if (response.data.message == "WinF") {
           let timeoutId = null;
           const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.winamount);
@@ -304,30 +318,31 @@ beforeCreate();
           selectedButtons.value.push(buttonNumber);
           
      
-          countinuemines.value = false;
           profit.value = response.data.profit
           currencyname.value = response.data.currency;
           cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
           showResult.value = true;
    
          
-        timeoutId = setTimeout(() => {
-          enableTransition.value = false;   
-          const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
-          const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
-          selectedMinesButtons.value = newSelectedMinesButtons;
-          selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
-          selectedButtons.value = newSelectedButtons;
-     
-           context.emit("setparentbet", "0");
-          context.emit("setparentprofit", "1.00");
-        }, 500);
+          setTimeout(() => {
+            new Promise((resolve) => {
+              enableTransition.value = false;
+              resolve();
+            }).then(() => {
+              const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
+              const newSelectedMinesButtons = newSelectedButtons.filter(num => num !== buttonNumber && !selectedButtons.value.includes(num));
+              selectedMinesButtons.value = newSelectedMinesButtons;
+              selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num) && num !== buttonNumber);
+              selectedButtons.value = newSelectedButtons;
 
-        watch(() => countinuemines.value, (newValue) => {
-          if (newValue && timeoutId) {
-            clearTimeout(timeoutId);
-          }
-        });
+              context.emit("setparentbet", "0");
+              context.emit("setparentprofit", "1.00");
+              setTimeout(() => {
+                countinuemines.value = false;
+              }, 500);
+            });
+          }, 500);
+
         }
       
         context.emit("cashdisabled", cashdisabled.value);
@@ -366,6 +381,9 @@ beforeCreate();
        
          placeBet();
       }
+      else {
+        context.emit("betfal");
+      }
      
  
    }); 
@@ -397,9 +415,9 @@ beforeCreate();
     if (!handleCommonChecks()) {
       return;
     }
-  
+    enableTransition.value = false;
     try {
-      enableTransition.value = false;
+
       const balanceFieldsMap = {
         'balanceusdt': 'usdt',
         'balanceeur': 'eur',
@@ -434,13 +452,14 @@ beforeCreate();
       });
       showMine.value = ref(Array(25).fill(false)); 
       showHeart.value = ref(Array(25).fill(false));
-      console.log(responsebet);
-
-  
       selectedButtons.value = [],
       selectedButtonsOpticay.value = [],
       selectedMinesButtons.value = [],
    
+      console.log(responsebet);
+
+  
+  
 
 
       enableTransition.value = true;
@@ -467,7 +486,7 @@ beforeCreate();
       const response = await axiosPrivateInstance.get('/games/mines/cash');
       console.log("cashout");
       context.emit("cashoutfal");
-      countinuemines.value = false;  
+  
       enableTransition.value = false;
    
       if (response.data.message == "WinF") {
@@ -478,8 +497,8 @@ beforeCreate();
         showResult.value = true;
         context.emit("betfal");
 
-        let timeoutId = null;
-        timeoutId = setTimeout(() => {
+   
+        setTimeout(() => {     
 
           let availableNumbers = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           availableNumbers = availableNumbers.filter(num => !selectedButtons.value.includes(num));
@@ -493,15 +512,13 @@ beforeCreate();
           const newSelectedButtons = Array.from({ length: sectorsnum.value }, (_, index) => index + 1);
           selectedButtonsOpticay.value = newSelectedButtons.filter(num => !selectedButtons.value.includes(num));
           selectedButtons.value = newSelectedButtons;
-
           console.log(response.data.winamount);
+          setTimeout(() => {
+          countinuemines.value = false;
+          }, 500);
         }, 500);
-
-        watch(() => countinuemines.value, (newValue) => {
-          if (newValue && timeoutId) {
-            clearTimeout(timeoutId);
-          }
-        });
+  
+  
 
     
       }
@@ -551,7 +568,7 @@ beforeCreate();
 
 
 <style scoped>
-@media (max-width: 800px) {
+@media (max-width: 802px) {
   .bottomdiv {
     min-height: none !important;
     
@@ -559,7 +576,7 @@ beforeCreate();
   }
 
 }
-@media (min-width: 800px) {
+@media (min-width: 802px) {
   .bottomdiv {
     min-height: 87.5px;
 
@@ -579,7 +596,7 @@ box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.218);
 }
 
 .canvasstyle{
-  padding-bottom: 10px;
+
   width: 100%; position: relative; aspect-ratio: 3/2.5;
      display: flex; flex-direction: column;
 
@@ -601,7 +618,7 @@ button.sectormines {
 }
 .inside{
   width: 95%;
- 
+
   display: flex;
   flex-direction: column;
     justify-content: center;
@@ -609,7 +626,7 @@ button.sectormines {
     user-select: none;
     position: relative;
     overflow: hidden;
-    margin: 0 auto;
+    margin: auto;
 
 }
 .divinside{
@@ -622,11 +639,47 @@ button.sectormines {
 }
 
 
+.bounceheartfinal-enter-active {
+  animation: bouncefinal-in 0.25s;
+}
+
+.bounceminesfinal-leave-active {
+  animation: bouncefinal-out 0.25s reverse;
+}
+
+@keyframes bouncefinal-in {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes bouncefinal-out {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 
 
 
 .bounceheart-enter-active {
   animation: bounceheart-in 0.25s;
+}
+
+.bouncemines-leave-active {
+  animation: bouncemines-in 0.25s reverse;
 }
 
 
@@ -639,12 +692,6 @@ button.sectormines {
     transform: scale(1) rotate(0deg);
   }
 }
-
-
-.bouncemines-leave-active {
-  animation: bouncemines-in 0.25s reverse;
-}
-
 
 @keyframes bouncemines-in {
   0% {
@@ -665,22 +712,18 @@ button.sectormines {
 }
 
 
+
 @keyframes bounce-in {
   0% {
     transform: scale(0);
 
   }
-  50% {
-    transform: scale(1.15);
 
-  }
   100% {
     transform: scale(1);
 
   }
 }
-
-
 
 .center-square {
   position: absolute;
@@ -693,14 +736,14 @@ text-align: center;
   width: 200px;
   padding: 20px;
   color: rgb(255, 255, 255);
-  border: solid 4px #63feca;
-  background-color: #1d2f3f; 
+ 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 100px -10px #63feca;
-  background-image:       
-    linear-gradient(110deg,#1d2f3f, #15212c );
-  }
+  box-shadow: 0px 0px 40px 10px #ffffff;
 
+  background-image: 
+  linear-gradient(120deg,  #29445b 20%, rgba(0, 0, 0, 0) 20%),
+  linear-gradient(110deg,#1d2f3f, #15212c);
+}
 
 
 

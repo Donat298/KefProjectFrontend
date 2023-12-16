@@ -90,7 +90,7 @@
          @seturrencyImage="currencyImage = $event"
         :cashoutButtonPressed="isCashoutButtonPressed"
          @bettrue="placeBet()" :betInputValue="betInput"
-         :betMines="minesAmount" :betButtonPressed="isBetButtonPressed"
+         :betMines="minesAmount" @betMineschange="minesAmount = $event" :betButtonPressed="isBetButtonPressed"
         :displaywidth="isWideScreen"></CanvasMines>
 
       </div>

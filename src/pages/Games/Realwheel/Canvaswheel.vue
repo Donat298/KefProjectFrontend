@@ -1,15 +1,15 @@
 <template>
 
-    <div name="thisdiv" style=" width: 100%; position: relative;   padding-bottom: 10px; aspect-ratio: 3/2.5;
+    <div name="thisdiv" style=" width: 100%; position: relative;   aspect-ratio: 3/2.5;
      display: flex; flex-direction: column;">  
 
 
-      <div style="user-select: none;   text-align: center;" :style="{ margin: displaywidth ? '20px' : '5px' }"><h1 v-if="displaywidth">Wheel of Fortune Game!</h1>
-        <h1 v-else>Wheel Game!</h1>
+      <div v-if="displaywidth" style="user-select: none;   text-align: center; margin: 20px;" ><h1>Wheel of Fortune Game!</h1>
+     
       </div>  
 
 
-      <div style="display: flex; justify-content: center; align-items: center; margin: auto 0px;">
+      <div style="display: flex; justify-content: center; align-items: center; margin: auto 5%;">
       <wheelsvg :style="wheelStyle" style="max-width: 500px;
        width: 100%;  margin: 0px 10px 0px 10px; position: relative;">
       </wheelsvg>
@@ -260,7 +260,7 @@ export default {
 </script>
 
 <style scoped>
-@media (max-width: 800px) {
+@media (max-width: 802px) {
   .bottomdiv {
     min-height: none !important;
 
@@ -268,7 +268,7 @@ export default {
   }
 
 }
-@media (min-width: 800px) {
+@media (min-width: 802px) {
   .bottomdiv {
     min-height: 87.5px;
 
@@ -317,10 +317,7 @@ export default {
     transform: scale(0);
 
   }
-  50% {
-    transform: scale(1.15);
 
-  }
   100% {
     transform: scale(1);
 
@@ -338,13 +335,14 @@ text-align: center;
   width: 200px;
   padding: 20px;
   color: rgb(255, 255, 255);
-  border: solid 4px #63feca;
-  background-color: #1d2f3f; 
+ 
   text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  box-shadow: 0px 0px 100px -10px #63feca;
-  background-image:       
-    linear-gradient(110deg,#1d2f3f, #15212c );
-  }
+  box-shadow: 0px 0px 40px 10px #ffffff;
+
+  background-image: 
+  linear-gradient(120deg,  #29445b 20%, rgba(0, 0, 0, 0) 20%),
+  linear-gradient(110deg,#1d2f3f, #15212c);
+}
 
 
 
