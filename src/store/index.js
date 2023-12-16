@@ -41,10 +41,12 @@ export default createStore({
     setSessionChecked(state, sessionChecked) {
       state.sessionChecked = sessionChecked;
     },
- 
+
     clearAuthData(state) {
       state.accessToken = "";
-      state.user = { balanceusdt: 0, balanceeur: 0, balancebtc: 0, balanceeth: 0 };
+      state.user = { balanceusdt: 0, balanceeur: 0, balancebtc: 0, balanceeth: 0, 
+        balanceltc: 0, balancebnb: 0, balancedoge: 0, balanceusdc: 0, balancebch: 0,
+         balanceada: 0, balancematic: 0, balancetrx: 0 };
       localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
     },
@@ -179,11 +181,19 @@ export default createStore({
               commit('setIncomingMessage', depositAddedMessages[0]);
             }
           }
-    
+      
           commit('setUserBalance', { currency: 'eur', amount: response.data.balanceeur });
           commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
           commit('setUserBalance', { currency: 'btc', amount: response.data.balancebtc });
           commit('setUserBalance', { currency: 'eth', amount: response.data.balanceeth });
+          commit('setUserBalance', { currency: 'ltc', amount: response.data.balanceltc });
+          commit('setUserBalance', { currency: 'bnb', amount: response.data.balancebnb });
+          commit('setUserBalance', { currency: 'doge', amount: response.data.balancedoge });
+          commit('setUserBalance', { currency: 'usdc', amount: response.data.balanceusdc });
+          commit('setUserBalance', { currency: 'bch', amount: response.data.balancebch });
+          commit('setUserBalance', { currency: 'ada', amount: response.data.balanceada });
+          commit('setUserBalance', { currency: 'matic', amount: response.data.balancematic });
+          commit('setUserBalance', { currency: 'trx', amount: response.data.balancetrx });
         }
       } catch (error) {
         console.error(error);

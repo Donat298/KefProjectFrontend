@@ -49,6 +49,7 @@ import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
 import { ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { balanceFieldsMap } from '@/store/constants';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import wheelsvg from "@/assets/GameObjects/Originalwheel.vue";
 import wheelpointersvg from "@/assets/GameObjects/Wheelpointer.vue";
@@ -93,6 +94,14 @@ export default {
     eur: require('@/assets/Cryptologos/euro-logo.svg'),
     btc: require('@/assets/Cryptologos/Currency=btc.svg'),
     eth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+    ltc: require('@/assets/Cryptologos/lite.svg'),
+    bnb: require('@/assets/Cryptologos/bnb.svg'),
+    doge: require('@/assets/Cryptologos/doge.svg'),
+    usdc: require('@/assets/Cryptologos/usdc.svg'),
+    bch: require('@/assets/Cryptologos/btccash.svg'),
+    ada: require('@/assets/Cryptologos/ada.svg'),
+    matic: require('@/assets/Cryptologos/matic.svg'),
+    trx: require('@/assets/Cryptologos/trx.svg'),
   };
 
 
@@ -171,12 +180,7 @@ export default {
       wheelStyle.value = `transform: rotate(0deg); transition: none;`;
       try {
         showResult.value = false;
-        const balanceFieldsMap = {
-          'balanceusdt': 'usdt',
-          'balanceeur': 'eur',
-          'balancebtc': 'btc',
-          'balanceeth': 'eth', 
-        };
+     
 
         const currency = balanceFieldsMap[store.getters.selectedCurrency];
 
@@ -249,8 +253,7 @@ export default {
     currencyname,
     currencyImage,
     currencyImagetag,
-    selectedCurrencyImages,
-
+ 
   };
 },
 

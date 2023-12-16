@@ -71,6 +71,7 @@ import { ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'; 
 import { useApiPrivate } from '../../utils/useApi';
+import { balanceFieldsMap } from '@/store/constants'; // adjust the path according to your file structure
 
 export default {
   setup() {
@@ -96,12 +97,7 @@ export default {
 
       try {
 
-        const balanceFieldsMap = {
-        'balanceusdt': 'usdt', 
-        'balanceeur': 'eur',
-        'balancebtc': 'btc',
-        'balanceeth': 'eth',
-      }; 
+     
 
       console.log("this.$store.getters.selectedCurrency=%s");
       console.log("this.$store.getters.selectedCurrency=%s", store.getters.selectedCurrency);
@@ -126,12 +122,7 @@ export default {
   if (!checkAuthentication()) return;
   
   try {
-    const balanceFieldsMap = {
-      'balanceusdt': 'usdt', 
-      'balanceeur': 'eur',
-      'balancebtc': 'btc',
-      'balanceeth': 'eth', 
-    };
+ 
 
     const currency = balanceFieldsMap[store.getters.selectedCurrency];
 

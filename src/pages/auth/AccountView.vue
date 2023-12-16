@@ -64,22 +64,13 @@
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
             Account       <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" />
-           
-           
           </div>
-       
             <button @click.stop="$emit('HideAccountOknoo')" style="cursor: pointer; 
              color: #ffffff;
             min-height: 35px;  min-width: 35px; ">
-   
-         
               <font-awesome-icon class="mx-auto mr-3" style="color: #ffffff; "  :icon="['fas', 'xmark']" />
             </button>
-         
-       
         </div>
-
-        
         <AvatarbTn></AvatarbTn> 
     <div style="color: #ffffff;   margin-top: 10px; text-align: center;  font-size: 20px; ">
         {{ $store.getters.userDetail.username }}     
@@ -91,11 +82,8 @@
         Joined to Kef  {{ formatDate($store.getters.userDetail.created_at) }}  
       </div>   
         
-        <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">
-              
+        <div style="background-color: #1d2f3f; align-items: center; padding: 20px 10px;">     
     </div>  
-
-
     <div style="width: 50%; background-color: #15212c; padding: 20px 10px; width: 100%;">
            
       <v-card class=" pa-4" v-if="$store.getters.isAuthenticated" color="#0c141b00" style="
@@ -108,12 +96,6 @@
   </v-card>    
     </div >
   </div>
-
-
-
-
-
-  
     </v-card>
       </div>  
       </div>

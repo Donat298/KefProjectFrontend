@@ -18,13 +18,8 @@
 <v-list
 elevation="7" 
 :ripple="false"
-style=" 
-background-color: #15212c;
-border: 2px solid #2e4659; 
-color: #ffffff;
-margin-top: 10px; 
-min-width: 100px;
-" 
+style="  background-color: #15212c;"
+class="vliststandart"
 >
 
 <v-list-item 
@@ -51,22 +46,41 @@ min-width: 100px;
   
         </v-menu>
 </template>
+
+
 <script>
 export default {
 data() {
     return {
       selectedCurrency: this.$store.getters.selectedCurrency,
+   
       selectedCurrencyImages: { 
         'balanceusdt': require('@/assets/Cryptologos/usdt.svg'),
         'balanceeur': require('@/assets/Cryptologos/euro-logo.svg'),
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+        'balanceltc': require('@/assets/Cryptologos/lite.svg'),
+        'balancebnb': require('@/assets/Cryptologos/bnb.svg'),
+        'balancedoge': require('@/assets/Cryptologos/doge.svg'),
+        'balanceusdc': require('@/assets/Cryptologos/usdc.svg'),
+        'balancebch': require('@/assets/Cryptologos/btccash.svg'),
+        'balanceada': require('@/assets/Cryptologos/ada.svg'),
+        'balancematic': require('@/assets/Cryptologos/matic.svg'),
+        'balancetrx': require('@/assets/Cryptologos/trx.svg'),
       },
       currencies: [
         { name: 'EUR', code: 'balanceeur' },
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
         { name: 'ETH', code: 'balanceeth' },
+        { name: 'LTC', code: 'balanceltc' },
+        { name: 'BNB', code: 'balancebnb' },
+        { name: 'DOGE', code: 'balancedoge' },
+        { name: 'USDC', code: 'balanceusdc' },
+        { name: 'BCH', code: 'balancebch' },
+        { name: 'ADA', code: 'balanceada' },
+        { name: 'MATIC', code: 'balancematic' },
+        { name: 'TRX', code: 'balancetrx' },
       ],
     };  
   },
@@ -97,7 +111,7 @@ methods: {
 };
 </script>
 
-<style>
+<style scoped>
 
 .imginlist{
   display: flex; align-items: center; 
@@ -108,8 +122,24 @@ methods: {
 .selectcurrency{
   cursor: pointer; 
 height: 46px;  justify-content: center; display: flex; align-items: center; color: #ffffff;
+
+}
+.vliststandart {
+
+border: 2px solid #2e4659; 
+color: #ffffff;
+margin-top: 10px; 
+min-width: 100px;
+
+max-height: 250px; overflow-y: auto;
 }
 
+::-webkit-scrollbar {
+width: 5px;
+
+
+
+}
 
 
 </style>

@@ -74,6 +74,7 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router'; 
 import { useApiPrivate } from '@/utils/useApi';
+import { balanceFieldsMap } from '@/store/constants';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import store from '@/store'; // Adjust the path as needed
 export default {
@@ -152,12 +153,7 @@ export default {
 
       setTimeout(async () => {
         try {
-          const balanceFieldsMap = {
-            'balanceusdt': 'usdt', 
-            'balanceeur': 'eur',
-            'balancebtc': 'btc',
-            'balanceeth': 'eth',
-          };
+        
 
           const currency = balanceFieldsMap[store.getters.selectedCurrency];
 

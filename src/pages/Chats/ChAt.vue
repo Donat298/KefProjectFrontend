@@ -47,7 +47,7 @@
         height: 50px; "
         :disabled="newMessage.length > 200 || isLoading" :style="{ opacity: newMessage.length > 200 ? 0.7 : 1 }"
 >
-<font-awesome-icon  style="color: #ffffff; height: 17px;margin-right: 2px;"  :icon="['fas', 'paper-plane']" />
+<font-awesome-icon  style="color: #ffffff; height: 17px;"  :icon="['fas', 'paper-plane']" />
 </button>
           
       

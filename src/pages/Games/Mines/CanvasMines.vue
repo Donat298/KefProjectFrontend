@@ -113,7 +113,7 @@
 import Sectorsvg from '@/assets/GameObjects/Minesobjects/sector.vue';
 import Serdsesvg from '@/assets/GameObjects/Minesobjects/serdse.vue';
 import Mineob from '@/assets/GameObjects/Minesobjects/mineob.vue';
-
+import { balanceFieldsMap } from '@/store/constants';
 
 import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
@@ -183,12 +183,19 @@ export default {
 
     const currencyImagetag = ref("");
 
-
       const selectedCurrencyImages = {
         balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
         balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
         balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
         balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+        balanceltc: require('@/assets/Cryptologos/lite.svg'),
+        balancebnb: require('@/assets/Cryptologos/bnb.svg'),
+        balancedoge: require('@/assets/Cryptologos/doge.svg'),
+        balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
+        balancebch: require('@/assets/Cryptologos/btccash.svg'),
+        balanceada: require('@/assets/Cryptologos/ada.svg'),
+        balancematic: require('@/assets/Cryptologos/matic.svg'),
+        balancetrx: require('@/assets/Cryptologos/trx.svg'),
       };
 
 
@@ -414,12 +421,6 @@ beforeCreate();
     enableTransition.value = false;
     try {
 
-      const balanceFieldsMap = {
-        'balanceusdt': 'usdt',
-        'balanceeur': 'eur',
-        'balancebtc': 'btc',
-        'balanceeth': 'eth',
-      };
       const currency = balanceFieldsMap[store.getters.selectedCurrency];
       const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
 
@@ -537,7 +538,6 @@ beforeCreate();
     isLoading,
     noBet,
     currencyImage,
-    selectedCurrencyImages,
     currencyImagetag,
     countinuemines,
     showAlert,

@@ -161,8 +161,5 @@ export default {
 
 flex-direction: column;
   display: flex;
-
-
-
 }
 </style>

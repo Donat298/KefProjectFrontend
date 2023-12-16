@@ -6,8 +6,8 @@
 
     <span style="color: rgba(240, 255, 255, 0.294);"> If you have any questions please contact us by email.
  
- supercryptomegagames@gmail.com</span>
-    
+ supercryptomegagames@gmail.com </span>
+ 
   </div>
 
 
@@ -37,29 +37,10 @@ export default {
     const router = useRouter();
     const userId = ref(store.getters.userDetail._id);
   
-    const adressname = ref('');
+    const adressname = computed(() => props.adress);// assign adress prop to adressname
 
-    watch(() => props.adress, (newAdress) => {
-      switch (newAdress) {
-        case 'usdtaddress1':
-          adressname.value = 'ETH';
-          break;
-        case 'usdtaddress2':
-          adressname.value = 'BSC';
-          break;
-        case 'usdtaddress3':
-          adressname.value = 'POLYGON';
-          break;
-        case 'ethaddress1':
-          adressname.value = 'ETH';
-          break;
-        case 'ethaddress2':
-          adressname.value = 'BSC';
-          break;
-        default:
-          adressname.value = '';
-      }
-    });
+
+
     watch(() => props.copyadresspressed, (newValue) => {
       if (newValue) {
         sendSMS();

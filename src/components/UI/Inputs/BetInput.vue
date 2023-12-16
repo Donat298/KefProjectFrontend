@@ -12,6 +12,7 @@ Parent component
         :disabled="processing"
         v-focus
         class="inputbet"
+        
         style="padding: 0px 15px"
         :style="{ borderColor: invalid ? 'red' : '', opacity: processing ? 0.7 : 1 }"
         type="number"
@@ -30,13 +31,21 @@ Parent component
   </div>
 </template>
 
-<script>
+<script>  
 
 const selectedCurrencyImages = {
   balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
   balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
   balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
   balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+  balanceltc: require('@/assets/Cryptologos/lite.svg'),
+  balancebnb: require('@/assets/Cryptologos/bnb.svg'),
+  balancedoge: require('@/assets/Cryptologos/doge.svg'),
+  balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
+  balancebch: require('@/assets/Cryptologos/btccash.svg'),
+  balanceada: require('@/assets/Cryptologos/ada.svg'),
+  balancematic: require('@/assets/Cryptologos/matic.svg'),
+  balancetrx: require('@/assets/Cryptologos/trx.svg'),
 };
 
 export default {
@@ -106,6 +115,13 @@ export default {
 .inputbet:focus {
   border-color: #2e4659; /* Set the border color to green when focused */
   outline: none; /* Optionally, remove the default outline */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+appearance: none;
+margin: 0;
 }
 </style>
 

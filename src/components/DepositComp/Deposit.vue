@@ -48,72 +48,56 @@
           </v-list>
         </v-menu>
 
+   
 
-        <!-- USDT Address Selection (Conditional) -->
-        <v-menu style="" v-if="selectedCurrency === 'balanceusdt'" 
+        <v-menu  v-if="selectedCurrency === 'balanceusdt' || selectedCurrency === 'balanceeth' || 
+        selectedCurrency === 'balancebnb' || selectedCurrency === 'balanceusdc' || selectedCurrency === 'balancematic' "
         location="bottom center" transition="slide-y-transition">
-          <!-- Activator -->
-          <template v-slot:activator="{ props }">
-         <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
-         elevation="5">
-
-                  <div style="font-size: 15px; color: #ffffff;">
-                    {{ selectedUSDTAddressName }}
-                  </div>
-           
-                  <font-awesome-icon style="color: #ffffff;height: 14px;
-                   margin-left: 10px;" :icon="['fas', 'chevron-down']" />
-
-               
-              </v-card>
-        
-          </template>
-          <!-- USDT Address List -->
-
-          <v-list elevation="5" style="background-color: #15212c;" class="vliststandart">
-
-            <v-list-item @click="selectUSDTAddress('usdtaddress1')" class="listitemadress"
-       
-          :ripple="false">
-          <p style="  font-size: 15px;">
-                ETH - Ethereum (ERC20)
-              </p>
-            </v-list-item>
-            <v-list-item @click="selectUSDTAddress('usdtaddress2')" class="listitemadress"
-           :ripple="false">
-             
-               <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
-         
-            </v-list-item>
-            <v-list-item @click="selectUSDTAddress('usdtaddress3')" class="listitemadress"
-         :ripple="false">
-             
-             <p style="  font-size: 15px;">POLYGON - Matic</p>
-       
-          </v-list-item>
-          </v-list>
-        </v-menu>
-
-        <v-menu style="" v-if="selectedCurrency === 'balanceeth'" 
-        location="bottom center" transition="slide-y-transition">
-          <!-- Activator -->
           <template v-slot:activator="{ props }">
            <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
          elevation="5">
-             
-               
-                  <div style=" font-size: 15px; color: #ffffff;">
+                  <div v-if="selectedCurrency === 'balanceusdt'" style=" font-size: 15px; color: #ffffff;">
+                    {{ selectedUSDTAddressName }}
+                  </div> 
+                  <div v-if="selectedCurrency === 'balanceeth'" style=" font-size: 15px; color: #ffffff;">
                     {{ selectedETHAddressName }}
+                  </div>   
+                  <div v-if="selectedCurrency === 'balancebnb'" style=" font-size: 15px; color: #ffffff;">
+                    {{ selectedBNBAddressName }}
                   </div>
-               
-                  <font-awesome-icon style="color: #ffffff;height: 14px; margin-left: 10px;" :icon="['fas', 'chevron-down']" />
-
-           
+                  <div v-if="selectedCurrency === 'balanceusdc'" style=" font-size: 15px; color: #ffffff;">
+                    {{ selectedUSDCAddressName }}
+                  </div> 
+                  <div v-if="selectedCurrency === 'balancematic'" style=" font-size: 15px; color: #ffffff;">
+                    {{ selectedMATICAddressName }}
+                  </div>            
+                  <font-awesome-icon style="color: #ffffff;height: 14px; 
+                  margin-left: 10px;" :icon="['fas', 'chevron-down']" />
               </v-card>
-       
           </template>
-          <!-- USDT Address List -->
-          <v-list elevation="5" style="background-color: #15212c;"  class="vliststandart">
+          <v-list v-if="selectedCurrency === 'balanceusdt'" elevation="5" style="background-color: #15212c;" class="vliststandart">
+
+<v-list-item @click="selectUSDTAddress('usdtaddress1')" class="listitemadress"
+
+:ripple="false">
+<p style="  font-size: 15px;">
+    ETH - Ethereum (ERC20)
+  </p>
+</v-list-item>
+<v-list-item @click="selectUSDTAddress('usdtaddress2')" class="listitemadress"
+:ripple="false">
+ 
+   <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
+
+</v-list-item>
+<v-list-item @click="selectUSDTAddress('usdtaddress3')" class="listitemadress"
+:ripple="false">
+ 
+ <p style="  font-size: 15px;">POLYGON - Matic</p>
+
+</v-list-item>
+          </v-list>
+          <v-list v-if="selectedCurrency === 'balanceeth'" elevation="5" style="background-color: #15212c;"  class="vliststandart">
             <v-list-item @click="selectETHAddress('ethaddress1')"  class="listitemadress"
           :ripple="false">
           <p style="  font-size: 15px;">
@@ -128,8 +112,63 @@
             </v-list-item>
          
           </v-list>
+          <v-list v-if="selectedCurrency === 'balancebnb'" elevation="5" style="background-color: #15212c;"  class="vliststandart">
+            <v-list-item @click="selecteBNBAddress('bnbaddress1')"  class="listitemadress"
+          :ripple="false">
+          <p style="  font-size: 15px;">
+            BSC - BNB Smart Chain (BEP20)
+              </p>
+            </v-list-item>
+          </v-list>
+          <v-list v-if="selectedCurrency === 'balanceusdc'" elevation="5" style="background-color: #15212c;" class="vliststandart">
+
+<v-list-item @click="selecteUSDCAddress('usdcaddress1')" class="listitemadress"
+
+:ripple="false">
+<p style="  font-size: 15px;">
+    ETH - Ethereum (ERC20)
+  </p>
+</v-list-item>
+<v-list-item @click="selecteUSDCAddress('usdcaddress2')" class="listitemadress"
+:ripple="false">
+ 
+   <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
+
+</v-list-item>
+<v-list-item @click="selecteUSDCAddress('usdcaddress3')" class="listitemadress"
+:ripple="false">
+ 
+ <p style="  font-size: 15px;">POLYGON - Matic</p>
+
+</v-list-item>
+          </v-list>
+          <v-list v-if="selectedCurrency === 'balancematic'" elevation="5" style="background-color: #15212c;" class="vliststandart">
+
+<v-list-item @click="selecteMATICAddress('maticaddress1')" class="listitemadress"
+
+:ripple="false">
+<p style="  font-size: 15px;">
+    ETH - Ethereum (ERC20)
+  </p>
+</v-list-item>
+<v-list-item @click="selecteMATICAddress('maticaddress2')" class="listitemadress"
+:ripple="false">
+ 
+   <p style="  font-size: 15px;"> BSC - BNB Smart Chain (BEP20)</p>
+
+</v-list-item>
+<v-list-item @click="selecteMATICAddress('maticaddress3')" class="listitemadress"
+:ripple="false">
+ 
+ <p style="  font-size: 15px;">POLYGON - Matic</p>
+
+</v-list-item>
+          </v-list>
+         
+        
         </v-menu>
-       
+
+
       </v-card>
     </div>
 
@@ -143,7 +182,8 @@
       <v-card elevation="5" class="pa-2 pl-4 mx-auto vmenustandart" >
 
         <v-card elevation="0" 
-        style="background-color: #2e4659; color: #ffffff; display: flex; align-items: center;
+        style="background-color: #2e4659; color: #ffffff;
+         display: flex; align-items: center; max-width: 300px;
  ">
   {{ selectedCurrencyAddress }}
 </v-card>
@@ -158,7 +198,7 @@
       </v-card>
     </div>
 
-    <DepositId :adress="selectedCurrencyAddress" :copyadresspressed="copyadresspressed"></DepositId>
+    <DepositId :adress="selectedCurrencyAddressName" :copyadresspressed="copyadresspressed"></DepositId>
   
 </template>
 
@@ -167,11 +207,27 @@ import { useStore } from 'vuex';
 import { ref, computed, watch } from 'vue';
 import DepositId from '@/components/DepositComp/DepositId.vue';
 
-
+const addressMapping = {
+  'usdtaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
+  'usdtaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
+  'usdtaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
+  'ethaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
+  'ethaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
+  'bnbaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
+  'usdcaddress1': '1',
+  'usdcaddress2': '2',
+  'usdcaddress3': '3',
+  'maticaddress1': 'Matic1',
+  'maticaddress2': 'Matic2',
+  'maticaddress3': 'Matic3',
+  // add more mappings here
+};
 export default {
   components: {
     DepositId,
   }, 
+    
+
   data() {
     return {
       currencies: [
@@ -179,7 +235,16 @@ export default {
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
         { name: 'ETH', code: 'balanceeth' },
+        { name: 'LTC', code: 'balanceltc' },
+        { name: 'BNB', code: 'balancebnb' },
+        { name: 'DOGE', code: 'balancedoge' },
+        { name: 'USDC', code: 'balanceusdc' },
+        { name: 'BCH', code: 'balancebch' },
+        { name: 'ADA', code: 'balanceada' },
+        { name: 'MATIC', code: 'balancematic' },
+        { name: 'TRX', code: 'balancetrx' },
       ],
+  
     };
   },
   setup() {
@@ -198,27 +263,71 @@ export default {
           return 'BTC';
         case 'balanceeth':
           return 'ETH';
+        case 'balanceltc':
+          return 'LTC';
+        case 'balancebnb':
+          return 'BNB';
+        case 'balancedoge':
+          return 'DOGE';
+        case 'balanceusdc':
+          return 'USDC';
+        case 'balancebch':
+          return 'BCH';
+        case 'balanceada':
+          return 'ADA';
+        case 'balancematic':
+          return 'MATIC';
+        case 'balancetrx':
+          return 'TRX'; 
         default:
           return '';
       }
     });
-    const selectedUSDTAddress = ref(localStorage.getItem('selectedUSDTAddress') || 'usdtaddress1');
-    const selectedETHAddress = ref(localStorage.getItem('selectedETHAddress') || 'ethaddress1');
-
-
+    const selectedUSDTAddress = ref(localStorage.getItem('selectedUSDTAddress') || 'usdtaddress2');
+    const selectedETHAddress = ref(localStorage.getItem('selectedETHAddress') || 'ethaddress2');
+    const selectedBNBAddress = ref(localStorage.getItem('selectedBNBAddress') || 'bnbaddress2');
+    const selectedUSDCAddress = ref(localStorage.getItem('selectedUSDCAddress') || 'usdcaddress2');
+    const selectedMATICAddress = ref(localStorage.getItem('selectedMATICAddress') || 'maticaddress2');
     const selectedCurrencyAddress = computed(() => {
-
       if (selectedCurrency.value === 'balanceusdt') {
-        return selectedUSDTAddress.value;
+        return addressMapping[selectedUSDTAddress.value];
       }
       if (selectedCurrency.value === 'balanceeth') {
-        return selectedETHAddress.value;
+        return addressMapping[selectedETHAddress.value];
       } 
+      if (selectedCurrency.value === 'balancebnb') {
+        return addressMapping[selectedBNBAddress.value];
+      }
+      if (selectedCurrency.value === 'balanceusdc') {
+        return addressMapping[selectedUSDCAddress.value];
+      }
+      if (selectedCurrency.value === 'balancematic') {
+        return addressMapping[selectedMATICAddress.value];
+      }
       else {
         return getCurrencyAddress(selectedCurrency.value);
       }
     });
-
+    const selectedCurrencyAddressName = computed(() => {
+      if (selectedCurrency.value === 'balanceusdt') {
+        return selectedUSDTAddressName.value;
+      }
+      if (selectedCurrency.value === 'balanceeth') {
+        return selectedETHAddressName.value;
+      } 
+      if (selectedCurrency.value === 'balancebnb') {
+        return selectedBNBAddressName.value;
+      }
+      if (selectedCurrency.value === 'balanceusdc') {
+        return selectedUSDCAddressName.value;
+      }
+      if (selectedCurrency.value === 'balancematic') {
+        return selectedMATICAddressName.value;
+      }
+      else {
+        return "";
+      }
+    });
 
 
     const selectedUSDTAddressName = computed(() => {
@@ -226,7 +335,7 @@ export default {
         case 'usdtaddress1':
           return 'ETH';
         case 'usdtaddress2':
-          return ' BSC';
+          return 'BSC';
         case 'usdtaddress3':
           return 'POLYGON';
         default:
@@ -239,11 +348,48 @@ export default {
         case 'ethaddress1':
           return 'ETH';
         case 'ethaddress2':
-          return ' BSC';
+          return 'BSC';
         default:
           return '';
       }
     });
+
+    const selectedBNBAddressName = computed(() => {
+      switch (selectedBNBAddress.value) {
+        case 'bnbaddress1':
+          return 'BSC';
+        default:
+          return '';
+      }
+    });
+
+    const selectedUSDCAddressName = computed(() => {
+      switch (selectedUSDCAddress.value) {
+        case 'usdcaddress1':
+          return 'ETH';
+        case 'usdcaddress2':
+          return 'BSC';
+        case 'usdcaddress3':
+          return 'POLYGON';
+        default:
+          return '';
+      }
+    });
+
+    const selectedMATICAddressName = computed(() => {
+      switch (selectedMATICAddress.value) {
+        case 'maticaddress1':
+          return 'ETH';
+        case 'maticaddress2':
+          return ' BSC';
+        case 'maticaddress3':
+          return 'POLYGON';
+        default:
+          return '';
+      }
+    });
+
+    
 
     // Function to copy the address to the clipboard
     const copyAddress = () => {
@@ -287,9 +433,24 @@ export default {
           selectedETHAddress.value = localStorage.getItem('selectedETHAddress') || 'ethaddress1';
         } 
 
+        if (newCurrency === 'balancebnb') {
+          selectedBNBAddress.value = localStorage.getItem('selectedBNBAddress') || 'bnbaddress1';
+        }
+
+        if (newCurrency === 'balanceusdc') {
+          selectedUSDCAddress.value = localStorage.getItem('selectedUSDCAddress') || 'usdcaddress1';
+        }
+
+        if (newCurrency === 'balancematic') {
+          selectedMATICAddress.value = localStorage.getItem('selectedMATICAddress') || 'maticaddress1';
+        }
+
         else {
           selectedUSDTAddress.value = getCurrencyAddress(newCurrency);
           selectedETHAddress.value = getCurrencyAddress(newCurrency);
+          selectedBNBAddress.value = getCurrencyAddress(newCurrency);
+          selectedUSDCAddress.value = getCurrencyAddress(newCurrency);
+          selectedMATICAddress.value = getCurrencyAddress(newCurrency);
         }
 
 
@@ -312,6 +473,26 @@ export default {
       selectedETHAddress.value = addressKey;
       localStorage.setItem('selectedETHAddress', addressKey);
     };
+    const selecteBNBAddress = (addressKey) => {
+      selectedBNBAddress.value = addressKey;
+      localStorage.setItem('selectedBNBAddress', addressKey);
+    };
+    const selecteUSDCAddress = (addressKey) => {
+      selectedUSDCAddress.value = addressKey;
+      localStorage.setItem('selectedUSDCAddress', addressKey);
+    };
+    const selecteMATICAddress = (addressKey) => {
+      selectedMATICAddress.value = addressKey;
+      localStorage.setItem('selectedMATICAddress', addressKey);
+    };
+
+
+
+    
+
+
+
+  
 
     // Images for different currencies
     const selectedCurrencyImages = {
@@ -319,6 +500,15 @@ export default {
       balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+      balanceltc: require('@/assets/Cryptologos/lite.svg'),
+      balancebnb: require('@/assets/Cryptologos/bnb.svg'),
+      balancedoge: require('@/assets/Cryptologos/doge.svg'),
+      balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
+      balancebch: require('@/assets/Cryptologos/btccash.svg'),
+      balanceada: require('@/assets/Cryptologos/ada.svg'),
+      balancematic: require('@/assets/Cryptologos/matic.svg'),
+      balancetrx: require('@/assets/Cryptologos/trx.svg'),
+
     };
 
     const selectedCurrencyImagesQrcode = {
@@ -326,6 +516,14 @@ export default {
       balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+      balanceltc: require('@/assets/Cryptologos/lite.svg'),
+      balancebnb: require('@/assets/Cryptologos/bnb.svg'),
+      balancedoge: require('@/assets/Cryptologos/doge.svg'),
+      balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
+      balancebch: require('@/assets/Cryptologos/btccash.svg'),
+      balanceada: require('@/assets/Cryptologos/ada.svg'),
+      balancematic: require('@/assets/Cryptologos/matic.svg'),
+      balancetrx: require('@/assets/Cryptologos/trx.svg'),
     };
 
     // Function to get the image path for the selected currency
@@ -344,9 +542,25 @@ export default {
         case 'balanceeur':
           return 'Euro address';
         case 'balancebtc':
-          return 'Btc address 1';
+          return '18KwuFLeDvHHrZawNFesTq2VznxWTCDzVr';
         case 'balanceeth':
-          return selectedETHAddress.value;;
+          return selectedETHAddress.value;
+        case 'balanceltc':
+          return 'LTC address';
+        case 'balancebnb':
+          return selectedBNBAddress.value;
+        case 'balancedoge':
+          return 'DOGE address';
+        case 'balanceusdc':
+          return selectedUSDCAddress.value;
+        case 'balancebch':
+          return 'BCH address';
+        case 'balanceada':
+          return 'ADA address';
+        case 'balancematic':
+          return  selectedMATICAddress.value;
+        case 'balancetrx':
+          return 'TRX address';
         default:
           return '';
       }
@@ -356,8 +570,12 @@ export default {
       selectedCurrency,
       selectedCurrencyName,
       selectedCurrencyAddress,
+      selectedCurrencyAddressName,
       selectedUSDTAddress,
       selectedETHAddress,
+      selectedBNBAddress,
+      selectedUSDCAddress,
+      selectedMATICAddress,
       showTooltip,
       copyAddress,
       getCurrencyImagePath,
@@ -365,8 +583,15 @@ export default {
       selectCurrency,
       selectUSDTAddress,
       selectETHAddress,
+      selecteBNBAddress,
+      selecteUSDCAddress,
+      selecteMATICAddress,
       selectedUSDTAddressName,
       selectedETHAddressName,
+      selectedBNBAddressName,
+      selectedUSDCAddressName,
+      selectedMATICAddressName,
+      
       copyadresspressed,
     };
   },
@@ -375,27 +600,30 @@ export default {
 
 
 <style scoped>
+.vmenustandart{
+color: #ffffff;
+  cursor: pointer; height: 48px; display: flex; align-items: center;
+          background-color: #2e4659; user-select: none;
+}
 .imginlist{
   display: flex; align-items: center; 
       width: 22px; max-height: 22px; margin-left: 15px;
       user-select: none; 
 
 }
- .unselectable {
-    user-select: none;
-  }
-.vmenustandart{
-color: #ffffff;
-  cursor: pointer; height: 48px; display: flex; align-items: center;
-          background-color: #2e4659; user-select: none;
-}
-
-.vliststandart{
- border: 2px solid #2e4659;  color: #ffffff; min-width: 100px;
-           margin-top: 10px;
-}
 .listitemadress{
   height: 40px; align-items: center;
+}
+.vliststandart{
+ border: 2px solid #2e4659;  color: #ffffff; min-width: 100px;
+           margin-top: 10px; max-height: 250px; overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+width: 5px;
+
+
+
 }
 
 </style>
