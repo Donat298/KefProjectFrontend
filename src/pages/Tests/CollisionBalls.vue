@@ -32,7 +32,7 @@
     },
 
 
-    mounted() {
+  mounted() {
     this.checkScreenWidth(); // Call the function to check screen width on mount
     window.addEventListener('resize', this.checkScreenWidth); // Listen for screen resize
     } ,

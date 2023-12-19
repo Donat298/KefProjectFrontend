@@ -13,9 +13,11 @@
         >  
 
         
-        <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
+        <div style="  margin: 10px; display: flex; align-items: center; justify-content: center;">
              <div v-if="errorMsg" 
                   style="color: red; font-size: 17px; ">{{ errorMsg }}
+        
+        
              </div>
              <div v-if="goodMsg && !errorMsg"
                   style="color: rgb(0, 255, 0); font-size: 17px; ">{{ goodMsg }}

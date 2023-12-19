@@ -163,18 +163,18 @@ export default {
   }
 
   .bubble.left .avatar-container {
-    width: 54px;
-    min-width: 54px;
-    height: 54px;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
     overflow: hidden;
     border-radius: 50%;
    margin-right: 10px;
   }
 
   .bubble.right .avatar-container {
-    width: 54px;
-    min-width: 54px;
-    height: 54px;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
     overflow: hidden;
     border-radius: 50%;
     margin-left: 10px;

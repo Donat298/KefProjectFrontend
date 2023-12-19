@@ -114,9 +114,12 @@
   <v-img style="min-height: 54px; max-width: 96px; margin: 20px auto 40px auto;
         " :src="require('@/assets/kefu.svg')"/>
         <div style="word-break: break-word;color: gray; margin-bottom: 20px;
-    white-space: pre-wrap;">
-We are a legal company, all papers and Privacy Policy are protected. You can contact us by this email
+    white-space: pre-wrap;">All rights reserved <br> 2021 KEF <br>
+We are a legal company, all papers and Privacy Policy are protected. <br>
+
+ You can contact us by this email
 supercryptomegagames@gmail.com!
+
 
 </div>
 

@@ -16,13 +16,13 @@
          <v-expansion-panel-text>
            <v-divider :thickness="2"  color="white"></v-divider>
          
-           <v-list-item :ripple="false" prepend-icon="mdi-circle-double"  style="color: #ffffff;padding-left: 15px;  margin-top: 8px; "
+           <v-list-item :ripple="false" prepend-icon="mdi-circle-slice-4"  style="color: #ffffff;padding-left: 15px;  margin-top: 8px; "
             to="/wheel" >Wheel</v-list-item>
               
            <v-list-item :ripple="false" prepend-icon="mdi-mine"   style="color: #ffffff; padding-left: 15px; "
            to="/mines" >Mines</v-list-item>
-           <v-list-item :ripple="false" prepend-icon="mdi-circle-slice-8"   style="color: #ffffff; padding-left: 15px; "
-           to="/realwheel" >Realwheel</v-list-item>
+           <v-list-item :ripple="false" prepend-icon="mdi-cards"   style="color: #ffffff; padding-left: 15px; "
+           to="/games" >Games</v-list-item>
             <v-list-item :ripple="false" prepend-icon="mdi-currency-usd"   style="color: #ffffff; padding-left: 15px; "
              to="/BalanceManag"  >Balance</v-list-item>
          </v-expansion-panel-text>

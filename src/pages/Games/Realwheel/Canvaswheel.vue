@@ -88,7 +88,6 @@ export default {
   
   const currencyImagetag = ref("");
 
-
   const selectedCurrencyImages = {
     usdt: require('@/assets/Cryptologos/usdt.svg'),
     eur: require('@/assets/Cryptologos/euro-logo.svg'),

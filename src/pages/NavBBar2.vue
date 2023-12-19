@@ -49,10 +49,10 @@
         <span style="color: #ffffff; font-size: 13px;">Menu</span>
     </v-btn>
 
-    <v-btn to="/realwheel" elevation="4" class="mx-auto glow-button"
+    <v-btn to="/games" elevation="4" class="mx-auto glow-button"
         :ripple="false"
     
-        :color="$route.path === '/realwheel' ? '#37556b' : '#2e4659'"  
+        :color="$route.path === '/games' ? '#37556b' : '#2e4659'"  
         style="max-width: calc(33.33% - 10px); min-width: 5px;
      
 
@@ -370,7 +370,7 @@ border-radius: 5px 0px 0px 5px !important;
 
 
 .glowg-button2 {
-  background: linear-gradient(45deg,  #000000, #0a0027, #170027, #000000);
+  background: linear-gradient(45deg,  #000000, #100040, #250040, #000000);
   
   background-size: 200% 100%;
   width: 100%;

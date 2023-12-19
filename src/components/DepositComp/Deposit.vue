@@ -175,7 +175,7 @@
 
 
 
-      <v-img class="mx-auto" style="max-width: 100px; margin: 30px;" :src="getCurrencyImagePath(selectedCurrency)" />
+      <v-img class="mx-auto" style="max-width: 150px; margin: 20px;" :src="getCurrencyImagePath2(selectedCurrency)" />
 
 
     <div class="mx-auto" style="display: flex; padding: 10px; overflow-x: auto;">
@@ -214,12 +214,12 @@ const addressMapping = {
   'ethaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
   'ethaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
   'bnbaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdcaddress1': '1',
-  'usdcaddress2': '2',
-  'usdcaddress3': '3',
-  'maticaddress1': 'Matic1',
-  'maticaddress2': 'Matic2',
-  'maticaddress3': 'Matic3',
+  'usdcaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
+  'usdcaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
+  'usdcaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
+  'maticaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
+  'maticaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
+  'maticaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
   // add more mappings here
 };
 export default {
@@ -514,16 +514,16 @@ export default {
     const selectedCurrencyImagesQrcode = {
       balanceusdt: require('@/assets/CryptoQrcodes/TetherErc20.png'),
       balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
-      balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
-      balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
-      balanceltc: require('@/assets/Cryptologos/lite.svg'),
-      balancebnb: require('@/assets/Cryptologos/bnb.svg'),
-      balancedoge: require('@/assets/Cryptologos/doge.svg'),
-      balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
-      balancebch: require('@/assets/Cryptologos/btccash.svg'),
-      balanceada: require('@/assets/Cryptologos/ada.svg'),
-      balancematic: require('@/assets/Cryptologos/matic.svg'),
-      balancetrx: require('@/assets/Cryptologos/trx.svg'),
+      balancebtc: require('@/assets/CryptoQrcodes/Btc.png'),
+      balanceeth: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balanceltc: require('@/assets/CryptoQrcodes/Ltc.png'),
+      balancebnb: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balancedoge: require('@/assets/CryptoQrcodes/Doge.png'),
+      balanceusdc: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balancebch: require('@/assets/CryptoQrcodes/Bch.png'),
+      balanceada: require('@/assets/CryptoQrcodes/Ada.png'),
+      balancematic: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balancetrx: require('@/assets/CryptoQrcodes/Trx.png'),
     };
 
     // Function to get the image path for the selected currency
@@ -546,21 +546,21 @@ export default {
         case 'balanceeth':
           return selectedETHAddress.value;
         case 'balanceltc':
-          return 'LTC address';
+          return 'Lc4w9pBUHaBAhTh77imbYS9M1npGL3UtGH';
         case 'balancebnb':
           return selectedBNBAddress.value;
         case 'balancedoge':
-          return 'DOGE address';
+          return 'D9jfrxf3UM6MBW5m8sq567ze8F6juv2a3Y';
         case 'balanceusdc':
           return selectedUSDCAddress.value;
         case 'balancebch':
-          return 'BCH address';
+          return '1Hg29n1XN5t3RyTzACXpFc5yGXE7Xn6svL';
         case 'balanceada':
-          return 'ADA address';
+          return 'addr1v8snfymyqqkwwf840yhsgwh3tkw4ht2896emf4fpzrqdpwqydfyew';
         case 'balancematic':
           return  selectedMATICAddress.value;
         case 'balancetrx':
-          return 'TRX address';
+          return 'TWX3X61vd76HHdh36t1QLZciZfqa4Na1za';
         default:
           return '';
       }

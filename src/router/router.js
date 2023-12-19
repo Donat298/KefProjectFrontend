@@ -10,6 +10,7 @@ import ChAt from "@/pages/Chats/ChAt.vue";
 import store from "@/store/index.js";
 import CollisionBalls from "@/pages/Tests/CollisionBalls.vue";
 import Realwheel from "@/pages/Games/Realwheel/Realwheel.vue";
+import Games from "@/pages/Games/Games.vue";
 const routes = [
     {
         path: '/',
@@ -26,10 +27,17 @@ const routes = [
         name: 'register',
         component: register
     },
+
     {
-        path: '/realwheel',
-        name: 'Wheel',
-        component: Wheel,
+        path: '/BalanceManag',
+        name: 'BalanceManag',
+        component:  BalanceManag,
+        
+    },
+    {
+        path: '/games',
+        name: 'Games',
+        component: Games,
         
     },
     {
@@ -39,24 +47,22 @@ const routes = [
         
     },
     {
-        path: '/BalanceManag',
-        name: 'BalanceManag',
-        component:  BalanceManag,
-        
-    },
-    {
         path: '/mines',
         name: 'Mines',
         component:  Mines,
+    },
+    {
+        path: '/realwheel',
+        name: 'Wheel',
+        component: Wheel,
+        
     },
     {
         path: '/chat',
         name: 'Chat',
         component: ChAt,
      
-      },
-
-
+    },
     {
         path: '/relax',
         name: 'CollisionBalls',

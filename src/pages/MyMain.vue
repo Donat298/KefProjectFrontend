@@ -1,190 +1,162 @@
 <template>
-  <div>
-    <div class="content"> 
-      <h1 class="casino-title">Welcome to KEF</h1>
-      <p class="casino-description">
-        Experience the thrill of premium casino games. Sign up now to start playing!
-      </p>
-      <div class="button-group">
-        <v-btn class="signup-btn" @click="$router.push('/auth/register')">Sign Up</v-btn>
-        <v-btn class="login-btn" @click="$router.push('/auth/login')">Sign In</v-btn>
-        <v-btn class="explore-btn" @click="$router.push('/games')">Explore Games</v-btn>
-      </div>
-      <div class="game-selection">
-        <div class="svglist">
+  <div :style="{ 'margin-bottom': isWideScreen ? '80px' : '20px' }">
 
-  
+    
+        <div class="title-all" >
+        <div style="font-size: 40px; text-align: center;   word-break: break-word;
+
+
+ border-radius: 20px; background: linear-gradient(140deg, #1d2f3f, #15212c);
+box-shadow:  0px 6px 6px rgba(0,0,0,0.23);transform: rotate(4deg);
+    white-space: pre-wrap;
+      " class="casino-title">Welcome to KEF!</div>
+
+       
+        <div style="  border-radius: 20px; 
+      background: linear-gradient(150deg, #1d2f3f, #15212c); 
+box-shadow:  0px 6px 6px rgba(0,0,0,0.23);transform: rotate(-3deg);
+" class="description">
+         Is it possible to make money, and get free big bonuses on KEF? 
+          Suggest you check and find out!</div>
 
         </div>
+    
+      <div class="game-list">
 
+        <Gamelist></Gamelist>
+        <div style="margin: 50px; width: 100%;    font-size: 25px; text-align: center; 
+            ">Other games coming soon!!!</div>
 
-
-        <h2>Choose Your Game</h2>
-        <div class="game-list">
-          <!-- Replace the placeholder images and titles with your actual game options -->
-          <div class="game-option">
-            <img src="game1.jpg" alt="Game 1">
-            <p>Slot Games</p>
-          </div>
-          <div class="game-option">
-            <img src="game2.jpg" alt="Game 2">
-            <p>Roulette</p>
-          </div>
-          <div class="game-option">
-            <img src="game3.jpg" alt="Game 3">
-            <p>Blackjack</p>
-          </div>
-        </div>
       </div>
-      <div class="bonus-section">
-        <h2>Exclusive Bonus</h2>
-        <p>Get a 100% deposit bonus on your first deposit! Don't miss out on this limited offer.</p>
-        <v-btn class="bonus-btn" @click="$router.push('/promotions')">Claim Bonus</v-btn>
-      </div>
-      <button @click="toggleShowResult">Click me</button>
-          <Transition name="bounce">
-      <p v-if="showResult" style="text-align: center;">
-        Hello here is some bouncy text!
-      </p>
-    </Transition>
+
+
+      
+      <div style="display: flex;
+    justify-content: center;
+    align-items: center;  /* Add this line */
+    flex-wrap: wrap;
+    border: 1px solid #2e4659;
+    border-radius: 30px;
+    max-width: 90%;
+    width: 1035px; 
+    margin: 0 auto;"> 
+    <div style="font-size: 25px; margin:30px auto; padding:0px 20px;
+    ">
+      <span style="display: block; text-align: center; word-break: break-word; white-space: pre-wrap;"> Available online chat for everyone!</span>
     </div>
-    <bottom-info></bottom-info>
- 
+<div style="width: 400px; margin: auto;">
+    <v-img  :src="require('@/assets/Gamespreview/Caht.png')"
+     style=" "></v-img>
+    </div>
+</div>
+
+
+      
+<div style="display: flex;
+    justify-content: center;
+    align-items: center;  /* Add this line */
+    flex-wrap: wrap;
+    border: 1px solid #2e4659;
+    border-radius: 30px;
+    max-width: 90%;
+    width: 1035px; 
+    margin:40px auto 0px"> 
+    <div style="width: 400px; margin: auto;padding: 10px;">
+    <v-img  :src="require('@/assets/Gamespreview/Bonus.png')"
+     style=" "></v-img>
+    </div>
+    <div style="font-size: 25px; margin:30px auto; padding:0px 20px;">
+      <span style="display: block; text-align: center; word-break: break-word; white-space: pre-wrap;">Promo code bonuses!</span>
+    </div>
+
+</div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
   
-  </div>
+
+  <bottom-info></bottom-info>
 </template>
 
-
+<script>
+  import { ref } from 'vue';
+  import Gamelist from '@/pages/Games/Gamelist.vue';
+  export default {
+    components: {
+      Gamelist
+    },
+    data() {
+      return {
+        isWideScreen: false,
+      };
+    },
+    methods: {
+      checkScreenWidth() {
+        this.isWideScreen = window.innerWidth > 800;
+      },
+    },
+    mounted() {
+      this.checkScreenWidth();
+      window.addEventListener('resize', this.checkScreenWidth);
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.checkScreenWidth);
+    },
+  }
+</script>
 
 <style>
 
 
 
+  .casino-title {
+    color: #ffffff;
+    margin: 10% auto;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    max-width: 90%;
 
-
-
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
   }
-  50% {
-    transform: scale(1.25);
+
+  .description {
+    color: #ffffff;
+    font-size: 25px;
+    width: 400px;
+    margin: 10% auto;
+    padding: 20px;
+
+    max-width: 85%;
   }
-  100% {
-    transform: scale(1);
+
+  .game-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
   }
-}
+.title-all{
+margin: auto;
 
-
-.content {
-  text-align: center;
+  max-width: 1200px;
+            display: flex;
+    justify-content: space-between;
+  
 }
+  @media (max-width: 800px) {
+    .title-all {
+      flex-direction: column;
+    }
+  }
 
-.casino-title {
-  font-size: 3em;
-  margin-bottom: 20px;
-  color: #4d3da0; /* Adjust the color to your preference */
-}
-
-.casino-description {
-  font-size: 1.2em;
-  margin-bottom: 40px;
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.signup-btn,
-.login-btn,
-.explore-btn {
-  margin: 10px;
-  padding: 15px 40px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1em;
-  cursor: pointer;
-  color: #fff;
-}
-
-.signup-btn {
-  background-color: #4d3da0; /* Adjust the colors to match your theme */
-}
-
-.login-btn {
-  background-color: #6b52ae; /* Adjust the colors to match your theme */
-}
-
-.explore-btn {
-  background-color: #8c75d4; /* Adjust the colors to match your theme */
-}
-
-.game-selection {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.game-list {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-  max-width: 700px;
-  margin: auto;
-}
-
-.game-option {
-  width: 30%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-}
-
-.game-option img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.bonus-section {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.bonus-section p {
-  font-size: 1.1em;
-  margin-bottom: 30px;
-}
-
-.bonus-btn {
-  background-color: #ffcc00; /* Set bonus button color */
-  padding: 15px 40px;
-}
 </style>
-<script>
-  import { ref } from 'vue';
-export default {
-
-  setup() {
-      const showResult = ref(false);
-  
-      const toggleShowResult = () => {
-        showResult.value = true;
-      };
-  
-      return {
-        showResult,
-        toggleShowResult,
-      };
-    },
-  // Your Vue component logic goes here
-}
-</script>
