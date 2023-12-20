@@ -7,7 +7,7 @@ export default createStore({
     gameInProgress: false,
     sessionChecked: false,
     accessToken: localStorage.getItem("accessToken") || "",
-    selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceeur",
+    selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceusdt",
     avatar: localStorage.getItem("userAvatar") || "",
     incomingMessage: null,
     getBalanceTimer: null,

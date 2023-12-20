@@ -171,16 +171,15 @@
     </div>
 
     <div style="position: relative;
-     width: 150px; height: 150px; margin:20px auto;">
-    <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="width: 100%; height: 100%;"
+   margin:20px auto;">
+    <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="   width: 150px; height: 150px;"
      :src="getCurrencyImagePath2(selectedCurrency)" />
      <button v-if="isBlurred"
-    class="mx-auto"
-    elevation="7"
     :ripple="false"
-    style="
-    background-color: #1d2f3f; position: absolute; display: flex; align-items: center; justify-content: center;
-    top: 50%; left: 50%; padding: 5px; border-radius: 4px; transform: translate(-50%, -50%);"
+    style=" 
+    background-color: #2e4659; position: absolute; display: flex;
+     align-items: center; justify-content: center;
+    top: 50%; left: 50%; padding: 10px; border-radius: 4px; transform: translate(-50%, -50%);"
     @click="copyAddress(); isBlurred = false; "
   >
   <v-icon style="color: #ffffff;"
@@ -445,11 +444,11 @@ export default {
     watch(selectedCurrency, (newCurrency) => {
 
         if (newCurrency === 'balanceusdt') {
-          selectedUSDTAddress.value = localStorage.getItem('selectedUSDTAddress') || 'usdtaddress1';
+          selectedUSDTAddress.value = localStorage.getItem('selectedUSDTAddress') || 'usdtaddress2';
         }
 
         if (newCurrency === 'balanceeth') {
-          selectedETHAddress.value = localStorage.getItem('selectedETHAddress') || 'ethaddress1';
+          selectedETHAddress.value = localStorage.getItem('selectedETHAddress') || 'ethaddress2';
         } 
 
         if (newCurrency === 'balancebnb') {
@@ -457,11 +456,11 @@ export default {
         }
 
         if (newCurrency === 'balanceusdc') {
-          selectedUSDCAddress.value = localStorage.getItem('selectedUSDCAddress') || 'usdcaddress1';
+          selectedUSDCAddress.value = localStorage.getItem('selectedUSDCAddress') || 'usdcaddress2';
         }
 
         if (newCurrency === 'balancematic') {
-          selectedMATICAddress.value = localStorage.getItem('selectedMATICAddress') || 'maticaddress1';
+          selectedMATICAddress.value = localStorage.getItem('selectedMATICAddress') || 'maticaddress2';
         }
 
         else {
