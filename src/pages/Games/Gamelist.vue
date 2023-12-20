@@ -7,7 +7,7 @@
             <div class="play">
                 <div class="game-name">{{ game.name }}</div>
                 <v-btn class="glowg-buttongame" rounded="lg" :ripple="false">
-                    <span >Play</span>
+                   Play
                 </v-btn>
             </div>
 

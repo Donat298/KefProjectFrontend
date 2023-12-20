@@ -210,15 +210,14 @@
   style="width: 17px; height: 17px;
     right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
 
-  <input
-    v-model="message2"
-    class="inputwithdrawnumber" 
-    style="padding: 0px 15px; "
-    type="number"
-    inputmode="numeric"
-    :style="{ borderColor: isInputInvalid || errorMsg == 'Invalid withdrawal amount' || 
-    errorMsg == 'Address and amount required.' || errorMsg == 'Insufficient balance for withdrawal' ? 'red' : '' }"
-  >
+<input
+  v-model="message2"
+  class="inputwithdrawnumber" 
+  style="padding: 0px 15px; "
+  type="number"
+  inputmode="numeric"
+  :style="{ borderColor: isInputInvalid || (errorMsg && errorMsg !== 'Address required.') ? 'red' : '' }"
+>
 
   
  </div>
@@ -313,8 +312,15 @@ export default {
        this.errorMsg = false;
      }
    },
+   '$store.getters.selectedCurrency': {
+      handler() {
+        this.checkInputValidity(this.message2);
+      },
+      deep: true,
+    },
 
  },
+
 
  methods: {
    checkInputValidity(value) {
@@ -342,7 +348,7 @@ const userId = ref(store.getters.userDetail._id);
 const message1 = ref('');
 const message2 = ref('');
 const isButtonDisabled = ref(false);
-const buttonText = ref('Made a withdrawal');
+const buttonText = ref('Make a withdrawal');
 const buttonStyle = ref({
      backgroundColor: '#1E88E5', // Default background color
      opacity: 1, // Default opacity

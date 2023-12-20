@@ -46,9 +46,9 @@
     transition: opacity 0.2s ease-in-out;
 
     margin-right: auto;
-   width: 100%;
+   width: 80%;
 
-    margin-bottom: 10px;
+
     bottom: 100%; /* Position above the element */
     left: 50%;
     max-width: 90%;
@@ -74,6 +74,7 @@
     padding: 5px;
     white-space: normal; /* Allow text to wrap to the next line */
     overflow-wrap: break-word; /* Allow text to break and wrap onto the next line */
+    text-align: center;
   }
   
 

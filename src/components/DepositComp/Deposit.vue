@@ -167,16 +167,30 @@
          
         
         </v-menu>
-
-
       </v-card>
     </div>
 
+    <div style="position: relative;
+     width: 150px; height: 150px; margin:20px auto;">
+    <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="width: 100%; height: 100%;"
+     :src="getCurrencyImagePath2(selectedCurrency)" />
+     <button v-if="isBlurred"
+    class="mx-auto"
+    elevation="7"
+    :ripple="false"
+    style="
+    background-color: #1d2f3f; position: absolute; display: flex; align-items: center; justify-content: center;
+    top: 50%; left: 50%; padding: 5px; border-radius: 4px; transform: translate(-50%, -50%);"
+    @click="copyAddress(); isBlurred = false; "
+  >
+  <v-icon style="color: #ffffff;"
+          icon="mdi-eye mx-auto"
+        ></v-icon>
+  </button>
 
+   
 
-
-      <v-img class="mx-auto" style="max-width: 150px; margin: 20px;" :src="getCurrencyImagePath2(selectedCurrency)" />
-
+    </div>
 
     <div class="mx-auto" style="display: flex; padding: 10px; overflow-x: auto;">
       <v-card elevation="5" class="pa-2 pl-4 mx-auto vmenustandart" >
@@ -187,7 +201,7 @@
  ">
   {{ selectedCurrencyAddress }}
 </v-card>
-        <button @click="copyAddress" :disabled="showTooltip" 
+        <button @click="copyAddress();  showCopiedTooltip()"  :disabled="showTooltip" 
         class="copied-button ml-2" :class="{ 'copied-icon': showTooltip }"
          :style="{ backgroundColor: showTooltip ? '#2e4659' : '#2e4659' }" style="min-width: 32px;
            min-height: 32px;  ">
@@ -244,14 +258,17 @@ export default {
         { name: 'MATIC', code: 'balancematic' },
         { name: 'TRX', code: 'balancetrx' },
       ],
+
   
     };
   },
+
   setup() {
     const store = useStore();
     const selectedCurrency = ref(localStorage.getItem('selectedCurrency') || 'balanceusdt');
     const showTooltip = ref(false);
     const copyadresspressed = ref(false);
+    const isBlurred = ref(true);
 
     const selectedCurrencyName = computed(() => {
       switch (selectedCurrency.value) {
@@ -394,6 +411,7 @@ export default {
     // Function to copy the address to the clipboard
     const copyAddress = () => {
       const address = selectedCurrencyAddress.value;
+
       copyadresspressed.value = true;
       // Create a temporary text area element to hold the text to copy
       const textArea = document.createElement('textarea');
@@ -407,9 +425,10 @@ export default {
       // Remove the temporary element
       document.body.removeChild(textArea);
 
-      // Show the copied tooltip
-      showCopiedTooltip();
-    
+      // Set copyadresspressed.value to false only after all the other operations have been completed
+      Promise.resolve().then(() => {
+        copyadresspressed.value = false;
+      });
     };
 
     // Function to show the copied tooltip
@@ -418,7 +437,7 @@ export default {
         showTooltip.value = true;
         setTimeout(() => {
           showTooltip.value = false;
-          copyadresspressed.value = false;
+    
         }, 1000); // Hide the tooltip after 1 second
      };
 
@@ -460,7 +479,7 @@ export default {
 
     const selectCurrency = (currencyKey) => { 
       selectedCurrency.value = currencyKey;
-
+      isBlurred.value = true;
       store.commit('setSelectedCurrency', currencyKey);
     };
 
@@ -468,22 +487,27 @@ export default {
     const selectUSDTAddress = (addressKey) => {
       selectedUSDTAddress.value = addressKey;
       localStorage.setItem('selectedUSDTAddress', addressKey);
+      isBlurred.value = true;
     };
     const selectETHAddress = (addressKey) => {
       selectedETHAddress.value = addressKey;
       localStorage.setItem('selectedETHAddress', addressKey);
+      isBlurred.value = true;
     };
     const selecteBNBAddress = (addressKey) => {
       selectedBNBAddress.value = addressKey;
       localStorage.setItem('selectedBNBAddress', addressKey);
+      isBlurred.value = true;
     };
     const selecteUSDCAddress = (addressKey) => {
       selectedUSDCAddress.value = addressKey;
       localStorage.setItem('selectedUSDCAddress', addressKey);
+      isBlurred.value = true;
     };
     const selecteMATICAddress = (addressKey) => {
       selectedMATICAddress.value = addressKey;
       localStorage.setItem('selectedMATICAddress', addressKey);
+      isBlurred.value = true;
     };
 
 
@@ -586,13 +610,15 @@ export default {
       selecteBNBAddress,
       selecteUSDCAddress,
       selecteMATICAddress,
+      showCopiedTooltip,
       selectedUSDTAddressName,
       selectedETHAddressName,
       selectedBNBAddressName,
       selectedUSDCAddressName,
       selectedMATICAddressName,
-      
       copyadresspressed,
+      isBlurred,
+ 
     };
   },
 };
@@ -600,6 +626,10 @@ export default {
 
 
 <style scoped>
+
+.blur-image {
+  filter: blur(5px);
+}
 .vmenustandart{
 color: #ffffff;
   cursor: pointer; height: 48px; display: flex; align-items: center;
