@@ -7,7 +7,7 @@
   <!-- Activator -->
   <template v-slot:activator="{ props }">
          
-   <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart mr-2"  elevation="5">
+   <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart"  elevation="5">
 
               
                 <p style=" font-size: 15px; color: #ffffff;">
@@ -44,7 +44,7 @@
  location="bottom center" transition="slide-y-transition">
 
  <template v-slot:activator="{ props }">
-   <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
+   <v-card v-bind="props" :ripple="false" class="rounded pa-4 ml-2 vmenustandart" 
         elevation="5">
               <div v-if="selectedCurrency === 'balanceusdt'" style=" font-size: 15px; color: #ffffff;">
                     {{ selectedUsdtNetwork }}
@@ -185,7 +185,7 @@
      v-model="message1"
      class="inputadress"
      style="padding: 0px 15px; margin-bottom: 20px;"
-     :style="{ borderColor: hasError ? 'red' : '' }"
+     :style="{ borderColor: hasError || errorMsg == 'Address and amount required' ? 'red' : '' }"
    />
 
 
@@ -194,7 +194,7 @@
  display: flex;
 ">
    <toolip :showTooltip2="showTooltip2" style="width: 100%;" 
-   text="The amount cannot be more than your balance."></toolip>
+   text="The amount cannot be more than your balance"></toolip>
  </div>
 
 
@@ -216,7 +216,8 @@
   style="padding: 0px 15px; "
   type="number"
   inputmode="numeric"
-  :style="{ borderColor: isInputInvalid || (errorMsg && errorMsg !== 'Address required.') ? 'red' : '' }"
+  :style="{ borderColor: isInputInvalid || (errorMsg && !hasError)
+  || errorMsg == 'Address and amount required' ? 'red' : '' }"
 >
 
   
@@ -300,7 +301,8 @@ export default {
  },
  computed: {
    hasError() {
-     return (this.errorMsg == 'Address and amount required.' || this.errorMsg == 'Address required.');
+     return (this.errorMsg == 'Address and amount required' ||
+      this.errorMsg == 'Address required');
    },
  },
  watch: {
@@ -510,12 +512,23 @@ const sendWithdrawal = async () => {
       requestBody.selectedNetwork = selectedMaticNetwork.value;
     }
 
+
+
+       // Update button state and message
+   buttonText.value = 'Withdrawal Sent!';
+   isButtonDisabled.value = true;
+   buttonStyle.value = {
+     ...buttonStyle.value,
+     opacity: 0.5, // Adjust opacity for the fade-out effect
+   };
    const response = await axiosPrivateInstance.post('/users/withdraw', requestBody);
 
-   const amountWithdrawn = response.data.amount;
+
    const withdrawalCurrency = store.getters.selectedCurrency;
   
-
+   const amountWithdrawnRaw = response.data.amount;
+    const amountWithdrawn = Math.floor(amountWithdrawnRaw * 1e8) / 1e8; // Truncate to 8 decimal places
+    
 
  // Emit the "cSWi" event along with the amount and currency withdrawn
    context.emit("cSWi", { amount: amountWithdrawn, currency: withdrawalCurrency, 
@@ -525,13 +538,7 @@ const sendWithdrawal = async () => {
    const currency = balanceFieldsMap[store.getters.selectedCurrency];
    store.dispatch('updateBalance', { currency: currency, amount: response.data.balance,  });
 
-   // Update button state and message
-   buttonText.value = 'Withdrawal Sent!';
-   isButtonDisabled.value = true;
-   buttonStyle.value = {
-     ...buttonStyle.value,
-     opacity: 0.5, // Adjust opacity for the fade-out effect
-   };
+
 
    setTimeout(() => {
      isButtonDisabled.value = false;

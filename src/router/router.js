@@ -11,11 +11,17 @@ import store from "@/store/index.js";
 import CollisionBalls from "@/pages/Tests/CollisionBalls.vue";
 import Realwheel from "@/pages/Games/Realwheel/Realwheel.vue";
 import Games from "@/pages/Games/Games.vue";
+import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy.vue";
 const routes = [
     {
         path: '/',
         name: 'home',
         component: MyMain
+    },
+    {
+        path: '/privacy',
+        name: 'privacy',
+        component: PrivacyPolicy
     },
     {
         path: '/auth/login',

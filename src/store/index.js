@@ -176,9 +176,18 @@ export default createStore({
               (message) => message.type === "DEPOSIT-ADDED-TO-BALANCE"
             );
     
+            const tipAddedMessages = response.data.userMessages.filter(
+              (message) => message.type === "TIP-ADDED-TO-BALANCE"
+            );
+    
             if (depositAddedMessages.length > 0) {
               console.log("Received Balance Updates:", response.data);
               commit('setIncomingMessage', depositAddedMessages[0]);
+            }
+    
+            if (tipAddedMessages.length > 0) {
+              console.log("Received Tip Updates:", response.data);
+              commit('setIncomingMessage', tipAddedMessages[0]);
             }
           }
       

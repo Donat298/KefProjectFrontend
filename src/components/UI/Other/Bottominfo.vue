@@ -91,6 +91,9 @@
   </div>
 
 </div>
+
+
+
 <v-divider style="margin: auto; max-width: 1200px;"></v-divider>
 <div style="max-width: 1200px; margin: auto;   padding: 20px;">
  <h3  style="margin: 30px 0px; word-break: break-word;
@@ -115,13 +118,23 @@
         " :src="require('@/assets/kefu.svg')"/>
         <div style="word-break: break-word;color: gray; margin-bottom: 20px;
     white-space: pre-wrap;">All rights reserved <br> 2021 KEF <br>
-We are a legal company, all papers and Privacy Policy are protected. <br>
+We are a legal company, all papers and 
+<a
+                         
+class="text-grey"  href="/privacy">Privacy Policy</a>
+are protected. <br>
 
  You can contact us by this email
 supercryptomegagames@gmail.com!
 
 
 </div>
+
+
+
+
+
+
 
 </div>
     </div>

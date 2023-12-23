@@ -7,7 +7,7 @@
       </div>
       <div class="snackbar-content">
         <div style="margin-right: auto;">
-          <span style="display: inline-block;"> {{ data.message }}</span>
+          <span style="display: inline-block;"> {{ data.message }} {{ data.recipient }} {{ data.sender }}</span>
           <span style="display: flex;">
             {{ data.amount }} {{ selectedCurrencyName }}
             <v-img
@@ -96,7 +96,14 @@ export default {
       this.showSnackbar = true;
       if (data.message === 'Bonus received!') {
         this.icons = 'gift';
-      } else {
+      }
+      else if (data.message === 'Your tip was completed for the') {
+        this.icons = 'right-left';
+      }
+      else if (data.message === 'You have received a tip from') {
+        this.icons = 'right-left';
+      }
+      else {
         this.icons = 'wallet';
       }
       if (this.snackbarTimeout) {

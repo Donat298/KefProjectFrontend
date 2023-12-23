@@ -8,6 +8,7 @@
       <my-snackbar ref="customSnackbar1" />
       <my-snackbar ref="customSnackbar2" />
       <my-snackbar ref="customSnackbar3" />
+      <my-snackbar ref="customSnackbar4" />
 
     </div>
     
@@ -73,6 +74,10 @@ export default {
       console.log(data); // Add this line to display the data in the console
       this.$refs.customSnackbar3.openSnackbar(data);
     },
+    showCustomSnackbar4(data) {
+      console.log(data); // Add this line to display the data in the console
+      this.$refs.customSnackbar4.openSnackbar(data);
+    },
 
 
 
@@ -131,26 +136,35 @@ export default {
     this.$store.dispatch("attempt");
   },
   watch: {
-    '$store.state.incomingMessage': function (messageData) {
-      if (messageData && messageData.type === 'DEPOSIT-ADDED-TO-BALANCE') {
-        this.showCustomSnackbar2({
-            amount: messageData.properties.amount,
-            currency: messageData.properties.currency,
-            message: "Your deposit has been completed for",
-        });
+  '$store.state.incomingMessage': function (messageData) {
+    if (messageData && messageData.type === 'DEPOSIT-ADDED-TO-BALANCE') {
+      this.showCustomSnackbar2({
+          amount: messageData.properties.amount,
+          currency: messageData.properties.currency,
+          message: "Your deposit has been completed for",
+      });
+    }
+
+    if (messageData && messageData.type === 'TIP-ADDED-TO-BALANCE') {
+      this.showCustomSnackbar4({
+          sender: messageData.properties.sender,
+          username: messageData.properties.username,
+          amount: Math.floor(messageData.properties.amount * 1e8) / 1e8,
+          currency: messageData.properties.currency,
+          message: "You have received a tip from",
+      });
+    }
+  },   
+  '$store.state.snackbarBonus': {
+    handler(newData) {
+      // Check if the data is not null and call the function
+      if (newData) {
+        this.showCustomSnackbar3(newData);
       }
     },
-    '$store.state.snackbarBonus': {
-      handler(newData) {
-        // Check if the data is not null and call the function
-        if (newData) {
-          this.showCustomSnackbar3(newData);
-        }
-      },
-      deep: true,
-    },
- 
+    deep: true,
   },
+},
 
 };
 </script>

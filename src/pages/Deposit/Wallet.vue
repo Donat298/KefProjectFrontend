@@ -45,7 +45,7 @@
         <v-btn :class="getButtonClass('BuyCrypto')"  
         @click="changeComponent('BuyCrypto')"  elevation="4" class="glow-button"
           :ripple="false">
-            <span style="color: #ffffff; font-size: 13px;">Buy crypto</span>
+            <span style="color: #ffffff; font-size: 13px;">Tip</span>
           </v-btn>
       
    

@@ -59,9 +59,9 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
     max-width: 90%;
     width: 1020px; 
     margin:40px auto 0px"> 
-    <div style="width: 400px; margin: auto;margin: 10px;">
+    <div style="width: 400px; margin: auto;">
     <v-img  :src="require('@/assets/Gamespreview/Bonus.png')"
-     style=" "></v-img>
+    ></v-img>
     </div>
     <div style="font-size: 25px; margin:30px auto; padding:0px 20px;">
       <span style="display: block; text-align: center; word-break: break-word; white-space: pre-wrap;">

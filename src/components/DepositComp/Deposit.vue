@@ -8,7 +8,7 @@
           <!-- Activator -->
           <template v-slot:activator="{ props }">
   
-              <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart mr-2"  elevation="5">
+              <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart"  elevation="5">
           
              
                    <p style=" font-size: 15px; color: #ffffff;">
@@ -54,7 +54,7 @@
         selectedCurrency === 'balancebnb' || selectedCurrency === 'balanceusdc' || selectedCurrency === 'balancematic' "
         location="bottom center" transition="slide-y-transition">
           <template v-slot:activator="{ props }">
-           <v-card v-bind="props" :ripple="false" class="rounded pa-4 vmenustandart" 
+           <v-card v-bind="props" :ripple="false" class="rounded pa-4 ml-2 vmenustandart" 
          elevation="5">
                   <div v-if="selectedCurrency === 'balanceusdt'" style=" font-size: 15px; color: #ffffff;">
                     {{ selectedUSDTAddressName }}
@@ -236,6 +236,7 @@ const addressMapping = {
   // add more mappings here
 };
 export default {
+  emits: ['cSWi'],
   components: {
     DepositId,
   }, 
