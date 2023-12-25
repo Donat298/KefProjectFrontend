@@ -73,11 +73,29 @@
                     ></v-text-field>
                     
         
-                    <div style="display: flex; align-items: center; justify-content: center;  color: red;  height: 45px;">
+   <div v-if="errorMessage" style="display: flex;  justify-content: center;
+     color: red;  min-height: 45px;"> <p style="margin-top: auto;">
                         {{ errorMessage }}
+                      </p>
                     </div>
 
 
+
+                    <div style="display: flex; align-items: center;
+                     justify-content: center; margin: auto; width: 100%; height: 65px;">
+  <label class="container" >
+    <input type="checkbox" v-model="agree" required checked="checked">
+    <div class="checkmark">
+      <font-awesome-icon v-if="agree" style="color: rgb(37, 56, 74); margin: auto;" :icon="['fas', 'check']" />
+    </div>
+  </label>
+  <div class="text-grey">
+    I agree with
+    <a class="text-grey" href="/privacy">
+      Privacy policy
+    </a>
+  </div>
+</div>
     <v-btn
                         block
                         rounded="lg"
@@ -135,6 +153,7 @@
     errorMessage: "",
     loading: false,
     form: false,
+    agree: false,
        
   }),
 
@@ -151,6 +170,10 @@
     this[fieldName] = value;
   },
       register(username, email, password, password_confirm) {
+        if (!this.agree) {
+        this.errorMessage = "You must agree to the Privacy Policy";
+        return;
+      }
            
             this.$store
                 .dispatch("register", { username, email, password, password_confirm })
@@ -162,6 +185,7 @@
                     console.log("Register error " + err);
                     this.errorMessage = err;
                 });
+                
         },
         onSubmit () {
         if (!this.form) return
@@ -189,5 +213,70 @@ z-index: 4;
 overflow-y: auto;
 }
 
+/* Hide the default checkbox */
+.container input {
+ position: absolute;
+ opacity: 0;
+ cursor: pointer;
+ height: 0;
+ width: 0;
+ border-radius: 5px;
+
+}
+
+.container {
+ display: block;
+ position: relative;
+ cursor: pointer;
+ font-size: 20px;
+ user-select: none;
+ border-radius: 5px;
+padding-right: 10px;
+
+}
+
+/* Create a custom checkbox */
+.checkmark {
+ position: relative;
+ top: 0;
+ left: 0;
+ height: 1.3em;
+ width: 1.3em;
+ background-color: white;
+ border-radius: 5px;
+ display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+
+ transition: all 0.2s;
+ opacity: 1;
+ background-image: linear-gradient(45deg, rgb(99, 254, 202) 0%, rgb(127, 255, 244) 100%);
+}
+
+.container input ~ .checkmark {
+ transition: all 0.2s;
+ opacity: 1;
+
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+ content: "";
+ position: absolute;
+ opacity: 0;
+ transition: all 0.2s;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+ opacity: 1;
+ transition: all 0.2s;
+}
+
+/* Style the checkmark/indicator */
 
 </style>

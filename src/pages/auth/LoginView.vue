@@ -41,7 +41,8 @@
 
                     
            
-                    <div style="display: flex; align-items: center; justify-content: center;  color: red;  height: 45px;">
+                    <div style="display: flex;
+                     align-items: center; justify-content: center;  color: red; min-height: 45px;">
                         {{ errorMessage }}
                     </div>
 

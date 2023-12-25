@@ -202,7 +202,7 @@ export default {
 
         wheelStyle.value = `transform: rotate(${rotation}deg); transition: transform 2s cubic-bezier(0,1,.9,1)`;
         circleRotation.value = rotation;
-        setTimeout(() => {
+        setTimeout(async () => {
        
           if (response.data.message === 'You won!') {
             showResult.value = true;
@@ -210,9 +210,11 @@ export default {
             currencyname.value = currency;
             currencyImagetag.value = currency;
             const userWonFin = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] += response.data.balance);
-            store.dispatch('updateBalance', { currency: currency, amount: userWonFin, });
+
+          // Wait for the dispatch to complete before proceeding
+            await store.dispatch('updateBalance', { currency: currency, amount: userWonFin, });
           } else {
-         
+                  
           }
           
           isProcessing.value = false;
