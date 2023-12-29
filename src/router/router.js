@@ -12,6 +12,7 @@ import CollisionBalls from "@/pages/Tests/CollisionBalls.vue";
 import Realwheel from "@/pages/Games/Realwheel/Realwheel.vue";
 import Games from "@/pages/Games/Games.vue";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy.vue";
+import TermsConditions from "@/pages/PrivacyPolicy/TermsConditions.vue";
 const routes = [
     {
         path: '/',
@@ -22,6 +23,11 @@ const routes = [
         path: '/privacy',
         name: 'privacy',
         component: PrivacyPolicy
+    },
+    {
+        path: '/terms',
+        name: 'terms',
+        component: TermsConditions
     },
     {
         path: '/auth/login',

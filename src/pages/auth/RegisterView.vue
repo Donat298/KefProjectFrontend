@@ -89,13 +89,13 @@
       <font-awesome-icon v-if="agree" style="color: rgb(37, 56, 74); margin: auto;" :icon="['fas', 'check']" />
     </div>
   </label>
-  <div class="text-grey">
-    I agree with
-    <a class="text-grey" href="/privacy">
-      Privacy policy
+  <div  class="text-grey">
+    I am accepting the
+    <a class="text-grey" href="/terms" target="_blank">
+      Terms & Conditions
     </a>
   </div>
-</div>
+</div>  
     <v-btn
                         block
                         rounded="lg"
@@ -221,6 +221,7 @@ overflow-y: auto;
  height: 0;
  width: 0;
  border-radius: 5px;
+ 
 
 }
 
@@ -240,8 +241,8 @@ padding-right: 10px;
  position: relative;
  top: 0;
  left: 0;
- height: 1.3em;
- width: 1.3em;
+ height: 27.5px;
+ width: 27.5px;
  background-color: white;
  border-radius: 5px;
  display: flex;

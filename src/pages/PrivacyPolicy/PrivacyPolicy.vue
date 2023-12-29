@@ -214,8 +214,4 @@ export default {
 <style scoped>
 
 
-.title-all{
-
-}
-
 </style>
