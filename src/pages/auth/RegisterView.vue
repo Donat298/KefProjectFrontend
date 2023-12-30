@@ -58,19 +58,7 @@
                     ></v-text-field>
 
 
-                    <v-text-field
-                        :append-inner-icon="visible2 ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="visible2 ? 'text' : 'password'"
-                        density="compact"
-                        placeholder="Password confirm"
-                        variant="solo"
-                        style="margin-top: 45px;"
-                        @click:append-inner="visible2 = !visible2"
-                        v-model="password_confirm"
-                        @input="removeSpaces('password_confirm')"
-                        :readonly="loading"
-                        hide-details="true"
-                    ></v-text-field>
+
                     
     
                     
@@ -92,7 +80,7 @@
     </div>
   </label>
   <div  class="text-grey">
-    I am accepting the
+    I accept the
     <a class="text-grey" href="/terms" target="_blank">
       Terms & Conditions
     </a>
@@ -106,7 +94,7 @@
                         background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
                         :loading="loading"
-                        @click="register(username, email, password, password_confirm, agree)"
+                        @click="register(username, email, password, agree)"
                         size="large"
                     >
                     <strong>REG</strong>
@@ -142,11 +130,9 @@
   export default {
   data: () => ({
     visible: false,
-    visible2: false,
     username: "",
     email: "",
     password: "",
-    password_confirm: "",
     errorMessage: "",
     loading: false,
     form: false,
@@ -166,11 +152,11 @@
     // Update the field with the modified value
     this[fieldName] = value;
   },
-      register(username, email, password, password_confirm, agree) {
+      register(username, email, password, agree) {
     
            
             this.$store
-                .dispatch("register", { username, email, password, password_confirm, agree })
+                .dispatch("register", { username, email, password, agree })
                 .then((res) => {
                     console.log("Register success!");
                     this.$router.replace({name: "home"})

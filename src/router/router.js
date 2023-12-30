@@ -40,12 +40,7 @@ const routes = [
         component: register
     },
 
-    {
-        path: '/BalanceManag',
-        name: 'BalanceManag',
-        component:  BalanceManag,
-        
-    },
+ 
     {
         path: '/games',
         name: 'Games',

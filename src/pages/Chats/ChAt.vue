@@ -155,7 +155,7 @@ export default {
     border-radius: 10px;
     word-break: break-word;
     white-space: pre-wrap;
-    max-width: 70%;
+    max-width: 100%;
    
   }
   .bubble-container {

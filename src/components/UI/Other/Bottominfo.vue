@@ -59,8 +59,7 @@
                             href="/chat">Chat</a>
                           </div>
     <div class="info-mini-liks">Join our dynamic community for help, discussions.
-      If you have any questions please contact us by email.
- supercryptomegagames@gmail.com
+      If you have any questions please contact us by supercryptomegagames@gmail.com
     </div>
   </div>
 

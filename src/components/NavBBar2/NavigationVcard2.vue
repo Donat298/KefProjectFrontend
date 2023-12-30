@@ -23,8 +23,7 @@
            to="/mines" >Mines</v-list-item>
            <v-list-item :ripple="false" prepend-icon="mdi-cards"   style="color: #ffffff; padding-left: 15px; "
            to="/games" >Games</v-list-item>
-            <v-list-item :ripple="false" prepend-icon="mdi-currency-usd"   style="color: #ffffff; padding-left: 15px; "
-             to="/BalanceManag"  >Balance</v-list-item>
+  
          </v-expansion-panel-text>
          
        </v-expansion-panel>
