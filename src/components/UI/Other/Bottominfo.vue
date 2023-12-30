@@ -67,7 +67,13 @@
   <!-- About Us -->
   <div class="game-info">
     <h3 style="color: #fff;">About Us</h3>
+    <a class="text-grey"  href="/privacy">Privacy Policy</a>
+    <br>
+<a class="text-grey"  href="/terms">Terms and Conditions</a>
     <div class="info-mini-liks">We respect our users and provide them best security and privacy!</div>
+
+
+
   </div>
 
   <!-- Sponsors -->
@@ -118,15 +124,14 @@
         " :src="require('@/assets/kefu.svg')"/>
         <div style="word-break: break-word;color: gray; margin-bottom: 20px;
     white-space: pre-wrap;">All rights reserved <br> 2021 KEF <br>
-We are a legal company, all papers and 
-<a
-                         
-class="text-grey"  href="/privacy">Privacy Policy</a>
-are protected. <br>
+We are a legal company, all papers protected. <br>
 
  You can contact us by this email
-supercryptomegagames@gmail.com!
-
+supercryptomegagames@gmail.com
+<br>
+<a class="text-grey"  href="/privacy">Privacy Policy</a>
+    <br>
+<a class="text-grey"  href="/terms">Terms and Conditions</a>
 
 </div>
 

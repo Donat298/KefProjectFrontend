@@ -1,6 +1,6 @@
 <template>
-<div style="max-width: 1200px; margin: auto">
-<span style="max-width: 1200px;">
+<div style="padding:5px ;max-width: 1200px; margin: auto">
+<span style="max-width: 1200px;word-break: break-word; white-space: pre-wrap; ">
 
 <h1>Privacy Policy</h1>
 <p>Last updated: December 22, 2023</p>

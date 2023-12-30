@@ -123,7 +123,7 @@
  
             <button v-bind="props" 
 style="display: flex; align-items: center; 
-       justify-content: center; width: 64px; margin: auto; margin-right: 8px; 
+       justify-content: center; margin: auto; margin-right: 8px; 
        height: 48px; width: 48px;">
   
 <font-awesome-icon style="color: #ffffff;height: 20px;"  :icon="['fas', 'user']" />

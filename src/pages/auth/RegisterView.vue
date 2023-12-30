@@ -72,6 +72,8 @@
                         hide-details="true"
                     ></v-text-field>
                     
+    
+                    
         
    <div v-if="errorMessage" style="display: flex;  justify-content: center;
      color: red;  min-height: 45px;"> <p style="margin-top: auto;">
@@ -82,7 +84,7 @@
 
 
                     <div style="display: flex; align-items: center;
-                     justify-content: center; margin: auto; width: 100%; height: 65px;">
+                     margin: auto; width: 100%; min-height: 65px;">
   <label class="container" >
     <input type="checkbox" v-model="agree" required checked="checked">
     <div class="checkmark">
@@ -104,7 +106,7 @@
                         background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
                         :loading="loading"
-                        @click="register(username, email, password, password_confirm)"
+                        @click="register(username, email, password, password_confirm, agree)"
                         size="large"
                     >
                     <strong>REG</strong>
@@ -115,11 +117,6 @@
     ></v-progress-circular>
       </template>
                     </v-btn>
-
-
-
-
-
 
   </v-form>
 
@@ -169,14 +166,11 @@
     // Update the field with the modified value
     this[fieldName] = value;
   },
-      register(username, email, password, password_confirm) {
-        if (!this.agree) {
-        this.errorMessage = "You must agree to the Privacy Policy";
-        return;
-      }
+      register(username, email, password, password_confirm, agree) {
+    
            
             this.$store
-                .dispatch("register", { username, email, password, password_confirm })
+                .dispatch("register", { username, email, password, password_confirm, agree })
                 .then((res) => {
                     console.log("Register success!");
                     this.$router.replace({name: "home"})
@@ -220,8 +214,7 @@ overflow-y: auto;
  cursor: pointer;
  height: 0;
  width: 0;
- border-radius: 5px;
- 
+
 
 }
 
@@ -231,23 +224,25 @@ overflow-y: auto;
  cursor: pointer;
  font-size: 20px;
  user-select: none;
- border-radius: 5px;
+
 padding-right: 10px;
 
 }
 
 /* Create a custom checkbox */
 .checkmark {
+
  position: relative;
  top: 0;
  left: 0;
- height: 27.5px;
- width: 27.5px;
+ height: 27px;
+ width: 27px;
  background-color: white;
  border-radius: 5px;
  display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* When the checkbox is checked, add a blue background */

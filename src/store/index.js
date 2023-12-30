@@ -131,7 +131,7 @@ export default createStore({
         // Set up a new timer to call 'getBalance' every 6 seconds
         state.getBalanceTimer = setInterval(() => {
           dispatch('getBalance');
-        }, 6000);
+        }, 5000);
 
         commit("setUserAvatar", data.avatar);
         return data;

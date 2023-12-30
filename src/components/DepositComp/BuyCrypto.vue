@@ -77,7 +77,7 @@
   "> 
     
     <img 
-    style="width: 17px; height: 17px;
+    style="width: 17px; height: 17px; user-select: none;
       right: 10px; position: absolute;" :src="getCurrencyImagePath(selectedCurrency)" />
   
   <input
@@ -86,8 +86,10 @@
     style="padding: 0px 15px; "
     type="number"
     inputmode="numeric"
-    :style="{ borderColor: isInputInvalid || (!hasError  &&  errorMsg) 
-         || errorMsg == 'Recipient username and amount required' ? 'red' : '' }"
+    :style="{ borderColor: isInputInvalid || (!hasError && errorMsg &&
+     errorMsg !== 'A deposit request can only be made once per 1 min') 
+         || errorMsg == 'Recipient username and amount required'
+          ? 'red' : '' }"
   >
      
     
