@@ -63,6 +63,7 @@ export default {
           return;
         }
         try {
+            goodMsg.value = "";
             errorMsg.value = '';
             buttonStyle.value = {
               ...buttonStyle.value,
@@ -73,6 +74,7 @@ export default {
                 promocode: promocode.value,
             });
             if (responsepromo.data.message === 'Promocode found') {
+         
               store.dispatch('updateBalance', {currency: responsepromo.data.currency,
                amount: responsepromo.data.finalbalance });
               store.dispatch('dispatchSnackbarBonusData', {
@@ -83,7 +85,7 @@ export default {
               goodMsg.value = "Successfully";
             }  
             else {
-                
+       
                 errorMsg.value = responsepromo.data.message;
             } 
             console.log(responsepromo.data);
