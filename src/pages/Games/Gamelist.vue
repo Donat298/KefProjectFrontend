@@ -7,7 +7,7 @@
             <div class="play">
                 <div class="game-name">{{ game.name }}</div>
                 <v-btn class="glowg-buttongame" rounded="lg" :ripple="false">
-                   Play
+               <strong>  Play</strong> 
                 </v-btn>
             </div>
 
@@ -80,7 +80,7 @@ padding: 0;
 background-size: 200% 100%;
 width: 250px;
 max-width: 90%;
-
+font-size: 17px;
 min-height: 40px;
 height: 100%;
 
