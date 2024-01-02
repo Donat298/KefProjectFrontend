@@ -44,7 +44,7 @@ export default createStore({
 
     clearAuthData(state) {
       state.accessToken = "";
-      state.user = { balanceusdt: 0, balanceeur: 0, balancebtc: 0, balanceeth: 0, 
+      state.user = { balanceusdt: 0, balancebtc: 0, balanceeth: 0, 
         balanceltc: 0, balancebnb: 0, balancedoge: 0, balanceusdc: 0, balancebch: 0,
          balanceada: 0, balancematic: 0, balancetrx: 0 };
       localStorage.removeItem("accessToken");
@@ -191,7 +191,7 @@ export default createStore({
             }
           }
       
-          commit('setUserBalance', { currency: 'eur', amount: response.data.balanceeur });
+
           commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
           commit('setUserBalance', { currency: 'btc', amount: response.data.balancebtc });
           commit('setUserBalance', { currency: 'eth', amount: response.data.balanceeth });

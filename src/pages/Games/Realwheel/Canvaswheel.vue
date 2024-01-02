@@ -90,7 +90,6 @@ export default {
 
   const selectedCurrencyImages = {
     usdt: require('@/assets/Cryptologos/usdt.svg'),
-    eur: require('@/assets/Cryptologos/euro-logo.svg'),
     btc: require('@/assets/Cryptologos/Currency=btc.svg'),
     eth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
     ltc: require('@/assets/Cryptologos/lite.svg'),

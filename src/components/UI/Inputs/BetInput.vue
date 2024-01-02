@@ -35,7 +35,6 @@ Parent component
 
 const selectedCurrencyImages = {
   balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
-  balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
   balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
   balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
   balanceltc: require('@/assets/Cryptologos/lite.svg'),

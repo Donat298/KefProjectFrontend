@@ -18,7 +18,7 @@
 
 <v-btn class="glowg-button2" @click="$emit('ShowPromocodeOknoo')"
  rounded="lg" :ripple="false">
-  <span style="color: #ffffff;" >Get Bonus</span>
+  <span style="color: #ffffff; font-size: 17px;" >Get Bonus</span>
 </v-btn>
 </div>
 
@@ -110,7 +110,7 @@
           <div style="display: flex; align-items: center;">   
          <ChoseCurrency> 
          </ChoseCurrency>
-<def2button @click="$emit('ShowDepositOknoo')">{{ buttonLabel }} 
+<def2button  @click="$emit('ShowDepositOknoo')">{{ buttonLabel }} 
     <font-awesome-icon  style="color: #15212c;"  :icon="['fas', 'wallet']" /></def2button>
 </div>
 
@@ -145,6 +145,12 @@ style="display: flex; align-items: center;
 
                 
             <v-list-item style="height: 50px;"
+            @click="$emit('ShowDepositOknoo')" :ripple="false"
+                > 
+                <font-awesome-icon class="mr-3" style="color: #ffffff; "  :icon="['fas', 'wallet']" />Wallet </v-list-item>
+
+
+                <v-list-item style="height: 50px;"
              @click="$emit('ShowAccountOknoo')" :ripple="false"
                 > 
                 <font-awesome-icon class="mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" /> Account </v-list-item>

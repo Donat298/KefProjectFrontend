@@ -56,7 +56,6 @@ data() {
    
       selectedCurrencyImages: { 
         'balanceusdt': require('@/assets/Cryptologos/usdt.svg'),
-        'balanceeur': require('@/assets/Cryptologos/euro-logo.svg'),
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
         'balanceltc': require('@/assets/Cryptologos/lite.svg'),
@@ -69,7 +68,6 @@ data() {
         'balancetrx': require('@/assets/Cryptologos/trx.svg'),
       },
       currencies: [
-        { name: 'EUR', code: 'balanceeur' },
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
         { name: 'ETH', code: 'balanceeth' },

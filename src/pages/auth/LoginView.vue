@@ -50,7 +50,7 @@
                         block
                         rounded="lg"
                         type="submit"
-                        style="height: 46px; 
+                        style="height: 46px;  font-size: 17px;
                         background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
                         :loading="loading"

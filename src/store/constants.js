@@ -2,7 +2,6 @@
 
 export const balanceFieldsMap = {
     'balanceusdt': 'usdt',
-    'balanceeur': 'eur',
     'balancebtc': 'btc',
     'balanceeth': 'eth',
     'balanceltc': 'ltc',

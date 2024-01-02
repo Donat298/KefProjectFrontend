@@ -155,7 +155,6 @@
        isInputInvalid: false,
        showTooltip2: false,
        currencies: [
-         { name: 'EUR', balanceKey: 'balanceeur' },
          { name: 'BTC', balanceKey: 'balancebtc' },
          { name: 'USDT', balanceKey: 'balanceusdt' },
          { name: 'ETH', balanceKey: 'balanceeth' },
@@ -230,8 +229,6 @@
        switch (selectedCurrency.value) {
           case 'balanceusdt':
            return 'USDT';
-          case 'balanceeur':
-            return 'Euro';
           case 'balancebtc':
             return 'BTC';
           case 'balanceeth':
@@ -285,7 +282,6 @@
   
   const selectedCurrencyImages = {
     balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
-        balanceeur: require('@/assets/Cryptologos/euro-logo.svg'),
         balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
         balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
         balanceltc: require('@/assets/Cryptologos/lite.svg'),
