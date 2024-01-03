@@ -174,15 +174,16 @@
    margin:20px auto;">
     <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="   width: 150px; height: 150px;"
      :src="getCurrencyImagePath2(selectedCurrency)" />
+     
      <button v-if="isBlurred"
     :ripple="false"
     style=" 
-    background-color: #2e4659; position: absolute; display: flex;
+    background-color: #2e465900; position: absolute; display: flex;
      align-items: center; justify-content: center;
-    top: 50%; left: 50%; padding: 10px; border-radius: 4px; transform: translate(-50%, -50%);"
+    top: 50%; left: 50%; padding: 10px;  transform: translate(-50%, -50%);"
     @click="copyAddress(); isBlurred = false; "
   >
-  <v-icon style="color: #ffffff;"
+  <v-icon style="color: #ffffff; font-size: 40px;"
           icon="mdi-eye mx-auto"
         ></v-icon>
   </button>

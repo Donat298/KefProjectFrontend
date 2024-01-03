@@ -12,12 +12,12 @@
            
                     <v-text-field
                         density="compact"
-                        placeholder="Email"
+                        placeholder="Username"
                         variant="solo"
-                        v-model="email"
+                        v-model="username"
                         style="margin-top: 15px;"
                         :readonly="loading"
-                        @input="removeSpaces('email')"
+                        @input="removeSpaces('username')"
                         hide-details="true"
                     ></v-text-field>
                     
@@ -54,7 +54,7 @@
                         background:linear-gradient(230deg,rgb(99, 254, 202), rgb(127, 255, 244));"
                         :ripple="false"
                         :loading="loading"
-                        @click="login(email, password)"
+                        @click="login(username, password)"
                         size="large"
                     >
                <strong>Log In </strong>
@@ -90,17 +90,17 @@ export default {
     data: () => ({
         form: false,
         visible: false,
-        email: "",
+        username: "",
         password: "",
         errorMessage: "",
         loading: false,
     }),
 
     methods: {
-        login(email, password) {
+        login(username, password) {
             
             this.$store
-                .dispatch("login", { email, password })
+                .dispatch("login", { username, password })
                 .then((res) => {
                     console.log("Login success!");
                     this.$router.replace({name: "home"})
