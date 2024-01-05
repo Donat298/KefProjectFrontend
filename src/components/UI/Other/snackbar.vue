@@ -44,6 +44,7 @@ export default {
     selectedCurrencyImages() {
       return {
         balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
+        balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
         balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
         balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
         balanceltc: require('@/assets/Cryptologos/lite.svg'),
@@ -61,6 +62,8 @@ export default {
       switch (currencyCode) {
         case 'balanceusdt':
          return 'USDT';
+        case 'balanceeuroc':
+          return 'EUROC';
         case 'balancebtc':
           return 'BTC';
         case 'balanceeth':

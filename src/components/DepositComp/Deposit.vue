@@ -248,6 +248,7 @@ export default {
       currencies: [
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
+        { name: 'EUROC', code: 'balanceeuroc'},
         { name: 'ETH', code: 'balanceeth' },
         { name: 'LTC', code: 'balanceltc' },
         { name: 'BNB', code: 'balancebnb' },
@@ -274,6 +275,8 @@ export default {
       switch (selectedCurrency.value) {
         case 'balanceusdt':
           return 'USDT';
+        case 'balanceeuroc':
+          return 'EUROC';
         case 'balancebtc':
           return 'BTC';
         case 'balanceeth':
@@ -519,6 +522,7 @@ export default {
     // Images for different currencies
     const selectedCurrencyImages = {
       balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
+      balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
       balanceltc: require('@/assets/Cryptologos/lite.svg'),
@@ -534,6 +538,7 @@ export default {
 
     const selectedCurrencyImagesQrcode = {
       balanceusdt: require('@/assets/CryptoQrcodes/TetherErc20.png'),
+      balanceeuroc: require('@/assets/CryptoQrcodes/Euro.png'),
       balancebtc: require('@/assets/CryptoQrcodes/Btc.png'),
       balanceeth: require('@/assets/CryptoQrcodes/TetherErc20.png'),
       balanceltc: require('@/assets/CryptoQrcodes/Ltc.png'),
@@ -559,6 +564,8 @@ export default {
       switch (currencyKey) {
         case 'balanceusdt':
           return selectedUSDTAddress.value; // Use the selected USDT address
+        case 'balanceeuroc':
+          return '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancebtc':
           return '18KwuFLeDvHHrZawNFesTq2VznxWTCDzVr';
         case 'balanceeth':

@@ -286,6 +286,7 @@ export default {
      currencies: [
        { name: 'BTC', balanceKey: 'balancebtc' },
        { name: 'USDT', balanceKey: 'balanceusdt' },
+       { name: 'EUROC', balanceKey: 'balanceeuroc'},
        { name: 'ETH', balanceKey: 'balanceeth' },
         { name: 'LTC', balanceKey: 'balanceltc' },
         { name: 'BNB', balanceKey: 'balancebnb' },
@@ -359,6 +360,8 @@ const selectedCurrencyName = computed(() => {
      switch (selectedCurrency.value) {
         case 'balanceusdt':
          return 'USDT';
+        case 'balanceeuroc':
+          return 'EUROC';
         case 'balancebtc':
           return 'BTC';
         case 'balanceeth':
@@ -429,6 +432,7 @@ const selectCurrency = (currency) => {
 
 const selectedCurrencyImages = {
   balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
+  balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
       balanceltc: require('@/assets/Cryptologos/lite.svg'),
