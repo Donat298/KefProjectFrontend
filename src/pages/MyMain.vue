@@ -89,7 +89,10 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
 <script>
   import { ref } from 'vue';
   import Gamelist from '@/pages/Games/Gamelist.vue';
+  import titleMixin from "@/components/UI/Other/document.title";
   export default {
+    mixins: [titleMixin],
+    title: "Kef: Crypto Casino",
     components: {
       Gamelist
     },

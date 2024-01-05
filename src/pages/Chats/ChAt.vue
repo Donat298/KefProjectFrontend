@@ -61,7 +61,10 @@ style="display: flex; align-items: center;  background-color: rgb(30, 44, 56);
 import io from 'socket.io-client';
 import { axiosInstance} from "../../utils/axios";
 import vproGressMini from "../../components/ProgrammInterface/vproGressMini.vue"
+import titleMixin from "@/components/UI/Other/document.title";
 export default {
+  mixins: [titleMixin],
+  title: "Kef: Chat",
   components: {
     vproGressMini
   },

@@ -43,8 +43,10 @@ import SessionCheckAnimation from "./components/SessionCheckAnimation.vue";
 import Wallet from "./pages/Deposit/Wallet.vue"
 import Promocode from "@/pages/Promocode/Promocode.vue";
 import { mapState } from 'vuex';
-
+import titleMixin from "@/components/UI/Other/document.title";
 export default {
+  mixins: [titleMixin],
+  title: "Kef: Crypto Casino",
   components: { NavBBar2, AccountView, SessionCheckAnimation, Wallet, Promocode}, 
   data() {
     return {
@@ -177,3 +179,4 @@ export default {
 
 </style>
 
+@/components/UI/Other/document.title

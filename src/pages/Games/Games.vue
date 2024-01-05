@@ -11,7 +11,10 @@
 
 <script> 
 import Gamelist from '@/pages/Games/Gamelist.vue';
-export default {
+import titleMixin from "@/components/UI/Other/document.title";
+  export default {
+    mixins: [titleMixin],
+    title: "Kef: Games",
     components: {
         Gamelist
     },

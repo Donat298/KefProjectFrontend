@@ -386,9 +386,10 @@ from its negligence.</p>
     
     
     <script>
-    
-    export default {
-    
+import titleMixin from "@/components/UI/Other/document.title";
+export default {
+  mixins: [titleMixin],
+  title: "Kef: Terms Conditions",
     
     
     

@@ -16,7 +16,10 @@
   <script>
 
   import Canvastest from '@/pages/Tests/Canvastest.vue';
+  import titleMixin from "@/components/UI/Other/document.title";
   export default {
+    mixins: [titleMixin],
+    title: "Kef: Relax",
     components: {
       Canvastest
     },

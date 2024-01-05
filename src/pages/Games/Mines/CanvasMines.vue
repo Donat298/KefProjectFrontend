@@ -121,7 +121,10 @@ import { useApiPrivate } from '@/utils/useApi';
 import { ref, watch, computed, } from 'vue';
 import { useRouter } from 'vue-router';
 import vproGressMini from "@/components/ProgrammInterface/vproGressMini.vue"
-export default {
+import titleMixin from "@/components/UI/Other/document.title";
+  export default {
+    mixins: [titleMixin],
+    title: "Kef: Mines",
     emits: ['betfal', 'bettrue', 'newbetamount', 'cashoutfal', 'cashdisabled', 'setparentprofit', 
     'setparentbet', 'seturrencyImage','betMineschange'],
     components: {

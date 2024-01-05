@@ -53,7 +53,10 @@ import { balanceFieldsMap } from '@/store/constants';
 import GameAlert from '@/pages/Games/Realwheel/GameAlert.vue';
 import wheelsvg from "@/assets/GameObjects/Originalwheel.vue";
 import wheelpointersvg from "@/assets/GameObjects/Wheelpointer.vue";
-export default {
+import titleMixin from "@/components/UI/Other/document.title";
+  export default {
+    mixins: [titleMixin],
+    title: "Kef: Wheel",
     emits: ['betfal'],
     components: {
         GameAlert, wheelsvg, wheelpointersvg
