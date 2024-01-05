@@ -383,6 +383,7 @@ beforeCreate();
 
     watch(() => props.betButtonPressed, (newValue) => {
     if (newValue && !countinuemines.value) {
+    
       placeBet();
     }
     else if (noBet.value) {
@@ -423,33 +424,36 @@ beforeCreate();
     }
     enableTransition.value = false;
     try {
-
-      const currency = balanceFieldsMap[store.getters.selectedCurrency];
-      const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
+      cashdisabled.value = true;
+      context.emit("setparentprofit", "1.00");
+      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
+      context.emit("cashdisabled", cashdisabled.value);
 
       // Group all value changes here
       showAlert.value = false;
       currencyImagetag.value = store.getters.selectedCurrency;
       errorMsg.value = '';
       profit.value = "1.00"; 
-      cashdisabled.value = true;
+
       countinuemines.value = true;
       showResult.value = false;
       // Emit events after value changes
-      context.emit("setparentprofit", "1.00");
-      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
- 
-      context.emit("cashdisabled", cashdisabled.value);
+    
 
       // Dispatch updateBalance after value changes
-      store.dispatch('updateBalance', { currency: currency, amount: newAmount });
-
+   
+      const currency = balanceFieldsMap[store.getters.selectedCurrency];
       const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
         betAmount: betInput.value,
         currency: currency,
         sectorsnum: sectorsnum.value,
         mines: mines.value,
       });
+   
+      const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
+
+      store.dispatch('updateBalance', { currency: currency, amount: newAmount });
+
       showMine.value = ref(Array(25).fill(false)); 
       showHeart.value = ref(Array(25).fill(false));
       selectedButtons.value = [],
@@ -496,7 +500,7 @@ beforeCreate();
         cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
         showResult.value = true;
         context.emit("betfal");
-
+        
    
         setTimeout(() => {     
 
@@ -517,7 +521,7 @@ beforeCreate();
           countinuemines.value = false;
           }, 500);
         }, 500);
-  
+        cashdisabled.value = true;
   
 
     
