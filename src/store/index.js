@@ -70,7 +70,6 @@ export default createStore({
     setIncomingMessage(state, messageData) {
       state.incomingMessage = messageData;
     },
-
   
   },
 
@@ -121,18 +120,21 @@ export default createStore({
     async getUser({ commit, dispatch, state }) {
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
+        
+        console.log(data.deposit); // added this line
+    
         commit("setUser", data);
-
+        
         // Clear the existing timer if it exists
         if (state.getBalanceTimer) {
           clearInterval(state.getBalanceTimer);
         }
-
+        
         // Set up a new timer to call 'getBalance' every 6 seconds
         state.getBalanceTimer = setInterval(() => {
           dispatch('getBalance');
         }, 5000);
-
+        
         commit("setUserAvatar", data.avatar);
         return data;
       } catch (error) {

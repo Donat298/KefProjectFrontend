@@ -13,6 +13,7 @@ import Realwheel from "@/pages/Games/Realwheel/Realwheel.vue";
 import Games from "@/pages/Games/Games.vue";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy.vue";
 import TermsConditions from "@/pages/PrivacyPolicy/TermsConditions.vue";
+import Activate from "@/pages/Activate/activateacc.vue";
 const routes = [
     {
         path: '/',
@@ -28,6 +29,11 @@ const routes = [
         path: '/terms',
         name: 'terms',
         component: TermsConditions
+    },
+    {
+        path: '/activation',
+        name: 'activation',
+        component: Activate
     },
     {
         path: '/auth/login',
