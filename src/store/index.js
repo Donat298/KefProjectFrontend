@@ -3,7 +3,9 @@ import { useApi, useApiPrivate } from "../utils/useApi";
 
 export default createStore({
   state: () => ({
-    user: {},
+    user: {
+      deposit: 0,
+    },
     gameInProgress: false,
     sessionChecked: false,
     accessToken: localStorage.getItem("accessToken") || "",
@@ -70,6 +72,9 @@ export default createStore({
     setIncomingMessage(state, messageData) {
       state.incomingMessage = messageData;
     },
+    setDeposit(state, deposit) {
+      state.user.deposit = deposit;
+    },
   
   },
 
@@ -120,21 +125,18 @@ export default createStore({
     async getUser({ commit, dispatch, state }) {
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
-        
-        console.log(data.deposit); // added this line
-    
         commit("setUser", data);
-        
+
         // Clear the existing timer if it exists
         if (state.getBalanceTimer) {
           clearInterval(state.getBalanceTimer);
         }
-        
+
         // Set up a new timer to call 'getBalance' every 6 seconds
         state.getBalanceTimer = setInterval(() => {
           dispatch('getBalance');
         }, 5000);
-        
+
         commit("setUserAvatar", data.avatar);
         return data;
       } catch (error) {
@@ -172,27 +174,26 @@ export default createStore({
         console.log("getBalance");
         if (!state.gameInProgress) {
           const response = await useApiPrivate(this).get(`/api/user/getUpdates`);
-    
+
           if (Array.isArray(response.data.userMessages)) {
             const depositAddedMessages = response.data.userMessages.filter(
               (message) => message.type === "DEPOSIT-ADDED-TO-BALANCE"
             );
-    
+            
             const tipAddedMessages = response.data.userMessages.filter(
               (message) => message.type === "TIP-ADDED-TO-BALANCE"
             );
-    
+
             if (depositAddedMessages.length > 0) {
               console.log("Received Balance Updates:", response.data);
               commit('setIncomingMessage', depositAddedMessages[0]);
             }
-    
+
             if (tipAddedMessages.length > 0) {
               console.log("Received Tip Updates:", response.data);
               commit('setIncomingMessage', tipAddedMessages[0]);
             }
           }
-      
 
           commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
           commit('setUserBalance', { currency: 'euroc', amount: response.data.balanceeuroc });
@@ -206,6 +207,11 @@ export default createStore({
           commit('setUserBalance', { currency: 'ada', amount: response.data.balanceada });
           commit('setUserBalance', { currency: 'matic', amount: response.data.balancematic });
           commit('setUserBalance', { currency: 'trx', amount: response.data.balancetrx });
+
+          // Add this line to update the deposit
+          if (typeof response.data.deposit === 'number') {
+            commit('setDeposit', response.data.deposit);
+          }
         }
       } catch (error) {
         console.error(error);

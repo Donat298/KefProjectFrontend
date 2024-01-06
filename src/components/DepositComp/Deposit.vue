@@ -629,7 +629,8 @@ export default {
 <style scoped>
 
 .blur-image {
-  filter: blur(5px);
+  filter: blur(10px);
+  opacity: 0.5;
 }
 .vmenustandart{
 color: #ffffff;

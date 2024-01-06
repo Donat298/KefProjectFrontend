@@ -30,19 +30,21 @@
       margin: 0 auto;"> 
 
                <div class="progress-labels" style="display: flex; justify-content: space-between; width: 100%;
-                 font-size: 25px; text-align: center; ">
-    <div  style="text-align: left;">{{ progress }}%</div>
-    <div  style="text-align: right;">100%</div>
+                 font-size: 20px; text-align: center; ">
+    <div  style="text-align: left;">Progress</div>
+    <div  style="text-align: right;">{{ deposit }}%</div>
+
   </div>  
  <div class="progressbar" style="display: flex;
     align-items: center;  /* Add this line */
     border: 1px solid #2e4659;
-    border-radius: 30px;
+    border-radius: 25px;
     position: relative;
-    height: 30px;
+    height: 25px;
     width: 100%;
     ">
-      <div class="progress-bar" :style="{ width: progress + '%' }">
+    <div class="progress-bar" :style="{ width: deposit + '%' }">
+
     </div>
     </div>
               <div class="progress-labels" style="display: flex; justify-content: space-between; width: 100%;">
@@ -51,15 +53,9 @@
   </div>  
 
   <div style="color: gray; text-align: center; width: 100%; margin-top: 20px;">
-<h2>Make your first Deposit
-    in any cryptocurrency!
-</h2>
-
-<br>
-<p>Current status: not activated</p>
-<p>{{ remainingProgress }}% left until activation</p>
-
-
+<h2>Make your first Deposit!</h2>
+<p >{{ remainingProgress }}% left</p>
+<p>Current status: {{ status }}</p>
 
 
 </div>
@@ -69,7 +65,7 @@
 
 
 
-
+ 
 
       </div>
   
@@ -92,34 +88,38 @@
     export default {
       mixins: [titleMixin],
       title: "Kef: Crypto Casino",
+ 
       data() {
         return {
           isWideScreen: false,
-   };
+       
+        };
       },
       methods: {
         checkScreenWidth() {
           this.isWideScreen = window.innerWidth > 800;
         },
+   
       },
       computed: {
-        progress() {
+        deposit() {
             return this.$store.getters.userDetail.deposit;
         },
         remainingProgress() {
-    return 100 - this.progress;
-  }
+            return 100 - this.deposit;
         },
+        status() {
+            return this.deposit >= 100 ? 'activated' : 'not activated';
+        }
+      },
     
       mounted() {
         this.checkScreenWidth();
         window.addEventListener('resize', this.checkScreenWidth);
-        this.interval = setInterval(() => this.$store.dispatch('getUser'), 5000);
       },
 
       beforeDestroy() {
         window.removeEventListener('resize', this.checkScreenWidth);
-        clearInterval(this.interval);
       },
     }
   </script>
@@ -145,8 +145,8 @@
 }
     .progress-bar {
   background-color: rgb(99, 254, 202);
-  height: 30px;
-  border-radius: 30px;
+  height: 25px;
+  border-radius: 25px;
 
   position: absolute;
 }

@@ -216,9 +216,10 @@
   style="padding: 0px 15px; "
   type="number"
   inputmode="numeric"
-  :style="{ borderColor: isInputInvalid || (errorMsg && !hasError &&
-     errorMsg !== 'A deposit request can only be made once per 1 min')
-  || errorMsg == 'Address and amount required' ? 'red' : '' }"
+  :style="{ borderColor: isInputInvalid || (errorMsg && !hasError && 
+   errorMsg !== 'Activate the account' &&
+     errorMsg !== 'A deposit request can only be made once per 1 min'  )
+  || errorMsg == 'Address and amount required'? 'red' : '' }"
 >
 
   
@@ -226,8 +227,9 @@
 
  <div style=" height: 40px; display: flex; align-items: center; justify-content: center;">
    <div v-if="errorMsg"
-    
-        style="color: red;">{{ errorMsg }}
+   :style="{ color: errorMsg == 'Activate the account' ? '#00ff00' : 'red' }"
+      >{{ errorMsg }}! <a @click="$emit('HideDeposit')" v-if="errorMsg == 'Activate the account'"
+       class="text-grey"  href="/activation">Activation</a>
    </div>
  </div>
  
@@ -303,7 +305,7 @@ export default {
  computed: {
    hasError() {
      return (this.errorMsg == 'Address and amount required' ||
-      this.errorMsg == 'Address required');
+      this.errorMsg == 'Address required' );
    },
  },
  watch: {

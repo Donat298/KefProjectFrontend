@@ -53,7 +53,7 @@
         </div>
 
         <div style="background-color: #1d2f3f; padding: 0px 0px 20px 0px; margin: 0px 10px;">
-          <component @cSWi="handleEmit" :is="selectedComponent" />
+          <component @HideDeposit="handleHideDeposit" @cSWi="handleEmit" :is="selectedComponent" />
         </div>
       </div>
     </div>
@@ -89,6 +89,9 @@ export default {
         'highlighted-button': this.selectedComponent === componentName,
       };
     },
+    handleHideDeposit() {
+        this.$emit('HideDepositOknoo');
+      },
     changeComponent(componentName) {
       this.selectedComponent = componentName; 
       // Store the selected component in localStorage
