@@ -4,7 +4,7 @@
       
           <div class="title-all" >
 
-          <div style="font-size: 40px; text-align: center;   word-break: break-word;
+          <div style="font-size: 40px; text-align: center;     margin: 5% auto;   word-break: break-word;
   
   
    border-radius: 20px; background: linear-gradient(140deg, #1d2f3f, #15212c);

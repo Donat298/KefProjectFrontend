@@ -3,7 +3,7 @@
 
     
         <div class="title-all" >
-        <div style="font-size: 40px; text-align: center;   word-break: break-word;
+        <div v-if="isWideScreen" style="font-size: 40px; text-align: center;   word-break: break-word;
 
 
  border-radius: 20px; background: linear-gradient(140deg, #1d2f3f, #15212c);
@@ -12,12 +12,12 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(2deg);
       " class="casino-title">Welcome to KEF!</div>
 
        
-        <div style="  border-radius: 20px; 
+        <div  style="  border-radius: 20px; 
       background: linear-gradient(150deg, #1d2f3f, #15212c); 
 box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
 " class="description">
          Is it possible to make money, and get free big bonuses on KEF? 
-          Suggest you check and find out!</div>
+          Lets find out!</div>
 
         </div>
     
@@ -41,7 +41,8 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
     margin: 0 auto;"> 
     <div style="font-size: 25px; margin:30px auto; padding:0px 20px;
     ">
-      <span style="display: block; text-align: center; word-break: break-word; white-space: pre-wrap;"> Available online chat for everyone!</span>
+      <span style="display: block; text-align: center; word-break: break-word; white-space: pre-wrap;"> 
+        Support and online chat for everyone!</span>
     </div>
 <div style="width: 400px; margin: auto;">
     <v-img  :src="require('@/assets/Gamespreview/Caht.png')"
@@ -116,13 +117,13 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
   }
 </script>
 
-<style>
+<style scoped>
 
 
 
   .casino-title {
     color: #ffffff;
-    margin: 10% auto;
+    margin: 5% auto;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -134,7 +135,7 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
     color: #ffffff;
     font-size: 25px;
     width: 400px;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 20px;
 
     max-width: 85%;
