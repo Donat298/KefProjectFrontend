@@ -28,7 +28,7 @@
 
        <div  elevation="0" style="background-color: #15212c;    ">
          <div style="overflow-x:
-         auto;margin: 0px 10px 0px 10px;padding: 10px 10px; width: auto; "  class="d-flex align-center">
+         auto;margin: 0px 10px 0px 10px;padding: 10px 0px; width: auto; "  class="d-flex align-center">
 
          
           <v-btn :class="getButtonClass('Deposit')" 
@@ -186,7 +186,7 @@ export default {
   width: 100%;
   transition: transform 0.3s,;
   z-index: 0;
-  width: 155px; min-width: 110px;
+  width: 155px; min-width: 70px;
    display: flex; 
   flex-shrink: 1;
 }

@@ -172,6 +172,15 @@
 
     <div style="position: relative;
    margin:20px auto;">
+   
+   <v-img class="mx-auto"  style="   width: 150px; height: 150px;"
+     :src="getCurrencyImagePath2(selectedCurrency)" />
+     
+
+
+   
+   
+   <!--
     <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="   width: 150px; height: 150px;"
      :src="getCurrencyImagePath2(selectedCurrency)" />
      
@@ -186,9 +195,10 @@
   <v-icon style="color: #ffffff; font-size: 40px;"
           icon="mdi-eye mx-auto"
         ></v-icon>
+       
   </button>
 
-   
+-->
 
     </div>
 
