@@ -10,32 +10,28 @@
            style="background-color: rgb(37, 56, 74); border: 7px solid rgb(37, 56, 74)">
             <v-form v-model="form" @submit.prevent="onSubmit">
            
-                    <v-text-field
-                        density="compact"
-                        placeholder="Username"
-                        variant="solo"
-                        v-model="username"
-                        style="margin-top: 15px;"
-                        :readonly="loading"
-                        @input="removeSpaces('username')"
-                        hide-details="true"
-                    ></v-text-field>
-                    
+                <v-text-field
+                    density="compact"
+                    placeholder="Username"
+                    variant="solo"
+                    v-model="username"
+                    style="margin-top: 15px;"
+                    @input="removeSpaces('username')"
+                    hide-details="true"
+                ></v-text-field>
 
-                  
-                    <v-text-field
-                        :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
-                        :type="visible ? 'text' : 'password'"
-                        density="compact"
-                        placeholder="Password"
-                        variant="solo"
-                        style="margin-top: 45px;"
-                        @click:append-inner="visible = !visible"
-                        v-model="password"
-                        @input="removeSpaces('password')"
-                        :readonly="loading"
-                        hide-details="true"
-                    ></v-text-field>
+                <v-text-field
+                    :append-inner-icon="visible ? 'mdi-eye' : 'mdi-eye-off'"
+                    :type="visible ? 'text' : 'password'"
+                    density="compact"
+                    placeholder="Password"
+                    variant="solo"
+                    style="margin-top: 45px;"
+                    @click:append-inner="visible = !visible"
+                    v-model="password"
+                    @input="removeSpaces('password')"
+                    hide-details="true"
+                ></v-text-field>
                     
 
 

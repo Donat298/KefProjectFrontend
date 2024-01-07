@@ -36,7 +36,6 @@
                         variant="solo"
                         v-model="email"
                         style="margin-top: 45px;"
-                        :readonly="loading"
                         @input="removeSpaces('email')"
                         hide-details="true"
                     ></v-text-field>
@@ -53,7 +52,6 @@
                         @click:append-inner="visible = !visible"
                         v-model="password"
                         @input="removeSpaces('password')"
-                        :readonly="loading"
                         hide-details="true"
                     ></v-text-field>
 
