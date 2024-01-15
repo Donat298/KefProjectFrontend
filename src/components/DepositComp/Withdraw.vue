@@ -277,7 +277,7 @@ import { balanceFieldsMap } from '@/store/constants';
 import toolip from '@/components/UI/Other/toolip.vue';
 import CustomSnackbar from '@/components/UI/Other/snackbar.vue';
 export default {
- emits: ['cSWi'],
+ emits: ['cSWi','HideDeposit'],
  components: {
    toolip, CustomSnackbar
  },

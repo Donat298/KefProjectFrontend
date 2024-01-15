@@ -15,6 +15,9 @@ export default createStore({
     getBalanceTimer: null,
     snackbarBonus: null,
 
+    usdtaddress: '',
+    btcaddress: '',
+
   }), 
 
   getters: {
@@ -76,6 +79,13 @@ export default createStore({
       state.user.deposit = deposit;
     },
   
+
+    setUsdtAddress(state, usdtaddress) {
+      state.usdtaddress = usdtaddress;
+    },
+    setBtcAddress(state, btcaddress) {
+      state.btcaddress = btcaddress;
+    }
   },
 
   actions: {
@@ -126,18 +136,23 @@ export default createStore({
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
         commit("setUser", data);
-
+  
         // Clear the existing timer if it exists
         if (state.getBalanceTimer) {
           clearInterval(state.getBalanceTimer);
         }
-
-        // Set up a new timer to call 'getBalance' every 6 seconds
+  
+        // Set up a new timer to call 'getBalanceAndDeposit' and 'getUserMessages' every 10 seconds
         state.getBalanceTimer = setInterval(() => {
-          dispatch('getBalance');
+          dispatch('getBalanceAndDeposit');
+          dispatch('getUserMessages');
         }, 10000);
-
+  
         commit("setUserAvatar", data.avatar);
+        // Add this line to set usdtaddress
+        commit('setUsdtAddress', data.ethERC20BSC20MATIC.address);
+        commit('setBtcAddress', data.btc.bech32Address);
+  
         return data;
       } catch (error) {
         console.error(error);
@@ -169,32 +184,13 @@ export default createStore({
         throw error.response?.data?.message || "An error occurred during token refresh.";
       }
     },
-    async getBalance({ commit, state }) {
+    async getBalanceAndDeposit({ commit, state }) {
+
       try {
-        console.log("getBalance");
+  
         if (!state.gameInProgress) {
-          const response = await useApiPrivate(this).get(`/api/user/getUpdates`);
-
-          if (Array.isArray(response.data.userMessages)) {
-            const depositAddedMessages = response.data.userMessages.filter(
-              (message) => message.type === "DEPOSIT-ADDED-TO-BALANCE"
-            );
-            
-            const tipAddedMessages = response.data.userMessages.filter(
-              (message) => message.type === "TIP-ADDED-TO-BALANCE"
-            );
-
-            if (depositAddedMessages.length > 0) {
-              console.log("Received Balance Updates:", response.data);
-              commit('setIncomingMessage', depositAddedMessages[0]);
-            }
-
-            if (tipAddedMessages.length > 0) {
-              console.log("Received Tip Updates:", response.data);
-              commit('setIncomingMessage', tipAddedMessages[0]);
-            }
-          }
-
+          const response = await useApiPrivate(this).get(`/api/user/getBalances`);
+  
           commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
           commit('setUserBalance', { currency: 'euroc', amount: response.data.balanceeuroc });
           commit('setUserBalance', { currency: 'btc', amount: response.data.balancebtc });
@@ -212,6 +208,38 @@ export default createStore({
           if (typeof response.data.deposit === 'number') {
             commit('setDeposit', response.data.deposit);
           }
+          console.log('getBalanceAndDeposit2');
+        
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async getUserMessages({ commit, state }) {
+  
+      try {
+     
+        if (!state.gameInProgress) {
+          const response = await useApiPrivate(this).get(`/api/user/getUserMessages`);
+  
+          if (Array.isArray(response.data.userMessages)) {
+            const depositAddedMessages = response.data.userMessages.filter(
+              (message) => message.type === "DEPOSIT-ADDED-TO-BALANCE"
+            );
+  
+            const tipAddedMessages = response.data.userMessages.filter(
+              (message) => message.type === "TIP-ADDED-TO-BALANCE"
+            );
+  
+            if (depositAddedMessages.length > 0) {
+              commit('setIncomingMessage', depositAddedMessages[0]);
+            }
+  
+            if (tipAddedMessages.length > 0) {
+              commit('setIncomingMessage', tipAddedMessages[0]);
+            }
+          }
+          console.log("getUserMessages2");
         }
       } catch (error) {
         console.error(error);

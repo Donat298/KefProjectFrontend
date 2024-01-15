@@ -6,6 +6,7 @@
     <div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%;">
       <vproGressMini style="max-height: 66px; max-width: 118px;"/>  
     </div>
+    
    </div>
 
  
@@ -52,7 +53,7 @@
      
 </template>
 
-<template v-else>
+<template v-if="!enableTransition">
   <Transition name="bounceheartfinal">
   <Serdsesvg v-if="showHeart[i] && !selectedMinesButtons.includes(i) && selectedButtons.includes(i)" :style="{
     'opacity': selectedButtonsOpticay.includes(i) ? 0.3 : 1,
@@ -114,7 +115,7 @@ import Sectorsvg from '@/assets/GameObjects/Minesobjects/sector.vue';
 import Serdsesvg from '@/assets/GameObjects/Minesobjects/serdse.vue';
 import Mineob from '@/assets/GameObjects/Minesobjects/mineob.vue';
 import { balanceFieldsMap } from '@/store/constants';
-
+import { onMounted } from 'vue';
 import GameAlert from '@/pages/Games/Mines/GameAlertMines.vue';
 import { useStore } from 'vuex';
 import { useApiPrivate } from '@/utils/useApi';
@@ -140,6 +141,10 @@ import titleMixin from "@/components/UI/Other/document.title";
       type: Boolean,
       default: false,
     },
+    profit: {
+      type: String,
+      default: "1.00",
+    },
     cashoutButtonPressed: {
       type: Boolean,
       default: false,
@@ -163,14 +168,12 @@ import titleMixin from "@/components/UI/Other/document.title";
     const selectedButtons = ref([]);
     const selectedMinesButtons = ref([]);
     const selectedButtonsOpticay = ref([]);
-    const profit = ref("1.00"); 
+    const profit = ref(props.profit); 
     const showAlert = ref(false);
     const showResult = ref(false);
     const currencyname = ref("");
-    const betAmountwill = ref(props.betInputValue);
     const cashresult = ref("");
     const countinuemines = ref(false);
-    const cashdisabled = ref(true);
     const showMine = ref(Array(25).fill(false));
     const showHeart = ref(Array(25).fill(false));
     const enableTransition = ref(false);
@@ -203,12 +206,8 @@ import titleMixin from "@/components/UI/Other/document.title";
 
 
     const currencyImage = computed(() => {
-     
         const currencyKey = currencyImagetag.value;
         return selectedCurrencyImages[currencyKey];
-    
-      
-
     });
     context.emit("seturrencyImage", currencyImage);
    
@@ -221,12 +220,10 @@ import titleMixin from "@/components/UI/Other/document.title";
   };
 
 
-  const beforeCreate = async () => {
-    try {
-        // Send an initial request before the component is created
+  onMounted(async () => {
+      try {
         const response = await axiosPrivateInstance.get('/games/mines/get');
- 
-        context.emit("newbetamount", response.data.betAmount);
+          context.emit("newbetamount", response.data.betAmount);
       
         currencyImagetag.value = `balance${response.data.currency}`;
   
@@ -237,13 +234,12 @@ import titleMixin from "@/components/UI/Other/document.title";
           showHeart.value[num] = true;
         });
     
-        profit.value = response.data.profit
+   
         context.emit("setparentprofit", response.data.profit);
 
         context.emit("betMineschange", response.data.mines);
        
-        betAmountwill.value = parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString();
-        context.emit("setparentbet", parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString());
+      context.emit("setparentbet", parseFloat((response.data.profit * response.data.betAmount).toFixed(5)).toString());
 
 
         countinuemines.value = true;
@@ -251,8 +247,10 @@ import titleMixin from "@/components/UI/Other/document.title";
         noBet.value = true;
         context.emit("bettrue");
         if (response.data.selectednum.length === 0) {
-            cashdisabled.value = true;
-            context.emit("cashdisabled", cashdisabled.value);
+       
+            context.emit("cashdisabled", true);
+        } else {
+          context.emit("cashdisabled", false);
         }
     } catch (error) {
         console.error(error);
@@ -260,10 +258,11 @@ import titleMixin from "@/components/UI/Other/document.title";
     } finally {
         // This block will always execute, regardless of whether there was an error or not
         isLoading.value = false;
-    }
-};
+      }
+    });
 
-beforeCreate();
+
+
 
 
   const selectsectormines = async (buttonNumber) => {
@@ -272,24 +271,23 @@ beforeCreate();
         const response = await axiosPrivateInstance.put('/games/mines/sel', {
           selectedsector: buttonNumber,
         });
-        cashdisabled.value = false;
+        context.emit("cashdisabled", false);
         if (response.data.message == "Winmines") {
         selectedButtons.value.push(buttonNumber);
 
-        profit.value = response.data.profit
+ 
         context.emit("setparentprofit", response.data.profit);
-        betAmountwill.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
-        context.emit("setparentbet", parseFloat((response.data.profit * betInput.value).toFixed(5)).toString());
+      context.emit("setparentbet", parseFloat((response.data.profit * betInput.value).toFixed(5)).toString());
 
         console.log(response);
         } else if (response.data.message == "Losemines") {
        
-        betAmountwill.value = props.betInputValue;
+
         selectedMinesButtons.value.push(buttonNumber);
         context.emit("betfal");
         
-        profit.value = response.data.profit
-        
+       
+        context.emit("setparentprofit", response.data.profit);
      
         setTimeout(() => {
         new Promise((resolve) => {
@@ -314,7 +312,7 @@ beforeCreate();
             }, 500);
         });
         }, 500);
-   
+    
     
       }  else if (response.data.message == "WinF") {
           let timeoutId = null;
@@ -324,7 +322,6 @@ beforeCreate();
           selectedButtons.value.push(buttonNumber);
           
      
-          profit.value = response.data.profit
           currencyname.value = response.data.currency;
           cashresult.value = parseFloat((response.data.profit * betInput.value).toFixed(5)).toString();
           showResult.value = true;
@@ -351,7 +348,7 @@ beforeCreate();
 
         }
       
-        context.emit("cashdisabled", cashdisabled.value);
+  
       } catch (error) {
         console.error(error);
         // Handle errors if needed
@@ -360,21 +357,24 @@ beforeCreate();
   };
   watch(() => props.betInputValue, (newValue) => {
       betInput.value = newValue;
-      if (!countinuemines.value) {
-        betAmountwill.value = newValue;
-      }
-  
+
     });
   watch(() => props.cashoutButtonPressed, (newValue) => {
+    context.emit("cashoutfal");
 
-    console.log(newValue);
-    console.log(props.cashoutButtonPressed);
-      if (newValue && countinuemines.value) {
-        console.log("cashout2");
+      if (countinuemines.value) {
+
          cashOut(); 
       }
  
    }); 
+   watch(() => props.profit, (newValue) => {
+    if (countinuemines.value) {
+      profit.value = newValue;
+    }
+   
+  
+    });
 
     watch(() => props.betMines, (newValue) => {
       mines.value = newValue;
@@ -382,7 +382,7 @@ beforeCreate();
     });
 
     watch(() => props.betButtonPressed, (newValue) => {
-    if (newValue && !countinuemines.value) {
+    if (!countinuemines.value) {
     
       placeBet();
     }
@@ -422,26 +422,18 @@ beforeCreate();
     if (!handleCommonChecks()) {
       return;
     }
-    enableTransition.value = false;
+   
     try {
-      cashdisabled.value = true;
-      context.emit("setparentprofit", "1.00");
-      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
-      context.emit("cashdisabled", cashdisabled.value);
 
-      // Group all value changes here
-      showAlert.value = false;
-      currencyImagetag.value = store.getters.selectedCurrency;
-      errorMsg.value = '';
-      profit.value = "1.00"; 
-
-      countinuemines.value = true;
-      showResult.value = false;
       // Emit events after value changes
     
-
+      enableTransition.value = false;
+    
       // Dispatch updateBalance after value changes
-   
+      currencyImagetag.value = store.getters.selectedCurrency;
+      context.emit("setparentprofit", "1.00");
+      context.emit("setparentbet",  parseFloat((betInput.value).toFixed(5)).toString());
+      context.emit("cashdisabled", true);
       const currency = balanceFieldsMap[store.getters.selectedCurrency];
       const responsebet = await axiosPrivateInstance.put('/games/mines/bet', {
         betAmount: betInput.value,
@@ -449,6 +441,18 @@ beforeCreate();
         sectorsnum: sectorsnum.value,
         mines: mines.value,
       });
+    
+
+      showAlert.value = false;
+   
+    
+
+      
+      errorMsg.value = '';
+  
+
+      countinuemines.value = true;
+      showResult.value = false;
    
       const newAmount = roundBalance(store.getters.userDetail[store.getters.selectedCurrency] - betInput.value);
 
@@ -488,8 +492,8 @@ beforeCreate();
 
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
-      console.log("cashout");
-      context.emit("cashoutfal");
+
+  
   
       enableTransition.value = false;
    
@@ -519,12 +523,11 @@ beforeCreate();
           console.log(response.data.winamount);
           setTimeout(() => {
           countinuemines.value = false;
+   
           }, 500);
         }, 500);
-        cashdisabled.value = true;
-  
-
-    
+        context.emit("cashoutfal");
+        context.emit("cashdisabled", true);
       }
     } catch (error) {
         console.error(error);
@@ -540,8 +543,7 @@ beforeCreate();
     selectedButtons,
     selectsectormines,
     profit,
-    betAmountwill,
-    cashdisabled,
+
     isLoading,
     noBet,
     currencyImage,

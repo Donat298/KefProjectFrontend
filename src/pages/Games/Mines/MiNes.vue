@@ -9,17 +9,19 @@
        class="bet-div">
  <div class="bet-form">
 
-          <toolip :showTooltip2="showTooltip2" style="width: 100%;
+          <toolip :showTooltip2="showTooltip" style="width: 100%;
    " text="The bet cannot be more than your balance.">  
      </toolip>  
 
-          <v-form ref="betForm" @submit.prevent="placeBet()"   style=" align-items: center;
+          <v-form ref="betForm"   style=" align-items: center;
            "> 
 
 <div style="display: flex; " >
+  {{ isCashoutButtonPressed }}
      <strong>   Bet amount:</strong>
 </div>
-            <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" :processing="isBetButtonPressed" />
+            <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" 
+            :processing="isBetButtonPressed" />
       
 
 
@@ -40,6 +42,7 @@
     </div>
 
     <div>
+
       <strong> {{ profit }}x</strong> 
     </div>
 </div>
@@ -48,10 +51,12 @@
 
 
 
-              <bet-btn v-if="!isBetButtonPressed" style="width: 100%; user-select: none; "  >BET
+              <bet-btn @click.prevent="placeBet()" v-if="!isBetButtonPressed" style="width: 100%; user-select: none; "  >BET
               </bet-btn>
+              
               <bet-btn :style="{ opacity: CashButtonDisabled ? 0.5 : 1 }" :disabled="CashButtonDisabled" 
-             @click="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >Cashout
+             @click.prevent="isCashoutButtonPressed = true" v-if="isBetButtonPressed" style="width: 100%;" >
+             Cashout
               </bet-btn>
    
 
@@ -83,15 +88,44 @@
         </div> 
 
     </div>
+
       <div style="flex: 1; background-color: #15212c; border-radius: 0px 7px 7px 0px ;" class="betseto">
    
-        <CanvasMines  @newbetamount="updateBetInput" @cashdisabled="cashdisabled" @betfal="Betfalse()"
-         @cashoutfal="Cashfalse()" @setparentprofit="profit = $event" @setparentbet="betAmountwill = $event"
+        <CanvasMines 
+      
+         @cashdisabled="cashdisabled"
+          @betfal="Betfalse()"
+         @cashoutfal="Cashfalse()" 
+         
+          @setparentbet="betAmountwill = $event"
          @seturrencyImage="currencyImage = $event"
+         @bettrue="placeBet()" 
+               
         :cashoutButtonPressed="isCashoutButtonPressed"
-         @bettrue="placeBet()" :betInputValue="betInput"
-         :betMines="minesAmount" @betMineschange="minesAmount = $event" :betButtonPressed="isBetButtonPressed"
-        :displaywidth="isWideScreen"></CanvasMines>
+    
+
+        :profit="profit"
+
+        @setparentprofit="profit = $event"
+
+        :betButtonPressed="isBetButtonPressed"
+        :displaywidth="isWideScreen"
+   
+ 
+        :betMines="minesAmount"
+
+        @betMineschange="minesAmount = $event"
+
+        :betInputValue="betInput"
+
+        @newbetamount="betInput = $event"
+     
+        >
+      
+      
+      
+      
+      </CanvasMines>
 
       </div>
     </div>
@@ -123,11 +157,13 @@ export default {
       betAmountwill: 0,
       currencyImage: null,
       isInputInvalid: false,
-      showTooltip2: false,
-      isBetButtonPressed: false, 
-      CashButtonDisabled: false,
-      isCashoutButtonPressed: false,
+      showTooltip: false,
       isWideScreen: false, 
+      isBetButtonPressed: false, 
+     
+      CashButtonDisabled: true,
+      isCashoutButtonPressed: false,
+    
     };
   },
   watch: {
@@ -137,6 +173,7 @@ export default {
     '$store.getters.selectedCurrency': {
       handler() {
         this.checkInputValidity(this.betInput);
+        this.betInput = 0;
       },
       deep: true,
     },
@@ -161,10 +198,10 @@ export default {
 
       if (value < 0 || store.getters.userDetail[store.getters.selectedCurrency] < value && !this.isBetButtonPressed) {
         this.isInputInvalid = true;
-        this.showTooltip2 = true;
+        this.showTooltip = true;
       } else {
         this.isInputInvalid = false;
-        this.showTooltip2 = false;
+        this.showTooltip = false;
       }
     },
     Betfalse() {
@@ -172,16 +209,19 @@ export default {
       this.checkInputValidity(this.betInput);
     },
     Cashfalse() {
-      this.isCashoutButtonPressed = false; 
+ 
       this.checkInputValidity(this.betInput);
     },
-    cashdisabled(tof) {
-        this.CashButtonDisabled = tof;     
+    cashdisabled(value) {
+        this.CashButtonDisabled = value;     
     },
    
     placeBet() {
     // Other processing logic here
     if (!this.isBetButtonPressed) {
+      this.isBetButtonPressed = true;
+
+      
       this.isBetButtonPressed = true; 
       this.isCashoutButtonPressed = false;
   
@@ -189,11 +229,7 @@ export default {
  
     },
 
-    
-    updateBetInput(newBetAmount) {
-      this.betInput = newBetAmount;
-      this.checkInputValidity(newBetAmount);
-    },
+   
     checkScreenWidth() {
       this.isWideScreen = window.innerWidth > 800; // Check screen width
     },

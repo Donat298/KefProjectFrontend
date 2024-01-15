@@ -172,15 +172,27 @@
 
     <div style="position: relative;
    margin:20px auto;">
-   
-   <v-img class="mx-auto"  style="   width: 150px; height: 150px;"
-     :src="getCurrencyImagePath2(selectedCurrency)" />
+
+
+   <div class="mx-auto" style="display: flex; justify-content: center; align-items: center; height: 150px; width: 150px; background-color: rgb(255, 255, 255);">
+<QrcodeVue :size="120" :value="selectedCurrencyAddress"></QrcodeVue>
+</div>
+
+
      
 
 
    
    
    <!--
+   <div style="display: flex; justify-content: center; align-items: center; height: 200px; width: 200px; background-color: rgb(255, 255, 255);">
+
+0x766d52c847106794deb077f4db5b236c99589218
+
+0x766d52c847106794deb077f4db5b236c99589218
+
+
+
     <v-img class="mx-auto" :class="{ 'blur-image': isBlurred }" style="   width: 150px; height: 150px;"
      :src="getCurrencyImagePath2(selectedCurrency)" />
      
@@ -201,7 +213,7 @@
 -->
 
     </div>
-
+ 
     <div class="mx-auto" style="display: flex; padding: 10px; overflow-x: auto;">
       <v-card elevation="5" class="pa-2 pl-4 mx-auto vmenustandart" >
 
@@ -209,6 +221,7 @@
         style="background-color: #2e4659; color: #ffffff;
          display: flex; align-items: center; max-width: 300px;
  ">
+
   {{ selectedCurrencyAddress }}
 </v-card>
         <button @click="copyAddress();  showCopiedTooltip()"  :disabled="showTooltip" 
@@ -230,26 +243,12 @@
 import { useStore } from 'vuex';
 import { ref, computed, watch } from 'vue';
 import DepositId from '@/components/DepositComp/DepositId.vue';
+import QrcodeVue from 'qrcode.vue';
 
-const addressMapping = {
-  'usdtaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdtaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdtaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
-  'ethaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'ethaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
-  'bnbaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdcaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdcaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
-  'usdcaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
-  'maticaddress1': '0x9ae54108b060a244196605d803068a062d393df7',
-  'maticaddress2': '0x9ae54108b060a244196605d803068a062d393df7',
-  'maticaddress3': '0x9ae54108b060a244196605d803068a062d393df7',
-  // add more mappings here
-};
 export default {
-  emits: ['cSWi'],
+  emits: ['cSWi', 'HideDeposit'],
   components: {
-    DepositId,
+    DepositId, QrcodeVue
   }, 
     
 
@@ -317,24 +316,11 @@ export default {
     const selectedUSDCAddress = ref(localStorage.getItem('selectedUSDCAddress') || 'usdcaddress2');
     const selectedMATICAddress = ref(localStorage.getItem('selectedMATICAddress') || 'maticaddress2');
     const selectedCurrencyAddress = computed(() => {
-      if (selectedCurrency.value === 'balanceusdt') {
-        return addressMapping[selectedUSDTAddress.value];
-      }
-      if (selectedCurrency.value === 'balanceeth') {
-        return addressMapping[selectedETHAddress.value];
-      } 
-      if (selectedCurrency.value === 'balancebnb') {
-        return addressMapping[selectedBNBAddress.value];
-      }
-      if (selectedCurrency.value === 'balanceusdc') {
-        return addressMapping[selectedUSDCAddress.value];
-      }
-      if (selectedCurrency.value === 'balancematic') {
-        return addressMapping[selectedMATICAddress.value];
-      }
-      else {
+    
+    
+ 
         return getCurrencyAddress(selectedCurrency.value);
-      }
+ 
     });
     const selectedCurrencyAddressName = computed(() => {
       if (selectedCurrency.value === 'balanceusdt') {
@@ -476,11 +462,8 @@ export default {
         }
 
         else {
-          selectedUSDTAddress.value = getCurrencyAddress(newCurrency);
-          selectedETHAddress.value = getCurrencyAddress(newCurrency);
-          selectedBNBAddress.value = getCurrencyAddress(newCurrency);
-          selectedUSDCAddress.value = getCurrencyAddress(newCurrency);
-          selectedMATICAddress.value = getCurrencyAddress(newCurrency);
+   
+      
         }
 
 
@@ -546,54 +529,37 @@ export default {
 
     };
 
-    const selectedCurrencyImagesQrcode = {
-      balanceusdt: require('@/assets/CryptoQrcodes/TetherErc20.png'),
-      balanceeuroc: require('@/assets/CryptoQrcodes/Euro.png'),
-      balancebtc: require('@/assets/CryptoQrcodes/Btc.png'),
-      balanceeth: require('@/assets/CryptoQrcodes/TetherErc20.png'),
-      balanceltc: require('@/assets/CryptoQrcodes/Ltc.png'),
-      balancebnb: require('@/assets/CryptoQrcodes/TetherErc20.png'),
-      balancedoge: require('@/assets/CryptoQrcodes/Doge.png'),
-      balanceusdc: require('@/assets/CryptoQrcodes/TetherErc20.png'),
-      balancebch: require('@/assets/CryptoQrcodes/Bch.png'),
-      balanceada: require('@/assets/CryptoQrcodes/Ada.png'),
-      balancematic: require('@/assets/CryptoQrcodes/TetherErc20.png'),
-      balancetrx: require('@/assets/CryptoQrcodes/Trx.png'),
-    };
-
     // Function to get the image path for the selected currency
     const getCurrencyImagePath = (currencyKey) => {
       return selectedCurrencyImages[currencyKey];
     };
-    const getCurrencyImagePath2 = (currencyKey) => {
-      return selectedCurrencyImagesQrcode[currencyKey];
-    };
+
 
     // Function to get the address for each currency
     const getCurrencyAddress = (currencyKey) => {
       switch (currencyKey) {
         case 'balanceusdt':
-          return selectedUSDTAddress.value; // Use the selected USDT address
+          return store.state.usdtaddress; // Use the selected USDT address
         case 'balanceeuroc':
           return '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancebtc':
-          return '18KwuFLeDvHHrZawNFesTq2VznxWTCDzVr';
+          return store.state.btcaddress;
         case 'balanceeth':
-          return selectedETHAddress.value;
+          return store.state.usdtaddress;
         case 'balanceltc':
           return 'Lc4w9pBUHaBAhTh77imbYS9M1npGL3UtGH';
         case 'balancebnb':
-          return selectedBNBAddress.value;
+          return store.state.usdtaddress;
         case 'balancedoge':
           return 'D9jfrxf3UM6MBW5m8sq567ze8F6juv2a3Y';
         case 'balanceusdc':
-          return selectedUSDCAddress.value;
+          return store.state.usdtaddress;
         case 'balancebch':
           return '1Hg29n1XN5t3RyTzACXpFc5yGXE7Xn6svL';
         case 'balanceada':
           return 'addr1v8snfymyqqkwwf840yhsgwh3tkw4ht2896emf4fpzrqdpwqydfyew';
         case 'balancematic':
-          return  selectedMATICAddress.value;
+          return  store.state.usdtaddress;
         case 'balancetrx':
           return 'TWX3X61vd76HHdh36t1QLZciZfqa4Na1za';
         default:
@@ -614,7 +580,6 @@ export default {
       showTooltip,
       copyAddress,
       getCurrencyImagePath,
-      getCurrencyImagePath2,
       selectCurrency,
       selectUSDTAddress,
       selectETHAddress,
