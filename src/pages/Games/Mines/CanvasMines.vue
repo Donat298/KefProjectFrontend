@@ -327,6 +327,7 @@ import titleMixin from "@/components/UI/Other/document.title";
           showResult.value = true;
    
          
+        context.emit("setparentprofit", response.data.profit);
           setTimeout(() => {
             new Promise((resolve) => {
               enableTransition.value = false;
@@ -339,7 +340,7 @@ import titleMixin from "@/components/UI/Other/document.title";
               selectedButtons.value = newSelectedButtons;
 
               context.emit("setparentbet", "0");
-              context.emit("setparentprofit", "1.00");
+     
               setTimeout(() => {
                 countinuemines.value = false;
               }, 500);
@@ -362,8 +363,8 @@ import titleMixin from "@/components/UI/Other/document.title";
   watch(() => props.cashoutButtonPressed, (newValue) => {
     context.emit("cashoutfal");
 
-      if (countinuemines.value) {
-
+      if (countinuemines.value && !showResult.value) {
+  
          cashOut(); 
       }
  
@@ -374,7 +375,7 @@ import titleMixin from "@/components/UI/Other/document.title";
     }
    
   
-    });
+   });
 
     watch(() => props.betMines, (newValue) => {
       mines.value = newValue;
@@ -418,7 +419,7 @@ import titleMixin from "@/components/UI/Other/document.title";
   };
 
   const placeBet = async () => {
-  
+
     if (!handleCommonChecks()) {
       return;
     }
@@ -492,7 +493,7 @@ import titleMixin from "@/components/UI/Other/document.title";
 
     try {
       const response = await axiosPrivateInstance.get('/games/mines/cash');
-
+      
   
   
       enableTransition.value = false;
@@ -527,7 +528,7 @@ import titleMixin from "@/components/UI/Other/document.title";
           }, 500);
         }, 500);
         context.emit("cashoutfal");
-        context.emit("cashdisabled", true);
+  
       }
     } catch (error) {
         console.error(error);

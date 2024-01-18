@@ -143,15 +143,15 @@ export default createStore({
         }
   
         // Set up a new timer to call 'getBalanceAndDeposit' and 'getUserMessages' every 10 seconds
-        state.getBalanceTimer = setInterval(() => {
+        state.getBalanceTimer = setInterval(async () => {
+          await dispatch('getUserMessages');
           dispatch('getBalanceAndDeposit');
-          dispatch('getUserMessages');
         }, 10000);
-  
+    
         commit("setUserAvatar", data.avatar);
         // Add this line to set usdtaddress
         commit('setUsdtAddress', data.ethERC20BSC20MATIC.address);
-        commit('setBtcAddress', data.btc.bech32Address);
+        commit('setBtcAddress', data.btc.address);
   
         return data;
       } catch (error) {

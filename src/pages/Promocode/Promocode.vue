@@ -3,7 +3,8 @@
     <div  @mousedown="onMouseDown" @mouseup="onMouseUp" class="jja" >
       <div style="max-height: 90%; width: 100%; ">
         <div @mousedown.stop  @mouseup.stop="onMouseUpCheck" class="insidedivglob" >
-          <div style="display: flex; justify-content: space-between; align-items: center;padding: 5px 10px 10px 10px; ">
+          <div style="display: flex; justify-content: space-between; align-items: center;
+          padding: 5px 10px 10px 10px; ">
             <div style="color: #ffffff; padding: 10px;">
               Promocode  
               <font-awesome-icon  style="color: #ffffff; "  :icon="['fas', 'percent']" />

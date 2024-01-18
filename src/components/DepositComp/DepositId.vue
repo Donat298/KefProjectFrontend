@@ -41,13 +41,9 @@ export default {
 
 
 
-    watch(() => props.copyadresspressed, (newValue) => {
-      if (newValue) {
-        sendSMS();
-      }
-    }); 
-  
 
+  
+/*
     const checkAuthentication = () => {
       if (!store.getters.isAuthenticated) {
         router.push('/auth/register');
@@ -94,9 +90,9 @@ export default {
       
       }
     };
-
+*/
     return {
-      sendSMS,
+
       errorMsg,
       adressname,
   

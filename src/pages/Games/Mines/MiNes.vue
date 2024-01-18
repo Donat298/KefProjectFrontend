@@ -17,7 +17,7 @@
            "> 
 
 <div style="display: flex; " >
-  {{ isCashoutButtonPressed }}
+
      <strong>   Bet amount:</strong>
 </div>
             <betInput v-model.number="betInputWithDefault" :invalid="isInputInvalid" 
@@ -97,7 +97,7 @@
           @betfal="Betfalse()"
          @cashoutfal="Cashfalse()" 
          
-          @setparentbet="betAmountwill = $event"
+        @setparentbet="betAmountwill = $event"
          @seturrencyImage="currencyImage = $event"
          @bettrue="placeBet()" 
                
