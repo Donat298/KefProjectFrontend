@@ -1,12 +1,15 @@
 // constants.js
 
 export const balanceFieldsMap = {
+  'balancebtc': 'btc',
     'balanceusdt': 'usdt',
-    'balanceeuroc': 'euroc',
-    'balancebtc': 'btc',
     'balanceeth': 'eth',
-    'balanceltc': 'ltc',
     'balancebnb': 'bnb',
+    'balanceeuroc': 'euroc',
+ 
+
+    'balanceltc': 'ltc',
+
     'balancedoge': 'doge',
     'balanceusdc': 'usdc',
     'balancebch': 'bch',

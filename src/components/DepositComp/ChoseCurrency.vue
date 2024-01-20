@@ -55,12 +55,15 @@ data() {
       selectedCurrency: this.$store.getters.selectedCurrency,
    
       selectedCurrencyImages: { 
-        'balanceusdt': require('@/assets/Cryptologos/usdt.svg'),
-        'balanceeuroc': require('@/assets/Cryptologos/euro-logo.svg'),
         'balancebtc': require('@/assets/Cryptologos/Currency=btc.svg'),
+        'balanceusdt': require('@/assets/Cryptologos/usdt.svg'),
         'balanceeth': require('@/assets/Cryptologos/Currency=Ethereum.svg'),
-        'balanceltc': require('@/assets/Cryptologos/lite.svg'),
         'balancebnb': require('@/assets/Cryptologos/bnb.svg'),
+        'balanceeuroc': require('@/assets/Cryptologos/euro-logo.svg'),
+
+      
+        'balanceltc': require('@/assets/Cryptologos/lite.svg'),
+      
         'balancedoge': require('@/assets/Cryptologos/doge.svg'),
         'balanceusdc': require('@/assets/Cryptologos/usdc.svg'),
         'balancebch': require('@/assets/Cryptologos/btccash.svg'),
@@ -71,10 +74,12 @@ data() {
       currencies: [
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
-        { name: 'EUROC', code: 'balanceeuroc' },
         { name: 'ETH', code: 'balanceeth' },
-        { name: 'LTC', code: 'balanceltc' },
         { name: 'BNB', code: 'balancebnb' },
+        { name: 'EUROC', code: 'balanceeuroc' },
+  
+        { name: 'LTC', code: 'balanceltc' },
+   
         { name: 'DOGE', code: 'balancedoge' },
         { name: 'USDC', code: 'balanceusdc' },
         { name: 'BCH', code: 'balancebch' },

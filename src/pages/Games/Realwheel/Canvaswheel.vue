@@ -92,12 +92,15 @@ import titleMixin from "@/components/UI/Other/document.title";
   const currencyImagetag = ref("");
 
   const selectedCurrencyImages = {
-    usdt: require('@/assets/Cryptologos/usdt.svg'),
-    euroc: require('@/assets/Cryptologos/euro-logo.svg'),
     btc: require('@/assets/Cryptologos/Currency=btc.svg'),
+    usdt: require('@/assets/Cryptologos/usdt.svg'),
     eth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
-    ltc: require('@/assets/Cryptologos/lite.svg'),
     bnb: require('@/assets/Cryptologos/bnb.svg'),
+    euroc: require('@/assets/Cryptologos/euro-logo.svg'),
+    
+
+    ltc: require('@/assets/Cryptologos/lite.svg'),
+
     doge: require('@/assets/Cryptologos/doge.svg'),
     usdc: require('@/assets/Cryptologos/usdc.svg'),
     bch: require('@/assets/Cryptologos/btccash.svg'),

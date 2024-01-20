@@ -17,7 +17,7 @@ export default createStore({
 
     usdtaddress: '',
     btcaddress: '',
-
+    isUserMessagesRequestInProgress: false,
   }), 
 
   getters: {
@@ -49,8 +49,9 @@ export default createStore({
 
     clearAuthData(state) {
       state.accessToken = "";
-      state.user = { balanceusdt: 0, balanceeuroc: 0, balancebtc: 0, balanceeth: 0, 
-        balanceltc: 0, balancebnb: 0, balancedoge: 0, balanceusdc: 0, balancebch: 0,
+      state.user = {balancebtc: 0, balanceusdt: 0, balanceeth: 0, balancebnb: 0,
+         balanceeuroc: 0, 
+        balanceltc: 0,  balancedoge: 0, balanceusdc: 0, balancebch: 0,
          balanceada: 0, balancematic: 0, balancetrx: 0 };
       localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
@@ -83,6 +84,7 @@ export default createStore({
     setUsdtAddress(state, usdtaddress) {
       state.usdtaddress = usdtaddress;
     },
+ 
     setBtcAddress(state, btcaddress) {
       state.btcaddress = btcaddress;
     }
@@ -144,9 +146,19 @@ export default createStore({
   
         // Set up a new timer to call 'getBalanceAndDeposit' and 'getUserMessages' every 10 seconds
         state.getBalanceTimer = setInterval(async () => {
-          await dispatch('getUserMessages');
-          dispatch('getBalanceAndDeposit');
-        }, 10000);
+          // Only dispatch 'getUserMessages' and 'getBalanceAndDeposit' if the previous request has completed
+          if (!state.isUserMessagesRequestInProgress) {
+            state.isUserMessagesRequestInProgress = true;
+            try {
+              await dispatch('getUserMessages');
+              dispatch('getBalanceAndDeposit');
+            } catch (error) {
+              console.error(error);
+            } finally {
+              state.isUserMessagesRequestInProgress = false;
+            }
+          }
+        }, 20000);
     
         commit("setUserAvatar", data.avatar);
         // Add this line to set usdtaddress
@@ -190,13 +202,16 @@ export default createStore({
   
         if (!state.gameInProgress) {
           const response = await useApiPrivate(this).get(`/api/user/getBalances`);
-  
-          commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
-          commit('setUserBalance', { currency: 'euroc', amount: response.data.balanceeuroc });
           commit('setUserBalance', { currency: 'btc', amount: response.data.balancebtc });
+          commit('setUserBalance', { currency: 'usdt', amount: response.data.balanceusdt });
+           
           commit('setUserBalance', { currency: 'eth', amount: response.data.balanceeth });
-          commit('setUserBalance', { currency: 'ltc', amount: response.data.balanceltc });
           commit('setUserBalance', { currency: 'bnb', amount: response.data.balancebnb });
+          commit('setUserBalance', { currency: 'euroc', amount: response.data.balanceeuroc });
+    
+       
+          commit('setUserBalance', { currency: 'ltc', amount: response.data.balanceltc });
+    
           commit('setUserBalance', { currency: 'doge', amount: response.data.balancedoge });
           commit('setUserBalance', { currency: 'usdc', amount: response.data.balanceusdc });
           commit('setUserBalance', { currency: 'bch', amount: response.data.balancebch });
@@ -208,7 +223,7 @@ export default createStore({
           if (typeof response.data.deposit === 'number') {
             commit('setDeposit', response.data.deposit);
           }
-          console.log('getBalanceAndDeposit2');
+          console.log('getBalanceAndDeposit FIN 3');
         
         }
       } catch (error) {
@@ -218,7 +233,8 @@ export default createStore({
     async getUserMessages({ commit, state }) {
   
       try {
-     
+
+        console.log("getUserMessages START 1");
         if (!state.gameInProgress) {
           const response = await useApiPrivate(this).get(`/api/user/getUserMessages`);
   
@@ -239,10 +255,14 @@ export default createStore({
               commit('setIncomingMessage', tipAddedMessages[0]);
             }
           }
-          console.log("getUserMessages2");
+        
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        console.log("getUserMessages FIN 2");
+        // Set the flag to false at the end of the request, regardless of whether it succeeded or failed
+  
       }
     },
     async dispatchSnackbarBonusData({ commit }, data) {

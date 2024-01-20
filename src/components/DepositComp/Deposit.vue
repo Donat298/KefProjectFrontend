@@ -257,10 +257,12 @@ export default {
       currencies: [
         { name: 'BTC', code: 'balancebtc' },
         { name: 'USDT', code: 'balanceusdt' },
-        { name: 'EUROC', code: 'balanceeuroc'},
         { name: 'ETH', code: 'balanceeth' },
-        { name: 'LTC', code: 'balanceltc' },
         { name: 'BNB', code: 'balancebnb' },
+        { name: 'EUROC', code: 'balanceeuroc'},
+ 
+        { name: 'LTC', code: 'balanceltc' },
+      
         { name: 'DOGE', code: 'balancedoge' },
         { name: 'USDC', code: 'balanceusdc' },
         { name: 'BCH', code: 'balancebch' },
@@ -282,18 +284,21 @@ export default {
 
     const selectedCurrencyName = computed(() => {
       switch (selectedCurrency.value) {
-        case 'balanceusdt':
-          return 'USDT';
-        case 'balanceeuroc':
-          return 'EUROC';
         case 'balancebtc':
           return 'BTC';
-        case 'balanceeth':
+        case 'balanceusdt':
+          return 'USDT';
+          case 'balanceeth':
           return 'ETH';
+          case 'balancebnb':
+          return 'BNB';
+        case 'balanceeuroc':
+          return 'EUROC';
+  
+   
         case 'balanceltc':
           return 'LTC';
-        case 'balancebnb':
-          return 'BNB';
+    
         case 'balancedoge':
           return 'DOGE';
         case 'balanceusdc':
@@ -514,12 +519,14 @@ export default {
 
     // Images for different currencies
     const selectedCurrencyImages = {
-      balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
-      balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
       balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
+      balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
       balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
-      balanceltc: require('@/assets/Cryptologos/lite.svg'),
       balancebnb: require('@/assets/Cryptologos/bnb.svg'),
+      balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
+  
+      balanceltc: require('@/assets/Cryptologos/lite.svg'),
+
       balancedoge: require('@/assets/Cryptologos/doge.svg'),
       balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
       balancebch: require('@/assets/Cryptologos/btccash.svg'),
@@ -538,28 +545,31 @@ export default {
     // Function to get the address for each currency
     const getCurrencyAddress = (currencyKey) => {
       switch (currencyKey) {
-        case 'balanceusdt':
-          return store.state.usdtaddress; // Use the selected USDT address
-        case 'balanceeuroc':
-          return '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancebtc':
           return store.state.btcaddress;
+        case 'balanceusdt':
+          return store.state.usdtaddress; // Use the selected USDT address
         case 'balanceeth':
           return store.state.usdtaddress;
-        case 'balanceltc':
-          return 'Lc4w9pBUHaBAhTh77imbYS9M1npGL3UtGH';
         case 'balancebnb':
           return store.state.usdtaddress;
+        case 'balanceeuroc':
+          return '0x9ae54108b060a244196605d803068a062d393df7';
+  
+      
+        case 'balanceltc':
+          return 'Lc4w9pBUHaBAhTh77imbYS9M1npGL3UtGH';
+ 
         case 'balancedoge':
           return 'D9jfrxf3UM6MBW5m8sq567ze8F6juv2a3Y';
         case 'balanceusdc':
-          return store.state.usdtaddress;
+          return '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancebch':
           return '1Hg29n1XN5t3RyTzACXpFc5yGXE7Xn6svL';
         case 'balanceada':
           return 'addr1v8snfymyqqkwwf840yhsgwh3tkw4ht2896emf4fpzrqdpwqydfyew';
         case 'balancematic':
-          return  store.state.usdtaddress;
+          return  '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancetrx':
           return 'TWX3X61vd76HHdh36t1QLZciZfqa4Na1za';
         default:

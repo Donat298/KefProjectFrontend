@@ -69,21 +69,20 @@
 
 
 
-                    <div style="display: flex; align-items: center;
-                     margin: auto; width: 100%; min-height: 65px;">
+                    <div style="display: flex; align-items: center; justify-content: center; margin: auto; min-height: 65px;">
   <label class="container" >
     <input type="checkbox" v-model="agree" required checked="checked">
     <div class="checkmark">
       <font-awesome-icon v-if="agree" style="color: rgb(37, 56, 74); margin: auto;" :icon="['fas', 'check']" />
     </div>
   </label>
-  <div  class="text-grey">
-    I accept the
+  <div class="text-grey">
+    I accept
     <a class="text-grey" href="/terms" target="_blank">
       Terms & Conditions
     </a>
   </div>
-</div>  
+</div> 
     <v-btn
                         block
                         rounded="lg"

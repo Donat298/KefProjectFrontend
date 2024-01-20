@@ -151,7 +151,7 @@ export default {
 
  data() {
     return {
-      logos: ['usdt','Currency=btc','euro-logo','Currency=Ethereum','lite','bnb','doge', 'usdc', 'btccash', 'ada', 
+      logos: ['Currency=btc','usdt','Currency=Ethereum','bnb','euro-logo','lite','doge', 'usdc', 'btccash', 'ada', 
          'matic', 'trx',],
    
     };

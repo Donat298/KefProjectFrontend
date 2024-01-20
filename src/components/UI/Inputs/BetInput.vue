@@ -34,19 +34,20 @@ Parent component
 <script>  
 
 const selectedCurrencyImages = {
-  balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
-  balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
   balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
+  balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
   balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
-  balanceltc: require('@/assets/Cryptologos/lite.svg'),
   balancebnb: require('@/assets/Cryptologos/bnb.svg'),
-  balancedoge: require('@/assets/Cryptologos/doge.svg'),
-  balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
-  balancebch: require('@/assets/Cryptologos/btccash.svg'),
-  balanceada: require('@/assets/Cryptologos/ada.svg'),
-  balancematic: require('@/assets/Cryptologos/matic.svg'),
-  balancetrx: require('@/assets/Cryptologos/trx.svg'),
-};
+  balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
+      balanceltc: require('@/assets/Cryptologos/lite.svg'),
+
+      balancedoge: require('@/assets/Cryptologos/doge.svg'),
+      balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
+      balancebch: require('@/assets/Cryptologos/btccash.svg'),
+      balanceada: require('@/assets/Cryptologos/ada.svg'),
+      balancematic: require('@/assets/Cryptologos/matic.svg'),
+      balancetrx: require('@/assets/Cryptologos/trx.svg'),
+ };
 
 export default {
   name: "BetInput",

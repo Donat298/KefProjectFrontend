@@ -157,10 +157,12 @@
        currencies: [
          { name: 'BTC', balanceKey: 'balancebtc' },
          { name: 'USDT', balanceKey: 'balanceusdt' },
-         { name: 'EUROC', balanceKey: 'balanceeuroc' },
          { name: 'ETH', balanceKey: 'balanceeth' },
-          { name: 'LTC', balanceKey: 'balanceltc' },
           { name: 'BNB', balanceKey: 'balancebnb' },
+         { name: 'EUROC', balanceKey: 'balanceeuroc' },
+    
+          { name: 'LTC', balanceKey: 'balanceltc' },
+
           { name: 'DOGE', balanceKey: 'balancedoge' },
           { name: 'USDC', balanceKey: 'balanceusdc' },
           { name: 'BCH', balanceKey: 'balancebch' },
@@ -228,18 +230,21 @@
      });
   const selectedCurrencyName = computed(() => {
        switch (selectedCurrency.value) {
+        case 'balancebtc':
+            return 'BTC';
           case 'balanceusdt':
            return 'USDT';
-          case 'balanceeuroc':
-            return 'EUROC';
-          case 'balancebtc':
-            return 'BTC';
-          case 'balanceeth':
+           case 'balanceeth':
             return 'ETH';
-          case 'balanceltc':
-            return 'LTC';
           case 'balancebnb':
             return 'BNB';
+          case 'balanceeuroc':
+            return 'EUROC';
+   
+      
+          case 'balanceltc':
+            return 'LTC';
+         
           case 'balancedoge':
             return 'DOGE';
           case 'balanceusdc':
@@ -284,12 +289,14 @@
   };
   
   const selectedCurrencyImages = {
+    balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
     balanceusdt: require('@/assets/Cryptologos/usdt.svg'),
+    balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+    balancebnb: require('@/assets/Cryptologos/bnb.svg'),
     balanceeuroc: require('@/assets/Cryptologos/euro-logo.svg'),
-        balancebtc: require('@/assets/Cryptologos/Currency=btc.svg'),
-        balanceeth: require('@/assets/Cryptologos/Currency=Ethereum.svg'),
+
+
         balanceltc: require('@/assets/Cryptologos/lite.svg'),
-        balancebnb: require('@/assets/Cryptologos/bnb.svg'),
         balancedoge: require('@/assets/Cryptologos/doge.svg'),
         balanceusdc: require('@/assets/Cryptologos/usdc.svg'),
         balancebch: require('@/assets/Cryptologos/btccash.svg'),
