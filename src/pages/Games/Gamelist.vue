@@ -1,6 +1,7 @@
 <template>
 
-<v-card :ripple="false" @click="$router.push(game.route)" elevation="0" class="game-card" v-for="(game, index) in games" :key="index">
+<div :ripple="false" @click="$router.push(game.route)" elevation="0" class="game-card"
+ v-for="(game, index) in games" :key="index">
             <v-img class="v-img" style="width: 100%; height: 100%;
              background-color: rgba(127, 255, 212, 0);" :src="require(`@/assets/Gamespreview/${game.image}`)"/>
            
@@ -13,7 +14,7 @@
 
           <!-- game name -->
 
-        </v-card>
+        </div>
 </template>
 
 <script>
@@ -55,7 +56,7 @@ flex-direction: column;
 justify-content: center; /* centers items vertically in the container */
 align-items: center; /* centers items horizontally in the container */
 border-radius: 20px;
-
+overflow: hidden;
 box-sizing: border-box;
 background-color: #1d2f3f;
 position: relative; /* added to position the button at the bottom */
@@ -83,7 +84,7 @@ max-width: 90%;
 font-size: 17px;
 min-height: 40px;
 height: 100%;
-
+color: #15212c;
 
 }
 .v-img {
