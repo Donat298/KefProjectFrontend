@@ -6,7 +6,7 @@ axios.defaults.withCredentials = true;
 
 export const axiosInstance = axios.create({
 //baseURL: "http://localhost:3000",
- baseURL: "https://kefbackend.onrender.com",
+ baseURL: "https://kefbackend-n38t.onrender.com",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const axiosInstance = axios.create({
  
 export const axiosPrivateInstance = axios.create({
  //baseURL: 'http://localhost:3000', // Make sure this matches your server's address
-  baseURL: "https://kefbackend.onrender.com",
+  baseURL: "https://kefbackend-n38t.onrender.com",
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json',
