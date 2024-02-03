@@ -12,7 +12,7 @@
            
                 <v-text-field
                     density="compact"
-                    placeholder="Username"
+                    placeholder="Username or Email"
                     variant="solo"
                     v-model="username"
                     style="margin-top: 15px;"
