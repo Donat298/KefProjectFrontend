@@ -22,18 +22,7 @@
            Home
          </v-list-item>
          
-         <v-list-item
-           :ripple="false"
-          
-           style="color: #ffffff; padding-left: 15px;"
-           to="/chat"
-           prepend-icon="mdi-chat"
-           
-           elevation="0"
-           
-         >
-           Chat
-         </v-list-item>
+
      
       
        </v-expansion-panel-text>

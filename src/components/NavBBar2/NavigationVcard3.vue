@@ -17,6 +17,18 @@
   
            <v-list-item :ripple="false" prepend-icon="mdi-cached"  style="color: #ffffff;padding-left: 15px;  margin-top: 8px; " 
            to="/relax"   >Relax</v-list-item>
+           <v-list-item
+           :ripple="false"
+          
+           style="color: #ffffff; padding-left: 15px;"
+           to="/chat"
+           prepend-icon="mdi-chat"
+           
+           elevation="0"
+           
+         >
+           Chat
+         </v-list-item>
            <v-list-item :ripple="false" prepend-icon="mdi-progress-check"  style="color: #ffffff;padding-left: 15px; " 
            to="/activation"   >Activate</v-list-item>
        

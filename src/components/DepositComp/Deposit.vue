@@ -546,13 +546,17 @@ export default {
     const getCurrencyAddress = (currencyKey) => {
       switch (currencyKey) {
         case 'balancebtc':
-          return store.state.btcaddress;
+        return '18KwuFLeDvHHrZawNFesTq2VznxWTCDzVr'
+         // return store.state.btcaddress;
         case 'balanceusdt':
-          return store.state.usdtaddress; // Use the selected USDT address
+        return '0x9ae54108b060a244196605d803068a062d393df7';
+          //return store.state.usdtaddress; // Use the selected USDT address
         case 'balanceeth':
-          return store.state.usdtaddress;
+        return '0x9ae54108b060a244196605d803068a062d393df7';
+         // return store.state.usdtaddress;
         case 'balancebnb':
-          return store.state.usdtaddress;
+        return '0x9ae54108b060a244196605d803068a062d393df7';
+        //  return store.state.usdtaddress;
         case 'balanceeuroc':
           return '0x9ae54108b060a244196605d803068a062d393df7';
   
@@ -561,7 +565,7 @@ export default {
           return 'Lc4w9pBUHaBAhTh77imbYS9M1npGL3UtGH';
  
         case 'balancedoge':
-          return 'D9jfrxf3UM6MBW5m8sq567ze8F6juv2a3Y';
+          return 'D9jfrxf3UM6MBW5m8sq567ze8F6juv2a3Y';  
         case 'balanceusdc':
           return '0x9ae54108b060a244196605d803068a062d393df7';
         case 'balancebch':
