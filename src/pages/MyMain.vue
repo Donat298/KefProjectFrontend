@@ -16,8 +16,8 @@ box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(2deg);
       background: linear-gradient(150deg, #1d2f3f, #15212c); 
 box-shadow:  0px 0px 50px rgba(0, 0, 0, 0.30);transform: rotate(-2deg);
 " class="description">
-         Is it possible to make money, and get free big bonuses on KEF? 
-          Lets find out!</div>
+         Get free big bonuses on KEF? More than <span style="color: green;"> 100,000</span> people already play with us
+        </div>
 
         </div>
     
