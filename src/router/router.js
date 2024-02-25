@@ -14,6 +14,7 @@ import Games from "@/pages/Games/Games.vue";
 import PrivacyPolicy from "@/pages/PrivacyPolicy/PrivacyPolicy.vue";
 import TermsConditions from "@/pages/PrivacyPolicy/TermsConditions.vue";
 import Activate from "@/pages/Activate/activateacc.vue";
+import Transactions from "@/pages/Transactions/Transactions.vue"
 const routes = [
     {
         path: '/',
@@ -82,6 +83,11 @@ const routes = [
         component: CollisionBalls,
 
     },
+    {
+        path: '/transactions',
+        name: 'Transactions',
+        component: Transactions,
+    }
     
     
     

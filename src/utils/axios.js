@@ -11,7 +11,7 @@ export const axiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   }
-}) 
+})  
  
 export const axiosPrivateInstance = axios.create({
  //baseURL: 'http://localhost:3000', // Make sure this matches your server's address

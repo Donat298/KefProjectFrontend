@@ -132,9 +132,10 @@ style="display: flex; align-items: center;
 
             
             <v-list
-            elevation="5"
+            elevation="7" 
+            :ripple="false"
             style=" 
-                visibility: visible;
+          
                 opacity: 1;
                 
                 background-color: #1d2f3f;
@@ -155,10 +156,20 @@ style="display: flex; align-items: center;
                 > 
                 <font-awesome-icon class="mr-3" style="color: #ffffff; "  :icon="['fas', 'user']" /> Account </v-list-item>
                
-            <v-list-item style="height: 50px;" @click="logout()" :ripple="false"
+            <v-list-item style="height: 50px;"  to="/" @click="logout()" :ripple="false"
             >
             <font-awesome-icon class="mr-3" style="color: #ffffff; "  :icon="['fas', 'right-from-bracket']" />
              Logout</v-list-item>
+
+
+             <v-list-item style="height: 50px;"   to="/transactions" :ripple="false"
+            >
+            <font-awesome-icon class="mr-3" style="color: #ffffff; "  :icon="['fas', 'money-bill-transfer']" />
+            Transactions</v-list-item>
+
+
+
+      
 
             </v-list>
        
@@ -421,6 +432,12 @@ border-radius: 5px 0px 0px 5px !important;
 }
 
 
+</style>
+
+<style scoped>
+.v-list-item--active {
+  background-color: #1d2f3f;
+}
 
 
 </style>
