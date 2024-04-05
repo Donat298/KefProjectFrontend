@@ -1,3 +1,4 @@
+//index.js
 import { createStore } from "vuex";
 import { useApi, useApiPrivate } from "../utils/useApi";
 
@@ -8,7 +9,7 @@ export default createStore({
     },
     gameInProgress: false,
     sessionChecked: false,
-    accessToken: localStorage.getItem("accessToken") || "",
+    accessToken: sessionStorage.getItem("accessToken") || "",
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceusdt",
     avatar: localStorage.getItem("userAvatar") || "",
     incomingMessage: null,
@@ -34,7 +35,7 @@ export default createStore({
     },
     setAccessToken(state, accessToken) {
       state.accessToken = accessToken;
-      localStorage.setItem("accessToken", accessToken);
+      sessionStorage.setItem("accessToken", accessToken);
     },
 
     setUser(state, user) {
@@ -53,7 +54,7 @@ export default createStore({
          balanceeuroc: 0, 
         balanceltc: 0,  balancedoge: 0, balanceusdc: 0, balancebch: 0,
          balanceada: 0, balancematic: 0, balancetrx: 0 };
-      localStorage.removeItem("accessToken");
+         sessionStorage.removeItem("accessToken");
       localStorage.removeItem("user");
     },
 
@@ -134,6 +135,32 @@ export default createStore({
       }
     },
 
+  
+    
+
+    async logout({ commit }) {
+      try {
+        await useApiPrivate(this).post(`/api/auth/logout`);
+        commit("setAccessToken", "");
+        commit("setUser", {});
+        commit("clearAuthData");
+      } catch (error) {
+        console.error(error);
+        throw error.message;
+      }
+    },
+
+    async refresh({ commit }) {
+      console.log("refresh");
+      try {
+        const { data } = await useApi().post(`/api/auth/refresh`);
+        commit("setAccessToken", data.access_token);
+        return data;
+      } catch (error) {
+        console.error(error);
+        throw error.response?.data?.message || "An error occurred during token refresh.";
+      }
+    },
     async getUser({ commit, dispatch, state }) {
       try {
         const { data } = await useApiPrivate(this).get(`/api/auth/user`);
@@ -169,31 +196,6 @@ export default createStore({
       } catch (error) {
         console.error(error);
         throw error;
-      }
-    },
-    
-
-    async logout({ commit }) {
-      try {
-        await useApiPrivate(this).post(`/api/auth/logout`);
-        commit("setAccessToken", "");
-        commit("setUser", {});
-        commit("clearAuthData");
-      } catch (error) {
-        console.error(error);
-        throw error.message;
-      }
-    },
-
-    async refresh({ commit }) {
-      console.log("refresh");
-      try {
-        const { data } = await useApi().post(`/api/auth/refresh`);
-        commit("setAccessToken", data.access_token);
-        return data;
-      } catch (error) {
-        console.error(error);
-        throw error.response?.data?.message || "An error occurred during token refresh.";
       }
     },
     async getBalanceAndDeposit({ commit, state }) {

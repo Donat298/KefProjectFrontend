@@ -207,8 +207,7 @@ export default {
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0,0,0,0.5);
-  backdrop-filter: blur(5px);
+  background: rgba(0,0,0,0.7);
   position: fixed; 
   z-index: 4;
   overflow-y: auto;

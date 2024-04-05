@@ -66,7 +66,7 @@ padding: 2%;
 bottom: 0; /* positions the button at the very bottom */
 width: 100%; /* makes the button take up the full width of the card */
 box-sizing: border-box; /* makes the button take up the full width of the card */
-backdrop-filter: blur(10px); /* adds a blur effect to the background */
+backdrop-filter: blur(4px); /* adds a blur effect to the background */
 display: flex;
 flex-direction: column; /* stacks items vertically */
 justify-content: center;

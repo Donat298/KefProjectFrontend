@@ -26,7 +26,8 @@
          class="vliststandart" style="background-color: #15212c;">
          <!-- EUR -->
          <v-list-item v-for="currency in currencies" 
-             :key="currency.name" @click="selectCurrency(currency.balanceKey)" style="height: 40px; align-items: center;" :ripple="false">
+             :key="currency.name" @click="selectCurrency(currency.balanceKey)"
+              style="height: 40px; align-items: center;" :ripple="false">
        <div class="hhdd">
          {{ $store.getters.userDetail[currency.balanceKey] }}
          <img class="imginlist" :src="getCurrencyImagePath(currency.balanceKey)" />

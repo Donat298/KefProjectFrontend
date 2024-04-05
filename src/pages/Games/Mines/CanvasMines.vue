@@ -745,7 +745,7 @@ text-align: center;
   padding: 20px;
   color: rgb(255, 255, 255);
  
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
   box-shadow: 0px 0px 40px 10px #ffffff;
 
   background-image: 
