@@ -9,7 +9,7 @@ export default createStore({
     },
     gameInProgress: false,
     sessionChecked: false,
-    accessToken: sessionStorage.getItem("accessToken") || "",
+    accessToken: localStorage.getItem("accessToken") || "",
     selectedCurrency: localStorage.getItem("selectedCurrency") || "balanceusdt",
     avatar: localStorage.getItem("userAvatar") || "",
     incomingMessage: null,
@@ -35,7 +35,7 @@ export default createStore({
     },
     setAccessToken(state, accessToken) {
       state.accessToken = accessToken;
-      sessionStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("accessToken", accessToken);
     },
 
     setUser(state, user) {
@@ -54,7 +54,7 @@ export default createStore({
          balanceeuroc: 0, 
         balanceltc: 0,  balancedoge: 0, balanceusdc: 0, balancebch: 0,
          balanceada: 0, balancematic: 0, balancetrx: 0 };
-         sessionStorage.removeItem("accessToken");
+         localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
     },
 
